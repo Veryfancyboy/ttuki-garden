@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="뚝이네 정원 (데모)">
-<meta property="og:description" content="알을 합쳐 친구를 만나고, 엉망이 된 정원을 같이 고쳐요">
+<meta property="og:description" content="같은 걸 겹쳐 키우고, 엉망이 된 정원을 같이 고쳐요">
 <meta property="og:image" content="https://veryfancyboy.github.io/ttuki-garden/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -37,26 +37,26 @@ html,body{margin:0;height:100%;overflow:hidden;background:#E9E2D6;font-family:'G
 .screen.on{display:block}
 /* top bar */
 .topbar{position:absolute;left:10px;right:10px;top:12px;display:flex;gap:6px;justify-content:space-between;z-index:5}
-.pill{display:flex;align-items:center;gap:2px;background:var(--cream);border:2.5px solid var(--ink);border-radius:20px;height:32px;padding:0 9px 0 2px;font-size:16px;box-shadow:0 3px 0 rgba(74,42,30,.3);white-space:nowrap}
+.pill{display:flex;align-items:center;gap:2px;background:var(--cream);border:2.5px solid var(--ink);border-radius:20px;height:32px;padding:0 9px 0 2px;font-size:18px;box-shadow:0 3px 0 rgba(74,42,30,.3);white-space:nowrap}
 .pill img{height:34px;margin:-6px 0 -4px -6px}
-.pill small{font-family:'Gowun Dodum';font-size:10px;margin-left:3px;opacity:.75}
-.gear{width:32px;height:32px;border-radius:50%;font-size:15px}
+.pill small{font-family:'Gowun Dodum';font-size:12.5px;margin-left:3px;opacity:.75}
+.gear{width:32px;height:32px;border-radius:50%;font-size:17px}
 /* orders */
 .orders{position:absolute;left:8px;right:8px;top:54px;display:flex;gap:6px;z-index:4}
 .order{position:relative;flex:1;height:136px;padding:6px 4px 4px;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .2s,opacity .25s}
 .order.hard{background:#FFF0C2;box-shadow:0 4px 0 rgba(74,42,30,.35),0 0 0 3px var(--gold) inset}
-.order .tagh{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:'Jua';font-size:11px;padding:1px 7px;border-radius:9px;border:2px solid var(--ink);white-space:nowrap}
+.order .tagh{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:'Jua';font-size:13px;padding:1px 7px;border-radius:9px;border:2px solid var(--ink);white-space:nowrap}
 .ava{width:50px;height:50px;border-radius:50%;border:2.5px solid var(--ink);overflow:hidden;background:var(--salmon);flex:none}
 .ava img{width:100%;height:100%;object-fit:cover}
 .want{display:flex;gap:3px;margin-top:5px}
 .w{position:relative;width:34px;height:34px;background:var(--cream2);border-radius:9px;border:2px solid rgba(74,42,30,.35);display:flex;align-items:center;justify-content:center}
 .w img{max-width:30px;max-height:30px}
-.w .cnt{position:absolute;left:-4px;top:-7px;font-family:'Jua';font-size:11px;background:var(--cream);border:1.5px solid var(--ink);border-radius:8px;padding:0 3px;line-height:13px}
+.w .cnt{position:absolute;left:-4px;top:-7px;font-family:'Jua';font-size:13px;background:var(--cream);border:1.5px solid var(--ink);border-radius:8px;padding:0 3px;line-height:15.5px}
 .w.ok::after{content:"";position:absolute;right:-5px;bottom:-5px;width:15px;height:15px;border-radius:50%;background:#5BBE5B url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat;border:1.5px solid var(--ink)}
-.rew{margin-top:auto;display:flex;align-items:center;gap:2px;font-family:'Jua';font-size:12px;background:var(--yellow);border:2px solid var(--ink);border-radius:10px;padding:0 6px 0 2px;height:22px;white-space:nowrap}
+.rew{margin-top:auto;display:flex;align-items:center;gap:2px;font-family:'Jua';font-size:14px;background:var(--yellow);border:2px solid var(--ink);border-radius:10px;padding:0 6px 0 2px;height:22px;white-space:nowrap}
 .rew img{height:20px}
 .rew .gf{height:22px;margin-left:2px}
-.order .done{position:absolute;left:-3px;right:-3px;bottom:-3px;height:34px;border-radius:0 0 18px 18px;background:#5BBE5B;display:none;align-items:center;justify-content:center;color:#fff;font-family:'Jua';font-size:16px;text-shadow:0 2px 0 rgba(74,42,30,.5);border:3px solid var(--ink)}
+.order .done{position:absolute;left:-3px;right:-3px;bottom:-3px;height:34px;border-radius:0 0 18px 18px;background:#5BBE5B;display:none;align-items:center;justify-content:center;color:#fff;font-family:'Jua';font-size:18px;text-shadow:0 2px 0 rgba(74,42,30,.5);border:3px solid var(--ink)}
 .order.ready .done{display:flex}
 .order.ready{animation:bob 1s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-3px)}}
@@ -66,12 +66,12 @@ html,body{margin:0;height:100%;overflow:hidden;background:#E9E2D6;font-family:'G
 .t.alt{background:#FCEBCD}
 .t img{max-width:42px;max-height:42px;pointer-events:none}
 .t.gen::before{content:"";position:absolute;inset:2px;border-radius:8px;border:2px dashed rgba(227,59,46,.55)}
-.t .badge{position:absolute;right:1px;top:1px;font-family:'Jua';font-size:9px;background:var(--red);color:#fff;border-radius:6px;padding:0 3px;border:1.5px solid var(--ink);line-height:11px;pointer-events:none}
-.t .lv{position:absolute;left:2px;bottom:1px;font-family:'Jua';font-size:9px;color:rgba(74,42,30,.55);pointer-events:none}
+.t .badge{position:absolute;right:1px;top:1px;font-family:'Jua';font-size:12px;background:var(--red);color:#fff;border-radius:6px;padding:0 3px;border:1.5px solid var(--ink);line-height:14.5px;pointer-events:none}
+.t .lv{position:absolute;left:2px;bottom:1px;font-family:'Jua';font-size:12px;color:rgba(74,42,30,.55);pointer-events:none}
 .t.sel{box-shadow:0 0 0 3px var(--yellow) inset,0 0 0 1px var(--ink) inset}
 .t.hint{box-shadow:0 0 0 3px var(--mint) inset}
 .t.fog{background:repeating-linear-gradient(45deg,#E7D3B4,#E7D3B4 5px,#EFDDC2 5px,#EFDDC2 10px)}
-.t.fog span{font-family:'Jua';font-size:16px;color:rgba(74,42,30,.4)}
+.t.fog span{font-family:'Jua';font-size:18px;color:rgba(74,42,30,.4)}
 .t.pop img{animation:pop .35s ease-out}
 .t.drop img{animation:drop .35s ease-out}
 .t.ghosted img{opacity:.25}
@@ -85,25 +85,25 @@ html,body{margin:0;height:100%;overflow:hidden;background:#E9E2D6;font-family:'G
 .helper{position:absolute;left:10px;right:10px;top:688px;height:56px;display:flex;gap:8px}
 .ttuk{width:100px;flex:none;gap:2px;padding:0 6px 0 2px}
 .ttuk img{height:46px}
-.ttuk .h{font-size:17px;line-height:15px}
-.ttuk small{display:block;font-size:11px}
+.ttuk .h{font-size:19px;line-height:17px}
+.ttuk small{display:block;font-size:13px}
 .ttuk.on{box-shadow:0 0 0 4px var(--yellow),0 4px 0 var(--ink)}
-.info{flex:1;display:flex;align-items:center;gap:6px;padding:0 10px;font-size:12.5px;line-height:16px;overflow:hidden}
+.info{flex:1;display:flex;align-items:center;gap:6px;padding:0 10px;font-size:14px;line-height:18px;overflow:hidden}
 .info img{height:38px}
-.info b{font-family:'Jua';font-weight:400;font-size:15px}
+.info b{font-family:'Jua';font-weight:400;font-size:17px}
 /* nav */
 .nav{position:absolute;left:0;right:0;bottom:0;height:86px;background:var(--cream);border-top:3px solid var(--ink);display:flex;justify-content:space-around;align-items:flex-start;padding-top:6px;z-index:6}
-.nav div{position:relative;width:74px;height:62px;border-radius:16px;display:flex;flex-direction:column;align-items:center;font-size:13px;cursor:pointer}
+.nav div{position:relative;width:74px;height:62px;border-radius:16px;display:flex;flex-direction:column;align-items:center;font-size:15px;cursor:pointer}
 .nav img{height:38px;margin-bottom:1px;pointer-events:none}
 .nav .on{background:var(--yellow);border:2.5px solid var(--ink);box-shadow:0 3px 0 rgba(74,42,30,.4);margin-top:-12px;height:70px;padding-top:5px}
-.nav .n::after{content:"N";position:absolute;right:8px;top:-2px;width:17px;height:17px;border-radius:50%;background:var(--red);color:#fff;font-size:10px;line-height:14px;text-align:center;border:1.5px solid var(--ink)}
+.nav .n::after{content:"N";position:absolute;right:8px;top:-2px;width:17px;height:17px;border-radius:50%;background:var(--red);color:#fff;font-size:12.5px;line-height:17.5px;text-align:center;border:1.5px solid var(--ink)}
 .nav .hl{animation:glow 1s ease-in-out infinite}
 @keyframes glow{50%{box-shadow:0 0 0 5px rgba(248,197,55,.9)}}
 /* tutorial + toast + float */
-#tip{position:absolute;left:24px;right:24px;top:606px;z-index:20;background:var(--ink);color:var(--cream);font-size:13.5px;line-height:18px;border-radius:14px;padding:8px 12px;display:none;pointer-events:none;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+#tip{position:absolute;left:24px;right:24px;top:606px;z-index:20;background:var(--ink);color:var(--cream);font-size:15px;line-height:20px;border-radius:14px;padding:8px 12px;display:none;pointer-events:none;box-shadow:0 4px 0 rgba(0,0,0,.2)}
 #tip b{font-family:'Jua';font-weight:400;color:var(--yellow)}
-#toast{position:absolute;left:50%;top:162px;transform:translateX(-50%);z-index:60;background:rgba(74,42,30,.92);color:#fff;font-size:13px;border-radius:12px;padding:6px 12px;white-space:nowrap;display:none}
-.float{position:absolute;z-index:55;font-family:'Jua';font-size:22px;color:#fff;text-shadow:0 2px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink);pointer-events:none;animation:fl 1.1s ease-out forwards}
+#toast{position:absolute;left:50%;top:162px;transform:translateX(-50%);z-index:60;background:rgba(74,42,30,.92);color:#fff;font-size:15px;border-radius:12px;padding:6px 12px;white-space:nowrap;display:none}
+.float{position:absolute;z-index:55;font-family:'Jua';font-size:23px;color:#fff;text-shadow:0 2px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink);pointer-events:none;animation:fl 1.1s ease-out forwards}
 @keyframes fl{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-50px);opacity:0}}
 /* popup */
 #pop{position:absolute;inset:0;z-index:70;display:none}
@@ -112,7 +112,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#E9E2D6;font-family:'G
 @keyframes pin{0%{transform:scale(.7);opacity:0}100%{transform:none;opacity:1}}
 .ribbonb{position:absolute;top:-25px;left:50%;transform:translateX(-50%);width:262px;height:56px;background:var(--ink);clip-path:polygon(0 0,100% 0,93% 50%,100% 100%,0 100%,7% 50%)}
 .ribbon{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:254px;height:50px;background:var(--red);color:#fff;font-family:'Jua';font-size:25px;display:flex;align-items:center;justify-content:center;clip-path:polygon(0 0,100% 0,93% 50%,100% 100%,0 100%,7% 50%);text-shadow:0 2px 0 rgba(74,42,30,.5)}
-.from{display:flex;align-items:center;gap:8px;font-size:14px;line-height:18px}
+.from{display:flex;align-items:center;gap:8px;font-size:16px;line-height:20.5px}
 .from .ava{width:44px;height:44px}
 .rays{position:relative;width:190px;height:190px;border-radius:50%;margin-top:8px;background:repeating-conic-gradient(from 0deg,#FFE7A3 0deg 12deg,#FFF6DD 12deg 24deg);display:flex;align-items:center;justify-content:center;border:3px solid var(--ink);overflow:hidden}
 .rays img.pit{max-width:116px;max-height:140px;filter:drop-shadow(0 4px 0 rgba(74,42,30,.25))}
@@ -122,11 +122,11 @@ html,body{margin:0;height:100%;overflow:hidden;background:#E9E2D6;font-family:'G
 @keyframes spin{to{transform:rotate(360deg)}} @keyframes spinr{to{transform:rotate(-360deg)}}
 .iname{font-family:'Jua';font-size:27px;margin-top:8px;text-align:center}
 .tags{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;justify-content:center}
-.tag{font-family:'Jua';font-size:12px;padding:1px 8px;border-radius:10px;border:2px solid var(--ink);background:var(--cream2)}
+.tag{font-family:'Jua';font-size:14px;padding:1px 8px;border-radius:10px;border:2px solid var(--ink);background:var(--cream2)}
 .tag.g2{background:var(--pink)} .tag.g3{background:var(--yellow)} .tag.mint{background:var(--mint)}
-.ptext{font-size:13.5px;text-align:center;line-height:19px;margin-top:6px}
+.ptext{font-size:15px;text-align:center;line-height:21px;margin-top:6px}
 .pbtns{display:flex;gap:10px;margin-top:16px;width:100%}
-.pbtns .btn{flex:1;height:48px;font-size:16px;white-space:nowrap;padding:0 4px}
+.pbtns .btn{flex:1;height:48px;font-size:18px;white-space:nowrap;padding:0 4px}
 /* dress */
 .head{position:absolute;left:10px;right:10px;top:12px;height:40px;display:flex;align-items:center;justify-content:center}
 .title{font-family:'Jua';font-size:26px;color:#fff;text-shadow:0 2px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink)}
@@ -139,85 +139,85 @@ html,body{margin:0;height:100%;overflow:hidden;background:#E9E2D6;font-family:'G
 .inner{position:absolute}
 .inner > img.base{position:absolute;inset:0;width:100%;height:100%}
 .wear{position:absolute;transform:translate(-50%,-50%);filter:drop-shadow(0 2px 0 rgba(74,42,30,.25));pointer-events:none}
-.plate{position:absolute;left:10px;bottom:10px;display:flex;align-items:center;gap:6px;background:var(--cream);border:2.5px solid var(--ink);border-radius:14px;padding:3px 10px;font-family:'Jua';font-size:18px;z-index:3}
-.plate small{font-family:'Gowun Dodum';font-size:11px}
+.plate{position:absolute;left:10px;bottom:10px;display:flex;align-items:center;gap:6px;background:var(--cream);border:2.5px solid var(--ink);border-radius:14px;padding:3px 10px;font-family:'Jua';font-size:20px;z-index:3}
+.plate small{font-family:'Gowun Dodum';font-size:13px}
 .slots{position:absolute;left:12px;right:12px;top:436px;display:flex;gap:6px}
-.tab{flex:1;height:34px;border-radius:12px;border:2.5px solid var(--ink);background:var(--cream);font-size:15px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
+.tab{flex:1;height:34px;border-radius:12px;border:2.5px solid var(--ink);background:var(--cream);font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
 .tab.on{background:var(--red);color:#fff}
-.tab i{position:absolute;top:-6px;right:-4px;font-style:normal;font-size:10px;background:var(--yellow);color:var(--ink);border:1.5px solid var(--ink);border-radius:8px;padding:0 4px;line-height:12px}
+.tab i{position:absolute;top:-6px;right:-4px;font-style:normal;font-size:12.5px;background:var(--yellow);color:var(--ink);border:1.5px solid var(--ink);border-radius:8px;padding:0 4px;line-height:15px}
 .grid{position:absolute;left:12px;right:12px;top:476px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-height:216px;overflow-y:auto;padding:6px 3px 4px}
 .it{position:relative;height:92px;border-radius:14px;border:3px solid var(--ink);background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
 .it img{max-width:56px;max-height:50px;pointer-events:none}
-.it .nm{font-family:'Jua';font-size:12.5px;margin-top:3px}
+.it .nm{font-family:'Jua';font-size:14px;margin-top:3px}
 .it.g2{box-shadow:0 0 0 3px var(--pink) inset} .it.g3{box-shadow:0 0 0 3px var(--yellow) inset}
-.it .eq{position:absolute;left:-6px;top:-8px;background:#5BBE5B;color:#fff;font-family:'Jua';font-size:11px;padding:0 6px;border-radius:9px;border:2px solid var(--ink)}
-.it .nw{position:absolute;right:-6px;top:-8px;background:var(--red);color:#fff;font-family:'Jua';font-size:11px;padding:0 6px;border-radius:9px;border:2px solid var(--ink)}
+.it .eq{position:absolute;left:-6px;top:-8px;background:#5BBE5B;color:#fff;font-family:'Jua';font-size:13px;padding:0 6px;border-radius:9px;border:2px solid var(--ink)}
+.it .nw{position:absolute;right:-6px;top:-8px;background:var(--red);color:#fff;font-family:'Jua';font-size:13px;padding:0 6px;border-radius:9px;border:2px solid var(--ink)}
 .it.lock{cursor:default}
 .it.lock img{filter:grayscale(1) brightness(.8) opacity(.45)}
 .it.lock .nm{opacity:.6;margin-bottom:12px}
-.it .src{position:absolute;bottom:-1px;left:-1px;right:-1px;font-size:10px;text-align:center;background:var(--ink);color:var(--cream);border-radius:0 0 11px 11px;line-height:15px}
-.empty{grid-column:1/4;text-align:center;font-size:13px;padding:20px 0;opacity:.8}
-.setbar{position:absolute;left:12px;right:12px;top:700px;height:46px;display:flex;align-items:center;gap:5px;padding:0 8px;font-size:11.5px}
+.it .src{position:absolute;bottom:-1px;left:-1px;right:-1px;font-size:12.5px;text-align:center;background:var(--ink);color:var(--cream);border-radius:0 0 11px 11px;line-height:19px}
+.empty{grid-column:1/4;text-align:center;font-size:15px;padding:20px 0;opacity:.8}
+.setbar{position:absolute;left:12px;right:12px;top:700px;height:46px;display:flex;align-items:center;gap:5px;padding:0 8px;font-size:13px}
 .mini{width:28px;height:28px;border-radius:8px;border:2px solid var(--ink);background:var(--cream2);display:flex;align-items:center;justify-content:center;flex:none}
 .mini img{max-width:24px;max-height:24px}
 .mini.off img{filter:grayscale(1) opacity(.4)}
-.setbar b{font-family:'Jua';font-weight:400;font-size:13.5px}
+.setbar b{font-family:'Jua';font-weight:400;font-size:15px}
 /* album */
-.prog{position:absolute;left:12px;right:12px;top:58px;height:34px;display:flex;align-items:center;gap:8px;padding:0 10px;font-family:'Jua';font-size:14px}
+.prog{position:absolute;left:12px;right:12px;top:58px;height:34px;display:flex;align-items:center;gap:8px;padding:0 10px;font-family:'Jua';font-size:16px}
 .bar{flex:1;height:12px;border-radius:6px;border:2px solid var(--ink);background:#fff;overflow:hidden}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--yellow),var(--gold));transition:width .4s}
 .cards{position:absolute;left:12px;right:12px;top:102px;display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .card{position:relative;height:138px;border-radius:16px;border:3px solid var(--ink);background:var(--cream);overflow:hidden;box-shadow:0 3px 0 rgba(74,42,30,.35);cursor:pointer}
 .card .pic{position:relative;height:92px;overflow:hidden;border-bottom:2.5px solid var(--ink);background:var(--salmon)}
 .card .cap{display:flex;align-items:center;justify-content:space-between;padding:3px 8px 0}
-.card .cap b{font-family:'Jua';font-weight:400;font-size:16px}
-.card .wl{display:flex;gap:3px;padding:0 8px;align-items:center;font-size:10.5px;height:22px}
+.card .cap b{font-family:'Jua';font-weight:400;font-size:18px}
+.card .wl{display:flex;gap:3px;padding:0 8px;align-items:center;font-size:12.5px;height:22px}
 .card .wl img{height:20px}
 .card.lock .pic .inner > img.base{filter:brightness(0) opacity(.35)}
 .card.lock .cap b{opacity:.6} .card .egg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,#FBE6C4,#FBE6C4 8px,#FFF4DF 8px,#FFF4DF 16px)} .card .egg img{height:64px;filter:grayscale(.2) opacity(.75)}
-.next{position:absolute;left:12px;right:12px;top:690px;height:58px;display:flex;align-items:center;gap:8px;padding:0 10px;background:#FFF0C2;font-size:12px;line-height:16px}
+.next{position:absolute;left:12px;right:12px;top:690px;height:58px;display:flex;align-items:center;gap:8px;padding:0 10px;background:#FFF0C2;font-size:14px;line-height:18.5px}
 .next img{height:44px}
-.next b{font-family:'Jua';font-weight:400;font-size:14px}
+.next b{font-family:'Jua';font-weight:400;font-size:16px}
 /* road */
 .banner{position:absolute;left:0;right:0;top:0;height:222px;background-size:cover;background-position:center 70%;border-bottom:3px solid var(--ink)}
 .btitle{position:absolute;left:0;right:0;top:20px;text-align:center;font-family:'Jua';font-size:34px;color:#FFF4DF;text-shadow:0 3px 0 var(--ink),3px 0 0 var(--ink),-3px 0 0 var(--ink),0 -3px 0 var(--ink),2px 2px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink)}
-.bsub{position:absolute;left:50%;top:66px;transform:translateX(-50%);font-family:'Jua';font-size:13px;background:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:1px 10px;white-space:nowrap}
+.bsub{position:absolute;left:50%;top:66px;transform:translateX(-50%);font-family:'Jua';font-size:15px;background:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:1px 10px;white-space:nowrap}
 .tracks{position:absolute;left:12px;right:12px;top:232px;display:grid;grid-template-columns:34px 1fr 1fr;gap:6px;align-items:center}
-.hd{font-family:'Jua';font-size:15px;text-align:center;height:36px;display:flex;align-items:center;justify-content:center;border-radius:12px;border:2.5px solid var(--ink);flex-direction:column;line-height:14px}
-.hd.free{background:var(--cream)} .hd.prem{background:var(--pink)} .hd small{font-family:'Gowun Dodum';font-size:10px}
-.step{width:34px;height:34px;border-radius:50%;border:2.5px solid var(--ink);background:var(--cream);font-family:'Jua';font-size:16px;display:flex;align-items:center;justify-content:center}
+.hd{font-family:'Jua';font-size:17px;text-align:center;height:36px;display:flex;align-items:center;justify-content:center;border-radius:12px;border:2.5px solid var(--ink);flex-direction:column;line-height:16px}
+.hd.free{background:var(--cream)} .hd.prem{background:var(--pink)} .hd small{font-family:'Gowun Dodum';font-size:12.5px}
+.step{width:34px;height:34px;border-radius:50%;border:2.5px solid var(--ink);background:var(--cream);font-family:'Jua';font-size:18px;display:flex;align-items:center;justify-content:center}
 .step.on{background:var(--yellow)}
-.rw{position:relative;height:54px;border-radius:14px;border:2.5px solid var(--ink);background:var(--cream);display:flex;align-items:center;gap:6px;padding:0 8px;font-family:'Jua';font-size:13.5px;line-height:15px}
+.rw{position:relative;height:54px;border-radius:14px;border:2.5px solid var(--ink);background:var(--cream);display:flex;align-items:center;gap:6px;padding:0 8px;font-family:'Jua';font-size:15px;line-height:16.5px}
 .rw img{max-height:42px;max-width:44px}
-.rw small{display:block;font-family:'Gowun Dodum';font-size:10.5px;opacity:.8}
-.rw .st{position:absolute;right:6px;top:6px;font-size:10px;border:1.5px solid var(--ink);border-radius:8px;padding:0 5px}
+.rw small{display:block;font-family:'Gowun Dodum';font-size:12.5px;opacity:.8}
+.rw .st{position:absolute;right:6px;top:6px;font-size:12.5px;border:1.5px solid var(--ink);border-radius:8px;padding:0 5px}
 .rw.got .st{background:#5BBE5B;color:#fff} .rw.can{cursor:pointer;box-shadow:0 0 0 3px var(--yellow) inset;animation:bob 1s ease-in-out infinite} .rw.can .st{background:var(--red);color:#fff}
 .rw.prem{background:#FFE3EC} .rw.prem img{opacity:.85}
 .rw .lk{position:absolute;right:7px;bottom:6px;width:15px;height:17px}
-.curbar{grid-column:2/4;height:20px;display:flex;align-items:center;gap:6px;font-size:11.5px;font-family:'Jua'}
-.note{position:absolute;left:12px;right:12px;bottom:94px;text-align:center;font-size:12px;background:rgba(255,244,223,.92);border:2px solid var(--ink);border-radius:12px;padding:5px 8px;font-family:'Jua'}
+.curbar{grid-column:2/4;height:20px;display:flex;align-items:center;gap:6px;font-size:13px;font-family:'Jua'}
+.note{position:absolute;left:12px;right:12px;bottom:94px;text-align:center;font-size:14px;background:rgba(255,244,223,.92);border:2px solid var(--ink);border-radius:12px;padding:5px 8px;font-family:'Jua'}
 /* settings */
 #set{position:absolute;inset:0;z-index:80;display:none}
-#set .box{position:absolute;left:40px;right:40px;top:250px;padding:18px;font-size:13px;line-height:19px}
-.topbar .odds{height:32px;padding:0 10px;font-size:14px;border-radius:16px}
+#set .box{position:absolute;left:40px;right:40px;top:250px;padding:18px;font-size:15px;line-height:22px}
+.topbar .odds{height:32px;padding:0 10px;font-size:16px;border-radius:16px}
 .boxbtn{width:96px;flex:none;gap:2px;padding:0 6px 0 2px;background:var(--pink)}
 .boxbtn img{height:38px}
-.boxbtn .h{font-size:15px;line-height:15px;white-space:nowrap}
-.boxbtn small{display:block;font-size:11px}
-.vb{position:absolute;top:4px;left:4px;font-family:'Jua';font-size:11px;padding:0 6px;border-radius:9px;border:2px solid var(--ink);z-index:2}
+.boxbtn .h{font-size:17px;line-height:17px;white-space:nowrap}
+.boxbtn small{display:block;font-size:13px}
+.vb{position:absolute;top:4px;left:4px;font-family:'Jua';font-size:13px;padding:0 6px;border-radius:9px;border:2px solid var(--ink);z-index:2}
 .vb.v1{background:#BDE8FF} .vb.v2{background:var(--yellow)}
 .card.v1{box-shadow:0 0 0 3px #7FD3FF inset,0 3px 0 rgba(74,42,30,.35)} .card.v2{box-shadow:0 0 0 3px var(--gold) inset,0 3px 0 rgba(74,42,30,.35)}
 .rays.v1{background:repeating-conic-gradient(from 0deg,#CDEBFF 0deg 12deg,#F2FAFF 12deg 24deg)} .rays.v2{background:repeating-conic-gradient(from 0deg,#FFD24A 0deg 12deg,#FFF0B8 12deg 24deg)}
 .it.g4{box-shadow:0 0 0 3px #B98CF0 inset}
 .tag.g4{background:linear-gradient(90deg,#FFB3C7,#FFE38A,#A8E6CF,#B5D8FF)}
-.it .ex{position:absolute;bottom:-1px;left:-1px;right:-1px;font-size:10.5px;text-align:center;background:var(--red);color:#fff;border-radius:0 0 11px 11px;line-height:16px;cursor:pointer;font-family:'Jua'}
-.scrap{position:absolute;right:12px;top:16px;z-index:5;height:30px;font-size:14px}
+.it .ex{position:absolute;bottom:-1px;left:-1px;right:-1px;font-size:12.5px;text-align:center;background:var(--red);color:#fff;border-radius:0 0 11px 11px;line-height:19px;cursor:pointer;font-family:'Jua'}
+.scrap{position:absolute;right:12px;top:16px;z-index:5;height:30px;font-size:16px}
 .scrap img{height:30px}
-.pity{font-size:11.5px;margin-top:6px;opacity:.85;text-align:center}
+.pity{font-size:13px;margin-top:6px;opacity:.85;text-align:center}
 #info2{position:absolute;inset:0;z-index:75;display:none}
 #info2 .box{position:absolute;left:22px;right:22px;top:110px;bottom:110px;padding:16px 14px;display:flex;flex-direction:column}
-.oddsbox{flex:1;overflow-y:auto;font-size:12.5px;line-height:17px;padding-right:4px}
-.oddsbox h4{font-family:'Jua';font-weight:400;font-size:15px;margin:10px 0 3px}
+.oddsbox{flex:1;overflow-y:auto;font-size:14px;line-height:19px;padding-right:4px}
+.oddsbox h4{font-family:'Jua';font-weight:400;font-size:17px;margin:10px 0 3px}
 .odds-t{width:100%;border-collapse:collapse}
 .odds-t td{border-bottom:1px dashed rgba(74,42,30,.3);padding:3px 2px}
 .odds-t td:last-child{text-align:right;font-family:'Jua'}
@@ -227,20 +227,20 @@ html,body{margin:0;height:100%;overflow:hidden;background:#E9E2D6;font-family:'G
 .lc.sel{box-shadow:0 0 0 3px var(--yellow) inset,0 3px 0 rgba(74,42,30,.35)}
 .lc .lpic{position:relative;height:70px;overflow:hidden;border-bottom:2.5px solid var(--ink);background:var(--salmon)}
 .lc.part .lpic{filter:grayscale(.85) brightness(1.05) opacity(.75)}
-.lc .ln{font-family:'Jua';font-size:14px;text-align:center;padding-top:6px}
-.lc .eq{position:absolute;left:4px;top:4px;background:#5BBE5B;color:#fff;font-family:'Jua';font-size:11px;padding:0 6px;border-radius:9px;border:2px solid var(--ink);z-index:2}
-.lc .cnt2{position:absolute;right:4px;top:4px;background:var(--cream);font-family:'Jua';font-size:11px;padding:0 6px;border-radius:9px;border:2px solid var(--ink);z-index:2}
-.lc .nw{position:absolute;right:4px;top:4px;background:var(--red);color:#fff;font-family:'Jua';font-size:11px;padding:0 6px;border-radius:9px;border:2px solid var(--ink);z-index:2}
+.lc .ln{font-family:'Jua';font-size:16px;text-align:center;padding-top:6px}
+.lc .eq{position:absolute;left:4px;top:4px;background:#5BBE5B;color:#fff;font-family:'Jua';font-size:13px;padding:0 6px;border-radius:9px;border:2px solid var(--ink);z-index:2}
+.lc .cnt2{position:absolute;right:4px;top:4px;background:var(--cream);font-family:'Jua';font-size:13px;padding:0 6px;border-radius:9px;border:2px solid var(--ink);z-index:2}
+.lc .nw{position:absolute;right:4px;top:4px;background:var(--red);color:#fff;font-family:'Jua';font-size:13px;padding:0 6px;border-radius:9px;border:2px solid var(--ink);z-index:2}
 .pieces{position:absolute;left:12px;right:12px;top:558px;height:190px;padding:8px 8px 6px}
-.pieces .ph{font-size:12.5px;margin-bottom:6px} .pieces .ph b{font-family:'Jua';font-weight:400;font-size:15px}
+.pieces .ph{font-size:14px;margin-bottom:6px} .pieces .ph b{font-family:'Jua';font-weight:400;font-size:17px}
 .pg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .pc{position:relative;height:128px;border-radius:12px;border:2.5px solid var(--ink);background:var(--cream2);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:8px}
 .pc img{max-width:56px;max-height:56px}
-.pc .nm{font-family:'Jua';font-size:12px;margin-top:4px;text-align:center;line-height:13px}
+.pc .nm{font-family:'Jua';font-size:14px;margin-top:4px;text-align:center;line-height:15px}
 .pc.lock img{filter:grayscale(1) opacity(.45)}
-.pc .ok{position:absolute;right:4px;top:3px;width:18px;height:18px;border-radius:50%;background:#5BBE5B;color:#fff;font-size:12px;text-align:center;line-height:16px;border:1.5px solid var(--ink)}
-.pc .nw{position:absolute;right:-4px;top:-7px;background:var(--red);color:#fff;font-family:'Jua';font-size:10px;padding:0 5px;border-radius:9px;border:2px solid var(--ink)}
-.pc .ex,.pc .src{position:absolute;left:-1px;right:-1px;bottom:-1px;font-size:10px;text-align:center;border-radius:0 0 10px 10px;line-height:15px;padding:1px 0}
+.pc .ok{position:absolute;right:4px;top:3px;width:18px;height:18px;border-radius:50%;background:#5BBE5B;color:#fff;font-size:14px;text-align:center;line-height:18.5px;border:1.5px solid var(--ink)}
+.pc .nw{position:absolute;right:-4px;top:-7px;background:var(--red);color:#fff;font-family:'Jua';font-size:12.5px;padding:0 5px;border-radius:9px;border:2px solid var(--ink)}
+.pc .ex,.pc .src{position:absolute;left:-1px;right:-1px;bottom:-1px;font-size:12.5px;text-align:center;border-radius:0 0 10px 10px;line-height:19px;padding:1px 0}
 .pc .ex{background:var(--red);color:#fff;font-family:'Jua';cursor:pointer} .pc .src{background:var(--ink);color:var(--cream)}
 .pc.g2{box-shadow:0 0 0 2px var(--pink) inset} .pc.g3{box-shadow:0 0 0 2px var(--yellow) inset} .pc.g4{box-shadow:0 0 0 2px #B98CF0 inset}
 *{-webkit-touch-callout:none}
@@ -251,15 +251,15 @@ img{-webkit-user-drag:none}
 body.phone{background:var(--salmon)}
 body.phone #app{border-radius:0;box-shadow:none}
 /* ---- grow ---- */
-.gcoin{position:absolute;left:12px;top:16px;height:30px;font-size:15px;z-index:3}
-.gscrap{position:absolute;right:12px;top:16px;height:30px;font-size:15px;z-index:3}
+.gcoin{position:absolute;left:12px;top:16px;height:30px;font-size:17px;z-index:3}
+.gscrap{position:absolute;right:12px;top:16px;height:30px;font-size:17px;z-index:3}
 .gsum{position:absolute;left:12px;right:12px;top:58px;padding:6px 8px 7px}
-.gs-h{font-family:'Jua';font-size:14px;margin-bottom:4px} .gs-h small{font-family:'Gowun Dodum';font-size:10.5px;opacity:.7;margin-left:6px}
+.gs-h{font-family:'Jua';font-size:16px;margin-bottom:4px} .gs-h small{font-family:'Gowun Dodum';font-size:12.5px;opacity:.7;margin-left:6px}
 .gs-g{display:grid;grid-template-columns:repeat(3,1fr);gap:3px 5px}
-.fx{display:flex;justify-content:space-between;align-items:center;gap:2px;font-size:10.5px;line-height:14px;background:#FFF0C2;border-radius:7px;padding:2px 5px;white-space:nowrap}
-.fx b{font-family:'Jua';font-weight:400;font-size:12px;color:var(--red)} .fx.z{background:var(--cream2);opacity:.6} .fx.z b{color:var(--ink)}
+.fx{display:flex;justify-content:space-between;align-items:center;gap:2px;font-size:12.5px;line-height:16.5px;background:#FFF0C2;border-radius:7px;padding:2px 5px;white-space:nowrap}
+.fx b{font-family:'Jua';font-weight:400;font-size:14px;color:var(--red)} .fx.z{background:var(--cream2);opacity:.6} .fx.z b{color:var(--ink)}
 .seg{position:absolute;left:12px;right:12px;top:150px;height:36px;display:flex;gap:6px}
-.seg div{flex:1;border:2.5px solid var(--ink);border-radius:12px;background:var(--cream);font-family:'Jua';font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.seg div{flex:1;border:2.5px solid var(--ink);border-radius:12px;background:var(--cream);font-family:'Jua';font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .seg div.on{background:var(--yellow);box-shadow:0 3px 0 rgba(74,42,30,.4)}
 .glist{position:absolute;left:10px;right:10px;top:194px;bottom:92px;overflow-y:auto;display:flex;flex-direction:column;gap:7px;padding:4px 2px 8px}
 .gc{position:relative;flex:none;display:flex;align-items:center;gap:8px;background:var(--cream);border:2.5px solid var(--ink);border-radius:14px;padding:7px 8px 9px;box-shadow:0 3px 0 rgba(74,42,30,.3)}
@@ -268,66 +268,66 @@ body.phone #app{border-radius:0;box-shadow:none}
 .gpic img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .gpic.it,.gpic.egg{border-radius:12px;background:var(--cream2)} .gpic.it img,.gpic.egg img{object-fit:contain;padding:5px;border-radius:0}
 .gpic.r1{box-shadow:0 0 0 3px #C9D3DC} .gpic.r2{box-shadow:0 0 0 3px var(--gold)} .gpic.r3,.gpic.gold{box-shadow:0 0 0 3px var(--gold),0 0 10px 3px #FFE38A}
-.glv{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);background:var(--ink);color:var(--cream);font-family:'Jua';font-size:10.5px;padding:0 5px;border-radius:7px;white-space:nowrap}
+.glv{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);background:var(--ink);color:var(--cream);font-family:'Jua';font-size:12.5px;padding:0 5px;border-radius:7px;white-space:nowrap}
 .stars{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);display:flex;gap:1px;background:var(--cream);border:1.5px solid var(--ink);border-radius:7px;padding:1px 3px}
 .stars i{width:9px;height:9px;background:#D9C9A8;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)} .stars i.on{background:var(--gold)}
-.gtx{flex:1;min-width:0;font-size:11.5px;line-height:15px}
-.gtx b{font-family:'Jua';font-weight:400;font-size:16px}
-.gtx small{font-size:10.5px;opacity:.8}
-.gtag{font-family:'Jua';font-size:10.5px;background:var(--mint);border:1.5px solid var(--ink);border-radius:8px;padding:0 5px;margin-left:5px;vertical-align:2px;white-space:nowrap}
+.gtx{flex:1;min-width:0;font-size:13px;line-height:17px}
+.gtx b{font-family:'Jua';font-weight:400;font-size:18px}
+.gtx small{font-size:12.5px;opacity:.8}
+.gtag{font-family:'Jua';font-size:12.5px;background:var(--mint);border:1.5px solid var(--ink);border-radius:8px;padding:0 5px;margin-left:5px;vertical-align:2px;white-space:nowrap}
 .gtag.g1{background:var(--cream2)} .gtag.g2{background:var(--pink)} .gtag.g3{background:var(--yellow)} .gtag.g4{background:linear-gradient(90deg,#FFB3C7,#FFE38A,#A8E6CF,#B5D8FF)}
-.gval{font-family:'Jua';font-size:13px;margin-top:2px;line-height:16px} .gval em{font-style:normal;color:var(--red)}
-.gup{flex:none;width:80px;min-height:50px;height:auto;padding:5px 2px;flex-direction:column;font-size:14px;line-height:15px;border-radius:13px;text-align:center}
-.gup small{font-family:'Gowun Dodum';font-size:9.5px;line-height:12px;margin-top:1px;white-space:nowrap}
+.gval{font-family:'Jua';font-size:15px;margin-top:2px;line-height:18.5px} .gval em{font-style:normal;color:var(--red)}
+.gup{flex:none;width:80px;min-height:50px;height:auto;padding:5px 2px;flex-direction:column;font-size:16px;line-height:17px;border-radius:13px;text-align:center}
+.gup small{font-family:'Gowun Dodum';font-size:12px;line-height:15px;margin-top:1px;white-space:nowrap}
 .gup.off{filter:grayscale(.6);opacity:.65}
-.gset{flex:none;font-size:11.5px;background:#FFF0C2;border:2px dashed var(--ink);border-radius:12px;padding:5px 9px;display:flex;align-items:center;gap:6px}
-.gset b{font-family:'Jua';font-weight:400;font-size:13px} .gset span{margin-left:auto;font-family:'Jua'} .gset.on{background:#E3F7EC;border-style:solid}
-.gnote{flex:none;font-size:11.5px;line-height:16px;background:rgba(255,244,223,.92);border:2px solid var(--ink);border-radius:12px;padding:6px 9px}
+.gset{flex:none;font-size:13px;background:#FFF0C2;border:2px dashed var(--ink);border-radius:12px;padding:5px 9px;display:flex;align-items:center;gap:6px}
+.gset b{font-family:'Jua';font-weight:400;font-size:15px} .gset span{margin-left:auto;font-family:'Jua'} .gset.on{background:#E3F7EC;border-style:solid}
+.gnote{flex:none;font-size:13px;line-height:18px;background:rgba(255,244,223,.92);border:2px solid var(--ink);border-radius:12px;padding:6px 9px}
 .info .itx{flex:1;min-width:0}
-.info .act{flex:none;height:36px;padding:0 8px;font-size:13px;border-radius:12px;box-shadow:0 3px 0 var(--ink);white-space:nowrap}
-.info .itx{font-size:11.5px;line-height:15px;white-space:nowrap;overflow:hidden} .info .itx b{font-size:14px}
+.info .act{flex:none;height:36px;padding:0 8px;font-size:15px;border-radius:12px;box-shadow:0 3px 0 var(--ink);white-space:nowrap}
+.info .itx{font-size:13px;line-height:17px;white-space:nowrap;overflow:hidden} .info .itx b{font-size:16px}
 /* ---- event ---- */
 .evlist{position:absolute;left:10px;right:10px;top:58px;bottom:92px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;padding:2px 2px 8px}
 .ev{position:relative;flex:none;padding:8px 10px}
 .ev.road{height:104px;border:3px solid var(--ink);border-radius:18px;background-size:cover;background-position:center 62%;padding:0;overflow:hidden;cursor:pointer;box-shadow:0 4px 0 rgba(74,42,30,.35)}
-.evt{position:absolute;left:10px;top:8px;font-family:'Jua';font-size:21px;color:#FFF4DF;text-shadow:0 2px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink)}
-.evs{position:absolute;left:10px;top:40px;font-family:'Jua';font-size:12px;background:var(--cream);border:2px solid var(--ink);border-radius:9px;padding:0 7px}
-.evb{position:absolute;right:10px;bottom:10px;height:36px;padding:0 12px;font-size:14px}
-.evh{display:flex;align-items:baseline;justify-content:space-between;gap:6px} .evh b{font-family:'Jua';font-weight:400;font-size:17px} .evh span{font-family:'Jua';font-size:11.5px;opacity:.8;white-space:nowrap}
-.evd{font-size:11px;line-height:15px;margin:2px 0 6px;opacity:.85}
+.evt{position:absolute;left:10px;top:8px;font-family:'Jua';font-size:23px;color:#FFF4DF;text-shadow:0 2px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink)}
+.evs{position:absolute;left:10px;top:40px;font-family:'Jua';font-size:14px;background:var(--cream);border:2px solid var(--ink);border-radius:9px;padding:0 7px}
+.evb{position:absolute;right:10px;bottom:10px;height:36px;padding:0 12px;font-size:16px}
+.evh{display:flex;align-items:baseline;justify-content:space-between;gap:6px} .evh b{font-family:'Jua';font-weight:400;font-size:19px} .evh span{font-family:'Jua';font-size:13px;opacity:.8;white-space:nowrap}
+.evd{font-size:13px;line-height:17.5px;margin:2px 0 6px;opacity:.85}
 .race{display:flex;flex-direction:column;gap:3px}
 .ln{display:flex;align-items:center;gap:6px;height:28px}
-.ln .nm{width:40px;font-family:'Jua';font-size:11.5px;white-space:nowrap;overflow:hidden}
+.ln .nm{width:40px;font-family:'Jua';font-size:13px;white-space:nowrap;overflow:hidden}
 .ln .trk{position:relative;flex:1;height:14px;border-radius:7px;background:#F3E3C4;border:2px solid var(--ink)}
 .ln .trk::after{content:"";position:absolute;right:-3px;top:-7px;width:7px;height:24px;background:repeating-linear-gradient(0deg,var(--ink) 0 4px,#fff 4px 8px);border:1px solid var(--ink)}
 .ln .trk i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--mint)}
 .ln.me .trk i{background:var(--yellow)}
 .ln .av{position:absolute;top:-8px;width:26px;height:26px;border-radius:50%;border:2px solid var(--ink);overflow:hidden;background:#fff;z-index:1}
 .ln .av img{width:100%;height:100%;object-fit:cover}
-.ln .av span{display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-family:'Jua';font-size:12px;color:#fff}
-.ln b{width:22px;text-align:right;font-family:'Jua';font-size:13px}
-.evb2{height:38px;margin-top:8px;font-size:14px}
-.dm{display:flex;align-items:center;gap:6px;height:32px;font-size:12px}
-.dm .dn{width:96px;font-family:'Jua';font-size:12.5px;white-space:nowrap}
+.ln .av span{display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-family:'Jua';font-size:14px;color:#fff}
+.ln b{width:22px;text-align:right;font-family:'Jua';font-size:15px}
+.evb2{height:38px;margin-top:8px;font-size:16px}
+.dm{display:flex;align-items:center;gap:6px;height:32px;font-size:14px}
+.dm .dn{width:96px;font-family:'Jua';font-size:14px;white-space:nowrap}
 .dm .bar{flex:1;height:10px;border-radius:5px;background:#F3E3C4;border:1.5px solid var(--ink);overflow:hidden} .dm .bar i{display:block;height:100%;background:var(--mint)}
-.dm .dc{width:36px;text-align:right;font-family:'Jua';font-size:11.5px}
-.dmb{flex:none;width:86px;height:28px;font-size:11px;border-radius:10px;box-shadow:0 2px 0 var(--ink);padding:0 3px;white-space:nowrap}
+.dm .dc{width:36px;text-align:right;font-family:'Jua';font-size:13px}
+.dmb{flex:none;width:86px;height:28px;font-size:13px;border-radius:10px;box-shadow:0 2px 0 var(--ink);padding:0 3px;white-space:nowrap}
 .dmb.off{filter:grayscale(.5);opacity:.7}
 .dm.all{justify-content:space-between;border-top:1.5px dashed rgba(74,42,30,.35);margin-top:3px;padding-top:3px}
 .attg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:100%;margin-top:8px}
 .ad{position:relative;border:2px solid var(--ink);border-radius:10px;background:var(--cream);display:flex;flex-direction:column;align-items:center;padding:3px 1px 4px;text-align:center}
-.ad small{font-family:'Jua';font-size:10px} .ad img{width:30px;height:30px;object-fit:contain;margin:2px 0}
-.ad span{font-size:8.5px;line-height:10px;word-break:keep-all}
-.ad.got{background:#DDEFD9} .ad.got img{opacity:.45} .ad.got::after{content:"받음";position:absolute;top:22px;left:50%;transform:translateX(-50%) rotate(-12deg);font-family:'Jua';font-size:10.5px;color:#fff;background:#5BBE5B;border:1.5px solid var(--ink);border-radius:6px;padding:0 4px;white-space:nowrap}
+.ad small{font-family:'Jua';font-size:12.5px} .ad img{width:30px;height:30px;object-fit:contain;margin:2px 0}
+.ad span{font-size:12px;line-height:14px;word-break:keep-all}
+.ad.got{background:#DDEFD9} .ad.got img{opacity:.45} .ad.got::after{content:"받음";position:absolute;top:22px;left:50%;transform:translateX(-50%) rotate(-12deg);font-family:'Jua';font-size:12.5px;color:#fff;background:#5BBE5B;border:1.5px solid var(--ink);border-radius:6px;padding:0 4px;white-space:nowrap}
 .ad.now{background:#FFF0C2;box-shadow:0 0 0 3px var(--red);animation:bob 1s ease-in-out infinite;cursor:pointer}
 .attg.sm{margin-top:5px}
-.piggy{display:flex;align-items:center;gap:8px;font-size:12px;line-height:16px;padding-right:30px} .piggy img{height:42px} .piggy b{font-family:'Jua';font-weight:400;font-size:15px} .piggy .lk{position:absolute;right:10px;top:50%;margin-top:-9px;width:16px;height:18px}
-.back{position:absolute;left:12px;top:182px;z-index:5;height:32px;padding:0 12px;font-size:14px;border-radius:14px}
-.alv{font-family:'Jua';font-size:11px;background:var(--ink);color:var(--cream);border-radius:8px;padding:0 6px}
-.pc .pst{font-family:'Jua';font-size:11px;color:#C7871A}
+.piggy{display:flex;align-items:center;gap:8px;font-size:14px;line-height:18.5px;padding-right:30px} .piggy img{height:42px} .piggy b{font-family:'Jua';font-weight:400;font-size:17px} .piggy .lk{position:absolute;right:10px;top:50%;margin-top:-9px;width:16px;height:18px}
+.back{position:absolute;left:12px;top:182px;z-index:5;height:32px;padding:0 12px;font-size:16px;border-radius:14px}
+.alv{font-family:'Jua';font-size:13px;background:var(--ink);color:var(--cream);border-radius:8px;padding:0 6px}
+.pc .pst{font-family:'Jua';font-size:13px;color:#C7871A}
 
 /* nav: six tabs */
-.nav div{width:62px;font-size:12.5px}
+.nav div{width:62px;font-size:14px}
 .nav img{height:35px}
 /* garden */
 #sc-garden{background:#C9BBA0}
@@ -343,34 +343,34 @@ body.phone #app{border-radius:0;box-shadow:none}
 .gmk .gav img{width:100%;height:100%;object-fit:cover}
 .gmk .gav.gunk{background:var(--cream)}
 .gmk .gav.gunk img{filter:grayscale(1);opacity:.55;object-fit:contain;padding:5px}
-.gmk .gav b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Jua';font-size:22px;color:var(--ink)}
+.gmk .gav b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Jua';font-size:23px;color:var(--ink)}
 @keyframes gbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 .gmk.gnx{display:flex;flex-direction:column;align-items:center}
 .gmk.gnx .gpin{animation:gbob 1.4s ease-in-out infinite}
-.gmk .gpin{display:flex;align-items:center;gap:2px;background:var(--cream);border:3px solid var(--ink);border-radius:16px;padding:2px 9px 2px 4px;font-family:'Jua';font-size:15px;box-shadow:0 3px 0 rgba(74,42,30,.35);white-space:nowrap}
+.gmk .gpin{display:flex;align-items:center;gap:2px;background:var(--cream);border:3px solid var(--ink);border-radius:16px;padding:2px 9px 2px 4px;font-family:'Jua';font-size:17px;box-shadow:0 3px 0 rgba(74,42,30,.35);white-space:nowrap}
 .gmk .gpin img{height:30px}
 .gmk.gnx.gcan .gpin{background:var(--yellow)}
-.gmk .gcost{display:flex;align-items:center;gap:1px;margin-top:-3px;background:var(--red);color:#fff;border:2.5px solid var(--ink);border-radius:12px;padding:0 7px 0 2px;font-family:'Jua';font-size:13px;height:22px;text-shadow:0 1px 0 rgba(74,42,30,.5)}
+.gmk .gcost{display:flex;align-items:center;gap:1px;margin-top:-3px;background:var(--red);color:#fff;border:2.5px solid var(--ink);border-radius:12px;padding:0 7px 0 2px;font-family:'Jua';font-size:15px;height:22px;text-shadow:0 1px 0 rgba(74,42,30,.5)}
 .gmk .gcost img{height:18px}
 .gmk.gnx:not(.gcan) .gcost{background:#9C8A7A}
 .gmk.glk{width:30px;height:30px;border-radius:50%;background:rgba(255,244,223,.82);border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center}
 .gspark{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;z-index:4;pointer-events:none;animation:gsp 1.2s ease-out forwards}
 @keyframes gsp{0%{transform:translate(0,0) scale(.3);opacity:1}70%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(90deg);opacity:0}}
 .gdpanel{position:absolute;left:10px;right:10px;top:590px;bottom:94px;padding:8px 10px 8px}
-.gdh{display:flex;justify-content:space-between;align-items:center;font-size:16px}
-.gdh span{font-size:15px;color:var(--red)}
+.gdh{display:flex;justify-content:space-between;align-items:center;font-size:18px}
+.gdh span{font-size:17px;color:var(--red)}
 .gdbar{height:10px;border:2px solid var(--ink);border-radius:6px;background:#fff;margin:4px 0 7px;overflow:hidden}
 .gdbar i{display:block;height:100%;background:linear-gradient(90deg,#F59BB6,#F8C537,#7ED3B2,#3FB4E3)}
 .gdtask{display:flex;align-items:center;gap:8px}
 .gdpic{flex:none;width:52px;height:52px;border-radius:50%;border:3px solid var(--ink);overflow:hidden;background:#fff}
 .gdpic img{width:100%;height:100%;object-fit:cover}
 .gdpic.gunk img{filter:grayscale(1);opacity:.6;object-fit:contain;padding:6px}
-.gdtx{flex:1;font-size:12.5px;line-height:1.35}
-.gdtx b{font-family:'Jua';font-size:16px;font-weight:normal}
+.gdtx{flex:1;font-size:14px;line-height:1.35}
+.gdtx b{font-family:'Jua';font-size:18px;font-weight:normal}
 .gdtx .gtag{margin-left:4px}
-.gdgo{flex:none;width:92px;height:52px;flex-direction:column;font-size:14px;line-height:1.1}
-.gdgo small{font-size:11.5px;margin-top:2px}
-.gdnote{font-size:12px;margin-top:6px;color:#7A5A48}
+.gdgo{flex:none;width:92px;height:52px;flex-direction:column;font-size:16px;line-height:1.1}
+.gdgo small{font-size:13px;margin-top:2px}
+.gdnote{font-size:14px;margin-top:6px;color:#7A5A48}
 /* story */
 #story{position:absolute;inset:0;z-index:65;display:none}
 #story .dim{position:absolute;inset:0;background:rgba(60,30,25,.28)}
@@ -378,29 +378,29 @@ body.phone #app{border-radius:0;box-shadow:none}
 #story .sbox.pop{animation:pin .25s ease-out}
 #story .sava{position:absolute;left:14px;top:-40px;width:70px;height:70px;border-radius:50%;border:3px solid var(--ink);overflow:hidden;background:#fff;box-shadow:0 3px 0 rgba(74,42,30,.35)}
 #story .sava img{width:100%;height:100%;object-fit:cover}
-#story .sname{position:absolute;left:90px;top:-15px;background:var(--red);color:#fff;border:2.5px solid var(--ink);border-radius:12px;padding:1px 12px;font-size:16px;text-shadow:0 1px 0 rgba(74,42,30,.5)}
-#story .stext{font-size:16px;line-height:1.55;margin-top:14px;min-height:50px}
-#story .snext{position:absolute;right:14px;bottom:6px;font-size:12px;color:#9C7A66;animation:sblink 1s infinite}
+#story .sname{position:absolute;left:90px;top:-15px;background:var(--red);color:#fff;border:2.5px solid var(--ink);border-radius:12px;padding:1px 12px;font-size:18px;text-shadow:0 1px 0 rgba(74,42,30,.5)}
+#story .stext{font-size:18px;line-height:1.55;margin-top:14px;min-height:50px}
+#story .snext{position:absolute;right:14px;bottom:6px;font-size:14px;color:#9C7A66;animation:sblink 1s infinite}
 @keyframes sblink{50%{opacity:.25}}
 
 
 /* tension: urgent orders, streak, thief */
 .order.urg{background:#FFE6DE;box-shadow:0 4px 0 rgba(74,42,30,.35),0 0 0 3px var(--red) inset}
 .order .tagh.tu b{font-weight:normal;margin-left:2px}
-.order .x2{font-family:'Jua';font-size:11px;color:var(--red);margin:0 1px}
+.order .x2{font-family:'Jua';font-size:13px;color:var(--red);margin:0 1px}
 .order.hurry{animation:wig .35s ease-in-out infinite}
 .order.hurry .tagh{background:#B3121F}
-#stk{position:absolute;left:50%;top:189px;transform:translateX(-50%);z-index:6;height:22px;padding:0 10px;border-radius:11px;background:var(--red);color:#fff;border:2.5px solid var(--ink);font-family:'Jua';font-size:12.5px;display:none;align-items:center;gap:3px;white-space:nowrap;box-shadow:0 2px 0 rgba(74,42,30,.35);pointer-events:none;text-shadow:0 1px 0 rgba(74,42,30,.5)}
-#stk b{font-size:15px;font-weight:normal}
-#stk small{font-size:10.5px;opacity:.9;margin-left:5px}
+#stk{position:absolute;left:50%;top:189px;transform:translateX(-50%);z-index:6;height:22px;padding:0 10px;border-radius:11px;background:var(--red);color:#fff;border:2.5px solid var(--ink);font-family:'Jua';font-size:14px;display:none;align-items:center;gap:3px;white-space:nowrap;box-shadow:0 2px 0 rgba(74,42,30,.35);pointer-events:none;text-shadow:0 1px 0 rgba(74,42,30,.5)}
+#stk b{font-size:17px;font-weight:normal}
+#stk small{font-size:12.5px;opacity:.9;margin-left:5px}
 #stk.broke{background:#7A6A60;animation:sblink .45s ease-in-out 4}
 #board.alarm{animation:alarm .9s ease-in-out infinite}
 @keyframes alarm{50%{box-shadow:0 4px 0 rgba(74,42,30,.35),0 0 0 5px rgba(227,59,46,.8)}}
 #thief{position:absolute;z-index:8;width:76px;height:60px;margin:-36px 0 0 -38px;display:none;cursor:pointer;transition:left .18s ease-out,top .18s ease-out;touch-action:none}
 #thief img{width:76px;height:auto;pointer-events:none;animation:wig .5s ease-in-out infinite;filter:drop-shadow(0 3px 0 rgba(74,42,30,.35))}
 #thief.hop img{animation:pop .3s ease-out}
-#thief .tn{position:absolute;right:-6px;top:-8px;min-width:22px;height:22px;border-radius:11px;background:var(--red);color:#fff;border:2px solid var(--ink);font-family:'Jua';font-size:14px;display:flex;align-items:center;justify-content:center;pointer-events:none}
-#thief .tc{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);background:var(--ink);color:#fff;border-radius:8px;padding:0 6px;font-family:'Jua';font-size:11px;white-space:nowrap;pointer-events:none}
+#thief .tn{position:absolute;right:-6px;top:-8px;min-width:22px;height:22px;border-radius:11px;background:var(--red);color:#fff;border:2px solid var(--ink);font-family:'Jua';font-size:16px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#thief .tc{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);background:var(--ink);color:#fff;border-radius:8px;padding:0 6px;font-family:'Jua';font-size:13px;white-space:nowrap;pointer-events:none}
 #thief.late .tc{background:var(--red)}
 
 /* juice: impact words, particles canvas, flash, danger edge, suspense, fever */
@@ -416,128 +416,128 @@ body.phone #app{border-radius:0;box-shadow:none}
 #susp img{width:150px;height:150px;object-fit:contain;filter:drop-shadow(0 6px 0 rgba(74,42,30,.35))}
 #fev{position:absolute;left:70px;right:70px;top:670px;height:16px;z-index:6;border:2.5px solid var(--ink);border-radius:9px;background:var(--cream);overflow:hidden;box-shadow:0 2px 0 rgba(74,42,30,.3)}
 #fev i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#F59BB6,#F8C537,#7ED3B2,#3FB4E3);transition:width .3s}
-#fev span{position:relative;display:block;text-align:center;font-family:'Jua';font-size:11px;line-height:12px;color:var(--ink)}
+#fev span{position:relative;display:block;text-align:center;font-family:'Jua';font-size:13px;line-height:14px;color:var(--ink)}
 #fev.on{animation:fevglow .5s ease-in-out infinite}
 @keyframes fevglow{50%{box-shadow:0 0 0 4px rgba(248,197,55,.85)}}
 #board.fever{animation:fevboard 1.2s linear infinite}
 @keyframes fevboard{0%{box-shadow:0 0 0 4px #F59BB6,0 4px 0 rgba(74,42,30,.35)}25%{box-shadow:0 0 0 4px #F8C537,0 4px 0 rgba(74,42,30,.35)}50%{box-shadow:0 0 0 4px #7ED3B2,0 4px 0 rgba(74,42,30,.35)}75%{box-shadow:0 0 0 4px #3FB4E3,0 4px 0 rgba(74,42,30,.35)}100%{box-shadow:0 0 0 4px #F59BB6,0 4px 0 rgba(74,42,30,.35)}}
 
 /* v8: bigger UI */
-.pill{height:38px;font-size:19px;padding:0 11px 0 3px}
+.pill{height:38px;font-size:21px;padding:0 11px 0 3px}
 .pill img{height:38px}
-.pill small{font-size:11.5px}
-.gear{width:38px;height:38px;font-size:16px}
-.topbar .odds{height:38px;font-size:16px;padding:0 12px;border-radius:19px}
+.pill small{font-size:13px}
+.gear{width:38px;height:38px;font-size:18px}
+.topbar .odds{height:38px;font-size:18px;padding:0 12px;border-radius:19px}
 .order{height:136px}
 .ava{width:56px;height:56px}
 .w{width:38px;height:38px}
 .w img{max-width:33px;max-height:33px}
-.w .cnt{font-size:13px;line-height:15px}
-.rew{font-size:15px;height:26px}
+.w .cnt{font-size:15px;line-height:17.5px}
+.rew{font-size:17px;height:26px}
 .rew img{height:24px}
-.order .done{font-size:18px}
-.order .tagh{font-size:13px}
-.lk15{position:absolute;top:3px;right:2px;font-family:'Jua';font-size:11px;background:var(--pink);border:1.5px solid var(--ink);border-radius:8px;padding:0 4px;transform:rotate(6deg);z-index:2}
+.order .done{font-size:20px}
+.order .tagh{font-size:15px}
+.lk15{position:absolute;top:3px;right:2px;font-family:'Jua';font-size:13px;background:var(--pink);border:1.5px solid var(--ink);border-radius:8px;padding:0 4px;transform:rotate(6deg);z-index:2}
 .lkic{position:absolute;top:0;left:calc(50% + 10px);width:28px;height:28px;transform:rotate(18deg);filter:drop-shadow(0 1px 0 rgba(74,42,30,.4));pointer-events:none;z-index:2}
 .t img{max-width:46px;max-height:46px}
-.t .lv{font-size:11px}
-.t .badge{font-size:10px;line-height:12px}
+.t .lv{font-size:13px}
+.t .badge{font-size:12.5px;line-height:15px}
 .t .nd{position:absolute;right:1px;bottom:1px;width:17px;height:17px;border-radius:50%;background:#5BBE5B url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat;border:1.5px solid var(--ink);pointer-events:none}
 .t.lockgen{background:repeating-linear-gradient(45deg,#F3E2C6,#F3E2C6 6px,#FBEFD9 6px,#FBEFD9 12px)}
 .t.lockgen img{filter:grayscale(.8) brightness(1.08);opacity:.75}
-.t .lkp,.t .fogbuy{position:absolute;left:50%;bottom:1px;transform:translateX(-50%);display:flex;align-items:center;gap:1px;font-family:'Jua';font-size:11px;color:var(--ink);background:var(--yellow);border:1.5px solid var(--ink);border-radius:8px;padding:0 4px 0 1px;line-height:13px;white-space:nowrap}
+.t .lkp,.t .fogbuy{position:absolute;left:50%;bottom:1px;transform:translateX(-50%);display:flex;align-items:center;gap:1px;font-family:'Jua';font-size:13px;color:var(--ink);background:var(--yellow);border:1.5px solid var(--ink);border-radius:8px;padding:0 4px 0 1px;line-height:15.5px;white-space:nowrap}
 .t .fogbuy{position:static;transform:none}
 .t .lkp img,.t .fogbuy img{height:13px;max-width:none;max-height:none}
-.ttuk .h{font-size:20px;line-height:18px}
-.ttuk small{font-size:12.5px}
-.boxbtn .h{font-size:17px;line-height:16px}
-.boxbtn small{font-size:12.5px}
-.info{font-size:14px;line-height:18px}
-.info b{font-size:17px}
-.info .itx{font-size:13px;line-height:17px}
-.info .itx b{font-size:16px}
-.info .act{height:40px;font-size:16px}
-#tip{font-size:15.5px;line-height:21px;padding:10px 14px}
-#toast{font-size:15px;padding:9px 15px;border-radius:14px;top:150px;left:0;right:0;margin:0 auto;transform:none;width:fit-content;max-width:350px;white-space:normal;word-break:keep-all;text-align:center;line-height:20px}
+.ttuk .h{font-size:21.5px;line-height:19.5px}
+.ttuk small{font-size:14px}
+.boxbtn .h{font-size:19px;line-height:18px}
+.boxbtn small{font-size:14px}
+.info{font-size:16px;line-height:20.5px}
+.info b{font-size:19px}
+.info .itx{font-size:15px;line-height:19.5px}
+.info .itx b{font-size:18px}
+.info .act{height:40px;font-size:18px}
+#tip{font-size:17px;line-height:23px;padding:10px 14px}
+#toast{font-size:17px;padding:9px 15px;border-radius:14px;top:150px;left:0;right:0;margin:0 auto;transform:none;width:fit-content;max-width:350px;white-space:normal;word-break:keep-all;text-align:center;line-height:22.5px}
 .topbar .btn{flex:none;white-space:nowrap}
 .topbar .pill{flex:none}
 .info .itx{white-space:normal}
-.nav div{font-size:14.5px}
+.nav div{font-size:16px}
 .nav img{height:42px}
-.ptext{font-size:16px;line-height:22px}
-.pity{font-size:13px}
-.tag{font-size:14px}
-.pbtns .btn{height:54px;font-size:18px}
+.ptext{font-size:18px;line-height:25px}
+.pity{font-size:15px}
+.tag{font-size:16px}
+.pbtns .btn{height:54px;font-size:20px}
 .iname{font-size:30px}
-.oddsbox{font-size:14px;line-height:19px}
-.oddsbox h4{font-size:17px}
+.oddsbox{font-size:16px;line-height:21.5px}
+.oddsbox h4{font-size:19px}
 .title{font-size:30px}
-.gtx b{font-size:17px}
-.gtx small{font-size:13px}
-#story .stext{font-size:18px}
-#story .sname{font-size:18px}
-.gdtx{font-size:14px}
-.gdtx b{font-size:18px}
-.gdgo{font-size:16px}
-.gdgo small{font-size:13px}
-.gdnote{font-size:13.5px}
-.gdh{font-size:18px}
+.gtx b{font-size:19px}
+.gtx small{font-size:15px}
+#story .stext{font-size:20px}
+#story .sname{font-size:20px}
+.gdtx{font-size:16px}
+.gdtx b{font-size:20px}
+.gdgo{font-size:18px}
+.gdgo small{font-size:15px}
+.gdnote{font-size:15px}
+.gdh{font-size:20px}
 /* v8 fx */
 .thx{position:absolute;z-index:77;display:flex;align-items:center;gap:4px;pointer-events:none;transform:translate(-50%,-50%)}
 .thx .ta{width:62px;height:62px;border-radius:50%;border:3px solid var(--ink);overflow:hidden;background:#fff;box-shadow:0 3px 0 rgba(74,42,30,.35)}
 .thx .ta img{width:100%;height:100%;object-fit:cover}
-.thx .tb{font-family:'Jua';font-size:20px;background:#fff;border:3px solid var(--ink);border-radius:16px;padding:4px 10px;white-space:nowrap}
+.thx .tb{font-family:'Jua';font-size:21.5px;background:#fff;border:3px solid var(--ink);border-radius:16px;padding:4px 10px;white-space:nowrap}
 .flyit{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;z-index:78;pointer-events:none;object-fit:contain}
 
 /* v9: clean, readable UI (no overflow) */
 .topbar{left:8px;right:8px;gap:6px}
-.pill{height:38px;padding:0 10px 0 2px;font-size:18px}
+.pill{height:38px;padding:0 10px 0 2px;font-size:20px}
 .topbar .pill{position:relative}
 #p-en{flex:none;min-width:108px}
 #p-coin{flex:1 1 auto;min-width:0}
-#p-en .pv{font-size:19px;font-weight:normal}
-#p-en .pm{font-size:13px;opacity:.65;margin-left:1px}
-.ptm{position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);font-style:normal;font-family:'Jua';font-size:11px;background:var(--ink);color:#fff;border-radius:7px;padding:0 6px;line-height:15px;white-space:nowrap}
-.topbar .odds{flex:none;height:38px;font-size:16px;padding:0 12px}
+#p-en .pv{font-size:21px;font-weight:normal}
+#p-en .pm{font-size:15px;opacity:.65;margin-left:1px}
+.ptm{position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);font-style:normal;font-family:'Jua';font-size:13px;background:var(--ink);color:#fff;border-radius:7px;padding:0 6px;line-height:17.5px;white-space:nowrap}
+.topbar .odds{flex:none;height:38px;font-size:18px;padding:0 12px}
 .gear{flex:none;width:38px;height:38px;padding:0}
 .gear svg{width:22px;height:22px;display:block}
 .order{padding:8px 4px 6px}
-.lk15{position:absolute;top:44px;left:calc(50% + 12px);right:auto;transform:none;width:34px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Jua';font-size:12px;background:var(--pink);border:2px solid var(--ink);padding:0;z-index:3}
+.lk15{position:absolute;top:44px;left:calc(50% + 12px);right:auto;transform:none;width:34px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Jua';font-size:14px;background:var(--pink);border:2px solid var(--ink);padding:0;z-index:3}
 .rew{position:relative}
-.order .x2{position:absolute;right:-9px;top:-11px;background:var(--red);color:#fff;border:1.5px solid var(--ink);border-radius:8px;font-size:11px;line-height:14px;padding:0 4px;margin:0}
+.order .x2{position:absolute;right:-9px;top:-11px;background:var(--red);color:#fff;border:1.5px solid var(--ink);border-radius:8px;font-size:13px;line-height:16.5px;padding:0 4px;margin:0}
 .rew .gf{height:20px}
 .ttuk,.boxbtn{position:relative;width:96px;flex-direction:row;gap:4px;padding:0 8px 0 4px}
 .ttuk img{height:44px}
 .boxbtn img{height:40px}
-.ttuk .h,.boxbtn .h{font-size:19px;line-height:20px;white-space:nowrap}
-.cntb{position:absolute;top:-9px;right:-7px;min-width:24px;height:24px;padding:0 6px;border-radius:12px;background:var(--red);color:#fff;border:2px solid var(--ink);font-family:'Jua';font-size:14px;display:flex;align-items:center;justify-content:center;gap:1px;box-shadow:0 2px 0 rgba(74,42,30,.35);text-shadow:none}
+.ttuk .h,.boxbtn .h{font-size:21px;line-height:22px;white-space:nowrap}
+.cntb{position:absolute;top:-9px;right:-7px;min-width:24px;height:24px;padding:0 6px;border-radius:12px;background:var(--red);color:#fff;border:2px solid var(--ink);font-family:'Jua';font-size:16px;display:flex;align-items:center;justify-content:center;gap:1px;box-shadow:0 2px 0 rgba(74,42,30,.35);text-shadow:none}
 .cntb.ky{background:var(--yellow);color:var(--ink)}
 .cntb img{height:15px;width:auto}
 .info{padding:0 8px 0 6px;gap:6px}
 .info img{height:40px;flex:none}
 .info .itx{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;line-height:1.25;white-space:nowrap}
-.info .itx b{font-size:16px;overflow:hidden;text-overflow:ellipsis}
-.info .itx span{font-size:13px;overflow:hidden;text-overflow:ellipsis}
-.info .act{flex:none;height:40px;font-size:16px;padding:0 10px}
+.info .itx b{font-size:18px;overflow:hidden;text-overflow:ellipsis}
+.info .itx span{font-size:15px;overflow:hidden;text-overflow:ellipsis}
+.info .act{flex:none;height:40px;font-size:18px;padding:0 10px}
 small.cost{display:flex;align-items:center;justify-content:center;gap:2px;white-space:nowrap}
 small.cost img{height:15px;width:auto}
-.ev.road .evt{left:0;right:0;top:auto;bottom:0;padding:16px 12px 8px;background:linear-gradient(rgba(74,42,30,0),rgba(74,42,30,.85) 45%);font-size:20px;text-shadow:0 2px 0 var(--ink)}
-.ev.road .evs{top:8px;left:10px;font-size:12.5px}
-.ev.road .evb{bottom:8px;right:8px;height:34px;font-size:14px;z-index:2}
-.dm .dn{width:92px;font-size:13px;overflow:hidden;text-overflow:ellipsis}
-.dmb{width:100px;height:30px;font-size:13px;gap:2px}
+.ev.road .evt{left:0;right:0;top:auto;bottom:0;padding:16px 12px 8px;background:linear-gradient(rgba(74,42,30,0),rgba(74,42,30,.85) 45%);font-size:21.5px;text-shadow:0 2px 0 var(--ink)}
+.ev.road .evs{top:8px;left:10px;font-size:14px}
+.ev.road .evb{bottom:8px;right:8px;height:34px;font-size:16px;z-index:2}
+.dm .dn{width:92px;font-size:15px;overflow:hidden;text-overflow:ellipsis}
+.dmb{width:100px;height:30px;font-size:15px;gap:2px}
 .dmb img{height:16px;width:auto}
-.ad span{font-size:9.5px;line-height:11px}
+.ad span{font-size:12px;line-height:14px}
 #fev{height:18px;top:669px}
-#fev span{font-size:12px;line-height:13px}
+#fev span{font-size:14px;line-height:15px}
 
 /* v9b */
-.ptm{position:static;transform:none;background:none;color:var(--ink);opacity:.6;font-size:11.5px;padding:0;margin-left:4px;line-height:1}
+.ptm{position:static;transform:none;background:none;color:var(--ink);opacity:.6;font-size:13px;padding:0;margin-left:4px;line-height:1}
 #p-en{min-width:0}
 .ttuk,.boxbtn{width:74px;flex-direction:column;justify-content:center;gap:0;padding:2px 2px 4px}
 .ttuk img{height:34px}
 .boxbtn img{height:32px}
-.ttuk .h,.boxbtn .h{font-size:15px;line-height:16px}
+.ttuk .h,.boxbtn .h{font-size:17px;line-height:18px}
 .cntb{top:-8px;right:-6px}
 .gdtx small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .gtx{line-height:1.3}
@@ -548,40 +548,40 @@ small.cost img{height:15px;width:auto}
 
 /* v9c */
 .lkic{left:auto;right:calc(50% + 14px);top:30px;width:26px;height:26px;transform:rotate(-16deg)}
-.cntb{top:-5px;right:-5px;height:22px;min-width:22px;font-size:13px}
+.cntb{top:-5px;right:-5px;height:22px;min-width:22px;font-size:15px}
 #fev{top:664px;height:17px}
 .info .itx{line-height:1.2}
 .gcoin,.gscrap{top:12px}
 .gsum{top:60px}
 
-.lc .ln{display:block;text-align:center;padding:6px 4px 0;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lc .ln{display:block;text-align:center;padding:6px 4px 0;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-.icn{display:inline-flex;align-items:center;gap:1px;font-family:'Jua';font-size:12.5px;margin-left:6px;white-space:nowrap;vertical-align:middle}
+.icn{display:inline-flex;align-items:center;gap:1px;font-family:'Jua';font-size:14px;margin-left:6px;white-space:nowrap;vertical-align:middle}
 .icn img{height:17px;width:auto}
-.tag .icn{margin-left:0;font-size:14px}
+.tag .icn{margin-left:0;font-size:16px}
 .tag .icn img{height:18px}
-.ad span{font-family:'Jua';font-size:12px;line-height:14px}
+.ad span{font-family:'Jua';font-size:14px;line-height:16.5px}
 .rw.prem{padding-right:24px}
 .rw > div{min-width:0}
 .rw small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pc .src img,.pc .ex img{height:14px;width:auto;vertical-align:-3px;margin:0 1px 0 2px}
 
-.order .w .cnt{left:2px;right:auto;top:2px;width:auto;min-width:0;height:auto;padding:0 4px;border-radius:8px;border-width:1.5px;font-family:'Jua';font-size:11px;line-height:14px}
+.order .w .cnt{left:2px;right:auto;top:2px;width:auto;min-width:0;height:auto;padding:0 4px;border-radius:8px;border-width:1.5px;font-family:'Jua';font-size:13px;line-height:16.5px}
 #app{word-break:keep-all;overflow-wrap:anywhere}
 .order .w .cnt::before{content:"×"}
-.t.gen .lv{left:3px;bottom:3px;background:var(--ink);color:#fff;border-radius:7px;padding:0 4px;font-family:'Jua';font-size:10px;line-height:13px;opacity:1}
+.t.gen .lv{left:3px;bottom:3px;background:var(--ink);color:#fff;border-radius:7px;padding:0 4px;font-family:'Jua';font-size:12.5px;line-height:16.5px;opacity:1}
 
 .pc > img{width:56px;height:56px;object-fit:contain}
 .pc.lock .src img,.pc.lock .ex img{filter:none}
-.gdtx b{font-size:19px}
+.gdtx b{font-size:21px}
 
 #toast{top:auto;bottom:228px}
 
 .t.fog.fog2{box-shadow:0 0 0 2.5px rgba(247,190,40,.9) inset}
-.t.fog .fogbuy{color:var(--ink);font-size:13px;line-height:16px;padding:0 5px 0 2px}
+.t.fog .fogbuy{color:var(--ink);font-size:15px;line-height:18.5px;padding:0 5px 0 2px}
 .t.fog .fogbuy img{height:15px}
 
-.rw .st{top:-10px;right:-6px;z-index:2;font-size:11px;line-height:16px;padding:0 6px;border-width:2px}
+.rw .st{top:-10px;right:-6px;z-index:2;font-size:13px;line-height:19px;padding:0 6px;border-width:2px}
 
 #tip{top:auto;bottom:190px}
 #app.hastip #toast{bottom:262px}
@@ -613,19 +613,19 @@ small.cost img{height:15px;width:auto}
 @keyframes cdrag{0%{transform:translate(0,0) rotate(-14deg);opacity:0}12%{transform:translate(0,0) rotate(-14deg) scale(.9);opacity:1}24%{transform:translate(0,0) rotate(-14deg) scale(.9);opacity:1}72%{transform:translate(var(--dx),var(--dy)) rotate(-14deg) scale(.9);opacity:1}86%,100%{transform:translate(var(--dx),var(--dy)) rotate(-14deg) scale(.9);opacity:0}}
 #coach .cghost{position:absolute;left:0;top:-20px;width:44px;height:44px;object-fit:contain;transform:rotate(14deg);opacity:.85;display:none}
 #coach .chand.drag .cghost{display:block}
-#coach .csay{position:absolute;left:12px;right:12px;top:330px;pointer-events:none;background:#FFF8EA;border:3px solid var(--ink);border-radius:18px;padding:13px 14px 12px 80px;min-height:78px;box-shadow:0 5px 0 rgba(0,0,0,.25);color:var(--ink);font-size:16.5px;line-height:24px;word-break:keep-all;overflow-wrap:anywhere}
+#coach .csay{position:absolute;left:12px;right:12px;top:330px;pointer-events:none;background:#FFF8EA;border:3px solid var(--ink);border-radius:18px;padding:13px 14px 12px 80px;min-height:78px;box-shadow:0 5px 0 rgba(0,0,0,.25);color:var(--ink);font-size:18px;line-height:26px;word-break:keep-all;overflow-wrap:anywhere}
 #coach .csay.pic{padding:12px 14px 12px 14px}
 #coach .cpic{display:none;width:100%;height:150px;object-fit:cover;border-radius:12px;border:2.5px solid var(--ink);margin:12px 0 10px}
 #coach .csay.pic .cpic{display:block}
 #coach .cava{position:absolute;left:10px;top:50%;margin-top:-30px;width:60px;height:60px;border-radius:50%;border:3px solid var(--ink);overflow:hidden;background:#fff}
 #coach .csay.pic .cava{top:-24px;margin-top:0;width:52px;height:52px}
 #coach .cava img{width:100%;height:100%;object-fit:cover}
-#coach .cname{position:absolute;left:74px;top:-15px;background:var(--red);color:#fff;font-family:'Jua';font-weight:400;font-size:14px;line-height:20px;padding:0 11px;border-radius:11px;border:2px solid var(--ink)}
+#coach .cname{position:absolute;left:74px;top:-15px;background:var(--red);color:#fff;font-family:'Jua';font-weight:400;font-size:16px;line-height:23px;padding:0 11px;border-radius:11px;border:2px solid var(--ink)}
 #coach .csay.pic .cname{left:68px}
 #coach .ctext b{font-family:'Jua';font-weight:400;color:#D9473B}
-#coach .cnext{display:none;text-align:right;font-family:'Jua';font-size:13px;line-height:16px;color:rgba(74,42,30,.55);margin-top:4px}
+#coach .cnext{display:none;text-align:right;font-family:'Jua';font-size:15px;line-height:18.5px;color:rgba(74,42,30,.55);margin-top:4px}
 #coach.info .cnext{display:block}
-#coach .cskip{position:absolute;right:10px;top:-15px;pointer-events:auto;background:#FFF8EA;border:2px solid var(--ink);border-radius:11px;font-family:'Jua';font-size:13px;line-height:20px;padding:0 10px;cursor:pointer;display:none;color:var(--ink)}
+#coach .cskip{position:absolute;right:10px;top:-15px;pointer-events:auto;background:#FFF8EA;border:2px solid var(--ink);border-radius:11px;font-family:'Jua';font-size:15px;line-height:23px;padding:0 10px;cursor:pointer;display:none;color:var(--ink)}
 #coach.chain .cskip{display:block}
 #coach .csay.pop{animation:cpop .26s ease-out}
 #coach .csay.wig{animation:cwig .36s ease-in-out}
@@ -639,7 +639,7 @@ small.cost img{height:15px;width:auto}
 .nav > div.lockd::after{display:none}
 .nav > div.nope{animation:cwig .36s ease-in-out}
 .nav > div.newo{animation:navnew .9s ease-in-out 3}
-.nav > div.newo::before{content:"열림!";position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:12px;line-height:17px;padding:0 7px;border-radius:9px;border:2px solid var(--ink);white-space:nowrap;z-index:2}
+.nav > div.newo::before{content:"열림!";position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:14px;line-height:20px;padding:0 7px;border-radius:9px;border:2px solid var(--ink);white-space:nowrap;z-index:2}
 @keyframes navnew{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
 
 
@@ -650,7 +650,7 @@ small.cost img{height:15px;width:auto}
 
 .topbar .lvb{position:relative;width:70px;height:38px;padding:0 8px 4px;gap:3px;justify-content:center}
 .lvb img{width:24px;height:24px;object-fit:contain}
-.lvb b{font-family:'Jua';font-weight:400;font-size:19px;line-height:20px}
+.lvb b{font-family:'Jua';font-weight:400;font-size:21px;line-height:22px}
 .lvb i{position:absolute;left:9px;right:9px;bottom:5px;height:5px;border-radius:3px;background:rgba(74,42,30,.16);overflow:hidden}
 .lvb u{display:block;height:100%;background:linear-gradient(90deg,#F8C537,#F59BB6);border-radius:3px}
 .lvbig{position:relative;width:150px;height:150px}
@@ -658,8 +658,8 @@ small.cost img{height:15px;width:auto}
 .lvbig b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-top:10px;font-family:'Jua';font-weight:400;font-size:54px;color:#fff;text-shadow:0 3px 0 var(--ink),3px 0 0 var(--ink),-3px 0 0 var(--ink),0 -3px 0 var(--ink)}
 .discf{position:absolute;z-index:56;transform:translate(-50%,-100%);display:flex;align-items:center;gap:6px;background:#FFF8EA;border:2.5px solid var(--ink);border-radius:14px;padding:4px 10px 4px 5px;box-shadow:0 4px 0 rgba(74,42,30,.3);pointer-events:none;white-space:nowrap;animation:discup 2.1s ease-out forwards}
 .discf img{width:36px;height:36px;object-fit:contain}
-.discf span{font-size:12px;line-height:14px;color:#D9473B;font-family:'Jua'}
-.discf b{display:block;font-weight:400;font-size:15px;line-height:18px;color:var(--ink)}
+.discf span{font-size:14px;line-height:16.5px;color:#D9473B;font-family:'Jua'}
+.discf b{display:block;font-weight:400;font-size:17px;line-height:20.5px;color:var(--ink)}
 @keyframes discup{0%{opacity:0;transform:translate(-50%,-80%) scale(.7)}12%{opacity:1;transform:translate(-50%,-100%) scale(1.05)}20%{transform:translate(-50%,-100%) scale(1)}80%{opacity:1;transform:translate(-50%,-125%)}100%{opacity:0;transform:translate(-50%,-135%)}}
 
 .lvb .lvs{width:24px;height:24px;flex:none}
@@ -672,7 +672,7 @@ small.cost img{height:15px;width:auto}
 .info.goal .itx{padding-bottom:13px}
 .info.goal.can{animation:goalglow 1.1s ease-in-out infinite}
 @keyframes goalglow{0%,100%{box-shadow:0 0 0 0 rgba(248,197,55,0)}50%{box-shadow:0 0 0 4px rgba(248,197,55,.95)}}
-.gmk .ggb{position:absolute;right:-14px;top:-12px;display:flex;align-items:center;gap:1px;background:var(--yellow);border:2.5px solid var(--ink);border-radius:12px;padding:0 6px 0 2px;font-family:'Jua';font-size:14px;line-height:20px;box-shadow:0 2px 0 rgba(74,42,30,.35);animation:gbob 1.2s ease-in-out infinite}
+.gmk .ggb{position:absolute;right:-14px;top:-12px;display:flex;align-items:center;gap:1px;background:var(--yellow);border:2.5px solid var(--ink);border-radius:12px;padding:0 6px 0 2px;font-family:'Jua';font-size:16px;line-height:23px;box-shadow:0 2px 0 rgba(74,42,30,.35);animation:gbob 1.2s ease-in-out infinite}
 .gmk .ggb img{height:18px}
 
 .t.vine{background:#D9E8C4}
@@ -680,12 +680,70 @@ small.cost img{height:15px;width:auto}
 .t.vine::after{content:"";position:absolute;inset:1px;border-radius:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%232F5E2C' stroke-width='3.4' stroke-linecap='round'%3E%3Cpath d='M2 10 C14 18 18 6 30 16 S46 34 58 26'/%3E%3Cpath d='M4 52 C16 40 24 54 34 42 S50 30 57 46'/%3E%3C/g%3E%3Cg fill='%236DBB5A' stroke='%232F5E2C' stroke-width='1.2'%3E%3Cellipse cx='12' cy='13' rx='5' ry='3' transform='rotate(-30 12 13)'/%3E%3Cellipse cx='27' cy='12' rx='5' ry='3' transform='rotate(25 27 12)'/%3E%3Cellipse cx='44' cy='30' rx='5' ry='3' transform='rotate(-20 44 30)'/%3E%3Cellipse cx='16' cy='45' rx='5' ry='3' transform='rotate(30 16 45)'/%3E%3Cellipse cx='33' cy='45' rx='5' ry='3' transform='rotate(-35 33 45)'/%3E%3Cellipse cx='50' cy='38' rx='5' ry='3' transform='rotate(20 50 38)'/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat;pointer-events:none;z-index:2}
 .t.vine .lv{opacity:.55}
 .info .sellb{flex-direction:column;line-height:1;padding:0 9px}
-.info .sellb small{font-size:11px;margin-top:2px;color:#B07A1E}
+.info .sellb small{font-size:13px;margin-top:2px;color:#B07A1E}
+
+/* ---------- v15: bigger text for phones ---------- */
+#app .itx span{font-size:16px}
+#app .gdtx small{font-size:15.5px;line-height:1.3}
+#app .gdnote{font-size:16px}
+#app .gs-h small{font-size:14px}
+#app .fx span{font-size:14px}
+#app .gnote{font-size:15px;line-height:1.4}
+#app .gset{font-size:14.5px}
+#app .gtag{font-size:14px}
+#app .glv{font-size:13.5px}
+#app .pc .src{font-size:14px}
+#app .plate small{font-size:14.5px}
+#app .ph{font-size:15.5px}
+#app #anext div{font-size:15.5px}
+#app .evd{font-size:15px}
+#app .ev .evh span,#app #race-left{font-size:14.5px}
+#app .dm .dc,#app .ln .nm,#app .curbar{font-size:14.5px}
+#app .ad small{font-size:14px}
+#app .hd.prem small,#app .tracks small{font-size:14px}
+#app .note{font-size:15px}
+#app .alv,#app .vb{font-size:14px}
+#app .lkp,#app .ptm{font-size:14px}
+#app .eq,#app .cnt2{font-size:14px}
+#app .btn small.cost{font-size:14px}
+#set .box{font-size:16.5px}
+#app .pity{font-size:16px}
+#toast{font-size:18px}
+#app .snext{font-size:15px}
+
+#app .board{height:470px}
+#app #fev{top:660px;height:20px}
+#app #fev span{font-size:15px;line-height:15px}
+#app .helper{top:680px;height:64px}
+#app .info .itx{white-space:normal}
+#app .info .itx b{white-space:nowrap}
+#app .info .itx span{font-size:15.5px;line-height:1.18;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:keep-all}
+#app .info.goal .itx span{-webkit-line-clamp:1}
+#app .gdtx{min-width:0}
+#app .gdtx small{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#app .card .pic{height:84px}
+#app .card .cap{padding:2px 8px 0}
+#app .card .cap b{line-height:22px}
+#app .card .wl{height:22px;font-size:13.5px}
+
+#app .gdpanel{top:568px}
+#app .gs-h{margin-bottom:2px}
+#app .fx{line-height:17px;padding:1px 5px}
+#app .fx span{font-size:13.5px}
+#app .seg{top:166px}
+#app .glist{top:210px}
+#app .gset span{white-space:nowrap;flex:none}
+#app .next{line-height:1.2}
+#app #anext div{font-size:15px}
+
+#app .next{line-height:1.15}
+#app .next b{line-height:1.1}
+#app #anext div{font-size:14.5px}
 </style>
 </head>
 <body>
-<div id="boot" style="position:fixed;inset:0;z-index:99999;background:#F6E9D7;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:-apple-system,'Malgun Gothic',sans-serif;color:#4A2A1E;text-align:center;padding:20px"><div style="font-size:24px;font-weight:800;margin-bottom:8px">뚝이네 정원</div><div id="bootmsg" style="font-size:15px;line-height:1.5">불러오는 중이에요...</div><div style="width:200px;height:9px;border:2px solid #4A2A1E;border-radius:6px;margin-top:14px;overflow:hidden;background:#fff"><i id="bootbar" style="display:block;height:100%;width:8%;background:#F8C537;transition:width .4s"></i></div></div>
-<script>(function(){var t0=Date.now(),errs=[];window.addEventListener('error',function(e){errs.push(e.message)});var iv=setInterval(function(){var s=(Date.now()-t0)/1000,b=document.getElementById('bootbar');if(b)b.style.width=Math.min(94,8+s*9)+'%';if(window.__demo){clearInterval(iv);var el=document.getElementById('boot');if(el)el.remove();return;}var m=document.getElementById('bootmsg');if(!m)return;if(errs.length&&s>4){clearInterval(iv);m.innerHTML='게임을 여는 중에 문제가 생겼어요.<br>저장된 진행 때문일 수 있어요.<br><button id="bootreset" style="margin-top:14px;font-size:16px;font-weight:700;padding:10px 16px;border:2px solid #4A2A1E;border-radius:12px;background:#E8463C;color:#fff">처음부터 다시 시작</button>';document.getElementById('bootreset').onclick=function(){try{localStorage.removeItem('sinsu_demo_v4');localStorage.removeItem('sinsu_demo_v3')}catch(x){}location.reload()};}else if(s>15){m.innerHTML='인터넷이 느린가 봐요. 조금만 더 기다려 주세요.';}},300);})();</script>
+<div id="boot" style="position:fixed;inset:0;z-index:99999;background:#F6E9D7;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:-apple-system,'Malgun Gothic',sans-serif;color:#4A2A1E;text-align:center;padding:20px"><div style="font-size:24px;font-weight:800;margin-bottom:8px">뚝이네 정원</div><div id="bootmsg" style="font-size:17px;line-height:1.5">불러오는 중이에요...</div><div style="width:200px;height:9px;border:2px solid #4A2A1E;border-radius:6px;margin-top:14px;overflow:hidden;background:#fff"><i id="bootbar" style="display:block;height:100%;width:8%;background:#F8C537;transition:width .4s"></i></div></div>
+<script>(function(){var t0=Date.now(),errs=[];window.addEventListener('error',function(e){errs.push(e.message)});var iv=setInterval(function(){var s=(Date.now()-t0)/1000,b=document.getElementById('bootbar');if(b)b.style.width=Math.min(94,8+s*9)+'%';if(window.__demo){clearInterval(iv);var el=document.getElementById('boot');if(el)el.remove();return;}var m=document.getElementById('bootmsg');if(!m)return;if(errs.length&&s>4){clearInterval(iv);m.innerHTML='게임을 여는 중에 문제가 생겼어요.<br>저장된 진행 때문일 수 있어요.<br><button id="bootreset" style="margin-top:14px;font-size:18px;font-weight:700;padding:10px 16px;border:2px solid #4A2A1E;border-radius:12px;background:#E8463C;color:#fff">처음부터 다시 시작</button>';document.getElementById('bootreset').onclick=function(){try{localStorage.removeItem('sinsu_demo_v4');localStorage.removeItem('sinsu_demo_v3')}catch(x){}location.reload()};}else if(s>15){m.innerHTML='인터넷이 느린가 봐요. 조금만 더 기다려 주세요.';}},300);})();</script>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="lock" viewBox="0 0 16 18"><rect x="1.5" y="7.5" width="13" height="9.5" rx="2.5" fill="#F8C537" stroke="#4A2A1E" stroke-width="1.6"/><path d="M4.5 7.5V5.2a3.5 3.5 0 0 1 7 0v2.3" fill="none" stroke="#4A2A1E" stroke-width="1.8"/></symbol>
 </defs></svg>
@@ -750,7 +808,7 @@ small.cost img{height:15px;width:auto}
   <div class="head"><div class="title">키우기</div></div>
   <div class="pill gcoin" id="g-coin"></div><div class="pill gscrap" id="g-scrap"></div>
   <div class="gsum panel" id="gsum"></div>
-  <div class="seg" id="gseg"><div data-t="sp">친구</div><div data-t="it">옷</div><div data-t="gen">생산기</div></div>
+  <div class="seg" id="gseg"><div data-t="sp">친구</div><div data-t="it">옷</div><div data-t="gen">살림</div></div>
   <div class="glist" id="glist"></div>
 </div>
 
@@ -773,7 +831,7 @@ small.cost img{height:15px;width:auto}
 </div>
 
 <div class="nav" id="nav">
-  <div data-s="main" class="on"><img data-i="c04_nest">합치기</div>
+  <div data-s="main" class="on"><img data-i="c04_nest">만들기</div>
   <div data-s="garden"><img data-i="ui_lantern">정원</div>
   <div data-s="grow"><img data-i="ui_star_gold">키우기</div>
   <div data-s="dress"><img data-i="x1_santa_gamtu">꾸미기</div>
@@ -787,10 +845,10 @@ small.cost img{height:15px;width:auto}
 <div id="story"><div class="dim"></div><div class="sbox panel"><div class="sava"><img></div><div class="sname h"></div><div class="stext"></div><div class="snext">눌러서 계속 ▼</div></div></div>
 <div id="pop"><div class="dim"></div><div class="box panel" id="popbox"></div></div>
 <div id="set"><div class="dim" style="position:absolute;inset:0;background:rgba(60,30,25,.55)"></div><div class="box panel">
-  <div class="h" style="font-size:20px;margin-bottom:6px">데모 안내</div>
-  알을 합쳐서 손님 주문을 들어주고, 모은 동전으로 <b>정원</b>을 고치는 게임이에요. 정원을 고치면 떠났던 친구들이 돌아와요. <b>급한 주문</b>은 시간 안에 보내고, <b>족제비 도둑</b>은 눌러서 쫓아내요. 에너지는 30초에 1씩 차요(정식은 2분). 선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기). 진행은 이 폰에 저장돼요.
-  <div class="btn red h" id="b-reset" style="height:44px;margin-top:14px">튜토리얼 다시 보기</div><div style="display:flex;gap:8px;margin-top:8px"><div class="btn sky h" id="b-day" style="flex:1;height:42px">하루 넘기기</div><div class="btn yellow h" id="b-close" style="flex:1;height:42px">닫기</div></div>
-  <div style="display:flex;gap:8px;margin-top:8px"><div class="btn cream h" id="b-snd" style="flex:1;height:38px;font-size:14px">소리 켜짐</div><div class="btn cream h" id="b-vib" style="flex:1;height:38px;font-size:14px">진동 켜짐</div><div class="btn cream h" id="b-odds2" style="flex:1;height:38px;font-size:14px">확률 보기</div></div>
+  <div class="h" style="font-size:21.5px;margin-bottom:6px">데모 안내</div>
+  같은 걸 겹쳐 키워서 이웃 주문을 들어주고, 모은 동전으로 <b>정원</b>을 고치는 게임이에요. 정원을 고치면 떠났던 친구들이 돌아와요. <b>급한 주문</b>은 시간 안에 보내고, <b>족제비 도둑</b>은 눌러서 쫓아내요. 에너지는 30초에 1씩 차요(정식은 2분). 선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기). 진행은 이 폰에 저장돼요.
+  <div class="btn red h" id="b-reset" style="height:44px;margin-top:14px">안내 다시 보기</div><div style="display:flex;gap:8px;margin-top:8px"><div class="btn sky h" id="b-day" style="flex:1;height:42px">하루 넘기기</div><div class="btn yellow h" id="b-close" style="flex:1;height:42px">닫기</div></div>
+  <div style="display:flex;gap:8px;margin-top:8px"><div class="btn cream h" id="b-snd" style="flex:1;height:38px;font-size:16px">소리 켜짐</div><div class="btn cream h" id="b-vib" style="flex:1;height:38px;font-size:16px">진동 켜짐</div><div class="btn cream h" id="b-odds2" style="flex:1;height:38px;font-size:16px">확률 보기</div></div>
 </div></div>
 </div></div>
 
@@ -860,14 +918,14 @@ const SP_ORB = [0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 3];
 const STAR_MAX = 5;
 const STAR_SCRAP = [0, 0, 10, 20, 40, 80];
 const STAR_COIN = [0, 0, 40, 80, 160, 320];
-const FX = { coin: ['주문 동전', '+', '%'], scrap: ['천 조각', '+', '%'], regen: ['에너지 충전', '+', '%'], enmax: ['최대 에너지', '+', ''], song: ['떡 에너지', '+', ''], good: ['좋은 재료', '+', '%'], jump: ['두 단계 점프', '', '%'], key: ['열쇠 1개 더', '', '%'], free: ['공짜 톡', '', '%'] };
+const FX = { coin: ['주문 동전', '+', '%'], scrap: ['천 조각', '+', '%'], regen: ['에너지 충전', '+', '%'], enmax: ['최대 에너지', '+', ''], song: ['떡 에너지', '+', ''], good: ['좋은 재료', '+', '%'], jump: ['두 단계 껑충', '', '%'], key: ['열쇠 1개 더', '', '%'], free: ['공짜 톡', '', '%'] };
 const BLESS = {
-  ttuki: { n: '두 단계 점프', u: 'jump', base: 2, per: 1, d: '1단계끼리 합칠 때 가끔 두 단계 올라가요' },
+  ttuki: { n: '두 단계 껑충', u: 'jump', base: 2, per: 1, d: '1단계끼리 겹칠 때 가끔 두 단계 올라가요' },
   haetae: { n: '열쇠 챙기기', u: 'key', base: 3, per: 3, d: '주문 보낼 때 가끔 열쇠를 1개 더 받아요' },
   rabbit: { n: '떡 솜씨', u: 'song', base: 2, per: 2, d: '떡 먹을 때 에너지를 더 받아요' },
   toad: { n: '돈복', u: 'coin', base: 6, per: 6, d: '주문 동전을 더 받아요' },
-  gumiho: { n: '공짜 찬스', u: 'free', base: 2, per: 1, d: '생산기를 톡 할 때 가끔 에너지가 안 들어요' },
-  bonghwang: { n: '행운 날개', u: 'good', base: 0.5, per: 0.5, d: '생산기에서 좋은 재료가 더 잘 나와요' },
+  gumiho: { n: '공짜 찬스', u: 'free', base: 2, per: 1, d: '재료를 꺼낼 때 가끔 에너지가 안 들어요' },
+  bonghwang: { n: '행운 날개', u: 'good', base: 0.5, per: 0.5, d: '좋은 재료가 더 잘 나와요' },
   bulgasari: { n: '바느질 솜씨', u: 'scrap', base: 8, per: 8, d: '천 조각을 더 받아요' },
   imugi: { n: '빠른 충전', u: 'regen', base: 4, per: 4, d: '에너지가 더 빨리 차요' }
 };
@@ -877,7 +935,7 @@ const SETFX = { xmas: { u: 'coin', v: 10 }, snow: { u: 'regen', v: 10 } }; /* al
 const RACE_GOAL = 10, RACE_SEC = 20 * 60; /* demo race: 20 minutes */
 const RIVALS = [['미나', '#F59BB6', 58], ['Jae', '#5FB7A0', 78], ['Sophie', '#3FB4E3', 100], ['하루', '#B98CF0', 135]];
 const RACE_RW = [null, { key: 5, coin: 200, scrap: 30 }, { key: 3, coin: 120 }, { key: 2, coin: 60 }, { coin: 30 }, { coin: 30 }];
-const DM = [{ k: 'o', n: '주문 보내기', goal: 5, rw: { coin: 60 } }, { k: 'm', n: '합치기', goal: 20, rw: { key: 1 } }, { k: 't', n: '생산기 톡', goal: 30, rw: { scrap: 15 } }];
+const DM = [{ k: 'o', n: '주문 보내기', goal: 5, rw: { coin: 60 } }, { k: 'm', n: '단계 올리기', goal: 20, rw: { key: 1 } }, { k: 't', n: '재료 꺼내기', goal: 30, rw: { scrap: 15 } }];
 const DM_ALL = { key: 2, coin: 100 };
 const ATT = [['c09_coin_pouch', '동전 100', { coin: 100 }], ['c10_songpyeon', '에너지 30', { en: 30 }], ['ui_key', '열쇠 2', { key: 2 }], ['ui_scraps', '천 조각 30', { scrap: 30 }], ['c09_coin_pouch', '동전 300', { coin: 300 }], ['ui_key', '열쇠 3', { key: 3 }], ['x1_santa_gamtu', '산타 모자', { item: 'x1' }]];
 const PIGGY_MAX = 300, PIGGY_PER = 6;
@@ -1038,7 +1096,7 @@ function rollBoxGrade() {
   return g;
 }
 const gradePool = g => Object.keys(ITEMS).filter(id => ITEMS[id].g === g);
-function pityLine() { return `스페셜 이상까지 ${BOX_PITY3 - S.pity.b3}번 · 전설까지 ${BOX_PITY4 - S.pity.b4}번 안에 반드시`; }
+function pityLine() { return `스페셜 이상은 ${BOX_PITY3 - S.pity.b3}번, 전설은 ${BOX_PITY4 - S.pity.b4}번 안에 꼭 나와요`; }
 
 /* ---------- energy ---------- */
 function tickEnergy() {
@@ -1145,7 +1203,7 @@ function tapTile(i) {
 }
 function spawn(gi) {
   if (S.en < 1 && !feverOn()) { enOut(); sfx('tick', { rate: .6 }); shake(.3); return; }
-  const t = emptyNear(gi); if (t < 0) { toast('보드가 가득 찼어요. 합치거나 주문을 끝내 보세요'); return; }
+  const t = emptyNear(gi); if (t < 0) { toast('판이 꽉 찼어요. 같은 걸 겹치거나 주문을 보내 보세요'); return; }
   const g = S.b[gi].g, freeTap = feverOn() || (!tgOn() && chance('free')); if (!freeTap) S.en--; S.tap[g]++; dmAdd('t');
   let lv = tgOn() ? 1 : rollGen(g); const od = genOdds(g); if (feverOn() && Math.random() < .35) lv = Math.min(4, lv + 1);
   S.b[t] = (!tgOn() && S.done >= 4 && Math.random() < GIFT_P) ? { k: 'gift' } : { k: GEN[g].k, lv }; sel = t;
@@ -1164,7 +1222,7 @@ function dropOn(a, b) {
     const jump = A.lv === 1 && !tgOn() && chance('jump'); B.lv = Math.min(MAXLV, B.lv + (jump ? 2 : 1)); S.b[a] = null; sel = b; dmAdd('m');
     if (S.tut <= 1) S.tut = 2;
     if (jump) toast(`껑충! 두 단계 올라 ${CHN[B.k][B.lv - 1]}${iga(CHN[B.k][B.lv - 1])} 됐어요`);
-    else if (ACT_AT[B.k] && B.lv === ACT_AT[B.k] && !S.seen3[B.k]) { S.seen3[B.k] = 1; toast(`${CHN[B.k][B.lv - 1]}! 지금 ${ACT_NAME[B.k]}를 해도 되고, 더 합치면 더 좋은 게 나와요`); }
+    else if (ACT_AT[B.k] && B.lv === ACT_AT[B.k] && !S.seen3[B.k]) { S.seen3[B.k] = 1; toast(`${CHN[B.k][B.lv - 1]}! 지금 ${ACT_NAME[B.k]}를 해도 되고, 더 겹치면 더 좋은 게 나와요`); }
     save(); renderAll(); mergeFx(b, B.lv, jump); discCheck(b); return;
   }
   S.b[b] = A; S.b[a] = B || null; sel = b; save(); renderAll(); sfx('tap', { rate: .8, vol: .4 });
@@ -1179,8 +1237,8 @@ function hatch(lv) {
   if (!isNew && !better) S.coin += 30;
   save(); renderAll();
   const vt = v ? `<span class="tag ${v === 2 ? 'g3' : 'mint'}">${VAR_NAME[v]}</span>` : '<span class="tag">보통</span>';
-  const text = (isNew ? `${SP[k].n}${iga(SP[k].n)} ${homeOf(k) ? homeOf(k).n + '에 돌아왔어요' : '정원에 놀러 왔어요'}.${v ? ` 그것도 ${VAR_NAME[v]} 친구예요!` : ''} 특기: ${BLESS[k].n}` : better ? `${VAR_NAME[v]} ${SP[k].n}${eul(SP[k].n)} 처음 만났어요! 도감에 표시돼요.` : '이미 만난 친구예요. 동전 +30') + (orbs ? ` · ${SP[k].n} 우정 구슬 +${orbs} (키우기에 써요)` : '');
-  showPop({ title: isNew ? '알이 부화했어요!' : better ? `${VAR_NAME[v]} 친구!` : '또 만났어요!', big: `<img class="sp" src="${HEAD(k)}">`, raysCls: v ? 'v' + v : '', fx: v ? 'big' : 'hatch', name: (v ? VAR_NAME[v] + ' ' : '') + SP[k].n, tags: vt + `<span class="tag">도감 ${Object.keys(S.sp).length}/8</span>` + (lv > 3 ? `<span class="tag g3">${CHN.egg[lv - 1]}</span>` : ''), text, pity: `반짝 이상까지 ${VAR_PITY1 - S.pity.h1}번 · 황금까지 ${VAR_PITY2 - S.pity.h2}번 안에 반드시`, btns: [isNew ? ['꾸며 주기', 'red', () => { S.cur = k; go('dress'); }] : ['키우러 가기', 'red', () => { S.gtab = 'sp'; go('grow'); }], ['좋아요', 'yellow', null]] });
+  const text = (isNew ? `${SP[k].n}${iga(SP[k].n)} ${homeOf(k) ? homeOf(k).n + '에 돌아왔어요' : '정원에 놀러 왔어요'}.${v ? ` 그것도 ${VAR_NAME[v]} 친구예요!` : ''} 특기: ${BLESS[k].n}` : better ? `${VAR_NAME[v]} ${SP[k].n}${eul(SP[k].n)} 처음 만났어요! 도감에서 볼 수 있어요.` : '이미 만난 친구예요. 동전 +30') + (orbs ? ` · ${SP[k].n} 우정 구슬 +${orbs} (키우기에 써요)` : '');
+  showPop({ title: isNew ? '새 친구가 나왔어요!' : better ? `${VAR_NAME[v]} 친구!` : '또 만났어요!', big: `<img class="sp" src="${HEAD(k)}">`, raysCls: v ? 'v' + v : '', fx: v ? 'big' : 'hatch', name: (v ? VAR_NAME[v] + ' ' : '') + SP[k].n, tags: vt + `<span class="tag">도감 ${Object.keys(S.sp).length}/8</span>` + (lv > 3 ? `<span class="tag g3">${CHN.egg[lv - 1]}</span>` : ''), text, pity: `반짝 이상은 ${VAR_PITY1 - S.pity.h1}번, 황금은 ${VAR_PITY2 - S.pity.h2}번 안에 꼭 나와요`, btns: [isNew ? ['꾸며 주기', 'red', () => { S.cur = k; go('dress'); }] : ['키우러 가기', 'red', () => { S.gtab = 'sp'; go('grow'); }], ['좋아요', 'yellow', null]] });
 }
 function openBox(fromSewing, lv) {
   if (!fromSewing) { if (S.keys <= 0) { toast('열쇠가 없어요. 주문 3개를 보낼 때마다 1개씩 받아요'); return; } S.keys--; }
@@ -1195,7 +1253,7 @@ function openBox(fromSewing, lv) {
   if (S.keys > 0) btns.push([`한 번 더 (${S.keys})`, 'red', () => setTimeout(() => suspense('box', 3, () => openBox(false)), 50)]);
   if (!dup) btns.push([lookDone(lookOf(id)) ? '코디 입히기' : '코디 보기', S.keys > 0 ? 'cream' : 'red', () => wearNow(id)]);
   btns.push(['확인', 'yellow', null]);
-  showPop({ title: fromSewing ? `${CHN.sew[lv - 1]} 상자!` : '선물 상자 열기!', big: `<img class="pit" src="${I(it.img)}">`, raysCls: g >= 3 ? 'v2' : '', fx: g >= 3 ? 'big' : 'box', name: it.n, tags: `<span class="tag g${g}">${GRADE[g]} (${pct((lv > 3 ? BOXLV_ODDS[lv][g] : BOX_ODDS[g]) / gradePool(g).length)})</span><span class="tag mint">${lookOf(id).n} ${lookOf(id).items.filter(x => S.owned[x]).length}/4</span>`, text: dup ? `이미 있는 옷이라 천 조각 +${gotSc} (지금 ${S.scraps}개) · 키우기에서 레벨업에 써요` : '새 옷을 얻었어요! ' + LOOK_ROLE, pity: lv > 3 ? `${CHN.sew[lv - 1]}: ${lv === 4 ? '레어 이상 확정' : lv === 5 ? '스페셜 이상 확정' : '전설 확정'}` : pityLine(), btns });
+  showPop({ title: fromSewing ? `${CHN.sew[lv - 1]} 상자!` : '선물 상자 열기!', big: `<img class="pit" src="${I(it.img)}">`, raysCls: g >= 3 ? 'v2' : '', fx: g >= 3 ? 'big' : 'box', name: it.n, tags: `<span class="tag g${g}">${GRADE[g]} (${pct((lv > 3 ? BOXLV_ODDS[lv][g] : BOX_ODDS[g]) / gradePool(g).length)})</span><span class="tag mint">${lookOf(id).n} ${lookOf(id).items.filter(x => S.owned[x]).length}/4</span>`, text: dup ? `이미 있는 옷이라 천 조각 +${gotSc} (지금 ${S.scraps}개) · 키우기에서 레벨업에 써요` : '새 옷을 얻었어요! ' + LOOK_ROLE, pity: lv > 3 ? `${CHN.sew[lv - 1]}: ${lv === 4 ? '레어 이상이 꼭 나와요' : lv === 5 ? '스페셜 이상이 꼭 나와요' : '전설이 꼭 나와요'}` : pityLine(), btns });
 }
 function giveItem(id) { S.owned[id] = 1; S.star[id] = S.star[id] || 1; S.newi[id] = 1; if (S.tut === 3) S.tut = 4; const L = lookOf(id); if (L && lookDone(L)) S.newLook[L.id] = 1; }
 function actOn(i) { const x = S.b[i]; if (!x || !x.lv || x.vine || !ACT_AT[x.k] || x.lv < ACT_AT[x.k]) return; S.b[i] = null; sel = -1; save(); if (x.k === 'egg') suspense('egg', x.lv, () => hatch(x.lv)); else suspense('sew', x.lv, () => openBox(true, x.lv)); }
@@ -1304,7 +1362,7 @@ function renderAlbum() {
   }).join('');
   document.querySelectorAll('#cards .card').forEach(c => c.onclick = () => { const k = c.dataset.k; if (!S.sp[k]) { toast('아직 못 만난 친구예요'); return; } S.cur = k; go('dress'); });
   const nextK = HATCH[S.hi];
-  $('#anext').innerHTML = nextK ? `<img src="${I('c03_egg3')}"><div><b>다음에 만날 친구</b><br>빛나는 알을 깨우면 새 친구가 나와요 (남은 ${8 - nSp}명) · 반짝이 12%, 황금빛 3%</div>` : `<img src="${I('ui_star_gold')}"><div><b>8명을 다 만났어요!</b><br>계속 깨우면 반짝이·황금빛 친구를 모을 수 있어요</div>`;
+  $('#anext').innerHTML = nextK ? `<img src="${I('c03_egg3')}"><div><b>다음에 만날 친구 · 남은 ${8 - nSp}명</b><br>빛나는 알에서 나와요. 반짝이 12%, 황금빛 3%</div>` : `<img src="${I('ui_star_gold')}"><div><b>8명을 다 만났어요!</b><br>계속 깨우면 반짝이·황금빛 친구를 모을 수 있어요</div>`;
 }
 
 /* ---------- road ---------- */
@@ -1324,7 +1382,7 @@ function renderRoad() {
     const i = +el.dataset.i, r = ROAD[i].f[3]; S.road[i] = 1;
     if (r.coin) { S.coin += r.coin; toast(`동전 +${r.coin}`); }
     if (r.en) { S.en += r.en; toast(`에너지 +${r.en}`); }
-    if (r.key) { S.keys += r.key; toast(`열쇠 +${r.key} · 합치기 화면의 선물 상자로 열어요`); }
+    if (r.key) { S.keys += r.key; toast(`열쇠 +${r.key} · 만들기 화면의 선물 상자로 열어요`); }
     save(); renderAll();
     if (r.item) { if (!S.owned[r.item]) { giveItem(r.item); save(); renderAll(); showItemPop(r.item, '크리스마스 선물', '무료 칸에서 받은 옷', null); } else { const s10 = moreScrap(10); S.scraps += s10; toast(`이미 있어서 천 조각 +${s10}`); save(); renderAll(); } }
   });
@@ -1359,7 +1417,7 @@ function upGen(g) {
 function upStar(id) {
   const st = S.star[id] || 1; if (!S.owned[id] || st >= STAR_MAX) return;
   const sc = STAR_SCRAP[st + 1], c = STAR_COIN[st + 1];
-  if (S.scraps < sc) { toast(`천 조각이 ${sc - S.scraps}개 더 필요해요. 겹친 옷이 천 조각이 돼요`); return; }
+  if (S.scraps < sc) { toast(`천 조각이 ${sc - S.scraps}개 더 필요해요. 이미 있는 옷이 또 나오면 천 조각이 돼요`); return; }
   if (S.coin < c) { toast(`동전이 ${c - S.coin}개 더 필요해요`); return; }
   const u = ITEM_FX[id].u, before = itemVal(id), L = lookOf(id), setBefore = setOn(L);
   S.scraps -= sc; S.coin -= c; S.star[id] = st + 1; upDone();
@@ -1390,14 +1448,14 @@ function renderGrow() {
       const st = S.star[id] || 1, mx = st >= STAR_MAX, sc = STAR_SCRAP[st + 1], c = STAR_COIN[st + 1], can = !mx && S.scraps >= sc && S.coin >= c;
       const stars = [1, 2, 3, 4, 5].map(i => `<i class="${i <= st ? 'on' : ''}"></i>`).join('');
       return `<div class="gc"><div class="gpic it${st >= 5 ? ' gold' : ''}"><img src="${I(it.img)}"><span class="stars">${stars}</span></div><div class="gtx"><b>${it.n}</b><span class="gtag g${it.g}">${GRADE[it.g]}</span><br><small>${FX[u][0]} · ${lookOf(id).n}</small><div class="gval">${fxText(u, itemVal(id))}${mx ? ' <em>최고</em>' : ` → <em>${fxText(u, itemVal(id, st + 1))}</em>`}</div></div><div class="btn ${can ? 'red' : 'cream'} gup h${mx ? ' off' : ''}" data-up="it:${id}">${mx ? '최고' : '레벨업'}${mx ? '' : `<small class="cost"><img src="${I('ui_scraps')}">${sc} <img src="${I('c09_coin_pouch')}">${c}</small>`}</div></div>`;
-    }).join('') + `<div class="gnote">레벨업은 항상 성공해요. 천 조각은 겹친 옷, 주문 선물, 오늘의 할 일에서 모여요.</div>`;
+    }).join('') + `<div class="gnote">레벨업은 항상 성공해요. 천 조각은 이미 있는 옷이 또 나올 때, 주문 선물, 오늘의 할 일에서 모여요.</div>`;
   } else {
     html = GEN_ORDER.filter(g => g === 'nest' || g === 'basket' || S.unl[g]).map(g => {
       const L = S.glv[g] || 1, mx = L >= GEN_MAX, c = GEN_COST[L + 1], can = !mx && S.coin >= c;
       const cur = genOdds(g), nx = mx ? null : genOddsAt(L + 1);
       const nm = GEN[g].n, chain = GEN[g].k;
       return `<div class="gc gen"><div class="gpic it"><img src="${I(GEN[g].img)}"><span class="glv">Lv${L}</span></div><div class="gtx"><b>${nm}</b><span class="gtag">${CHN[chain][0]}~${CHN[chain][3]}</span><br><small>톡 1·2·3·4단계 확률</small><div class="gval">${cur.map(v => Math.round(v)).join(' / ')}%${mx ? ' <em>최고</em>' : `<br>→ <em>${nx.map(v => Math.round(v)).join(' / ')}%</em>`}</div></div><div class="btn ${can ? 'red' : 'cream'} gup h${mx ? ' off' : ''}" data-up="gen:${g}">${mx ? '최고' : '키우기'}${mx ? '' : `<small class="cost"><img src="${I('c09_coin_pouch')}">${c}</small>`}</div></div>`;
-    }).join('') + `<div class="gnote">생산기를 키우면 높은 단계가 바로 나와서 에너지를 아껴요. 모든 확률은 합치기 화면의 확률 버튼에 나와요.</div>`;
+    }).join('') + `<div class="gnote">살림을 키우면 높은 단계가 바로 나와서 에너지를 아껴요. 확률은 설정의 확률 보기에 다 나와요.</div>`;
   }
   $('#glist').innerHTML = html;
   document.querySelectorAll('#glist [data-up]').forEach(b => b.onclick = () => { const [t, id] = b.dataset.up.split(':'); if (t === 'sp') upSpirit(id); else if (t === 'it') upStar(id); else upGen(id); });
@@ -1493,20 +1551,20 @@ function showPop(o) {
 }
 function showItemPop(id, title, line, who) {
   const it = ITEMS[id];
-  const from = who ? `<div class="from"><div class="ava"><img src="${HEAD(who)}"></div><div><b class="h" style="font-size:16px">${title}</b><br>${line}</div></div>` : `<div class="ptext" style="margin-top:0">${line}</div>`;
+  const from = who ? `<div class="from"><div class="ava"><img src="${HEAD(who)}"></div><div><b class="h" style="font-size:18px">${title}</b><br>${line}</div></div>` : `<div class="ptext" style="margin-top:0">${line}</div>`;
   showPop({ title: who ? '주문 완료!' : title, fromHtml: from, big: `<img class="pit" src="${I(it.img)}">`, name: it.n, tags: `<span class="tag g${it.g}">${GRADE[it.g]}</span><span class="tag mint">${lookOf(id).n} ${lookOf(id).items.filter(x => S.owned[x]).length}/4</span>`, text: LOOK_ROLE, btns: [[lookDone(lookOf(id)) ? '코디 입히기' : '코디 보기', 'red', () => wearNow(id)], ['받기', 'yellow', null]] });
 }
 function showOdds() {
   const rows = (arr) => `<table class="odds-t">${arr.map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join('')}</table>`;
   const boxRows = [4, 3, 2, 1].map(g => { const pool = gradePool(g); return [`${GRADE[g]} ${pool.length}종 (${pool.map(id => ITEMS[id].n).join(', ')})`, `${BOX_ODDS[g]}% · 각 ${pct(BOX_ODDS[g] / pool.length)}`]; });
-  $('#info2box').innerHTML = `<div class="h" style="font-size:22px;text-align:center">확률 안내</div><div class="oddsbox">
+  $('#info2box').innerHTML = `<div class="h" style="font-size:23px;text-align:center">확률 안내</div><div class="oddsbox">
   ${GEN_ORDER.filter(g => g === 'nest' || g === 'basket' || S.unl[g]).map(g => `<h4>${GEN[g].n} Lv${S.glv[g] || 1} (톡 1번, 에너지 1)</h4>` + rows(genOdds(g).map((p, i) => [`${i + 1}단계 (${CHN[GEN[g].k][i]})`, p + '%']))).join('')}
-  <h4>생산기 레벨별 확률 (1/2/3/4단계)</h4>${rows(GEN_LV_ODDS.slice(1).map((o, i) => [`Lv${i + 1}`, o.join(' / ') + '%']))}<div style="font-size:11px;opacity:.8">봉황 특기·산타 망토 보너스만큼 1단계 대신 2단계가 나와요 (지금 +${fx('good')}%)</div>
+  <h4>살림 레벨별로 나오는 단계 (1/2/3/4단계)</h4>${rows(GEN_LV_ODDS.slice(1).map((o, i) => [`Lv${i + 1}`, o.join(' / ') + '%']))}<div style="font-size:13px;opacity:.8">봉황 특기·산타 망토 보너스만큼 1단계 대신 2단계가 나와요 (지금 +${fx('good')}%)</div>
   <h4>알 깨우기 (빛나는 알부터, 높을수록 좋아요)</h4>${rows([['꽃 알 (4단계)', '반짝 85% · 황금 15% · 구슬 +1'], ['금빛 알 (5단계)', '황금 100% · 구슬 +2'], ['무지개 알 (6단계)', '황금 100% · 구슬 +4']])}
   <h4>빛나는 알 (3단계)에서 나오는 친구</h4>${rows([['보통', VAR_ODDS[0] + '%'], ['반짝', VAR_ODDS[1] + '%'], ['황금', VAR_ODDS[2] + '%'], ['보장', `${VAR_PITY1}번 안에 반짝 이상, ${VAR_PITY2}번 안에 황금`], ['지금', `반짝까지 ${VAR_PITY1 - S.pity.h1}번 · 황금까지 ${VAR_PITY2 - S.pity.h2}번`]])}
-  <h4>선물 상자 (열쇠 1개)</h4>${rows(boxRows.concat([['보장', `${BOX_PITY3}번 안에 스페셜 이상, ${BOX_PITY4}번 안에 전설`], ['지금', `스페셜 이상까지 ${BOX_PITY3 - S.pity.b3}번 · 전설까지 ${BOX_PITY4 - S.pity.b4}번`], ['겹친 옷', `천 조각 ${SCRAP_DUP.slice(1).join(' / ')} (등급순)`], ['천 조각 교환', `원하는 옷: ${SCRAP_COST.slice(1).join(' / ')}개`]]))}
+  <h4>선물 상자 (열쇠 1개)</h4>${rows(boxRows.concat([['보장', `${BOX_PITY3}번 안에 스페셜 이상, ${BOX_PITY4}번 안에 전설`], ['지금', `스페셜 이상까지 ${BOX_PITY3 - S.pity.b3}번 · 전설까지 ${BOX_PITY4 - S.pity.b4}번`], ['이미 있는 옷', `천 조각 ${SCRAP_DUP.slice(1).join(' / ')} (등급순)`], ['천 조각 교환', `원하는 옷: ${SCRAP_COST.slice(1).join(' / ')}개`]]))}
   <h4>바느질 상자 (높을수록 좋아요)</h4>${rows([['리본 (3단계)', '선물 상자와 같음'], ['매듭 장식 (4단계)', '레어 75% · 스페셜 22% · 전설 3%'], ['천 꾸러미 (5단계)', '스페셜 85% · 전설 15%'], ['금실 (6단계)', '전설 100%']])}
-  <h4>친구 특기·옷 보너스로 생기는 확률 (지금)</h4>${rows([['1단계끼리 합칠 때 두 단계 점프', fx('jump') + '%'], ['주문 보낼 때 열쇠 1개 더', Math.min(100, fx('key')) + '%'], ['톡 할 때 에너지 안 씀', fx('free') + '%']])}
+  <h4>친구 특기·옷 보너스로 생기는 확률 (지금)</h4>${rows([['1단계끼리 겹칠 때 두 단계 껑충', fx('jump') + '%'], ['주문 보낼 때 열쇠 1개 더', Math.min(100, fx('key')) + '%'], ['톡 할 때 에너지 안 씀', fx('free') + '%']])}
   <div class="free"><b class="h" style="font-weight:400">돈을 쓰지 않아도 전부 얻어요</b><br>열쇠는 주문 3개마다 1개, 크리스마스 선물(무료 칸), 바느질로만 생겨요. 열쇠와 선물 상자는 돈이나 보석으로 팔지 않아요. 원하는 옷은 천 조각으로 골라서 받을 수 있어요.</div></div>
   <div class="btn yellow h" id="b-oclose" style="height:44px;margin-top:10px">닫기</div>`;
   $('#info2').style.display = 'block';
@@ -1943,7 +2001,7 @@ const lookOn = k => !!(S.lk && S.lk[k] && S.lk[k] !== 'base' && SP_ORDER.include
 const lookIco = k => { if (!lookOn(k)) return ''; const L = LOOKS.find(x => x.id === S.lk[k]); return L ? `<img class="lkic" src="${I(ITEMS[L.items[0]].img)}">` : ''; };
 function buyGen(i) {
   const x = S.b[i]; if (!x || x.k !== 'lock') return; const G = GEN[x.g], g = x.g;
-  showPop({ title: '새 생산기', big: `<img class="pit" src="${I(G.img)}">`, name: G.n, tags: `<span class="tag">${icn('c09_coin_pouch', G.cost)}</span>`, text: `톡 하면 ${CHN[G.k][0]}부터 ${CHN[G.k][5]}까지 6단계가 나와요. 이 줄을 주문하는 손님이 새로 와요.`, btns: [[S.coin >= G.cost ? '사기' : '동전 부족', S.coin >= G.cost ? 'red' : 'cream', () => {
+  showPop({ title: '새 살림 들이기', big: `<img class="pit" src="${I(G.img)}">`, name: G.n, tags: `<span class="tag">${icn('c09_coin_pouch', G.cost)}</span>`, text: `톡 하면 ${CHN[G.k][0]}부터 ${CHN[G.k][5]}까지 6단계가 나와요. 이걸 주문하는 손님도 새로 와요.`, btns: [[S.coin >= G.cost ? '사기' : '동전 부족', S.coin >= G.cost ? 'red' : 'cream', () => {
     if (S.coin < G.cost) { toast(`동전 ${G.cost - S.coin}개 더 필요해요. 주문을 보내 모아요`); return; }
     S.coin -= G.cost; S.unl[g] = 1; S.b[i] = { k: 'gen', g };
     const nb = NB_ORDER[Math.floor(Math.random() * NB_ORDER.length)], slot = S.orders.findIndex(o => !o.urg && !ready(o));
@@ -1951,11 +2009,11 @@ function buyGen(i) {
     if (slot >= 0) S.orders[slot] = no; else if (S.orders.length < 3) S.orders.push(no);
     save(); renderAll();
     const te = tileEl(i), xy = elXY(te); sfx('levelup'); ring(xy[0], xy[1], '#FFE45C', 60); burst(xy[0], xy[1], 28, { sp: 5, life: 46, sh: 's' }); boom(xy[0], xy[1] - 30, 'NEW!', '#FFE45C', 30); if (te) punchEl(te.querySelector('img'), 1);
-    toast(`${G.n}${eul(G.n)} 샀어요! ${CHN[G.k][0]} 줄 주문이 와요`);
+    toast(`${G.n}${eul(G.n)} 샀어요! 새 손님이 찾아와요`);
   }], ['닫기', 'yellow', null]] });
 }
 function buyFog() {
-  showPop({ title: '판 넓히기', big: `<img class="pit" src="${I('c09_coin_pouch')}">`, name: '맨 아랫줄 7칸 열기', tags: `<span class="tag">${icn('c09_coin_pouch', FOG2_COST)}</span>`, text: '판이 넓어지면 아이템을 더 많이 놓고 더 크게 합칠 수 있어요.', btns: [[S.coin >= FOG2_COST ? '열기' : '동전 부족', S.coin >= FOG2_COST ? 'red' : 'cream', () => {
+  showPop({ title: '판 넓히기', big: `<img class="pit" src="${I('c09_coin_pouch')}">`, name: '맨 아랫줄 7칸 열기', tags: `<span class="tag">${icn('c09_coin_pouch', FOG2_COST)}</span>`, text: '판이 넓어지면 더 많이 놓을 수 있어서, 더 높은 단계까지 만들 수 있어요.', btns: [[S.coin >= FOG2_COST ? '열기' : '동전 부족', S.coin >= FOG2_COST ? 'red' : 'cream', () => {
     if (S.coin < FOG2_COST) { toast(`동전 ${FOG2_COST - S.coin}개 더 필요해요`); return; }
     S.coin -= FOG2_COST; for (let k = 56; k < 63; k++) if (S.b[k] && S.b[k].k === 'fog') S.b[k] = null; save(); renderAll();
     sfx('restore'); shake(.5); for (let k = 56; k < 63; k++) { const xy = elXY(tileEl(k)); burst(xy[0], xy[1], 6, { sp: 3, life: 30 }); }
@@ -2006,7 +2064,7 @@ $('#banner').style.backgroundImage = `url(${IMG['img/banner_xmas.jpg']})`;
 $('#b-odds').onclick = showOdds;
 $('#b-set').onclick = () => $('#set').style.display = 'block';
 $('#b-close').onclick = () => $('#set').style.display = 'none';
-$('#b-reset').onclick = () => { $('#set').style.display = 'none'; showPop({ title: '튜토리얼 다시 보기', text: '처음부터 새로 시작해요. 지금까지 모은 것은 지워져요.', btns: [['다시 시작', 'red', () => { S = fresh(); fillOrders(); save(); tgHide(); go('main'); }], ['취소', 'yellow', null]] }); };
+$('#b-reset').onclick = () => { $('#set').style.display = 'none'; showPop({ title: '안내 다시 보기', text: '처음부터 새로 시작해요. 지금까지 모은 것은 지워져요.', btns: [['다시 시작', 'red', () => { S = fresh(); fillOrders(); save(); tgHide(); go('main'); }], ['취소', 'yellow', null]] }); };
 
 function renderAll() {
   tickEnergy();
@@ -2019,7 +2077,7 @@ function renderAll() {
   if ($('#sc-event').classList.contains('on')) renderEvent();
   if ($('#sc-garden').classList.contains('on')) renderGarden();
   document.querySelector('.nav [data-s=garden]').classList.toggle('n', gCan() || ggTotal() > 0);
-  if (!S.gd.hint && gCan() && !tgOn() && !$('#sc-garden').classList.contains('on')) { S.gd.hint = 1; save(); setTimeout(() => { const n2 = gNext(); if (n2) toast('동전이 모였어요! 정원 탭에서 ' + n2.n + eul(n2.n) + ' 고칠 수 있어요'); }, 900); }
+  if (!S.gd.hint && gCan() && !tgOn() && !$('#sc-garden').classList.contains('on')) { S.gd.hint = 1; save(); setTimeout(() => { const n2 = gNext(); if (n2) toast('동전이 모였어요! 정원에서 ' + n2.n + eul(n2.n) + ' 고칠 수 있어요'); }, 900); }
   document.querySelector('.nav [data-s=dress]').classList.toggle('n', Object.keys(S.newi).length > 0 || Object.keys(S.newLook).length > 0);
   const step = Math.min(6, Math.floor(S.done / 2)); const canRoad = [...Array(step).keys()].some(i => !S.road[i]);
   document.querySelector('.nav [data-s=event]').classList.toggle('n', canRoad || attCan() || dmCan() || !!raceCan());
@@ -2034,7 +2092,7 @@ const tileQ = i => `#board .t[data-i="${i}"]`, navQ = s => `.nav [data-s=${s}]`;
 const ordQ = i => i >= 0 ? `#orders .order:nth-child(${i + 1})` : null;
 const readyOrd = () => ordQ(S.orders.findIndex(ready));
 const scrOn = s => { const e = document.getElementById('sc-' + s); return !!e && e.classList.contains('on'); };
-const SCR_NAME = { main: '합치기', garden: '정원' };
+const SCR_NAME = { main: '만들기', garden: '정원' };
 const gateOk = () => gStep(GARDEN[0]) >= 1 || (!!gNext() && S.coin >= gNext().cost);
 const CHAIN = [
   { id: 'hi1', mode: 'info', pic: 'img/garden_off.jpg', text: '안녕, 나는 <b>뚝이</b>야! 할머니가 병원에 계신 사이에 누가 정원을 이렇게 엉망으로 만들었어...' },
@@ -2042,27 +2100,27 @@ const CHAIN = [
   { id: 'nest', scr: 'main', mode: 'tap', done: () => lvCells('egg', 1).length >= 2 || lvCells('egg', 2).length > 0 || S.done >= 1, tgt: () => tileQ(0), text: '<b>둥지</b>를 톡 눌러 봐. 알이 나와!' },
   { id: 'merge', scr: 'main', mode: 'drag', done: () => lvCells('egg', 2).length > 0 || S.done >= 1, tgt: () => { const c = lvCells('egg', 1); return c.length >= 2 ? [tileQ(c[0]), tileQ(c[1])] : null; }, alt: { mode: 'tap', tgt: () => tileQ(0), text: '<b>둥지</b>를 한 번 더 톡!' }, text: '<b>똑같은 알 두 개</b>를 끌어다 겹쳐 봐!' },
   { id: 'send1', scr: 'main', mode: 'tap', done: () => S.done >= 1, tgt: readyOrd, text: '주문 카드가 <b>초록색</b>이 됐어! 카드를 눌러서 보내자.' },
-  { id: 'sew', scr: 'main', mode: 'drag', done: () => lvCells('sew', 2).length > 0 || S.done >= 2, tgt: () => { const c = lvCells('sew', 1); return c.length >= 2 ? [tileQ(c[0]), tileQ(c[1])] : null; }, alt: { mode: 'tap', tgt: () => tileQ(6), text: '<b>실바구니</b>를 톡 눌러서 실뭉치를 꺼내 봐!' }, text: '이번엔 <b>실뭉치</b> 두 개를 합쳐 봐. 토끼가 기다려!' },
+  { id: 'sew', scr: 'main', mode: 'drag', done: () => lvCells('sew', 2).length > 0 || S.done >= 2, tgt: () => { const c = lvCells('sew', 1); return c.length >= 2 ? [tileQ(c[0]), tileQ(c[1])] : null; }, alt: { mode: 'tap', tgt: () => tileQ(6), text: '<b>실바구니</b>를 톡 눌러서 실뭉치를 꺼내 봐!' }, text: '이번엔 <b>실뭉치</b> 두 개를 겹쳐 봐. 토끼가 기다려!' },
   { id: 'send2', scr: 'main', mode: 'tap', done: () => S.done >= 2, tgt: readyOrd, text: '좋아! 초록색 카드를 눌러서 보내.' },
   { id: 'garden', mode: 'tap', when: gateOk, done: () => scrOn('garden') || gStep(GARDEN[0]) >= 1, tgt: () => navQ('garden'), text: '동전이 모였어! <b>정원</b>에 가서 대문을 고치자.' },
   { id: 'gate', scr: 'garden', say: 'top', mode: 'tap', when: gateOk, done: () => gStep(GARDEN[0]) >= 1, tgt: () => '#gd-go', text: '대문부터 고치자. 첫 할 일은 <b>잡초 뽑기</b>! <b>고치기</b>를 눌러 봐.' },
-  { id: 'back', wait: 2400, mode: 'tap', done: () => scrOn('main'), tgt: () => navQ('main'), text: '수상한 발자국이 나왔어! 이렇게 <b>주문&nbsp;→ 동전&nbsp;→ 정원 고치기</b>를 하면 이야기가 이어져. 다시 <b>합치기</b>로 가자.' },
+  { id: 'back', wait: 2400, mode: 'tap', done: () => scrOn('main'), tgt: () => navQ('main'), text: '수상한 발자국이 나왔어! 이렇게 <b>주문&nbsp;→ 동전&nbsp;→ 정원 고치기</b>를 하면 이야기가 이어져. 다시 <b>만들기</b>로 가자.' },
   { id: 'box', scr: 'main', mode: 'tap', when: () => S.keys > 0 && !(S.opens > 0), done: () => S.opens > 0, tgt: () => '#b-box', text: '<b>열쇠</b>로 <b>선물 상자</b>를 열 수 있어. 열어 봐!' },
   { id: 'dress', mode: 'info', when: () => Object.keys(S.owned).length > 0, tgt: () => navQ('dress'), text: '옷이 나왔어! 같은 코디 <b>4조각</b>을 모아 <b>꾸미기</b>에서 입히면, 그 친구 주문은 동전 <b>1.5배</b>!' },
-  { id: 'bye', mode: 'info', pic: 'img/garden_on.jpg', text: '이제 자유롭게 해 봐! 정원을 고칠 때마다 범인 단서가 나와. 다 고치면 이렇게 예뻐지고 친구들도 돌아와.' }
+  { id: 'bye', mode: 'info', pic: 'img/garden_on.jpg', text: '이제 마음껏 해 봐! 정원을 고칠 때마다 범인 단서가 나와. 다 고치면 이렇게 예뻐지고 친구들도 돌아와.' }
 ];
 const CTX = [
   { id: 'thief', pri: 1, mode: 'info', when: () => !!S.thief && scrOn('main'), tgt: () => '#thief', text: '<b>족제비 도둑</b>이 알을 노려! 족제비를 <b>톡톡 여러 번</b> 쳐서 쫓아내!' },
   { id: 'gift', pri: 1, mode: 'info', when: () => scrOn('main') && S.b.some(x => x && x.k === 'gift'), tgt: () => tileQ(S.b.findIndex(x => x && x.k === 'gift')), text: '<b>할머니 나무 인형</b>이 나왔어! 톡 하면 안에서 재료가 우르르 쏟아져.' },
   { id: 'ggift', mode: 'info', when: () => ggTotal() > 0 && (scrOn('main') || scrOn('garden')), tgt: () => { if (scrOn('garden')) { const g = GARDEN.find(x => ggReady(x) > 0); return g ? `#gdn-mk .gmk[data-g="${g.id}"]` : null; } return navQ('garden'); }, text: '정원 친구가 <b>선물</b>을 두고 갔어! 정원에서 친구를 톡 하면 받아. 시간이 지나면 또 생겨.' },
-  { id: 'vine', pri: 1, mode: 'info', when: () => scrOn('main') && S.b.some(x => x && x.vine), tgt: () => { const p = vinePair(); if (p) return [tileQ(p[0]), tileQ(p[1])]; const j = S.b.findIndex(x => x && x.vine); return j >= 0 ? tileQ(j) : null; }, get text() { return vinePair() ? '덩굴 속에 <b>똑같은 게</b> 있어! 끌어다 겹치면 덩굴이 걷히고 한 단계 올라가.' : '덩굴에 덮인 건 할머니 물건이야. <b>똑같은 걸</b> 만들어 겹치면 꺼낼 수 있어. 높은 것일수록 좋은 게 나와!'; } },
+  { id: 'vine', pri: 1, mode: 'info', when: () => scrOn('main') && S.b.some(x => x && x.vine), tgt: () => { const p = vinePair(); if (p) return [tileQ(p[0]), tileQ(p[1])]; const j = S.b.findIndex(x => x && x.vine); return j >= 0 ? tileQ(j) : null; }, get text() { return vinePair() ? '덩굴 속에 <b>똑같은 게</b> 있어! 끌어다 겹치면 덩굴이 걷히고 한 단계 올라가.' : '덩굴에 덮인 건 할머니 물건이야. <b>똑같은 걸</b> 만들어 겹치면 꺼낼 수 있어. 꺼내면 한 단계 올라가!'; } },
   { id: 'urgent', pri: 1, mode: 'info', when: () => scrOn('main') && S.orders.some(o => o.urg), tgt: () => ordQ(S.orders.findIndex(o => o.urg)), text: '<b>급해요</b> 주문! 시간 안에 보내면 동전 <b>1.5배</b>에 열쇠도 받아. 늦으면 손님이 가 버려.' },
-  { id: 'en0', pri: 1, mode: 'info', when: () => false, tgt: () => '#p-en', text: '에너지가 다 떨어졌어. <b>30초</b>마다 1개씩 차. 기다리는 동안 합칠 수 있는 걸 합쳐 봐!' },
+  { id: 'en0', pri: 1, mode: 'info', when: () => false, tgt: () => '#p-en', text: '에너지가 다 떨어졌어. <b>30초</b>마다 1개씩 차. 기다리는 동안 겹칠 수 있는 걸 겹쳐 봐!' },
   { id: 'glow', mode: 'info', when: () => scrOn('main') && lvCells('egg', 3).length > 0, tgt: () => tileQ(lvCells('egg', 3)[0]), text: '<b>빛나는 알</b>이 됐어! 누르고 아래 <b>깨우기</b>를 누르면 새 친구가 나와. 주문에 써도 돼.' },
   { id: 'sew4', mode: 'info', when: () => scrOn('main') && lvCells('sew', 4).length > 0, tgt: () => tileQ(lvCells('sew', 4)[0]), text: '<b>매듭 장식</b>이 됐어! 누르고 아래 <b>상자 열기</b>를 누르면 옷이 나와.' },
   { id: 'ttuk', mode: 'info', when: () => scrOn('main') && S.done >= 4 && S.ttuk > 0, tgt: () => '#b-ttuk', text: '<b>뚝딱</b> 방망이! 누르고 알이나 재료를 고르면 바로 <b>한 단계</b> 올려 줘. 주문 3개마다 1번 더 생겨.' },
   { id: 'gen', mode: 'info', when: () => scrOn('main') && !(S.unl && S.unl.teapot) && S.coin >= GEN.teapot.cost && S.b.some(x => x && x.k === 'lock' && x.g === 'teapot'), tgt: () => tileQ(S.b.findIndex(x => x && x.k === 'lock' && x.g === 'teapot')), text: '동전으로 <b>찻주전자</b>를 살 수 있어! 사면 새 재료가 나오고 새 손님도 와.' },
-  { id: 'grow', mode: 'info', when: () => navOpen('grow') && S.done >= 4 && canUpgrade(), tgt: () => navQ('grow'), text: '<b>키우기</b>가 열렸어! 동전으로 친구와 생산기를 키우면 더 많이 벌어.' },
+  { id: 'grow', mode: 'info', when: () => navOpen('grow') && S.done >= 4 && canUpgrade(), tgt: () => navQ('grow'), text: '<b>키우기</b>가 열렸어! 동전으로 친구와 살림을 키우면 더 많이 벌어.' },
   { id: 'album', mode: 'info', when: () => navOpen('album') && Object.keys(S.sp).length > 1, tgt: () => navQ('album'), text: '새 친구를 만났어! <b>도감</b>에서 만난 친구들을 볼 수 있어.' },
   { id: 'event', mode: 'info', when: () => navOpen('event'), tgt: () => navQ('event'), text: '<b>이벤트</b>가 열렸어! 썰매 경주, 매일 받는 선물, 크리스마스 선물이 있어.', after: () => { if (attCan()) setTimeout(showAtt, 500); } },
   { id: 'streak', soft: 1, when: () => (S.stk || 0) >= 3 && scrOn('main'), text: '연속 <b>3번</b>! 끊기지 않고 보내면 동전이 늘어나. 6번 ×1.2, 10번 ×1.3!' },
@@ -2110,7 +2168,7 @@ function tgNext() {
   save(); tgUpdate();
 }
 function tgAskSkip() {
-  showPop({ title: '안내 건너뛰기', text: '따라 하기를 건너뛰고 모든 메뉴를 열까요? 설정의 <b>튜토리얼 다시 보기</b>로 언제든 다시 볼 수 있어요.', btns: [['건너뛰기', 'red', () => { S.tg.c = 99; S.tg.all = 1; save(); tgHide(); }], ['계속 배우기', 'yellow', null]] });
+  showPop({ title: '안내 건너뛰기', text: '따라 하기를 건너뛰고 모든 메뉴를 열까요? 설정의 <b>안내 다시 보기</b>로 언제든 다시 볼 수 있어요.', btns: [['건너뛰기', 'red', () => { S.tg.c = 99; S.tg.all = 1; save(); tgHide(); }], ['계속 배우기', 'yellow', null]] });
 }
 function tgUpdate() {
   if (!tgEl || !S.tg) return;
@@ -2304,7 +2362,7 @@ function enOut() {
   const sec = enSec(), M = enMax(), next = Math.max(1, Math.ceil(sec - (now - S.eT) / 1000)), full = new Date(S.eT + Math.max(0, M - S.en) * sec * 1000);
   const hm = `${String(full.getHours()).padStart(2, '0')}:${String(full.getMinutes()).padStart(2, '0')}`;
   const tips = []; let act = null;
-  const song = S.b.findIndex(x => x && x.k === 'song'); if (song >= 0) { tips.push('보드의 <b>떡</b>을 누르면 바로 차요'); act = act || ['떡 먹기', () => tapTile(song)]; }
+  const song = S.b.findIndex(x => x && x.k === 'song'); if (song >= 0) { tips.push('판에 있는 <b>떡</b>을 누르면 바로 차요'); act = act || ['떡 먹기', () => tapTile(song)]; }
   const gift = S.b.findIndex(x => x && x.k === 'gift'); if (gift >= 0) { tips.push('<b>나무 인형</b>을 열어 봐요'); act = act || ['인형 열기', () => tapTile(gift)]; }
   if (ggTotal() > 0) { tips.push(`정원에 <b>선물 ${ggTotal()}개</b>가 있어요`); act = act || ['선물 받기', () => go('garden')]; }
   if (gCan()) { tips.push('동전으로 <b>정원</b>을 고칠 수 있어요'); act = act || ['정원 가기', () => go('garden')]; }
