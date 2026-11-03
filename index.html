@@ -756,6 +756,24 @@ small.cost img{height:15px;width:auto}
 #app .order .w.n{width:auto;min-width:38px;padding:0 3px 0 1px;gap:0}
 #app .order .w.n .cnt{position:static;order:2;border:none;background:none;padding:0 0 0 1px;font-size:14px;line-height:1;color:var(--ink);min-width:0;height:auto}
 #app .order .w.n img{max-width:31px;max-height:31px}
+
+/* v16c UI: plain marks instead of forced rounded boxes */
+#app .order .w{background:none;border:none;border-radius:0;width:auto;min-width:40px;height:42px;padding:0}
+#app .order .w img{max-width:40px;max-height:40px;filter:drop-shadow(0 2px 0 rgba(74,42,30,.22))}
+#app .order .w.n{padding:0;gap:0}
+#app .order .w.n img{max-width:38px;max-height:38px}
+#app .order .w.n .cnt{align-self:flex-end;margin:0 0 2px -2px;font-size:15px;line-height:1;color:var(--ink);text-shadow:0 0 2px #fff,0 0 2px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+#app .order .w.ok::after{right:-4px;bottom:-2px}
+#app .order .tagh.tu{background:none;border:none;border-radius:0;right:3px;top:9px;width:auto;padding:0;color:#D7262B;font-size:13.5px;text-shadow:0 0 2px #fff,0 0 3px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+#app .order .tagh.tu b{font-size:13.5px;line-height:14px}
+#app .order.hurry .tagh.tu{background:none;color:#B3121F}
+#app .order .tagh .clk{width:15px;height:15px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8.8' r='5.9' fill='white' stroke='%23D7262B' stroke-width='2'/><path d='M8 5.8v3.1l2 1.4' fill='none' stroke='%23D7262B' stroke-width='1.8' stroke-linecap='round'/><path d='M6 1.7h4' stroke='%23D7262B' stroke-width='1.8' stroke-linecap='round'/></svg>") center/15px no-repeat}
+#app .order .bigst{position:absolute;left:3px;top:8px;width:22px;height:22px;filter:drop-shadow(0 1px 0 rgba(74,42,30,.35));pointer-events:none;z-index:3}
+#app .lk15{background:none;border:none;border-radius:0;padding:0;color:#D93E78;font-size:14px;text-shadow:0 0 2px #fff,0 0 2px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+#app .t .badge{display:none}
+#app .t.gen .lv{background:none;border-radius:0;padding:0;left:4px;bottom:2px;color:var(--ink);font-size:12.5px;text-shadow:0 0 2px #fff,0 0 2px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+#app .t .lkp,#app .t .fogbuy{background:none;border:none;border-radius:0;padding:0;text-shadow:0 0 2px #fff,0 0 2px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+#app .order .w.n.ok::after{top:-3px;bottom:auto;right:-5px}
 </style>
 </head>
 <body>
@@ -1151,7 +1169,7 @@ function renderOrders() {
     const d = document.createElement('div'); d.className = 'order panel' + (o.hard ? ' hard' : '') + (o.urg ? ' urg' : '') + (ready(o) ? ' ready' : ''); d.dataset.oid = o.id;
     const need = o.need.map(([k, lv, c]) => `<div class="w${countOnBoard(k, lv) >= c ? ' ok' : ''}${c > 1 ? ' n' : ''}">${c > 1 ? `<span class="cnt">${c}</span>` : ''}<img src="${I(CH[k][lv - 1])}"></div>`).join('');
     const rew = `<div class="rew"><img src="${I('c09_coin_pouch')}">${o.coin}${o.gift ? `<img class="gf" src="${I(ITEMS[o.gift].img)}">` : ''}${o.en ? `<img class="gf" src="${I('c10_songpyeon')}">` : ''}</div>`;
-    d.innerHTML = `${o.urg ? `<span class="tagh tu"><i class="clk"></i><b class="ut">${fmtS(urgLeft(o))}</b></span>` : ''}${o.hard ? '<span class="tagh">큰 주문</span>' : ''}<div class="ava"><img src="${HEAD(o.who)}"></div>${lookIco(o.who)}${lookOn(o.who) ? '<span class="lk15">×1.5</span>' : ''}<div class="want">${need}</div>${rew}<div class="done">완료! 보내기</div>`;
+    d.innerHTML = `${o.urg ? `<span class="tagh tu"><i class="clk"></i><b class="ut">${fmtS(urgLeft(o))}</b></span>` : ''}${o.hard ? '<img class="bigst" src="' + I('ui_star_gold') + '">' : ''}<div class="ava"><img src="${HEAD(o.who)}"></div>${lookIco(o.who)}${lookOn(o.who) ? '<span class="lk15">×1.5</span>' : ''}<div class="want">${need}</div>${rew}<div class="done">완료! 보내기</div>`;
     d.onclick = () => completeOrder(idx, d);
     box.appendChild(d);
   });
