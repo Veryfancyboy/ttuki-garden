@@ -1296,7 +1296,7 @@ function renderHelper() {
   let html;
   if (ttukMode) html = `<img src="${I('c11_club')}"><div class="itx"><b>뚝딱</b><span>올릴 알·재료를 누르세요</span></div>`;
   else if (x && x.vine) html = `<img src="${itemImg(x)}" style="filter:saturate(.4)"><div class="itx"><b>덩굴 속 ${itemName(x)}</b><span>똑같은 걸 겹치면 꺼내요</span></div>`;
-  else if (x && x.lv) { const act = ACT_AT[x.k] && x.lv >= ACT_AT[x.k]; html = (act ? '' : `<img src="${itemImg(x)}">`) + `<div class="itx"><b>${itemName(x)}</b><span>${x.lv < MAXLV ? '2개 → ' + CHN[x.k][x.lv] : '가장 높은 단계'}</span></div>` + (act ? `<div class="btn red act h" id="b-act">${ACT_NAME[x.k]}</div>` : `<div class="btn cream act sellb h" id="b-sell">팔기<small>+${sellVal(x)}</small></div>`); }
+  else if (x && x.lv) { const act = ACT_AT[x.k] && x.lv >= ACT_AT[x.k]; html = (act ? '' : `<img src="${itemImg(x)}">`) + `<div class="itx"><b>${itemName(x)}</b><span>${x.lv < MAXLV ? '2개 →\u00a0' + CHN[x.k][x.lv].replace(/ /g, '\u00a0') : '가장 높은 단계'}</span></div>` + (act ? `<div class="btn red act h" id="b-act">${ACT_NAME[x.k]}</div>` : `<div class="btn cream act sellb h" id="b-sell">팔기<small>+${sellVal(x)}</small></div>`); }
   else html = goalHTML();
   $('#info').innerHTML = html; $('#info').classList.toggle('goal', !ttukMode && !(x && x.lv)); $('#info').classList.toggle('can', !ttukMode && !(x && x.lv) && gCan());
   const bAct = $('#b-act'); if (bAct) bAct.onclick = e => { e.stopPropagation(); actOn(sel); }; const bSell = $('#b-sell'); if (bSell) bSell.onclick = e => { e.stopPropagation(); sellItem(sel); };
