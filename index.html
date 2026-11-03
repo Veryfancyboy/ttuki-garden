@@ -2604,7 +2604,7 @@ orderFx = function (fromXY, coin, urg, upMul) {
   coinShower(fromXY, to, coin, rel);
   if (coin >= 120) { shake(.45); flash('rgba(255,236,150,.32)', 200); }
   starsTo(fromXY, $('#p-lv'), 4);
-  boom(Math.max(70, Math.min(320, fromXY[0])), fromXY[1] + 78, urg ? '+' + coin + ' 1.5배!' : '+' + coin, urg ? '#FFB347' : '#FFE45C', Math.min(58, 40 + Math.round(Math.sqrt(coin) * 1.2)));
+  { const bt = urg ? '+' + coin + ' 1.5배!' : '+' + coin, bf = Math.min(54, 38 + Math.round(Math.sqrt(coin) * 1.1)), bw = bt.length * bf * .56; boom(Math.max(bw / 2 + 8, Math.min(390 - bw / 2 - 8, fromXY[0])), fromXY[1] + 122, bt, urg ? '#FFB347' : '#FFE45C', bf); }
   if (urg) setTimeout(() => sfx('levelup', { vol: .8 }), 220);
   if (upMul) setTimeout(() => { sfx('levelup', { rate: 1.12 }); boom(195, 210, '연속 ' + S.stk + '! 동전 ×' + STK_MUL(S.stk), '#FF8FB1', 30); }, 380);
   fevAdd(3);
