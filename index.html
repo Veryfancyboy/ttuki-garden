@@ -918,15 +918,65 @@ body.phone{background:#FFE4CC}
 
 /* v19b: number fitting */
 #app #p-en .ptm{font-size:13px}
-#app #p-coin{overflow:hidden;white-space:nowrap}
-#app #gd-coin,#app #g-coin,#app #g-scrap{max-width:118px;overflow:hidden;white-space:nowrap}
-#app #stk{max-width:126px;overflow:hidden;white-space:nowrap}
+#app #p-coin{white-space:nowrap}
+#app #gd-coin,#app #g-coin,#app #g-scrap{max-width:118px;white-space:nowrap}
+#app #stk{max-width:126px;white-space:nowrap}
 #app #p-en{display:grid;grid-template-columns:auto auto auto;grid-template-rows:18px 14px;align-content:center;align-items:center;column-gap:2px;padding-right:12px}
 #app #p-en img{grid-row:1 / 3;grid-column:1}
 #app #p-en .pv{grid-row:1 / 3;grid-column:2;line-height:1}
 #app #p-en .pm{grid-row:1;grid-column:3;align-self:end;font-size:13.5px;line-height:13px;margin:0}
 #app #p-en .ptm{grid-row:2;grid-column:3;align-self:start;font-size:12.5px;line-height:13px;margin:0;opacity:.9}
 #app #p-en.full .pm{grid-row:1 / 3;align-self:center}
+
+/* v19c: full-scan fixes */
+#app .topbar #p-coin img,#app #gd-coin img,#app #g-coin img{margin-right:3px}
+#app .order .tagh.tu{top:6px;bottom:auto;right:1px;left:auto;flex-direction:column;align-items:center;gap:0;width:34px;color:#D7262B;text-shadow:0 0 2px #fff,0 0 2px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+#app .order .tagh.tu b{font-size:14px;line-height:15px}
+#app .order .tagh .clk{filter:none}
+#app .order.urg .rew{transform:translateX(-50%)}
+#app .rew img{height:1.2em}
+#app .rew .gf{height:1.05em;margin-left:1px}
+#app .order.ready .rew{visibility:hidden}
+#app .order .done{left:3px;right:3px;top:124px;height:28px;gap:2px;font-size:17px;white-space:nowrap}
+#app .order .done img{height:1.3em}
+#app .order .done .dl{margin-left:4px}
+#app .cntb{top:-8px;right:-9px}
+#app .gc .glv{bottom:-15px}
+#app .pc .ok{right:-6px;top:-6px}
+
+#app #p-scrap{max-width:132px;white-space:nowrap}
+#app .dm .dc{width:auto;min-width:36px;white-space:nowrap}
+#app .card .wl .vbt{font-family:'Jua';margin-left:3px;white-space:nowrap}
+#app .card .wl .vbt.v1{color:#1F7FB8}
+#app .card .wl .vbt.v2{color:#B07A00}
+#app .lc{overflow:visible}
+#app .lc .lpic{border-radius:11px 11px 0 0}
+#app .lc.on{border-color:#4FAF5A}
+#app .lc .eq{left:-8px;top:-8px;width:24px;height:24px;padding:0;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);background:#4FAF5A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+#app .lc .cnt2,#app .lc .nw{right:-8px;top:-9px;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.28);line-height:19px}
+#app .lc.on .ln{color:#2F8A3A}
+
+#app .lc .ln .cnt2{position:static;display:inline;background:none;border:0;box-shadow:none;padding:0;margin-left:3px;font-size:13.5px;line-height:inherit;color:#8A6A50}
+#app .lc .nw{font-size:0;min-width:0;width:15px;height:15px;padding:0;border-radius:50%;right:-6px;top:-6px;background:#E8433A}
+
+/* toasts live in the top band (HUD), never over the board, faces, items or buttons */
+#app #toast,#app.hastip #toast,#app.cb-low #toast{top:3px;bottom:auto;max-width:372px;font-size:16px;line-height:20.5px;padding:6px 14px;background:rgba(58,32,22,.96);border:2px solid rgba(255,248,235,.9);box-shadow:0 4px 14px rgba(40,20,10,.35);text-align:center;z-index:70;pointer-events:none}
+#app #toast.lowslot{top:auto;bottom:94px}
+
+#story .sskip{position:absolute;right:12px;top:-21px;background:#FFF8EC;color:var(--ink);border:2.5px solid var(--bd);border-radius:14px;padding:5px 14px;font-family:'Jua';font-size:17px;line-height:22px;box-shadow:0 2px 0 rgba(74,42,30,.3);cursor:pointer;z-index:2}
+#story .sskip:active{transform:translateY(1px)}
+
+#app .gdtx small.w2{white-space:normal;overflow:visible;text-overflow:clip;display:block}
+
+#app .order .lkic{top:28px;width:22px;height:22px}
+#app .order .lk15{top:50px;height:16px;line-height:16px}
+
+#app .info .itx .nxl{display:flex;align-items:center;gap:4px;white-space:nowrap;overflow:visible}
+#app .info .itx .nxi{width:28px;height:28px;object-fit:contain;flex:none;filter:drop-shadow(0 1px 0 rgba(74,42,30,.25))}
+#app .info .itx .nxi.unk{filter:brightness(0) opacity(.28)}
+#app .info .itx .nxu{font-style:normal;font-size:13px;color:#8A6A50}
+#app .race .ln .nm,#app #race .ln .nm{width:auto;min-width:46px;white-space:nowrap;overflow:visible;text-overflow:clip}
+#app .info .itx .nxu{font-size:17px;color:#7A5A48;margin-left:-1px}
 </style>
 </head>
 <body>
@@ -1031,11 +1081,11 @@ body.phone{background:#FFE4CC}
 <canvas id="fxc"></canvas><div id="flash"></div><div id="danger"></div><div id="susp"><img></div>
 <div id="ghost"><img></div>
 <div id="toast"></div><div id="info2"><div class="dim" style="position:absolute;inset:0;background:rgba(60,30,25,.55)"></div><div class="box panel" id="info2box"></div></div>
-<div id="story"><div class="dim"></div><div class="sbox panel"><div class="sava"><img></div><div class="sname h"></div><div class="stext"></div><div class="snext">눌러서 계속 ▼</div></div></div>
+<div id="story"><div class="dim"></div><div class="sbox panel"><div class="sava"><img></div><div class="sname h"></div><div class="stext"></div><div class="snext">눌러서 계속 ▼</div><div class="sskip" id="s-skip">건너뛰기</div></div></div>
 <div id="pop"><div class="dim"></div><div class="box panel" id="popbox"></div></div>
 <div id="set"><div class="dim" style="position:absolute;inset:0;background:rgba(60,30,25,.55)"></div><div class="box panel">
   <div class="h" style="font-size:21.5px;margin-bottom:6px">데모 안내</div>
-  같은 걸 겹쳐 키워서 이웃 주문을 들어주고, 모은 동전으로 <b>정원</b>을 고치는 게임이에요. 정원을 고치면 떠났던 친구들이 돌아와요. <b>급한 주문</b>은 시간 안에 보내고, <b>족제비 도둑</b>은 눌러서 쫓아내요. 에너지는 30초에 1씩 차요(정식은 2분). 선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기). 진행은 이 폰에 저장돼요.
+  같은 걸 겹쳐 키워서 이웃 주문을 들어주고, 모은 동전으로 <b>정원</b>을 고치는 게임이에요. 정원을 고치면 떠났던 친구들이 돌아와요. <b>급한 주문</b>은 시간 안에 보내고, <b>족제비 도둑</b>은 눌러서 쫓아내요. 에너지는 30초에 1씩 차요 (정식은 2분). 선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기). 진행은 이 폰에 저장돼요.
   <div class="btn red h" id="b-reset" style="height:44px;margin-top:14px">안내 다시 보기</div><div style="display:flex;gap:8px;margin-top:8px"><div class="btn sky h" id="b-day" style="flex:1;height:42px">하루 넘기기</div><div class="btn yellow h" id="b-close" style="flex:1;height:42px">닫기</div></div>
   <div style="display:flex;gap:8px;margin-top:8px"><div class="btn cream h" id="b-snd" style="flex:1;height:38px;font-size:16px">소리 켜짐</div><div class="btn cream h" id="b-vib" style="flex:1;height:38px;font-size:16px">진동 켜짐</div><div class="btn cream h" id="b-odds2" style="flex:1;height:38px;font-size:16px">확률 보기</div></div>
 </div></div>
@@ -1323,7 +1373,7 @@ function renderOrders() {
     const d = document.createElement('div'); d.className = 'order panel' + (o.hard ? ' hard' : '') + (o.urg ? ' urg' : '') + (ready(o) ? ' ready' : ''); d.dataset.oid = o.id;
     const need = o.need.map(([k, lv, c]) => `<div class="w${countOnBoard(k, lv) >= c ? ' ok' : ''}${c > 1 ? ' n' : ''}">${c > 1 ? `<span class="cnt">${c}</span>` : ''}<img src="${I(CH[k][lv - 1])}"></div>`).join('');
     const rew = `<div class="rew"><img src="${I('c09_coin_pouch')}">${o.coin}${o.gift ? `<img class="gf" src="${I(ITEMS[o.gift].img)}">` : ''}${o.en ? `<img class="gf" src="${I('c10_songpyeon')}">` : ''}</div>`;
-    d.innerHTML = `${o.urg ? `<span class="tagh tu"><i class="clk"></i><b class="ut">${fmtS(urgLeft(o))}</b></span>` : ''}${o.hard ? '<img class="bigst" src="' + I('ui_star_gold') + '">' : ''}<div class="ava"><img src="${HEAD(o.who)}"></div>${lookIco(o.who)}${lookOn(o.who) ? '<span class="lk15">×1.5</span>' : ''}<div class="want">${need}</div>${rew}<div class="done">완료! 보내기</div>`;
+    d.innerHTML = `${o.urg ? `<span class="tagh tu"><i class="clk"></i><b class="ut">${fmtS(urgLeft(o))}</b></span>` : ''}${o.hard ? '<img class="bigst" src="' + I('ui_star_gold') + '">' : ''}<div class="ava"><img src="${HEAD(o.who)}"></div>${lookIco(o.who)}${lookOn(o.who) ? '<span class="lk15">×1.5</span>' : ''}<div class="want">${need}</div>${rew}<div class="done"><img src="${I('c09_coin_pouch')}">${o.coin}<span class="dl">보내기</span></div>`;
     d.onclick = () => completeOrder(idx, d);
     box.appendChild(d);
   });
@@ -1485,7 +1535,7 @@ function renderHelper() {
   let html;
   if (ttukMode) html = `<img src="${I('c11_club')}"><div class="itx"><b>뚝딱</b><span>올릴 알·재료를 누르세요</span></div>`;
   else if (x && x.vine) html = `<img src="${itemImg(x)}" style="filter:saturate(.4)"><div class="itx"><b>덩굴 속 ${itemName(x)}</b><span>똑같은 걸 겹치면 꺼내요</span></div>`;
-  else if (x && x.lv) { const act = ACT_AT[x.k] && x.lv >= ACT_AT[x.k]; html = (act ? '' : `<img src="${itemImg(x)}">`) + `<div class="itx"><b>${itemName(x)}</b><span>${x.lv < MAXLV ? '2개 →\u00a0' + CHN[x.k][x.lv].replace(/ /g, '\u00a0') : '가장 높은 단계'}</span></div>` + (act ? `<div class="btn red act h" id="b-act">${ACT_NAME[x.k]}</div>` : `<div class="btn cream act sellb h" id="b-sell">팔기<small>+${sellVal(x)}</small></div>`); }
+  else if (x && x.lv) { const act = ACT_AT[x.k] && x.lv >= ACT_AT[x.k]; html = (act ? '' : `<img src="${itemImg(x)}">`) + `<div class="itx"><b>${itemName(x)}</b><span class="nxl">${x.lv < MAXLV ? '2개 → <img class="nxi' + (S.disc && !S.disc[x.k + (x.lv + 1)] ? ' unk' : '') + '" src="' + I(CH[x.k][x.lv]) + '" alt="">' + (S.disc && !S.disc[x.k + (x.lv + 1)] ? '<em class="nxu">?</em>' : '') : '가장 높은 단계'}</span></div>` + (act ? `<div class="btn red act h" id="b-act">${ACT_NAME[x.k]}</div>` : `<div class="btn cream act sellb h" id="b-sell">팔기<small>+${sellVal(x)}</small></div>`); }
   else html = goalHTML();
   $('#info').innerHTML = html; $('#info').classList.toggle('goal', !ttukMode && !(x && x.lv)); $('#info').classList.toggle('can', !ttukMode && !(x && x.lv) && gCan());
   const bAct = $('#b-act'); if (bAct) bAct.onclick = e => { e.stopPropagation(); actOn(sel); }; const bSell = $('#b-sell'); if (bSell) bSell.onclick = e => { e.stopPropagation(); sellItem(sel); };
@@ -1505,16 +1555,16 @@ function stageHTML(k, w, h, zoom, look) {
 }
 function renderDress() {
   if (!S.sp[S.cur]) S.cur = 'ttuki';
-  $('#p-scrap').innerHTML = `<img src="${I('ui_scraps')}">천 조각 ${S.scraps}`;
+  $('#p-scrap').innerHTML = `<img src="${I('ui_scraps')}">${fmtCoin(S.scraps)}`; $('#p-scrap').title = '천 조각';
   $('#chips').innerHTML = SP_ORDER.map(k => `<div class="chip${k === S.cur ? ' on' : ''}${S.sp[k] ? '' : ' lock'}" data-k="${k}"><img src="${S.sp[k] ? HEAD(k) : I('c03_egg3')}"></div>`).join('');
   document.querySelectorAll('#chips .chip').forEach(c => c.onclick = () => { const k = c.dataset.k; if (!S.sp[k]) { toast('빛나는 알을 깨우면 친구가 나와요'); return; } S.cur = k; save(); renderDress(); });
   const cur = S.lk[S.cur] || 'base', v = S.vr[S.cur] || 0;
   const curL = LOOKS.find(L => L.id === cur);
-  $('#stage').innerHTML = stageHTML(S.cur, 360, 312, 1.6, cur) + `<div class="plate">${v ? VAR_NAME[v] + ' ' : ''}${SP[S.cur].n} <small>${curL.n}</small></div>` + (v ? `<span class="vb v${v}" style="left:auto;right:10px;top:10px">${VAR_NAME[v]}</span>` : '');
+  $('#stage').innerHTML = stageHTML(S.cur, 360, 312, 1.6, cur) + `<div class="plate">${v ? VAR_NAME[v] + ' ' : ''}${SP[S.cur].n} <small>${curL.n}</small></div>` ;
   // look cards
   $('#looks').innerHTML = LOOKS.map(L => {
     const have = L.items.filter(id => S.owned[id]).length, done = L.items.length === have, on = cur === L.id, sel = S.card === L.id;
-    const state = on ? '<span class="eq">입는 중</span>' : (done ? '' : `<span class="cnt2">${have}/${L.items.length}</span>`);
+    const state = on ? '<span class="eq" title="입는 중"></span>' : (done ? '' : `<span class="cnt2">${have}/${L.items.length}</span>`);
     return `<div class="lc${sel ? ' sel' : ''}${done ? '' : ' part'}" data-l="${L.id}"><div class="lpic">${stageHTML(S.cur, 104, 70, 1.35, L.id)}</div><div class="ln">${L.n}</div>${state}${S.newLook[L.id] ? '<span class="nw">NEW</span>' : ''}</div>`;
   }).join('');
   document.querySelectorAll('#looks .lc').forEach(el => el.onclick = () => {
@@ -1542,16 +1592,16 @@ function renderDress() {
 
 /* ---------- album ---------- */
 function renderAlbum() {
-  const nSp = Object.keys(S.sp).length, nIt = Object.keys(S.owned).length;
+  const nSp = SP_ORDER.filter(k => S.sp[k]).length, nIt = Object.keys(S.owned).filter(id => ITEMS[id]).length;
   $('#aprog').innerHTML = `친구 ${nSp}/8<div class="bar"><i style="width:${Math.round((nSp / 8 + nIt / NITEMS) * 50)}%"></i></div>코디 조각 ${nIt}/${NITEMS}`;
   $('#cards').innerHTML = SP_ORDER.map(k => {
     const own = S.sp[k], v = S.vr[k] || 0, cur = S.lk[k] || 'base', L = LOOKS.find(x => x.id === cur);
-    const wl = own ? `<span>${L.n}</span>` : '<span style="opacity:.6">빛나는 알을 깨우면 만나요</span>';
-    return `<div class="card${own ? '' : ' lock'}${v ? ' v' + v : ''}" data-k="${k}"><div class="pic">${own ? stageHTML(k, 172, 92, 1.25, cur) : `<div class="egg"><img src="${I('c03_egg3')}"></div>`}${v ? `<span class="vb v${v}">${VAR_NAME[v]}</span>` : ''}</div><div class="cap"><b>${own ? SP[k].n : '???'}</b>${own ? `<span class="alv">Lv${spLv(k)}</span>` : ''}</div><div class="wl">${wl}</div></div>`;
+    const wl = own ? `<span>${L.n}</span>${v ? `<span class="vbt v${v}">· ${VAR_NAME[v]}</span>` : ''}` : '<span style="opacity:.6">빛나는 알을 깨우면 만나요</span>';
+    return `<div class="card${own ? '' : ' lock'}${v ? ' v' + v : ''}" data-k="${k}"><div class="pic">${own ? stageHTML(k, 172, 92, 1.25, cur) : `<div class="egg"><img src="${I('c03_egg3')}"></div>`}</div><div class="cap"><b>${own ? SP[k].n : '???'}</b>${own ? `<span class="alv">Lv${spLv(k)}</span>` : ''}</div><div class="wl">${wl}</div></div>`;
   }).join('');
   document.querySelectorAll('#cards .card').forEach(c => c.onclick = () => { const k = c.dataset.k; if (!S.sp[k]) { toast('아직 못 만난 친구예요'); return; } S.cur = k; go('dress'); });
   const nextK = HATCH[S.hi];
-  $('#anext').innerHTML = nextK ? `<img src="${I('c03_egg3')}"><div><b>다음에 만날 친구 · 남은 ${8 - nSp}명</b><br>빛나는 알에서 나와요. 반짝이 12%, 황금빛 3%</div>` : `<img src="${I('ui_star_gold')}"><div><b>8명을 다 만났어요!</b><br>계속 깨우면 반짝이·황금빛 친구를 모을 수 있어요</div>`;
+  $('#anext').innerHTML = nextK ? `<img src="${I('c03_egg3')}"><div><b>다음에 만날 친구 · 남은 ${Math.max(0, 8 - nSp)}명</b><br>빛나는 알에서 나와요. 반짝이 12%, 황금빛 3%</div>` : `<img src="${I('ui_star_gold')}"><div><b>8명을 다 만났어요!</b><br>계속 깨우면 반짝이·황금빛 친구를 모을 수 있어요</div>`;
 }
 
 /* ---------- road ---------- */
@@ -1843,7 +1893,7 @@ function renderGarden() {
   let html;
   if (!nx) {
     html = `<div class="gdh"><b class="h">1장 · 다시 예뻐진 정원</b><span class="h">완료!</span></div><div class="gdbar"><i style="width:100%"></i></div>
-      <div class="gdtask"><div class="gdpic"><img src="${HEAD('ttuki')}"></div><div class="gdtx"><b>2장: 창고와 대나무 숲</b><br><small>창고(바늘곰)와 대나무 숲(구미호)이 기다려요. 정식판에서 이어져요.</small></div><div class="btn yellow h gdgo" id="gd-replay">이야기<small>다시 보기</small></div></div>`;
+      <div class="gdtask"><div class="gdpic"><img src="${HEAD('ttuki')}"></div><div class="gdtx"><b>2장: 창고와 대나무 숲</b><br><small class="w2">바늘곰과 구미호가 기다려요. 정식판에서 만나요.</small></div><div class="btn yellow h gdgo" id="gd-replay">이야기<small>다시 보기</small></div></div>`;
   } else {
     const met = !!S.sp[nx.who], can = S.coin >= nx.cost, st = gStep(nx), ch = nx.ch[st], last = st === nx.ch.length - 1, tot = GARDEN.reduce((a, g) => a + gStep(g), 0), all = GARDEN.reduce((a, g) => a + g.ch.length, 0);
     html = `<div class="gdh"><b class="h">1장 · 엉망이 된 정원</b><span class="h">할 일 ${tot}/${all}</span></div><div class="gdbar"><i style="width:${Math.round(tot / all * 100)}%"></i></div>
@@ -2534,7 +2584,7 @@ function openGift(i) {
 /* ---------- hooks (v13): next-goal panel, jackpot orders, energy-out guide, garden friends' gifts, welcome back ---------- */
 function goalHTML() {
   const nx = gNext();
-  if (!nx) return `<img class="gface" src="${HEAD('ttuki')}"><div class="itx"><b>1장 완료!</b><span>2장은 정식판에서 이어져요</span></div>`;
+  if (!nx) return `<img class="gface" src="${HEAD('ttuki')}"><div class="itx"><b>1장 완료!</b><span>정식판에서 이어져요</span></div>`;
   const st = gStep(nx), ch = nx.ch[Math.min(st, nx.ch.length - 1)], cost = ch.cost, have = Math.min(S.coin, cost), can = S.coin >= cost;
   return `<img class="gface" src="${HEAD('ttuki')}"><div class="itx"><b>${ch.n}</b><span>${can ? '눌러서 고치러 가요' : `동전 ${have}/${cost}`}</span></div><i class="gbar"><u style="width:${Math.round(have / cost * 100)}%"></u></i>`;
 }
@@ -2871,6 +2921,43 @@ if (typeof renderGrow === 'function') renderGrow = (o => function () { const r =
 
 renderAll = (o => function () { const r = o.apply(this, arguments); const pe = $('#p-en'); if (pe) { const t = pe.querySelector('.ptm'); pe.classList.toggle('full', !t || !t.textContent.trim() || getComputedStyle(t).display === 'none'); } return r; })(renderAll);
 setInterval(() => { const pe = $('#p-en'); if (pe) { const t = pe.querySelector('.ptm'); pe.classList.toggle('full', !t || !t.textContent.trim() || getComputedStyle(t).display === 'none'); } }, 1000);
+
+
+/* v19c: fit order reward lines and badges after every render */
+function fitBox(el, maxW, min) { if (!el || el.offsetParent === null) return; el.style.fontSize = ''; let fs = parseFloat(getComputedStyle(el).fontSize), g = 0; while (el.getBoundingClientRect().width / scale > maxW && fs > (min || 13) && g++ < 16) { fs -= 1; el.style.fontSize = fs + 'px'; } }
+renderAll = (o => function () { const r = o.apply(this, arguments);
+  document.querySelectorAll('#orders .order').forEach(od => { const w = od.getBoundingClientRect().width / scale; fitBox(od.querySelector('.rew'), w - 6, 13); fitBox(od.querySelector('.done'), w - 8, 12); });
+  ['#b-ttuk .cntb', '#b-box .cntb'].forEach(q => { const b = $(q); if (b && /^\d+$/.test(b.textContent.trim()) && +b.textContent.trim() >= 100) b.textContent = '99+'; });
+  return r; })(renderAll);
+
+renderDress = (o => function () { const r = o.apply(this, arguments); document.querySelectorAll('#looks .lc').forEach(c => c.classList.toggle('on', !!c.querySelector('.eq'))); fitPill($('#p-scrap')); return r; })(renderDress);
+
+renderDress = (o => function () { const r = o.apply(this, arguments); document.querySelectorAll('#looks .lc').forEach(c => { const n = c.querySelector(':scope > .cnt2'), ln = c.querySelector('.ln'); if (n && ln) ln.appendChild(n); if (ln) { ln.style.fontSize = ''; let fs = 17, g = 0; while (ln.scrollWidth > ln.clientWidth + 1 && fs > 13 && g++ < 6) { fs -= 1; ln.style.fontSize = fs + 'px'; } } }); return r; })(renderDress);
+
+toast = (o => function (msg) {
+  if (typeof coinHolds !== 'undefined' && coinHolds > 0 && (toast.__w = (toast.__w || 0) + 1) < 8) { clearTimeout(toast.__dh); toast.__dh = setTimeout(() => toast(msg), 250); return; }
+  toast.__w = 0; if (typeof msg === 'string') { if (!toast.__nm) { const nm = []; try { Object.values(CHN).forEach(a => a.forEach(n => nm.push(n))); } catch (e) {} try { Object.values(ITEMS).forEach(x => nm.push(x.n)); } catch (e) {} try { Object.values(SP).forEach(x => nm.push(x.n)); } catch (e) {} try { LOOKS.forEach(x => nm.push(x.n)); } catch (e) {} try { Object.values(GEN).forEach(x => nm.push(x.n)); } catch (e) {} toast.__nm = [...new Set(nm.filter(n => n && / /.test(n)))].sort((a, b) => b.length - a.length); } for (const n of toast.__nm) msg = msg.split(n).join(n.replace(/ /g, '\u00a0')); } o.call(this, msg);
+  const t = $('#toast'); if (!t) return; t.style.fontSize = ''; t.classList.remove('lowslot');
+  const cs = document.querySelector('#coach.on .csay'); if (cs && cs.offsetParent !== null) { const r = cs.getBoundingClientRect(), a = app.getBoundingClientRect(); if ((r.top - a.top) / scale < 100) t.classList.add('lowslot'); }
+  t.style.lineHeight = ''; let fs = 16, g = 0; while (t.getBoundingClientRect().height / scale > 56 && fs > 12.5 && g++ < 10) { fs -= .5; t.style.fontSize = fs + 'px'; t.style.lineHeight = (fs + 4) + 'px'; }
+})(toast);
+
+/* v19c: story can be closed any time (skip runs the same finish step) */
+let storyTot = 0;
+playStory = (o => function (lines, done) { storyTot = (lines || []).length; o.call(this, lines, done); })(playStory);
+nextLine = (o => function () { o.call(this); const sn = $('#story .snext'); if (sn) sn.textContent = storyTot > 6 ? '눌러서 계속 ▼  ' + (storyTot - storyQ.length) + '/' + storyTot : '눌러서 계속 ▼'; })(nextLine);
+$('#story').onclick = nextLine;
+{ const sk = $('#s-skip'); if (sk) sk.onclick = e => { e.stopPropagation(); storyQ = []; nextLine(); }; }
+
+/* v19c: energy pill switches layout the moment its timer appears or goes */
+{ const pe = $('#p-en'); if (pe) { const upd = () => { const t = pe.querySelector('.ptm'); pe.classList.toggle('full', !t || !t.textContent.trim()); }; new MutationObserver(upd).observe(pe, { childList: true, subtree: true, characterData: true }); upd(); } }
+/* v19c: goal panel lines shrink instead of '…' */
+renderAll = (o => function () { const r = o.apply(this, arguments); document.querySelectorAll('#info .itx b, #info .itx span').forEach(el => { el.style.fontSize = ''; let fs = parseFloat(getComputedStyle(el).fontSize), g = 0; while (el.scrollWidth > el.clientWidth + 1 && fs > 12.5 && g++ < 10) { fs -= .5; el.style.fontSize = fs + 'px'; } }); return r; })(renderAll);
+
+/* v19c: '놓쳤다!' shows on the order that left, not over another customer */
+let missAt = null;
+if (typeof urgMiss === 'function') urgMiss = (o0 => function (o) { const c = o && document.querySelector('#orders .order[data-oid="' + o.id + '"]'); if (c) { const r = c.getBoundingClientRect(), a = app.getBoundingClientRect(); missAt = [((r.left + r.right) / 2 - a.left) / scale, ((r.top + r.bottom) / 2 - a.top) / scale + 8]; } try { return o0.apply(this, arguments); } finally { missAt = null; } })(urgMiss);
+missFx = function () { sfx('fail'); shake(1); flash('rgba(227,59,46,.3)', 260); const p = missAt || [195, 150]; boom(p[0], p[1], '놓쳤다!', '#FF6B6B', 30); buzz(90); };
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
