@@ -740,8 +740,22 @@ small.cost img{height:15px;width:auto}
 #app .next b{line-height:1.1}
 #app #anext div{font-size:14.5px}
 
-/* v16: counting coin pill glow */
+/* v16: counting coin pill glow, shining ready orders */
 #app .pill.counting{box-shadow:0 0 0 3px #FFE45C,0 0 18px 5px rgba(255,214,74,.85)!important;transition:box-shadow .2s}
+#app .order.ready::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 36%,rgba(255,255,255,.75) 50%,transparent 64%);background-size:300% 100%;animation:rshine 1.6s linear infinite;z-index:2}
+@keyframes rshine{0%{background-position:130% 0}100%{background-position:-130% 0}}
+
+/* v16b: order badges never cover faces, items or the top bar */
+#app .order .tagh{top:9px;left:0;right:auto;transform:none;width:28px;padding:3px 0;font-size:12px;line-height:13px;border-width:1.5px;border-radius:9px;white-space:normal;word-break:keep-all;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;z-index:3}
+#app .order .tagh.tu{left:auto;right:0;background:var(--red)}
+#app .order .tagh.tu b{margin:0;font-size:12.5px;line-height:13px}
+#app .order .tagh .clk{display:block;width:14px;height:14px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8.6' r='6' fill='none' stroke='white' stroke-width='2'/><path d='M8 5.6v3.2l2 1.4' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round'/><path d='M6 1.6h4' stroke='white' stroke-width='1.8' stroke-linecap='round'/></svg>") center/14px no-repeat}
+#app .order .tagh:not(.tu){background:#E9A21B;text-shadow:0 1px 0 rgba(74,42,30,.55)}
+#app .lkic{left:2px;right:auto;top:44px;width:24px;height:24px;transform:rotate(-10deg)}
+#app .lk15{top:46px;left:auto;right:-2px;width:auto;min-width:28px;padding:0 3px;height:20px;font-size:12.5px;border-width:1.5px;white-space:nowrap}
+#app .order .w.n{width:auto;min-width:38px;padding:0 3px 0 1px;gap:0}
+#app .order .w.n .cnt{position:static;order:2;border:none;background:none;padding:0 0 0 1px;font-size:14px;line-height:1;color:var(--ink);min-width:0;height:auto}
+#app .order .w.n img{max-width:31px;max-height:31px}
 </style>
 </head>
 <body>
@@ -1135,9 +1149,9 @@ function renderOrders() {
   const box = $('#orders'); box.innerHTML = '';
   S.orders.forEach((o, idx) => {
     const d = document.createElement('div'); d.className = 'order panel' + (o.hard ? ' hard' : '') + (o.urg ? ' urg' : '') + (ready(o) ? ' ready' : ''); d.dataset.oid = o.id;
-    const need = o.need.map(([k, lv, c]) => `<div class="w${countOnBoard(k, lv) >= c ? ' ok' : ''}">${c > 1 ? `<span class="cnt">${c}</span>` : ''}<img src="${I(CH[k][lv - 1])}"></div>`).join('');
+    const need = o.need.map(([k, lv, c]) => `<div class="w${countOnBoard(k, lv) >= c ? ' ok' : ''}${c > 1 ? ' n' : ''}">${c > 1 ? `<span class="cnt">${c}</span>` : ''}<img src="${I(CH[k][lv - 1])}"></div>`).join('');
     const rew = `<div class="rew"><img src="${I('c09_coin_pouch')}">${o.coin}${o.gift ? `<img class="gf" src="${I(ITEMS[o.gift].img)}">` : ''}${o.en ? `<img class="gf" src="${I('c10_songpyeon')}">` : ''}</div>`;
-    d.innerHTML = `${o.urg ? `<span class="tagh tu">급해요 <b class="ut">${fmtS(urgLeft(o))}</b></span>` : o.hard ? '<span class="tagh">' + (o.big ? '큰 주문' : '어려운 주문') + '</span>' : ''}<div class="ava"><img src="${HEAD(o.who)}"></div>${lookIco(o.who)}${lookOn(o.who) ? '<span class="lk15">×1.5</span>' : ''}<div class="want">${need}</div>${rew}<div class="done">완료! 보내기</div>`;
+    d.innerHTML = `${o.urg ? `<span class="tagh tu"><i class="clk"></i><b class="ut">${fmtS(urgLeft(o))}</b></span>` : ''}${o.hard ? '<span class="tagh">큰 주문</span>' : ''}<div class="ava"><img src="${HEAD(o.who)}"></div>${lookIco(o.who)}${lookOn(o.who) ? '<span class="lk15">×1.5</span>' : ''}<div class="want">${need}</div>${rew}<div class="done">완료! 보내기</div>`;
     d.onclick = () => completeOrder(idx, d);
     box.appendChild(d);
   });
@@ -2117,7 +2131,7 @@ const CTX = [
   { id: 'gift', pri: 1, mode: 'info', when: () => scrOn('main') && S.b.some(x => x && x.k === 'gift'), tgt: () => tileQ(S.b.findIndex(x => x && x.k === 'gift')), text: '<b>할머니 나무 인형</b>이 나왔어! 톡 하면 안에서 재료가 우르르 쏟아져.' },
   { id: 'ggift', mode: 'info', when: () => ggTotal() > 0 && (scrOn('main') || scrOn('garden')), tgt: () => { if (scrOn('garden')) { const g = GARDEN.find(x => ggReady(x) > 0); return g ? `#gdn-mk .gmk[data-g="${g.id}"]` : null; } return navQ('garden'); }, text: '정원 친구가 <b>선물</b>을 두고 갔어! 정원에서 친구를 톡 하면 받아. 시간이 지나면 또 생겨.' },
   { id: 'vine', pri: 1, mode: 'info', when: () => scrOn('main') && S.b.some(x => x && x.vine), tgt: () => { const p = vinePair(); if (p) return [tileQ(p[0]), tileQ(p[1])]; const j = S.b.findIndex(x => x && x.vine); return j >= 0 ? tileQ(j) : null; }, get text() { return vinePair() ? '덩굴 속에 <b>똑같은 게</b> 있어! 끌어다 겹치면 덩굴이 걷히고 한 단계 올라가.' : '덩굴에 덮인 건 할머니 물건이야. <b>똑같은 걸</b> 만들어 겹치면 꺼낼 수 있어. 꺼내면 한 단계 올라가!'; } },
-  { id: 'urgent', pri: 1, mode: 'info', when: () => scrOn('main') && S.orders.some(o => o.urg), tgt: () => ordQ(S.orders.findIndex(o => o.urg)), text: '<b>급해요</b> 주문! 시간 안에 보내면 동전 <b>1.5배</b>에 열쇠도 받아. 늦으면 손님이 가 버려.' },
+  { id: 'urgent', pri: 1, mode: 'info', when: () => scrOn('main') && S.orders.some(o => o.urg), tgt: () => ordQ(S.orders.findIndex(o => o.urg)), text: '<b>시계</b>가 달린 주문은 급한 주문이야! 시간 안에 보내면 동전 <b>1.5배</b>에 열쇠도 받아. 늦으면 손님이 가 버려.' },
   { id: 'en0', pri: 1, mode: 'info', when: () => false, tgt: () => '#p-en', text: '에너지가 다 떨어졌어. <b>30초</b>마다 1개씩 차. 기다리는 동안 겹칠 수 있는 걸 겹쳐 봐!' },
   { id: 'glow', mode: 'info', when: () => scrOn('main') && lvCells('egg', 3).length > 0, tgt: () => tileQ(lvCells('egg', 3)[0]), text: '<b>빛나는 알</b>이 됐어! 누르고 아래 <b>깨우기</b>를 누르면 새 친구가 나와. 주문에 써도 돼.' },
   { id: 'sew4', mode: 'info', when: () => scrOn('main') && lvCells('sew', 4).length > 0, tgt: () => tileQ(lvCells('sew', 4)[0]), text: '<b>매듭 장식</b>이 됐어! 누르고 아래 <b>상자 열기</b>를 누르면 옷이 나와.' },
@@ -2566,7 +2580,7 @@ let lastTapXY = [195, 420], inOrder = false;
 document.addEventListener('pointerdown', e => { const a = app.getBoundingClientRect(); lastTapXY = [(e.clientX - a.left) / scale, (e.clientY - a.top) / scale]; }, true);
 const COIN_PILLS = ['#p-coin', '#gd-coin', '#g-coin'];
 function coinPillEl() { for (const q of COIN_PILLS) { const el = $(q); if (el && el.offsetParent !== null && el.getBoundingClientRect().width > 0) return el; } return $('#p-coin'); }
-showCoinPill = function () { const v = coinHolds > 0 && coinShown != null ? Math.round(coinShown) : S.coin; for (const q of COIN_PILLS) { const el = $(q); if (el) { el.innerHTML = '<img src="' + I('c09_coin_pouch') + '">' + v.toLocaleString(); el.classList.toggle('counting', coinHolds > 0); } } };
+showCoinPill = function () { const v = coinHolds > 0 && coinShown != null ? Math.max(0, Math.min(S.coin, Math.round(coinShown))) : S.coin; for (const q of COIN_PILLS) { const el = $(q); if (el) { el.innerHTML = '<img src="' + I('c09_coin_pouch') + '">' + v.toLocaleString(); el.classList.toggle('counting', coinHolds > 0); } } };
 const SPR_IMG = {};
 function sprImg(n) { if (!SPR_IMG[n]) { const im = new Image(); im.src = I(n); SPR_IMG[n] = im; } return SPR_IMG[n]; }
 function iconFly(from, sel, img, n, onEnd) { const el = $(sel); if (!el || el.offsetParent === null) return; const to = elXY(el), im = sprImg(img); for (let i = 0; i < n; i++) parts.push({ hs: 1, im, x: from[0] + (Math.random() - .5) * 20, y: from[1] + (Math.random() - .5) * 20, vx: (Math.random() - .5) * 8, vy: -2 - Math.random() * 5, g: .32, ph: 0, sz: 30 + Math.random() * 8, life: -i * 2, burst: 12, hd: 18, ex: to[0], ey: to[1], onHit: () => { bump(el); if (i === n - 1 && onEnd) onEnd(); } }); runFx(); }
@@ -2601,6 +2615,28 @@ sellItem = (o => function (i) {
   const dc = S.coin - pre; if (dc > 0) { const rel = holdCoin(pre); showCoinPill(); coinShower(xy, elXY(coinPillEl()), dc, rel, { max: 30 }); glowAt(xy, 50); }
   return r;
 })(sellItem);
+
+
+/* ---------- v16c: surprise coins on merges, combo coins, level-up & fever celebrations ---------- */
+mergeFx = (o => function (i, lv, jump) {
+  const preC = S.coin;
+  o.apply(this, arguments);
+  const xy = elXY(tileEl(i));
+  const comboC = S.coin - preC;
+  if (comboC > 0) { const rel = holdCoin(preC); showCoinPill(); setTimeout(() => coinShower(xy, elXY(coinPillEl()), comboC, rel, { max: 30 }), 260); }
+  if (!tgOn() && Math.random() < 0.06) {
+    const c = 3 + lv * 3, pre = S.coin; S.coin += c; save();
+    const rel2 = holdCoin(pre); showCoinPill();
+    setTimeout(() => { boom(xy[0], xy[1] - 46, '깜짝 동전 +' + c, '#FFE45C', 28); glowAt(xy, 80); sfx('coins', { vol: .75 }); coinShower(xy, elXY(coinPillEl()), c, rel2, { max: 26 }); }, 150);
+  }
+})(mergeFx);
+lvFlush = (o => function () {
+  const had = !!(S.lvPend && S.lvPend.length), keep = lastTapXY; lastTapXY = [195, 330];
+  o.apply(this, arguments);
+  lastTapXY = keep;
+  const pop = $('#pop'); if (had && pop && getComputedStyle(pop).display !== 'none') { raysAt([195, 330], 16, 240); glowAt([195, 330], 210); burst(195, 330, 44, { sp: 7.5, life: 64, sh: 'r', sz: 5 }); burst(195, 330, 18, { sp: 4.5, life: 56, pal: ['#FFE45C', '#FFFFFF'], sh: 's', sz: 6 }); }
+})(lvFlush);
+fevAdd = (o => function (n) { const was = feverOn(); o.apply(this, arguments); if (!was && feverOn()) { raysAt([195, 430], 18, 300); glowAt([195, 430], 230); burst(195, 430, 52, { sp: 8, life: 70, sh: 's', pal: ['#FFE45C', '#FFFFFF', '#F59BB6', '#7ED3B2'], sz: 5 }); } })(fevAdd);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
