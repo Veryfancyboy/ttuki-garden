@@ -915,6 +915,18 @@ body.phone{background:#FFE4CC}
 #app .order .done{top:124px;bottom:auto;left:6%;right:6%;height:28px}
 #app #stk{top:670px;left:auto;right:6px;transform:none;height:21px;font-size:13.5px;padding:0 9px}
 #app #fev{left:8px;right:136px}
+
+/* v19b: number fitting */
+#app #p-en .ptm{font-size:13px}
+#app #p-coin{overflow:hidden;white-space:nowrap}
+#app #gd-coin,#app #g-coin,#app #g-scrap{max-width:118px;overflow:hidden;white-space:nowrap}
+#app #stk{max-width:126px;overflow:hidden;white-space:nowrap}
+#app #p-en{display:grid;grid-template-columns:auto auto auto;grid-template-rows:18px 14px;align-content:center;align-items:center;column-gap:2px;padding-right:12px}
+#app #p-en img{grid-row:1 / 3;grid-column:1}
+#app #p-en .pv{grid-row:1 / 3;grid-column:2;line-height:1}
+#app #p-en .pm{grid-row:1;grid-column:3;align-self:end;font-size:13.5px;line-height:13px;margin:0}
+#app #p-en .ptm{grid-row:2;grid-column:3;align-self:start;font-size:12.5px;line-height:13px;margin:0;opacity:.9}
+#app #p-en.full .pm{grid-row:1 / 3;align-self:center}
 </style>
 </head>
 <body>
@@ -2847,6 +2859,18 @@ boom = (o => function (x, y, text, color, size) { const sz = size || 32, w = Str
 
 /* ---------- v19: hanok counter strip behind the orders ---------- */
 (function () { const sm = $('#sc-main'); if (!sm || sm.querySelector('.counter')) return; const c = document.createElement('div'); c.className = 'counter'; c.style.backgroundImage = 'url(' + window.__COUNTER + ')'; sm.insertBefore(c, sm.querySelector('.topbar')); })();
+
+
+/* ---------- v19b: numbers never get cut: abbreviate huge values, shrink to fit ---------- */
+const fmtCoin = v => v >= 1e6 ? Math.floor(v / 1e4).toLocaleString() + '만' : v >= 1e5 ? (Math.floor(v / 1e3) / 10) + '만' : v.toLocaleString();
+function fitPill(el, min) { if (!el || el.offsetParent === null) return; el.style.fontSize = ''; let fs = parseFloat(getComputedStyle(el).fontSize), g = 0; while (el.scrollWidth > el.clientWidth + 1 && fs > (min || 14) && g++ < 14) { fs -= 1; el.style.fontSize = fs + 'px'; } }
+showCoinPill = function () { const v = coinHolds > 0 && coinShown != null ? Math.max(0, Math.min(S.coin, Math.round(coinShown))) : S.coin; for (const q of COIN_PILLS) { const el = $(q); if (el) { el.innerHTML = '<img src="' + I('c09_coin_pouch') + '">' + fmtCoin(v); el.classList.toggle('counting', coinHolds > 0); fitPill(el); } } };
+renderAll = (o => function () { const r = o.apply(this, arguments); showCoinPill(); fitPill($('#g-scrap')); fitPill($('#stk'), 12); return r; })(renderAll);
+if (typeof renderGarden === 'function') renderGarden = (o => function () { const r = o.apply(this, arguments); showCoinPill(); return r; })(renderGarden);
+if (typeof renderGrow === 'function') renderGrow = (o => function () { const r = o.apply(this, arguments); showCoinPill(); fitPill($('#g-scrap')); return r; })(renderGrow);
+
+renderAll = (o => function () { const r = o.apply(this, arguments); const pe = $('#p-en'); if (pe) { const t = pe.querySelector('.ptm'); pe.classList.toggle('full', !t || !t.textContent.trim() || getComputedStyle(t).display === 'none'); } return r; })(renderAll);
+setInterval(() => { const pe = $('#p-en'); if (pe) { const t = pe.querySelector('.ptm'); pe.classList.toggle('full', !t || !t.textContent.trim() || getComputedStyle(t).display === 'none'); } }, 1000);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
