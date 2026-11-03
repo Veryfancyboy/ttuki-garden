@@ -739,6 +739,9 @@ small.cost img{height:15px;width:auto}
 #app .next{line-height:1.15}
 #app .next b{line-height:1.1}
 #app #anext div{font-size:14.5px}
+
+/* v16: counting coin pill glow */
+#app .pill.counting{box-shadow:0 0 0 3px #FFE45C,0 0 18px 5px rgba(255,214,74,.85)!important;transition:box-shadow .2s}
 </style>
 </head>
 <body>
@@ -2435,6 +2438,169 @@ function sellItem(i) {
   else doSell();
 }
 (function vineInit() { if (!S.vineInit) { vinePlace(S); save(); } })();
+
+
+/* ---------- v16 juice: coin showers, card pop, spawn arcs, merge flares ---------- */
+const COIN_SPR = (() => { const c = document.createElement('canvas'); c.width = c.height = 72; const g = c.getContext('2d'); const R = 33, C = 36;
+  const gr = g.createRadialGradient(26, 24, 3, C, C, R); gr.addColorStop(0, '#FFF7C2'); gr.addColorStop(.42, '#FFD84D'); gr.addColorStop(1, '#D08A0C');
+  g.fillStyle = gr; g.beginPath(); g.arc(C, C, R, 0, 7); g.fill(); g.lineWidth = 4.5; g.strokeStyle = '#6E3F0E'; g.stroke();
+  g.lineWidth = 2.5; g.strokeStyle = 'rgba(110,63,14,.5)'; g.beginPath(); g.arc(C, C, R - 8, 0, 7); g.stroke();
+  g.fillStyle = '#6E3F0E'; g.fillRect(C - 8, C - 8, 16, 16); g.fillStyle = '#FFF2B0'; g.fillRect(C - 5, C - 5, 10, 10);
+  g.fillStyle = 'rgba(255,255,255,.8)'; g.beginPath(); g.ellipse(25, 20, 8, 4.5, -0.6, 0, 7); g.fill();
+  return c; })();
+let coinHolds = 0, coinShown = null, lastTing = 0, tingN = 0;
+function showCoinPill() { const el = $('#p-coin'); if (!el) return; const v = coinHolds > 0 && coinShown != null ? Math.round(coinShown) : S.coin; el.innerHTML = '<img src="' + I('c09_coin_pouch') + '">' + v.toLocaleString(); }
+function holdCoin(pre) { if (coinHolds === 0) coinShown = pre; coinHolds++; let done = false; const rel = () => { if (done) return; done = true; coinHolds = Math.max(0, coinHolds - 1); if (!coinHolds) coinShown = null; showCoinPill(); }; setTimeout(rel, 6000); return rel; }
+function tingInit() { if (!actx || sbuf.ting) return; const sr = actx.sampleRate, n = Math.floor(sr * .2), b = actx.createBuffer(1, n, sr), d = b.getChannelData(0); for (let i = 0; i < n; i++) { const t = i / sr; d[i] = (Math.sin(6.2832 * 2093 * t) * .5 + Math.sin(6.2832 * 3136 * t) * .3 + Math.sin(6.2832 * 4699 * t) * .14) * Math.exp(-t / .045) * .85; } sbuf.ting = b; }
+function ting() { tingInit(); const now = performance.now(); if (now - lastTing < 38) return; lastTing = now; tingN++; sfx('ting', { rate: .92 + Math.min(.75, (tingN % 24) * .032), vol: .32 }); if (tingN % 5 === 0) buzz(8); }
+function glowAt(xy, r, c) { parts.push({ glow: 1, x: xy[0], y: xy[1], r: r || 60, life: 0, max: 20, c: c || '255,236,160' }); runFx(); }
+function raysAt(xy, n, r) { parts.push({ rays: 1, x: xy[0], y: xy[1], n: n || 10, r: r || 90, life: 0, max: 34, rot: Math.random() * 6 }); runFx(); }
+function coinShower(from, to, amount, rel, o) {
+  o = o || {};
+  const N = Math.round(Math.min(o.max || 70, Math.max(26, 14 + Math.sqrt(Math.max(1, amount)) * 2.8)));
+  const share = amount / N; let left = N;
+  if (document.hidden || parts.length > 700) { coinShown = (coinShown == null ? S.coin - amount : coinShown) + amount; showCoinPill(); if (rel) rel(); return; }
+  for (let i = 0; i < N; i++) {
+    const up = Math.random() < .28, a = up ? -Math.PI / 2 + (Math.random() - .5) * 1.6 : Math.random() * Math.PI, sp = (up ? 6 : 5) + Math.random() * 9;
+    parts.push({ gc: 1, x: from[0] + (Math.random() - .5) * 20, y: from[1] + (Math.random() - .5) * 14, vx: Math.cos(a) * sp * 1.25, vy: Math.sin(a) * sp - 2.5, g: .38, floor: from[1] + 120 + Math.random() * 170, ph: Math.random() * 6, vph: .3 + Math.random() * .3, sz: 27 + Math.random() * 13, life: -Math.floor(i * .12), burst: 13 + Math.floor(Math.random() * 7) + Math.floor(i * .24), hd: 11 + Math.floor(Math.random() * 5), ex: to[0], ey: to[1],
+      onHit: () => { coinShown = (coinShown == null ? S.coin - amount : coinShown) + share; left--; showCoinPill(); bump(coinPillEl()); ting(); if (left % 5 === 0) burst(to[0], to[1], 5, { sp: 2.8, life: 16, pal: ['#FFFFFF', '#FFE45C'], sh: 's', sz: 3.2, g: 0, up: 0 }); if (left <= 0 && rel) rel(); } });
+  }
+  runFx();
+}
+function coinRain(to, n) { for (let i = 0; i < n; i++) parts.push({ gc: 1, x: 20 + Math.random() * 350, y: -20 - Math.random() * 120, vx: (Math.random() - .5) * 1.5, vy: 2 + Math.random() * 3, g: .32, floor: 520 + Math.random() * 200, ph: Math.random() * 6, vph: .3 + Math.random() * .3, sz: 18 + Math.random() * 10, life: -Math.floor(i * .8), burst: 40 + Math.floor(Math.random() * 18), hd: 20 + Math.floor(Math.random() * 6), ex: to[0], ey: to[1], onHit: () => { bump($('#p-coin')); ting(); } }); runFx(); }
+function starsTo(from, el, n) { const to = elXY(el); for (let i = 0; i < n; i++) parts.push({ hs: 1, x: from[0], y: from[1], vx: (Math.random() - .5) * 7, vy: -3 - Math.random() * 4, g: .3, ph: 0, sz: 9 + Math.random() * 4, life: -i * 3, burst: 14, hd: 22, ex: to[0], ey: to[1], onHit: i === n - 1 ? () => bump(el) : null }); runFx(); }
+fxLoop = function () {
+  fctx.clearRect(0, 0, 390, 844);
+  if (parts.length > 1200) { for (let i = parts.length - 1; i >= 0 && parts.length > 600; i--) { const p = parts[i]; if (!p.onHit) parts.splice(i, 1); } }
+  for (let i = parts.length - 1; i >= 0; i--) {
+    const p = parts[i]; p.life++;
+    if (p.life < 0) continue;
+    if (p.gc || p.hs) {
+      if (p.life <= p.burst) { p.vy += p.g; p.x += p.vx; p.y += p.vy; p.vx *= .975; if (p.gc && p.y > p.floor && p.vy > 0) { p.y = p.floor; p.vy *= -.42; p.vx *= .7; } p.ph += p.vph; }
+      else { if (!p.h0) p.h0 = { sx: p.x, sy: p.y, cx: p.x + (p.ex - p.x) * .25 + (Math.random() - .5) * 90, cy: Math.min(p.y, p.ey) - 40 - Math.random() * 70 }; const t = Math.min(1, (p.life - p.burst) / p.hd), e = Math.pow(t, 2.2), u = 1 - e; p.x = u * u * p.h0.sx + 2 * u * e * p.h0.cx + e * e * p.ex; p.y = u * u * p.h0.sy + 2 * u * e * p.h0.cy + e * e * p.ey; p.ph += p.vph * 1.6; if (t >= 1) { if (p.onHit) p.onHit(); parts.splice(i, 1); continue; } }
+      if (p.gc) { const sx = Math.max(.14, Math.abs(Math.cos(p.ph))), s = p.sz * (p.h0 ? 1 - Math.min(1, (p.life - p.burst) / p.hd) * .35 : 1); fctx.save(); fctx.globalAlpha = 1; fctx.translate(p.x, p.y); fctx.scale(sx, 1); fctx.drawImage(COIN_SPR, -s / 2, -s / 2, s, s); fctx.restore(); }
+      else if (p.im) { fctx.globalAlpha = 1; if (p.im.complete && p.im.naturalWidth) fctx.drawImage(p.im, p.x - p.sz / 2, p.y - p.sz / 2, p.sz, p.sz); } else { fctx.globalAlpha = 1; fctx.fillStyle = '#7FD3FF'; star(p.x, p.y, p.sz); fctx.fillStyle = '#FFFFFF'; star(p.x, p.y, p.sz * .45); }
+      continue;
+    }
+    const t = p.life / p.max;
+    if (t >= 1) { if (p.onHit) p.onHit(); if (p.coin && p.tick) { sfx('tap', { rate: 1.8, vol: .25 }); bump($('#p-coin')); } parts.splice(i, 1); continue; }
+    if (p.glow) { const r = p.r * (.45 + t * .8), gr = fctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r); gr.addColorStop(0, 'rgba(' + p.c + ',' + (.95 * (1 - t)) + ')'); gr.addColorStop(.5, 'rgba(' + p.c + ',' + (.45 * (1 - t)) + ')'); gr.addColorStop(1, 'rgba(' + p.c + ',0)'); fctx.globalAlpha = 1; fctx.globalCompositeOperation = 'lighter'; fctx.fillStyle = gr; fctx.beginPath(); fctx.arc(p.x, p.y, r, 0, 7); fctx.fill(); fctx.globalCompositeOperation = 'source-over'; continue; }
+    if (p.rays) { fctx.save(); fctx.translate(p.x, p.y); fctx.rotate(p.rot + t * .9); fctx.globalAlpha = (t < .25 ? t / .25 : 1 - (t - .25) / .75) * .55; fctx.fillStyle = '#FFF3B0'; for (let k = 0; k < p.n; k++) { fctx.rotate(Math.PI * 2 / p.n); fctx.beginPath(); fctx.moveTo(0, 0); fctx.lineTo(p.r * (.6 + t * .6), -p.r * .09); fctx.lineTo(p.r * (.6 + t * .6), p.r * .09); fctx.closePath(); fctx.fill(); } fctx.restore(); continue; }
+    if (p.ring) { fctx.globalAlpha = 1 - t; fctx.strokeStyle = p.c; fctx.lineWidth = 6 * (1 - t) + 1; fctx.beginPath(); fctx.arc(p.x, p.y, p.r * (.3 + t), 0, 7); fctx.stroke(); continue; }
+    if (p.coin) { const u = 1 - t, x = u * u * p.sx + 2 * u * t * p.cx + t * t * p.ex, y = u * u * p.sy + 2 * u * t * p.cy + t * t * p.ey; fctx.globalAlpha = 1; fctx.drawImage(COIN_SPR, x - 10, y - 10, 20, 20); continue; }
+    p.vy += p.g; p.x += p.vx; p.y += p.vy; p.vx *= .985; p.rot += p.vr;
+    fctx.globalAlpha = t < .7 ? 1 : (1 - t) / .3; fctx.fillStyle = p.c;
+    if (p.sh === 's') star(p.x, p.y, p.sz * 1.4);
+    else if (p.sh === 'r') { fctx.save(); fctx.translate(p.x, p.y); fctx.rotate(p.rot); fctx.fillRect(-p.sz, -p.sz * .45, p.sz * 2, p.sz * .9); fctx.restore(); }
+    else { fctx.beginPath(); fctx.arc(p.x, p.y, p.sz, 0, 7); fctx.fill(); }
+  }
+  fctx.globalAlpha = 1;
+  if (parts.length) requestAnimationFrame(fxLoop); else { fxRun = false; fctx.clearRect(0, 0, 390, 844); }
+};
+/* order: card pops, coins burst out and pour into the counter */
+let seenOid = null, coinRel = null;
+completeOrder = (o => function (idx, el) {
+  const card = el || document.querySelectorAll('#orders .order')[idx], pre = S.coin, rect = card ? card.getBoundingClientRect() : null, ghost = card ? card.cloneNode(true) : null;
+  const rel = holdCoin(pre);
+  const r = o.apply(this, arguments);
+  if (S.coin <= pre) { rel(); return r; }
+  coinRel = rel;
+  if (ghost && rect) { const a = app.getBoundingClientRect(); ghost.classList.remove('ready'); ghost.style.cssText += ';position:absolute;left:' + ((rect.left - a.left) / scale) + 'px;top:' + ((rect.top - a.top) / scale) + 'px;width:' + (rect.width / scale) + 'px;height:' + (rect.height / scale) + 'px;margin:0;z-index:31;pointer-events:none'; app.appendChild(ghost); if (ghost.animate) ghost.animate([{ transform: 'scale(1)', filter: 'brightness(1)' }, { transform: 'scale(1.17)', filter: 'brightness(1.8)', offset: .28 }, { transform: 'scale(.15)', opacity: 0, filter: 'brightness(2.6)' }], { duration: 400, easing: 'cubic-bezier(.3,.7,.4,1)' }); setTimeout(() => ghost.remove(), 420); }
+  return r;
+})(completeOrder);
+orderFx = function (fromXY, coin, urg, upMul) {
+  const to = elXY($('#p-coin'));
+  sfx('coins'); buzz(30);
+  glowAt(fromXY, 70 + Math.min(70, Math.sqrt(coin) * 4)); ring(fromXY[0], fromXY[1], '#FFE45C', 64);
+  burst(fromXY[0], fromXY[1], 24, { sp: 6, life: 48, sh: 'r', sz: 4.5, up: 2.4 });
+  burst(fromXY[0], fromXY[1], 12, { sp: 4.5, life: 40, pal: ['#FFFFFF', '#FFE45C'], sh: 's', sz: 4.5, up: 1.5 });
+  const rel = coinRel; coinRel = null;
+  coinShower(fromXY, to, coin, rel);
+  if (coin >= 120) { shake(.45); flash('rgba(255,236,150,.32)', 200); }
+  starsTo(fromXY, $('#p-lv'), 4);
+  boom(Math.max(70, Math.min(320, fromXY[0])), fromXY[1] + 78, urg ? '+' + coin + ' 1.5배!' : '+' + coin, urg ? '#FFB347' : '#FFE45C', Math.min(58, 40 + Math.round(Math.sqrt(coin) * 1.2)));
+  if (urg) setTimeout(() => sfx('levelup', { vol: .8 }), 220);
+  if (upMul) setTimeout(() => { sfx('levelup', { rate: 1.12 }); boom(195, 210, '연속 ' + S.stk + '! 동전 ×' + STK_MUL(S.stk), '#FF8FB1', 30); }, 380);
+  fevAdd(3);
+};
+jackFx = (o => function (xy, m) { o.apply(this, arguments); raysAt(xy, 14, 170); glowAt(xy, 170); setTimeout(() => coinRain(elXY($('#p-coin')), 26 + m * 6), 120); })(jackFx);
+/* generator tap: the new item jumps out of the generator and lands in its cell */
+tapTile = (o => function (i) {
+  const x = S.b[i], gen = x && x.k === 'gen', before = gen ? S.b.map(y => !!y) : null;
+  const r = o.apply(this, arguments);
+  if (gen) { const ni = S.b.findIndex((y, j) => y && !before[j]); if (ni >= 0) spawnArc(i, ni); }
+  return r;
+})(tapTile);
+function spawnArc(fi, ti) {
+  const fe = tileEl(fi), te = tileEl(ti); if (!fe || !te) return; const img = te.querySelector('img'); if (!img || !img.animate) return;
+  const f = elXY(fe), t = elXY(te), a = app.getBoundingClientRect(), r = img.getBoundingClientRect();
+  const fly = img.cloneNode(); const w = r.width / scale, h = r.height / scale;
+  fly.style.cssText = 'position:absolute;left:' + (t[0] - w / 2) + 'px;top:' + (t[1] - h / 2) + 'px;width:' + w + 'px;height:' + h + 'px;z-index:29;pointer-events:none';
+  app.appendChild(fly); img.style.visibility = 'hidden';
+  const dx = f[0] - t[0], dy = f[1] - t[1], lift = 40 + Math.min(70, Math.hypot(dx, dy) * .25);
+  fly.animate([{ transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3)' }, { transform: 'translate(' + (dx * .45) + 'px,' + (dy * .45 - lift) + 'px) scale(1.05)', offset: .5 }, { transform: 'translate(0,0) scale(1.24,.8)', offset: .84 }, { transform: 'translate(0,0) scale(1)' }], { duration: 360, easing: 'cubic-bezier(.35,.1,.45,1)' });
+  const gi = fe.querySelector('img'); if (gi && gi.animate) gi.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.18,.84)' }, { transform: 'scale(.94,1.08)' }, { transform: 'scale(1)' }], { duration: 260 });
+  setTimeout(() => { fly.remove(); const im2 = tileEl(ti) && tileEl(ti).querySelector('img'); if (im2) im2.style.visibility = ''; img.style.visibility = ''; burst(t[0], t[1] + 14, 7, { sp: 2.2, life: 20, pal: ['#E7D3B4', '#FFFFFF', '#F3E2C2'], sz: 3, g: .05, up: .6 }); }, 340);
+}
+/* merges: brighter flare, sparkles, rays on high levels */
+mergeFx = (o => function (i, lv, jump) {
+  o.apply(this, arguments);
+  const xy = elXY(tileEl(i));
+  glowAt(xy, 42 + lv * 13);
+  burst(xy[0], xy[1], 6 + lv * 2, { sp: 3 + lv * .45, life: 30, pal: ['#FFFFFF', '#FFE45C', '#FFF3B0'], sh: 's', sz: 3.6, g: .06 });
+  if (lv >= 3) raysAt(xy, 8 + lv, 44 + lv * 12);
+})(mergeFx);
+/* new order cards drop in */
+renderAll = (o => function () {
+  const r = o.apply(this, arguments);
+  if (coinHolds > 0) showCoinPill();
+  const cards = document.querySelectorAll('#orders .order');
+  if (seenOid === null) { seenOid = new Set(); cards.forEach(c => seenOid.add(c.dataset.oid)); }
+  else cards.forEach((c, k) => { if (!seenOid.has(c.dataset.oid)) { seenOid.add(c.dataset.oid); if (c.animate) c.animate([{ transform: 'translateY(-46px) scale(.55)', opacity: 0 }, { transform: 'translateY(6px) scale(1.07)', opacity: 1, offset: .65 }, { transform: 'translateY(0) scale(1)' }], { duration: 460, delay: 180 + k * 60, easing: 'ease-out', fill: 'backwards' }); } });
+  return r;
+})(renderAll);
+
+
+/* ---------- v16b: every reward flies to its counter ---------- */
+let lastTapXY = [195, 420], inOrder = false;
+document.addEventListener('pointerdown', e => { const a = app.getBoundingClientRect(); lastTapXY = [(e.clientX - a.left) / scale, (e.clientY - a.top) / scale]; }, true);
+const COIN_PILLS = ['#p-coin', '#gd-coin', '#g-coin'];
+function coinPillEl() { for (const q of COIN_PILLS) { const el = $(q); if (el && el.offsetParent !== null && el.getBoundingClientRect().width > 0) return el; } return $('#p-coin'); }
+showCoinPill = function () { const v = coinHolds > 0 && coinShown != null ? Math.round(coinShown) : S.coin; for (const q of COIN_PILLS) { const el = $(q); if (el) { el.innerHTML = '<img src="' + I('c09_coin_pouch') + '">' + v.toLocaleString(); el.classList.toggle('counting', coinHolds > 0); } } };
+const SPR_IMG = {};
+function sprImg(n) { if (!SPR_IMG[n]) { const im = new Image(); im.src = I(n); SPR_IMG[n] = im; } return SPR_IMG[n]; }
+function iconFly(from, sel, img, n, onEnd) { const el = $(sel); if (!el || el.offsetParent === null) return; const to = elXY(el), im = sprImg(img); for (let i = 0; i < n; i++) parts.push({ hs: 1, im, x: from[0] + (Math.random() - .5) * 20, y: from[1] + (Math.random() - .5) * 20, vx: (Math.random() - .5) * 8, vy: -2 - Math.random() * 5, g: .32, ph: 0, sz: 30 + Math.random() * 8, life: -i * 2, burst: 12, hd: 18, ex: to[0], ey: to[1], onHit: () => { bump(el); if (i === n - 1 && onEnd) onEnd(); } }); runFx(); }
+function rewardFly(from, dc, de, dk, pre) {
+  if (dc > 0) { const pill = coinPillEl(); if (pill) { const rel = holdCoin(pre); showCoinPill(); coinShower(from, elXY(pill), dc, rel, { max: 40 }); sfx('coins', { vol: .8 }); glowAt(from, 60); } }
+  if (de > 0) iconFly(from, '#p-en', 'c10_songpyeon', Math.min(10, 3 + Math.round(de / 4)));
+  if (dk > 0) iconFly(from, '#b-box', 'ui_key', Math.min(6, dk * 2));
+}
+grant = (o => function (rw) { const pre = S.coin, pe = S.en, pk = S.keys; const r = o.apply(this, arguments); if (!inOrder) rewardFly(lastTapXY, S.coin - pre, S.en - pe, S.keys - pk, pre); return r; })(grant);
+completeOrder = (o => function () { inOrder = true; try { return o.apply(this, arguments); } finally { inOrder = false; } })(completeOrder);
+/* spending coins on the garden: coins pour from the counter into the spot */
+function coinSpend(from, to, n, onEnd) { for (let i = 0; i < n; i++) parts.push({ gc: 1, x: from[0], y: from[1], vx: (Math.random() - .5) * 6, vy: -1.5 - Math.random() * 3.5, g: .22, floor: 9999, ph: Math.random() * 6, vph: .3, sz: 22 + Math.random() * 8, life: -i * 2, burst: 7, hd: 20 + Math.floor(Math.random() * 6), ex: to[0] + (Math.random() - .5) * 16, ey: to[1] + (Math.random() - .5) * 10, onHit: i === n - 1 ? onEnd : (i % 3 === 0 ? () => ting() : null) }); runFx(); }
+restoreSpot = (o => function (id) {
+  const pre = S.coin, pe = S.en, pill = coinPillEl(), from = pill ? elXY(pill) : [60, 30];
+  const mk = document.querySelector('#gdn-mk .gmk[data-g="' + id + '"]') || $('#gd-go'), to = mk ? elXY(mk) : [195, 400];
+  const r = o.apply(this, arguments);
+  const spent = pre - S.coin;
+  if (spent > 0) coinSpend(from, to, Math.min(22, 8 + Math.round(Math.sqrt(spent) * 1.2)), () => { glowAt(to, 90); raysAt(to, 12, 110); burst(to[0], to[1], 22, { sp: 5, life: 40, pal: ['#FFE45C', '#FFFFFF', '#7ED3B2', '#F59BB6'], sh: 's', sz: 4.5 }); sfx('coins', { vol: .7 }); });
+  return r;
+})(restoreSpot);
+/* grandma's wooden doll: items jump out, coins pour into the counter */
+openGift = (o => function (i) {
+  const before = S.b.map(y => !!y), pre = S.coin, xy = elXY(tileEl(i));
+  const r = o.apply(this, arguments);
+  S.b.forEach((y, j) => { if (y && !before[j] && j !== i) setTimeout(() => spawnArc(i, j), 40 + j % 3 * 70); });
+  const dc = S.coin - pre; if (dc > 0) { const rel = holdCoin(pre); showCoinPill(); coinShower(xy, elXY(coinPillEl()), dc, rel, { max: 30 }); }
+  return r;
+})(openGift);
+sellItem = (o => function (i) {
+  const pre = S.coin, xy = elXY(tileEl(i));
+  const r = o.apply(this, arguments);
+  const dc = S.coin - pre; if (dc > 0) { const rel = holdCoin(pre); showCoinPill(); coinShower(xy, elXY(coinPillEl()), dc, rel, { max: 30 }); glowAt(xy, 50); }
+  return r;
+})(sellItem);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
