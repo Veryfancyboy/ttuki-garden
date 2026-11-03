@@ -885,6 +885,14 @@ body.phone{background:#FFE4CC}
 #app .edgeglow{position:absolute;inset:0;pointer-events:none;z-index:73;opacity:0;box-shadow:inset 0 0 46px 14px rgba(255,205,70,.9)}
 #app .board.fvr{animation:fvrglow 1.2s linear infinite}
 @keyframes fvrglow{0%{box-shadow:0 0 0 3px #FF6B8B,0 0 18px 6px rgba(255,107,139,.6)}33%{box-shadow:0 0 0 3px #FFC93C,0 0 18px 6px rgba(255,201,60,.6)}66%{box-shadow:0 0 0 3px #4FB3F0,0 0 18px 6px rgba(79,179,240,.6)}100%{box-shadow:0 0 0 3px #FF6B8B,0 0 18px 6px rgba(255,107,139,.6)}}
+/* v18b: strips never cover the board, orders or buttons */
+#app .board{top:210px;height:460px}
+#app #stk{top:188px;height:21px;font-size:15px;padding:0 12px}
+#app #stk small{display:none}
+#app #fev{top:672px;height:17px}
+#app #fev span{font-size:14px;line-height:17px}
+#app .helper{top:693px;height:61px}
+#app .nav .on{margin-top:-4px;height:64px}
 </style>
 </head>
 <body>
@@ -2051,7 +2059,7 @@ const feverOn = () => (S.fevUntil || 0) > Date.now();
 function fevAdd(n) {
   if (feverOn()) return;
   S.fev = Math.min(FEV_MAX, (S.fev || 0) + n);
-  if (S.fev >= FEV_MAX) { S.fev = 0; S.fevUntil = Date.now() + FEV_SEC * 1000; save(); sfx('fever'); flash('rgba(255,228,92,.6)', 320); shake(.8); boom(195, 330, '신나는 시간!', '#FFE45C', 40); burst(195, 330, 40, { sp: 7, life: 55, pal: PAL, sz: 5 }); buzz(60); toast(`${FEV_SEC}초 동안 에너지 공짜, 좋은 재료가 더 잘 나와요!`); }
+  if (S.fev >= FEV_MAX) { S.fev = 0; S.fevUntil = Date.now() + FEV_SEC * 1000; save(); sfx('fever'); shake(.35); boom(195, 646, '신나는 시간!', '#FFE45C', 34); burst(195, 680, 30, { sp: 6, life: 50, pal: PAL, sz: 5 }); buzz(60); }
   renderFev();
 }
 function renderFev() {
@@ -2059,10 +2067,10 @@ function renderFev() {
   const on = feverOn(), left = on ? Math.ceil((S.fevUntil - Date.now()) / 1000) : 0;
   el.classList.toggle('on', on); $('#board').classList.toggle('fever', on);
   el.querySelector('i').style.width = (on ? left / FEV_SEC * 100 : (S.fev || 0) / FEV_MAX * 100) + '%';
-  el.querySelector('span').textContent = on ? `신나는 시간 ${left}초` : `신나는 시간 ${(S.fev || 0)}/${FEV_MAX}`;
+  el.querySelector('span').textContent = on ? `신나는 시간! 에너지 공짜 ${left}초` : `신나는 시간 ${(S.fev || 0)}/${FEV_MAX}`;
 }
 let fevWas = false;
-setInterval(() => { const on = feverOn(); if (fevWas && !on) { sfx('alert', { rate: .9, vol: .6 }); toast('신나는 시간 끝! 게이지를 다시 채워요'); } fevWas = on; if ($('#sc-main').classList.contains('on')) renderFev(); }, 500);
+setInterval(() => { const on = feverOn(); if (fevWas && !on) { sfx('alert', { rate: .9, vol: .6 });  } fevWas = on; if ($('#sc-main').classList.contains('on')) renderFev(); }, 500);
 function mergeFx(i, lv, jump) {
   const el = tileEl(i), xy = elXY(el), now = Date.now();
   combo = now - lastMerge < 1600 ? combo + 1 : 1; lastMerge = now;
@@ -2270,7 +2278,7 @@ const CTX = [
   { id: 'album', mode: 'info', when: () => navOpen('album') && Object.keys(S.sp).length > 1, tgt: () => navQ('album'), text: '새 친구를 만났어! <b>도감</b>에서 만난 친구들을 볼 수 있어.' },
   { id: 'event', mode: 'info', when: () => navOpen('event'), tgt: () => navQ('event'), text: '<b>이벤트</b>가 열렸어! 썰매 경주, 매일 받는 선물, 크리스마스 선물이 있어.', after: () => { if (attCan()) setTimeout(showAtt, 500); } },
   { id: 'streak', soft: 1, when: () => (S.stk || 0) >= 3 && scrOn('main'), text: '연속 <b>3번</b>! 끊기지 않고 보내면 동전이 늘어나. 6번 ×1.2, 10번 ×1.3!' },
-  { id: 'fever', soft: 1, when: () => feverOn() && scrOn('main'), text: '<b>신나는 시간!</b> 잠깐 동안 에너지가 안 들어. 빨리 톡톡!' }
+  { id: 'fever', soft: 1, when: () => !feverOn() && (S.fev || 0) >= FEV_MAX - 6 && scrOn('main'), text: '<b>신나는 시간</b> 게이지가 거의 찼어! 다 차면 잠깐 동안 에너지 없이 톡톡 할 수 있어.' }
 ];
 const NAV_RULE = { grow: () => !!S.gd.r.gate, dress: () => Object.keys(S.owned).length > 0, album: () => Object.keys(S.sp).length > 1 || S.done >= 10, event: () => S.done >= 5 };
 const NAV_HINT = { grow: '정원의 대문을 다 고치면 열려요', dress: '선물 상자에서 옷이 나오면 열려요', album: '알에서 새 친구가 깨어나면 열려요', event: '주문 5개를 보내면 열려요' };
@@ -2767,7 +2775,7 @@ lvFlush = (o => function () {
   lastTapXY = keep;
   const pop = $('#pop'); if (had && pop && getComputedStyle(pop).display !== 'none') { raysAt([195, 330], 16, 240); glowAt([195, 330], 210); burst(195, 330, 44, { sp: 7.5, life: 64, sh: 'r', sz: 5 }); burst(195, 330, 18, { sp: 4.5, life: 56, pal: ['#FFE45C', '#FFFFFF'], sh: 's', sz: 6 }); }
 })(lvFlush);
-fevAdd = (o => function (n) { const was = feverOn(); o.apply(this, arguments); if (!was && feverOn()) { raysAt([195, 430], 18, 300); glowAt([195, 430], 230); burst(195, 430, 52, { sp: 8, life: 70, sh: 's', pal: ['#FFE45C', '#FFFFFF', '#F59BB6', '#7ED3B2'], sz: 5 }); } })(fevAdd);
+fevAdd = (o => function (n) { const was = feverOn(); o.apply(this, arguments); if (!was && feverOn()) { raysAt([195, 680], 14, 140); glowAt([195, 680], 120); burst(195, 680, 34, { sp: 7, life: 60, sh: 's', pal: ['#FFE45C', '#FFFFFF', '#F59BB6', '#7ED3B2'], sz: 5 }); const fe = $('#fev'); if (fe && fe.animate) fe.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.18)', offset: .3 }, { transform: 'scale(1)' }], { duration: 520, easing: 'ease-out' }); } })(fevAdd);
 
 
 /* ---------- v17: soft garden backdrop behind the merge board ---------- */
