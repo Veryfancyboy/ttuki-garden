@@ -928,7 +928,7 @@ body.phone{background:#FFE4CC}
 #app #p-en .ptm{grid-row:2;grid-column:3;align-self:start;font-size:12.5px;line-height:13px;margin:0;opacity:.9}
 #app #p-en.full .pm{grid-row:1 / 3;align-self:center}
 
-/* v19c: full-scan fixes */ /* v20: gift wheel + boosters */
+/* v19c: full-scan fixes */ /* v20: gift wheel + boosters */ /* v20b: board columns fixed for iOS */
 #app .topbar #p-coin img,#app #gd-coin img,#app #g-coin img{margin-right:3px}
 #app .order .tagh.tu{top:6px;bottom:auto;right:1px;left:auto;flex-direction:column;align-items:center;gap:0;width:34px;color:#D7262B;text-shadow:0 0 2px #fff,0 0 2px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
 #app .order .tagh.tu b{font-size:14px;line-height:15px}
@@ -1054,6 +1054,20 @@ body.phone{background:#FFE4CC}
 #app .t.gen.noen .gen-spk{display:none}
 @keyframes genspk{0%,55%,100%{opacity:0;transform:scale(.4) rotate(0)}70%{opacity:1;transform:scale(1) rotate(20deg)}85%{opacity:.9;transform:scale(.8) rotate(35deg)}}
 #app .t.lockgen{background:repeating-linear-gradient(45deg,rgba(255,228,160,.6),rgba(255,228,160,.6) 6px,rgba(255,246,222,.85) 6px,rgba(255,246,222,.85) 12px) !important;box-shadow:inset 0 0 0 2px rgba(206,140,36,.4)}
+
+/* v20b: 아이폰(카카오톡·사파리)에서 판 오른쪽 줄이 잘리던 문제.
+   WebKit은 max-width만 걸린 그림의 '최소 폭'을 가로세로 비율로 크게 잡아 1fr 칸을 늘린다 → 칸 폭을 0부터 고정, 그림 상자는 크기를 직접 지정 */
+#app .board{grid-template-columns:repeat(7,minmax(0,1fr)) !important;grid-template-rows:repeat(9,minmax(0,1fr)) !important}
+#app .board > .t{min-width:0;min-height:0}
+#app .board .t > img{width:46px;height:46px;max-width:100%;max-height:100%;object-fit:contain;flex:none}
+#app .order .w > img{width:44px;height:44px;object-fit:contain;flex:none}
+#app .order .w.n > img{width:40px;height:40px}
+#app .it > img{width:56px;height:50px;object-fit:contain;flex:none}
+#app .grid,#app .pg,#app .gs-g{grid-template-columns:repeat(var(--gc,3),minmax(0,1fr))}
+#app .pg{--gc:4}
+#app .attg{grid-template-columns:repeat(7,minmax(0,1fr))}
+#app .cards{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+#app .tracks{grid-template-columns:34px minmax(0,1fr) minmax(0,1fr)}
 </style>
 </head>
 <body>
