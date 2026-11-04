@@ -1193,6 +1193,59 @@ body.phone{background:#FFE4CC}
 #app .custbye.sad{animation:cbyes .85s ease-in forwards}
 @keyframes cbyes{0%{transform:translateY(0)}100%{transform:translateY(40px) rotate(-6deg);opacity:0}}
 #app .order .seat.enter.late img{animation:centr .6s cubic-bezier(.2,1.4,.4,1) .75s backwards}
+
+/* v23: 이름 짓기 · 순위 · 하는 법 */
+#app .v23ov{position:absolute;inset:0;z-index:92;display:none}
+#app .v23ov .ovdim{position:absolute;inset:0;background:rgba(60,30,25,.58)}
+#app .v23ov .ovbox{position:absolute;left:20px;right:20px;top:118px;padding:22px 18px 18px;border-radius:24px;background:linear-gradient(180deg,#FFFDF7,#FFF2D8);border:2px solid rgba(122,78,44,.3);box-shadow:0 6px 0 rgba(122,78,44,.28),0 16px 34px rgba(60,30,10,.28);text-align:center;color:#4A2A1E}
+#app .v23ov .ovh{font-family:'Jua';font-size:23px;line-height:30px;color:#4A2A1E}
+#app .v23ov .ovs{font-family:'Jua';font-size:15.5px;line-height:21px;color:#8A6A54;margin-top:4px}
+#app .v23ov .ovgo{height:54px;line-height:54px;font-size:20px;margin-top:10px;display:flex;align-items:center;justify-content:center}
+#app .v23ov .nkbox{padding-top:44px}
+#app .v23ov .nkava{position:absolute;left:50%;top:-40px;width:76px;height:76px;margin-left:-38px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 3px 0 rgba(122,78,44,.3),0 6px 14px rgba(60,30,10,.2);background:#FFE9C2}
+#app .v23ov .nkrow{display:flex;gap:8px;margin-top:16px;align-items:stretch}
+#app .v23ov #nk-in{flex:1;min-width:0;height:52px;box-sizing:border-box;border-radius:14px;border:2px solid rgba(122,78,44,.35);background:#fff;font-family:'Jua';font-size:22px;color:#4A2A1E;text-align:center;padding:0 8px;outline:none;-webkit-appearance:none;appearance:none}
+#app .v23ov #nk-in:focus{border-color:#E8963A;box-shadow:0 0 0 3px rgba(255,201,60,.45)}
+#app .v23ov #nk-dice{flex:0 0 auto;height:52px;padding:0 14px;font-size:16px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+#app .v23ov .nkerr{min-height:20px;font-family:'Jua';font-size:14.5px;line-height:20px;color:#D2462F;margin-top:6px}
+#app .v23ov .rkbox{top:66px;max-height:728px;box-sizing:border-box;display:flex;flex-direction:column}
+#app .v23ov .rklist{flex:0 1 auto;min-height:0;overflow-y:auto;margin-top:12px;text-align:left;display:flex;flex-direction:column;gap:2px}
+#app .v23ov .rkr{display:flex;align-items:center;gap:10px;min-height:46px;padding:3px 10px;border-radius:13px;flex:none}
+#app .v23ov .rkr:nth-child(odd){background:rgba(255,232,190,.42)}
+#app .v23ov .rkr.me{background:linear-gradient(90deg,#FFEFA8,#FFD86A);box-shadow:inset 0 0 0 2px rgba(212,154,23,.45)}
+#app .v23ov .rkn{flex:0 0 auto;min-width:32px;padding:0 5px;box-sizing:border-box;white-space:nowrap;height:32px;line-height:32px;border-radius:16px;text-align:center;font-family:'Jua';font-size:16px;color:#7A5A44;background:rgba(122,78,44,.1)}
+#app .v23ov .rkn.g1{background:linear-gradient(180deg,#FFE27A,#F2B52C);color:#5A3A10;box-shadow:0 2px 0 #C98A12}
+#app .v23ov .rkn.g2{background:linear-gradient(180deg,#F4F4F7,#C3C7D0);color:#454A55;box-shadow:0 2px 0 #9097A3}
+#app .v23ov .rkn.g3{background:linear-gradient(180deg,#F8CFA4,#D8915A);color:#5A2E10;box-shadow:0 2px 0 #A9663A}
+#app .v23ov .rkm{flex:1;min-width:0;display:flex;flex-direction:column}
+#app .v23ov .rkm b{font-weight:normal;font-family:'Jua';font-size:18px;line-height:23px;color:#4A2A1E;white-space:nowrap}
+#app .v23ov .rkm em{font-style:normal;font-family:'Jua';font-size:12.5px;line-height:19px;height:19px;display:inline-block;padding:0 7px;border-radius:10px;background:#E8573A;color:#fff;margin-left:6px;vertical-align:2px}
+#app .v23ov .rkv{font-family:'Jua';font-size:14px;line-height:18px;color:#8A6A54;white-space:nowrap}
+#app .v23ov .rksep{text-align:center;font-family:'Jua';font-size:15px;line-height:18px;color:#B09078;flex:none}
+#app .v23ov .rktot{text-align:center;font-family:'Jua';font-size:14.5px;line-height:22px;color:#8A6A54;margin-top:6px;flex:none}
+#app .v23ov .rkload{text-align:center;font-family:'Jua';font-size:16px;line-height:24px;color:#8A6A54;padding:26px 0}
+#app .v23ov .htbox{top:96px;padding:20px 16px 16px}
+#app .v23ov .ht{display:flex;align-items:center;gap:12px;text-align:left;padding:9px 2px;border-bottom:1.5px dashed rgba(122,78,44,.22)}
+#app .v23ov .hti{flex:0 0 66px;height:58px;display:flex;align-items:center;justify-content:center}
+#app .v23ov .hti img{width:58px;height:58px;object-fit:contain;max-width:none}
+#app .v23ov .hti.two img{width:28px;height:28px}
+#app .v23ov .hti em{font-style:normal;font-family:'Jua';font-size:18px;color:#8A6A54;margin:0 1px}
+#app .v23ov .htt{flex:1;min-width:0}
+#app .v23ov .htt b{display:block;font-weight:normal;font-family:'Jua';font-size:18.5px;line-height:24px;color:#4A2A1E}
+#app .v23ov .htt span{display:block;font-family:'Jua';font-size:15px;line-height:21px;color:#7A5A44;word-break:keep-all}
+#app .v23ov .htn{font-family:'Jua';font-size:14.5px;line-height:20px;color:#9A7A62;margin-top:10px}
+#app .v23set{display:flex;gap:7px;margin-top:14px}
+#app .v23set .btn{flex:1;min-width:0;height:44px;font-size:15.5px;display:flex;align-items:center;justify-content:center;white-space:nowrap;padding:0 4px}
+#app #set #b-reset{margin-top:8px !important}
+#app #coach.early .cskip{display:none}
+#app .ev.rankc{display:flex;align-items:center;gap:12px;min-height:76px;padding:10px 12px 10px 14px;border-radius:18px;background:linear-gradient(180deg,#FFFDF6,#FFEFD0);border:2px solid rgba(122,78,44,.28);box-shadow:0 4px 0 rgba(122,78,44,.22);box-sizing:border-box}
+#app .ev.rankc .rkic{width:46px;height:46px;object-fit:contain;flex:none;max-width:none}
+#app .ev.rankc .rkt{flex:1;min-width:0;display:flex;flex-direction:column}
+#app .ev.rankc .rkt b{font-weight:normal;font-family:'Jua';font-size:21px;line-height:26px;color:#4A2A1E}
+#app .ev.rankc .rkt span{font-family:'Jua';font-size:15px;line-height:20px;color:#7A5A44;white-space:normal;word-break:keep-all;overflow-wrap:anywhere}
+#app .ev.rankc .rkgo{flex:none;height:42px;padding:0 12px;font-size:16px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+
+/* v23: nickname + ranking + howto */
 </style>
 </head>
 <body>
@@ -3516,6 +3569,131 @@ if (typeof urgMiss === 'function') urgMiss = (o0 => function (o) {
 })(urgMiss);
 
 fillOrders = (o0 => function () { if (window.__holes && window.__holes.length) { ordHoles = ordHoles.concat(window.__holes); window.__holes = []; } return o0.apply(this, arguments); })(fillOrders);
+/* ===== v23: 처음 접속 이름 짓기 + 순위 + 하는 법 카드 + 안내 다듬기 ===== */
+const RANK_URL = 'https://script.google.com/macros/s/AKfycbwysXMn90YPeGFBwkdPmUVF3u5U15l4Eb_xpHqpAvszXghozN4eV6Xxoy6DTXpi4nIbbA/exec';
+const NICK_A = ['포근한', '반짝이는', '용감한', '느긋한', '씩씩한', '다정한', '신나는', '꼼꼼한', '말랑한', '부지런한'];
+const NICK_B = ['해태', '달토끼', '뚝이', '두꺼비', '구미호', '봉황', '바늘곰', '이무기', '다람쥐', '오리', '판다', '펭귄', '고슴도치', '양'];
+const nickSuggest = () => NICK_A[Math.floor(Math.random() * NICK_A.length)] + ' ' + NICK_B[Math.floor(Math.random() * NICK_B.length)];
+const escH = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+if (!S.pid) { S.pid = ('p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12)).slice(0, 20); save(); }
+function v23Busy() { return ['nick', 'rank', 'howto'].some(id => { const e = document.getElementById(id); return !!e && e.style.display === 'block'; }); }
+const howDue = () => !!S.tg && !S.tg.all && S.tg.c >= CHAIN.length && (S.howSeen || 0) < 23;
+ovOpen = (o0 => function () { const b = o0(); if (!b && !v23Busy() && howDue() && typeof howtoOpen === 'function') { S.howSeen = 23; save(); howtoOpen(); return true; } return b || v23Busy(); })(ovOpen);
+function ovEl(id) { let e = document.getElementById(id); if (!e) { e = document.createElement('div'); e.id = id; e.className = 'v23ov'; app.appendChild(e); } return e; }
+/* --- 이름 짓기 --- */
+function nickOpen(first, then) {
+  const ov = ovEl('nick');
+  ov.innerHTML = '<div class="ovdim"></div><div class="ovbox panel nkbox"><img class="nkava" src="' + (HEAD('ttuki') || '') + '" alt=""><div class="ovh">' + (first ? '반가워요! 이름을 지어 주세요' : '이름 바꾸기') + '</div><div class="ovs">순위표에 이 이름이 나와요 (2~10글자)</div><div class="nkrow"><input id="nk-in" maxlength="10" autocomplete="off" spellcheck="false" enterkeyhint="done"><div class="btn cream h" id="nk-dice">다른 이름</div></div><div class="nkerr" id="nk-err"></div><div class="btn red h ovgo" id="nk-ok">' + (first ? '이 이름으로 시작' : '바꾸기') + '</div></div>';
+  ov.style.display = 'block';
+  const inp = ov.querySelector('#nk-in'); inp.value = S.nick || nickSuggest();
+  inp.addEventListener('focus', () => { try { inp.select(); } catch (e) {} });
+  ov.querySelector('#nk-dice').onclick = () => { inp.value = nickSuggest(); ov.querySelector('#nk-err').textContent = ''; sfx('tap', { rate: 1.2, vol: .4 }); };
+  if (!first) ov.querySelector('.ovdim').onclick = () => { ov.style.display = 'none'; };
+  const ok = () => { const v = inp.value.replace(/[<>&"'\x60\\]/g, '').replace(/\s+/g, ' ').trim().replace(/^[=+\-@]+/, '').trim(); if (v.length < 2) { ov.querySelector('#nk-err').textContent = '두 글자 이상 적어 주세요'; return; } S.nick = v.slice(0, 10); save(); try { inp.blur(); } catch (e) {} ov.style.display = 'none'; sfx('tap', { rate: 1.3, vol: .5 }); rankPush(true); if (then) setTimeout(then, 250); };
+  ov.querySelector('#nk-ok').onclick = ok;
+  inp.onkeydown = e => { if (e.key === 'Enter') ok(); };
+}
+/* --- 순위 서버 --- */
+let rankCache = null, rankAt = 0, rankPushAt = 0, rankTimer = 0, rankUpAt = 0;
+const rankScore = () => S.done || 0;
+async function rankCall(q, keep) {
+  if (!RANK_URL) return null;
+  try { const r = await fetch(RANK_URL + '?' + q + '&t=' + Date.now(), keep ? { keepalive: true } : undefined); const j = await r.json(); if (j && j.ok && Array.isArray(j.top)) { const old = rankCache && rankCache.me && rankCache.me.r; rankCache = j; rankAt = Date.now(); if (old && j.me && j.me.r < old && Date.now() - rankUpAt > 45000 && !ovOpen()) { rankUpAt = Date.now(); toast('순위가 올랐어요! ' + old + '위 → ' + j.me.r + '위'); } return j; } } catch (e) {}
+  return null;
+}
+const rankFetch = () => rankCall('a=top&n=10&id=' + encodeURIComponent(S.pid));
+function rankPush(force, keep) {
+  if (!RANK_URL || !S.nick) return null;
+  const now = Date.now();
+  if (!force && now - rankPushAt < 20000) { if (!rankTimer) rankTimer = setTimeout(() => { rankTimer = 0; rankPush(true); }, 20000 - (now - rankPushAt) + 200); return null; }
+  rankPushAt = now;
+  return rankCall('a=put&n=10&id=' + encodeURIComponent(S.pid) + '&nick=' + encodeURIComponent(S.nick) + '&score=' + rankScore() + '&lv=' + (S.lv || 1), keep);
+}
+const medal = r => '<span class="rkn' + (r <= 3 ? ' g' + r : '') + '">' + r + '</span>';
+function rkRow(r) { return '<div class="rkr' + (r.me ? ' me' : '') + '">' + medal(r.r) + '<div class="rkm"><b>' + escH(r.nick) + (r.me ? '<em>나</em>' : '') + '</b><span class="rkv">Lv' + r.lv + ' · 주문 ' + Number(r.score).toLocaleString() + '개</span></div></div>'; }
+async function rankOpen(first, then) {
+  const ov = ovEl('rank');
+  ov.innerHTML = '<div class="ovdim"></div><div class="ovbox panel rkbox"><div class="ovh">순위</div><div class="ovs">보낸 주문이 많을수록 위로 올라가요</div><div class="rklist" id="rk-list"><div class="rkload">순위를 불러오는 중...</div></div><div class="btn ' + (first ? 'red' : 'yellow') + ' h ovgo" id="rk-ok">' + (first ? '시작하기' : '닫기') + '</div></div>';
+  ov.style.display = 'block';
+  const close = () => { ov.style.display = 'none'; if (then) setTimeout(then, 200); };
+  ov.querySelector('#rk-ok').onclick = close; if (!first) ov.querySelector('.ovdim').onclick = close;
+  let j = null;
+  if (first && rankPushPending) j = await rankPushPending;
+  if (!j) j = await rankFetch();
+  const list = ov.querySelector('#rk-list'); if (!list || ov.style.display !== 'block') return;
+  const myLine = '<div class="rkr me">' + medal('-') + '<div class="rkm"><b>' + escH(S.nick || '나') + '<em>나</em></b><span class="rkv">Lv' + (S.lv || 1) + ' · 주문 ' + rankScore().toLocaleString() + '개</span></div></div>';
+  if (!j) { list.innerHTML = '<div class="rkload">지금은 순위를 불러오지 못했어요.<br>조금 뒤에 다시 볼 수 있어요.</div>' + myLine; return; }
+  const meIn = j.me && j.me.r <= 10;
+  const top = j.top.slice(0, meIn ? 10 : 8);
+  let html = top.map(rkRow).join('');
+  if (!meIn) html += '<div class="rksep">· · ·</div>' + (j.me ? rkRow(Object.assign({ me: 1 }, j.me)) : myLine);
+  list.innerHTML = html + '<div class="rktot">함께하는 사람 ' + Number(j.total || top.length).toLocaleString() + '명</div>';
+}
+let rankPushPending = null;
+/* --- 하는 법 카드 --- */
+function howtoOpen(then) {
+  const ov = ovEl('howto'); const duck = (window.CUST_ART && window.CUST_ART.duck && window.CUST_ART.duck.glad) || HEAD('duck') || '';
+  ov.innerHTML = '<div class="ovdim"></div><div class="ovbox panel htbox"><div class="ovh">이렇게 해요</div>'
+  + '<div class="ht"><div class="hti"><img src="' + I('c04_nest') + '" alt=""></div><div class="htt"><b>1. 살림을 톡</b><span>둥지나 실바구니를 누르면 재료가 나와요. 한 번에 에너지 1</span></div></div>'
+  + '<div class="ht"><div class="hti two"><img src="' + I('c01_egg1') + '" alt=""><em>+</em><img src="' + I('c01_egg1') + '" alt=""></div><div class="htt"><b>2. 똑같은 것 두 개 겹치기</b><span>끌어다 겹치면 다음 단계가 돼요</span></div></div>'
+  + '<div class="ht"><div class="hti"><img src="' + duck + '" alt=""></div><div class="htt"><b>3. 주문 보내기</b><span>재료가 다 모이면 초록색 보내기를 눌러 동전을 받아요</span></div></div>'
+  + '<div class="ht"><div class="hti"><img src="' + I('ui_lantern') + '" alt=""></div><div class="htt"><b>4. 정원 고치기</b><span>동전으로 정원을 고치면 이야기가 이어지고 친구가 돌아와요</span></div></div>'
+  + '<div class="htn">언제든 오른쪽 위 톱니 → 하는 법 보기</div><div class="btn red h ovgo" id="ht-ok">알겠어요</div></div>';
+  ov.style.display = 'block';
+  const close = () => { ov.style.display = 'none'; if (then) setTimeout(then, 200); };
+  ov.querySelector('#ht-ok').onclick = close; ov.querySelector('.ovdim').onclick = close;
+}
+/* --- 안내: 처음 세 단계는 건너뛰기를 숨김, 건너뛰거나 끝나면 하는 법 카드 --- */
+tgShow = (o0 => function (st) { const r = o0.apply(this, arguments); try { tgEl.classList.toggle('early', !!S.tg && tgOn() && S.tg.c < 3); } catch (e) {} return r; })(tgShow);
+tgAskSkip = function () { showPop({ title: '안내 건너뛰기', text: '따라 하기를 건너뛰고 모든 메뉴를 열까요? 오른쪽 위 톱니의 <b>하는 법 보기</b>에서 언제든 다시 볼 수 있어요.', btns: [['건너뛰기', 'red', () => { S.tg.c = 99; S.tg.all = 1; save(); tgHide(); if ((S.howSeen || 0) < 23) { S.howSeen = 23; save(); setTimeout(() => howtoOpen(), 350); } }], ['계속 배우기', 'yellow', null]] }); };
+setInterval(() => { try { if (S.tg && !S.tg.all && S.tg.c >= CHAIN.length && (S.howSeen || 0) < 23 && !ovOpen() && !(tgEl && tgEl.classList.contains('on'))) { S.howSeen = 23; save(); howtoOpen(); } } catch (e) {} }, 1200);
+(function () { const c0 = CHAIN[0], t0 = c0.text; Object.defineProperty(c0, 'text', { configurable: true, get() { return S.nick ? '안녕, <b>' + escH(S.nick) + '</b>! 나는 <b>뚝이</b>야. 할머니가 병원에 계신 사이에 누가 정원을 이렇게 엉망으로 만들었어...' : t0; } }); })();
+/* --- 따라 하기에서 조건이 안 맞아 건너뛴 설명을 나중에 한 번 보여 줌 --- */
+CTX.push(
+  { id: 'wheel', pri: 1, mode: 'info', when: () => scrOn('main') && S.keys >= 5 && !(S.opens > 0) && !!document.querySelector('#b-box'), tgt: () => '#b-box', text: '열쇠 <b>5개</b>가 모였어! <b>돌림판</b>을 돌려 봐. <b>멈춰!</b>를 누르는 순간 선물이 정해져.' },
+  { id: 'dress2', mode: 'info', when: () => scrOn('main') && Object.keys(S.owned || {}).length > 0 && navOpen('dress'), tgt: () => navQ('dress'), text: '옷이 나왔어! 같은 코디 <b>4조각</b>을 모아 <b>꾸미기</b>에서 입히면, 그 친구 주문은 동전 <b>1.5배</b>!' },
+  { id: 'shop1', mode: 'info', when: () => scrOn('garden') && !Object.keys(S.shop || {}).length && S.coin >= 100 && S.done >= 6 && !!document.querySelector('#sc-garden .gtog [data-g="shop"]'), tgt: () => '#sc-garden .gtog [data-g="shop"]', text: '<b>가게 거리</b>에 가 봐! 찻집을 열고 친구에게 맡기면 동전이 저절로 쌓여.' }
+);
+/* --- 설정 창: 하는 법 / 이름 바꾸기 / 순위, 처음부터 다시 하기 --- */
+(function setTxt() { const box = document.querySelector('#set .box'); if (!box) return; const w = document.createTreeWalker(box, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { if (n.nodeValue.includes('선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기)')) n.nodeValue = n.nodeValue.replace('선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기)', '돌림판은 주문으로 모은 열쇠로만 돌려요(아래 확률 보기)'); } })();
+(function setBtns() {
+  const rb = document.getElementById('b-reset'); if (rb) rb.textContent = '처음부터 다시 하기';
+  const box = document.querySelector('#set .box'); if (!box) return;
+  const row = document.createElement('div'); row.className = 'v23set';
+  row.innerHTML = '<div class="btn cream h" id="b-howto">하는 법 보기</div><div class="btn cream h" id="b-nick">이름 바꾸기</div><div class="btn cream h" id="b-rank">순위 보기</div>';
+  box.insertBefore(row, rb || box.firstChild);
+  row.querySelector('#b-howto').onclick = () => { $('#set').style.display = 'none'; howtoOpen(); };
+  row.querySelector('#b-nick').onclick = () => { $('#set').style.display = 'none'; nickOpen(false); };
+  row.querySelector('#b-rank').onclick = () => { $('#set').style.display = 'none'; rankOpen(false); };
+  if (rb) rb.onclick = () => { $('#set').style.display = 'none'; showPop({ title: '처음부터 다시 하기', text: '처음부터 새로 시작해요. 지금까지 모은 것은 지워져요. 이름과 순위 기록은 그대로예요.', btns: [['다시 시작', 'red', () => { const nk = S.nick, pid = S.pid; S = fresh(); S.nick = nk; S.pid = pid; fillOrders(); save(); tgHide(); go('main'); }], ['취소', 'yellow', null]] }); };
+})();
+/* --- 이벤트 화면 맨 위 순위 카드 --- */
+renderEvent = (o0 => function () {
+  const r = o0.apply(this, arguments);
+  const list = document.getElementById('evlist'); if (!list) return r;
+  const me = rankCache && rankCache.me, top1 = rankCache && rankCache.top && rankCache.top[0];
+  const card = document.createElement('div'); card.className = 'ev rankc';
+  card.innerHTML = '<img class="rkic" src="' + I('ui_star_gold') + '" alt=""><div class="rkt"><b>순위</b><span>' + (me ? '나 ' + me.r + '위 · 주문 ' + Number(me.score).toLocaleString() + '개' : '나 · 주문 ' + rankScore().toLocaleString() + '개') + '</span>' + (top1 && !(me && me.r === 1) ? '<span>1위 ' + escH(top1.nick) + '</span>' : '') + '</div><div class="btn yellow h rkgo">전체 보기</div>';
+  list.insertBefore(card, list.firstChild);
+  card.querySelector('.rkgo').onclick = () => rankOpen(false);
+  if (Date.now() - rankAt > 30000) { rankAt = Date.now(); rankFetch().then(j => { if (j && document.getElementById('sc-event').classList.contains('on')) renderEvent(); }); }
+  return r;
+})(renderEvent);
+/* --- 점수 보내기: 주문 보낼 때(20초 간격), 앱을 내릴 때 --- */
+completeOrder = (o0 => function () { const d0 = S.done; const r = o0.apply(this, arguments); if (S.done > d0) rankPush(false); return r; })(completeOrder);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') rankPush(true, true); });
+/* --- 처음 접속 순서: 이름 → 순위 → (이미 하던 사람은) 하는 법 카드 → 안내 --- */
+function v23Start() {
+  const isNew = !(S.done > 0) && !(S.tg && S.tg.all);
+  const afterRank = () => { if (!isNew && (S.howSeen || 0) < 23) { S.howSeen = 23; save(); if ((S.done || 0) < 30) howtoOpen(); } };
+  if (!S.nick) { nickOpen(true, () => { rankPushPending = Promise.resolve(rankPushLast); rankOpen(true, afterRank); }); return; }
+  afterRank();
+  rankPush(true);
+}
+let rankPushLast = null;
+rankPush = (o0 => function (force, keep) { const p = o0(force, keep); if (p) rankPushLast = p; return p; })(rankPush);
+v23Start();
+
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
 window.__demo = { get S() { return S; }, set S(v) { S = v; }, go, buyGen, buyFog, flyItems, thanksFx, restoreSpot, renderGarden, playStory, nextLine, GARDEN, sfx, mergeFx, orderFx, revealFx, hitFx, koFx, stealFx, missFx, restoreFx, fevAdd, suspense, feverOn, audioInit, sbuf: () => Object.keys(sbuf), tickTension, thiefTick, thiefSteal, thiefHit, urgMiss, renderStk, placeThief, fillOrders, makeOrder, dropOn, tapTile, completeOrder, openBox, hatch, showOdds, renderAll, actOn, upSpirit, upGen, upStar, raceStart, raceClaim, raceView, attClaim, showAtt, fx, genOdds, canUpgrade };
