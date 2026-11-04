@@ -1246,6 +1246,7 @@ body.phone{background:#FFE4CC}
 #app .ev.rankc .rkgo{flex:none;height:42px;padding:0 12px;font-size:16px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
 
 /* v23: nickname + ranking + howto */
+/* v23b: rank card wrap */
 </style>
 </head>
 <body>
@@ -3673,7 +3674,7 @@ renderEvent = (o0 => function () {
   const list = document.getElementById('evlist'); if (!list) return r;
   const me = rankCache && rankCache.me, top1 = rankCache && rankCache.top && rankCache.top[0];
   const card = document.createElement('div'); card.className = 'ev rankc';
-  card.innerHTML = '<img class="rkic" src="' + I('ui_star_gold') + '" alt=""><div class="rkt"><b>순위</b><span>' + (me ? '나 ' + me.r + '위 · 주문 ' + Number(me.score).toLocaleString() + '개' : '나 · 주문 ' + rankScore().toLocaleString() + '개') + '</span>' + (top1 && !(me && me.r === 1) ? '<span>1위 ' + escH(top1.nick) + '</span>' : '') + '</div><div class="btn yellow h rkgo">전체 보기</div>';
+  card.innerHTML = '<img class="rkic" src="' + I('ui_star_gold') + '" alt=""><div class="rkt"><b>순위</b><span>' + (me ? '나\u00a0' + me.r + '위 · 주문\u00a0' + Number(me.score).toLocaleString() + '개' : '나 · 주문\u00a0' + rankScore().toLocaleString() + '개') + '</span>' + (top1 && !(me && me.r === 1) ? '<span>1위\u00a0' + escH(top1.nick) + '</span>' : '') + '</div><div class="btn yellow h rkgo">전체 보기</div>';
   list.insertBefore(card, list.firstChild);
   card.querySelector('.rkgo').onclick = () => rankOpen(false);
   if (Date.now() - rankAt > 30000) { rankAt = Date.now(); rankFetch().then(j => { if (j && document.getElementById('sc-event').classList.contains('on')) renderEvent(); }); }
