@@ -1247,6 +1247,26 @@ body.phone{background:#FFE4CC}
 
 /* v23: nickname + ranking + howto */
 /* v23b: rank card wrap */
+
+/* v24: 넓은 폰에서 화면 꽉 채우기 (가운데 390 기둥 + 양옆은 배경이 이어짐) */
+#app{--exw:0px}
+#app .screen{left:var(--exw);right:var(--exw)}
+#app .screen::before{content:'';position:absolute;top:0;bottom:0;left:calc(-1 * var(--exw));right:calc(-1 * var(--exw));background:inherit;z-index:-1;pointer-events:none}
+#app #sc-main .counter{left:calc(-1 * var(--exw));right:calc(-1 * var(--exw))}
+#app #sc-main .counter::before,#app #sc-main .counter::after{content:'';position:absolute;top:0;bottom:0;width:390px;background-image:inherit;background-size:390px auto;background-position:center bottom;background-repeat:no-repeat;transform:scaleX(-1);pointer-events:none}
+#app #sc-main .counter::before{right:calc(50% + 195px)}
+#app #sc-main .counter::after{left:calc(50% + 195px)}
+#app .nav{padding-left:var(--exw);padding-right:var(--exw)}
+#app #coach{width:100%}
+#app #coach .csay{margin-left:var(--exw);margin-right:var(--exw)}
+#app #pop .box,#app #set .box,#app #info2 .box,#app #story .sbox,#app .v23ov .ovbox,#app #stpick .spbox{margin-left:var(--exw) !important;margin-right:var(--exw) !important}
+#app #wheel .wbox{margin-left:var(--exw);margin-right:var(--exw)}
+#app #sc-road .banner{left:calc(-1 * var(--exw));right:calc(-1 * var(--exw))}
+#app #sc-garden .gdnx{transform:scaleX(-1);filter:saturate(.92) brightness(.97);pointer-events:none}
+#app #sc-garden .gdnx.gdnl{left:-390px}
+#app #sc-garden .gdnx.gdnr{left:390px}
+/* v24: wide fill */
+
 </style>
 </head>
 <body>
@@ -1547,7 +1567,7 @@ S = load();
 
 /* ---------- helpers ---------- */
 let scale = 1;
-function fit() { const W = window.innerWidth, H = window.innerHeight, phone = Math.min(W, H) < 600 || (window.matchMedia && matchMedia('(pointer:coarse)').matches); document.body.classList.toggle('phone', phone); /* Netlify free plan pins a 'Powered by Netlify' badge (~190x60) to the bottom-right; keep it off the game */ const badge = /\.netlify\.app$/.test(location.hostname) ? 64 : 0; let res = 0; if (badge) { const s0 = phone ? Math.min(W / 390, H / 844) : Math.min(W / 410, H / 864, 1.6); if ((W - 390 * s0) / 2 < 200) res = badge; } document.getElementById('wrap').style.bottom = res + 'px'; const AH = H - res; scale = phone ? Math.min(W / 390, AH / 844) : Math.min(W / 410, AH / 864, 1.6); app.style.transform = `scale(${scale})`; }
+function fit() { const W = window.innerWidth, H = window.innerHeight, phone = Math.min(W, H) < 600 || (window.matchMedia && matchMedia('(pointer:coarse)').matches); document.body.classList.toggle('phone', phone); /* Netlify free plan pins a 'Powered by Netlify' badge (~190x60) to the bottom-right; keep it off the game */ const badge = /\.netlify\.app$/.test(location.hostname) ? 64 : 0; let res = 0; if (badge) { const s0 = phone ? Math.min(W / 390, H / 844) : Math.min(W / 410, H / 864, 1.6); if ((W - 390 * s0) / 2 < 200) res = badge; } document.getElementById('wrap').style.bottom = res + 'px'; const AH = H - res; let LW = 390; if (phone) { const sh = AH / 844; if (W / sh > 392) { LW = Math.min(560, W / sh); scale = Math.min(sh, W / LW); } else scale = Math.min(W / 390, sh); } else scale = Math.min(W / 410, AH / 864, 1.6); LW = Math.round(LW * 100) / 100; app.style.width = LW + 'px'; app.style.setProperty('--exw', ((LW - 390) / 2) + 'px'); window.APPW = LW; window.EXW = (LW - 390) / 2; document.body.classList.toggle('wide', LW > 391); const fc = document.getElementById('fxc'); if (fc) { const cw = Math.round(LW * 2); if (fc.width !== cw) { fc.width = cw; fc.getContext('2d').setTransform(2, 0, 0, 2, 0, 0); } fc.style.width = LW + 'px'; } app.style.transform = `scale(${scale})`; if (window.onAppWidth) { try { window.onAppWidth(LW); } catch (e) {} } }
 window.addEventListener('resize', fit); window.addEventListener('orientationchange', () => setTimeout(fit, 250)); fit();
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.style.display = 'block'; clearTimeout(toast.h); toast.h = setTimeout(() => t.style.display = 'none', 1900); }
 function floatAt(el, text) {
@@ -1624,9 +1644,9 @@ setInterval(tickEnergy, 1000);
 /* ---------- orders ---------- */
 function makeOrder() {
   let o;
-  if (S.oi < SCRIPT.length) o = JSON.parse(JSON.stringify(SCRIPT[S.oi]));
+  if (S.oi < SCRIPT.length) o = scriptOrder(S.oi);
   else {
-    const pool = SP_ORDER.filter(k => S.sp[k]).concat(NB_ORDER), who = pool[(S.oi * 5 + 3) % pool.length], n = 1 + (S.oi % 3 === 0 ? 1 : 0) + (S.oi >= 16 && S.oi % 2 === 0 ? 1 : 0), need = [];
+    const pool = SP_ORDER.filter(k => S.sp[k]).concat(NB_ORDER), who = pickWho(pool), n = 1 + (S.oi % 3 === 0 ? 1 : 0) + (S.oi >= 16 && S.oi % 2 === 0 ? 1 : 0), need = [];
     for (let j = 0; j < n; j++) { const ks = ['egg', 'sew'].concat(['teapot', 'steamer', 'pot'].filter(g => S.unl[g]).map(g => GEN[g].k)), k = ks[(S.oi * 3 + j * 5) % ks.length], lv = 1 + ((S.oi * 7 + j * 5) % (S.oi < 14 ? 3 : S.oi < 22 ? 4 : 5)); need.push([k, lv, lv === 1 ? 2 : 1]); }
     const nd = Object.values(need.reduce((m, [k, lv, c]) => { const q = k + lv; m[q] = m[q] ? [k, lv, m[q][2] + c] : [k, lv, c]; return m; }, {}));
     o = { who, need: nd, coin: nd.reduce((a, [k, lv, c]) => a + c * IV(lv), 10) };
@@ -2390,7 +2410,7 @@ function coinFly(from, to, n = 7, onHit) {
 function runFx() { if (fxRun) return; fxRun = true; requestAnimationFrame(fxLoop); }
 function star(x, y, r) { fctx.beginPath(); for (let k = 0; k < 8; k++) { const rr = k % 2 ? r * .42 : r, a = k * Math.PI / 4; fctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } fctx.closePath(); fctx.fill(); }
 function fxLoop() {
-  fctx.clearRect(0, 0, 390, 844);
+  fctx.clearRect(0, 0, 9999, 9999);
   for (let i = parts.length - 1; i >= 0; i--) {
     const p = parts[i]; p.life++;
     if (p.life < 0) continue;
@@ -2405,7 +2425,7 @@ function fxLoop() {
     else { fctx.beginPath(); fctx.arc(p.x, p.y, p.sz, 0, 7); fctx.fill(); }
   }
   fctx.globalAlpha = 1;
-  if (parts.length) requestAnimationFrame(fxLoop); else { fxRun = false; fctx.clearRect(0, 0, 390, 844); }
+  if (parts.length) requestAnimationFrame(fxLoop); else { fxRun = false; fctx.clearRect(0, 0, 9999, 9999); }
 }
 function bump(el) { if (el && el.animate) el.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.18)' }, { transform: 'scale(1)' }], { duration: 160 }); }
 function flash(color = 'rgba(255,255,255,.75)', ms = 180) { const f = $('#flash'); f.style.background = color; if (f.animate) f.animate([{ opacity: 1 }, { opacity: 0 }], { duration: ms, easing: 'ease-out' }); }
@@ -2516,7 +2536,7 @@ function buyGen(i) {
   showPop({ title: '새 살림 들이기', big: `<img class="pit" src="${I(G.img)}">`, name: G.n, tags: `<span class="tag">${icn('c09_coin_pouch', G.cost)}</span>`, text: `톡 하면 ${CHN[G.k][0]}부터 ${CHN[G.k][5]}까지 6단계가 나와요. 이걸 주문하는 손님도 새로 와요.`, btns: [[S.coin >= G.cost ? '사기' : '동전 부족', S.coin >= G.cost ? 'red' : 'cream', () => {
     if (S.coin < G.cost) { toast(`동전 ${G.cost - S.coin}개 더 필요해요. 주문을 보내 모아요`); return; }
     S.coin -= G.cost; S.unl[g] = 1; S.b[i] = { k: 'gen', g };
-    const nb = NB_ORDER[Math.floor(Math.random() * NB_ORDER.length)], slot = S.orders.findIndex(o => !o.urg && !ready(o));
+    const nb = pickWho(NB_ORDER), slot = S.orders.findIndex(o => !o.urg && !ready(o));
     const no = { who: nb, need: [[G.k, 2, 1]], coin: 60, id: S.oi++ };
     if (slot >= 0) S.orders[slot] = no; else if (S.orders.length < 3) S.orders.push(no);
     save(); renderAll();
@@ -2736,7 +2756,7 @@ function tgShow(st) {
 function tgPlace(st) {
   const t = st.tgt ? st.tgt() : null;
   const els = (Array.isArray(t) ? t : t ? [t] : []).map(q => document.querySelector(q)).filter(Boolean);
-  const W = 390, H = 844, P = 6;
+  const W = (window.APPW || 390), H = 844, P = 6;
   const hole = tgEl.querySelector('.chole'), hand = tgEl.querySelector('.chand'), say = tgEl.querySelector('.csay');
   let hb = null, bs = [];
   if (els.length) {
@@ -2745,14 +2765,14 @@ function tgPlace(st) {
     hb = { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
   }
   hole.classList.toggle('none', !hb);
-  const h0 = hb || { x: 195, y: 400, w: 0, h: 0 };
+  const h0 = hb || { x: (window.APPW || 390) / 2, y: 400, w: 0, h: 0 };
   Object.assign(hole.style, { left: h0.x + 'px', top: h0.y + 'px', width: h0.w + 'px', height: h0.h + 'px' });
   const R = [[0, 0, W, h0.y], [0, h0.y + h0.h, W, H - h0.y - h0.h], [0, h0.y, h0.x, h0.h], [h0.x + h0.w, h0.y, W - h0.x - h0.w, h0.h]];
   tgEl.querySelectorAll('.cb').forEach((b, i) => Object.assign(b.style, { left: R[i][0] + 'px', top: R[i][1] + 'px', width: Math.max(0, R[i][2]) + 'px', height: Math.max(0, R[i][3]) + 'px' }));
   let handTop = null, handBot = null;
   if (hb && !st.soft && st.mode !== 'info') {
     const a = bs[0], b = bs[1], ax = a.x + a.w / 2, ay = a.y + a.h / 2, down = !b && ay > 600;
-    const cls = 'chand ' + (b ? 'drag' : down ? (ax < 90 ? 'tapdr' : 'tapd') : (ax > 300 ? 'tapl' : 'tap'));
+    const cls = 'chand ' + (b ? 'drag' : down ? (ax < 90 ? 'tapdr' : 'tapd') : (ax > (window.APPW || 390) - 90 ? 'tapl' : 'tap'));
     if (hand.className !== cls) hand.className = cls;
     hand.style.left = (ax - 22) + 'px'; hand.style.top = (ay - 2) + 'px'; hand.style.display = 'block';
     if (b) {
@@ -2798,7 +2818,7 @@ const GIFT_P = 0.05;
 function lvRwText(rw) { const o = []; if (rw.gen) o.push(S.unl[rw.gen] ? `동전 ${GEN[rw.gen].cost}` : `${GEN[rw.gen].n} 무료`); if (rw.en) o.push(`에너지 ${rw.en}`); if (rw.key) o.push(`열쇠 ${rw.key}`); if (rw.ttuk) o.push(`뚝딱 ${rw.ttuk}`); return o.join(' · '); }
 function lvGrant(rw) {
   const out = [];
-  if (rw.gen) { const g = rw.gen; if (S.unl[g]) { S.coin += GEN[g].cost; out.push(`동전 ${GEN[g].cost}`); } else { S.unl[g] = 1; const i = S.b.findIndex(x => x && x.k === 'lock' && x.g === g); if (i >= 0) S.b[i] = { k: 'gen', g }; out.push(`${GEN[g].n} 무료`); const G2 = GEN[g], nb2 = NB_ORDER[Math.floor(Math.random() * NB_ORDER.length)], sl2 = S.orders.findIndex(o => !o.urg && !ready(o)), no2 = { who: nb2, need: [[G2.k, 2, 1]], coin: 30, id: S.oi++ }; if (sl2 >= 0) S.orders[sl2] = no2; else if (S.orders.length < 3) S.orders.push(no2); } }
+  if (rw.gen) { const g = rw.gen; if (S.unl[g]) { S.coin += GEN[g].cost; out.push(`동전 ${GEN[g].cost}`); } else { S.unl[g] = 1; const i = S.b.findIndex(x => x && x.k === 'lock' && x.g === g); if (i >= 0) S.b[i] = { k: 'gen', g }; out.push(`${GEN[g].n} 무료`); const G2 = GEN[g], nb2 = pickWho(NB_ORDER), sl2 = S.orders.findIndex(o => !o.urg && !ready(o)), no2 = { who: nb2, need: [[G2.k, 2, 1]], coin: 30, id: S.oi++ }; if (sl2 >= 0) S.orders[sl2] = no2; else if (S.orders.length < 3) S.orders.push(no2); } }
   if (rw.en) { S.en += rw.en; out.push(`에너지 ${rw.en}`); }
   if (rw.key) { S.keys += rw.key; out.push(`열쇠 ${rw.key}`); }
   if (rw.ttuk) { S.ttuk = (S.ttuk || 0) + rw.ttuk; out.push(`뚝딱 ${rw.ttuk}`); }
@@ -2979,7 +2999,7 @@ function coinShower(from, to, amount, rel, o) {
 function coinRain(to, n) { for (let i = 0; i < n; i++) parts.push({ gc: 1, x: 20 + Math.random() * 350, y: -20 - Math.random() * 120, vx: (Math.random() - .5) * 1.5, vy: 2 + Math.random() * 3, g: .32, floor: 520 + Math.random() * 200, ph: Math.random() * 6, vph: .3 + Math.random() * .3, sz: 18 + Math.random() * 10, life: -Math.floor(i * .8), burst: 40 + Math.floor(Math.random() * 18), hd: 20 + Math.floor(Math.random() * 6), ex: to[0], ey: to[1], onHit: () => { bump($('#p-coin')); ting(); } }); runFx(); }
 function starsTo(from, el, n) { const to = elXY(el); for (let i = 0; i < n; i++) parts.push({ hs: 1, x: from[0], y: from[1], vx: (Math.random() - .5) * 7, vy: -3 - Math.random() * 4, g: .3, ph: 0, sz: 9 + Math.random() * 4, life: -i * 3, burst: 14, hd: 22, ex: to[0], ey: to[1], onHit: i === n - 1 ? () => bump(el) : null }); runFx(); }
 fxLoop = function () {
-  fctx.clearRect(0, 0, 390, 844);
+  fctx.clearRect(0, 0, 9999, 9999);
   if (parts.length > 1200) { for (let i = parts.length - 1; i >= 0 && parts.length > 600; i--) { const p = parts[i]; if (!p.onHit) parts.splice(i, 1); } }
   for (let i = parts.length - 1; i >= 0; i--) {
     const p = parts[i]; p.life++;
@@ -3006,7 +3026,7 @@ fxLoop = function () {
     else { fctx.beginPath(); fctx.arc(p.x, p.y, p.sz, 0, 7); fctx.fill(); }
   }
   fctx.globalAlpha = 1;
-  if (parts.length) requestAnimationFrame(fxLoop); else { fxRun = false; fctx.clearRect(0, 0, 390, 844); }
+  if (parts.length) requestAnimationFrame(fxLoop); else { fxRun = false; fctx.clearRect(0, 0, 9999, 9999); }
 };
 /* order: card pops, coins burst out and pour into the counter */
 let seenOid = null, coinRel = null;
@@ -3029,7 +3049,7 @@ orderFx = function (fromXY, coin, urg, upMul) {
   coinShower(fromXY, to, coin, rel);
   if (coin >= 120) { shake(.45); flash('rgba(255,236,150,.32)', 200); }
   starsTo(fromXY, $('#p-lv'), 4);
-  { const bt = urg ? '+' + coin + ' 1.5배!' : '+' + coin, bf = Math.min(54, 38 + Math.round(Math.sqrt(coin) * 1.1)), bw = bt.length * bf * .56; boom(Math.max(bw / 2 + 8, Math.min(390 - bw / 2 - 8, fromXY[0])), fromXY[1] + 122, bt, urg ? '#FFB347' : '#FFE45C', bf); }
+  { const bt = urg ? '+' + coin + ' 1.5배!' : '+' + coin, bf = Math.min(54, 38 + Math.round(Math.sqrt(coin) * 1.1)), bw = bt.length * bf * .56; boom(Math.max(bw / 2 + 8, Math.min((window.APPW || 390) - bw / 2 - 8, fromXY[0])), fromXY[1] + 122, bt, urg ? '#FFB347' : '#FFE45C', bf); }
   if (urg) setTimeout(() => sfx('levelup', { vol: .8 }), 220);
   if (upMul) setTimeout(() => { sfx('levelup', { rate: 1.12 }); boom(195, 210, '연속 ' + S.stk + '! 동전 ×' + STK_MUL(S.stk), '#FF8FB1', 30); }, 380);
   fevAdd(3);
@@ -3150,7 +3170,7 @@ renderAll = (o => function () { const r = o.apply(this, arguments); if (window._
 /* ---------- v18 juice: flashier everything ---------- */
 function twinkles(xy, n, r, c) { for (let k = 0; k < n; k++) { const a = Math.random() * 6.283, d = (r || 30) * (.4 + Math.random() * .8); parts.push({ tw: 1, x: xy[0] + Math.cos(a) * d, y: xy[1] + Math.sin(a) * d, life: -(Math.random() * 10 | 0), max: 16 + (Math.random() * 12 | 0), sz: 3 + Math.random() * 3.5, c: c || (Math.random() < .5 ? '#FFFFFF' : '#FFE27A') }); } runFx(); }
 function beamAt(xy, w, h) { parts.push({ beam: 1, x: xy[0], y: xy[1], w: w || 40, h: h || 160, life: 0, max: 30 }); runFx(); }
-function cannons(n) { const pal = ['#FF5E7A', '#FFC93C', '#5FD3A8', '#4FB3F0', '#B98CFF', '#FFFFFF']; [[0, 820, 1], [390, 820, -1]].forEach(([x, y, d]) => { for (let k = 0; k < n; k++) { const a = -Math.PI / 2 + d * (0.25 + Math.random() * .55), sp = 9 + Math.random() * 9; parts.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, g: .22, life: -(k % 6), max: 80 + Math.random() * 40, sz: 4 + Math.random() * 3, c: pal[k % pal.length], sh: k % 3 ? 'r' : 's', rot: Math.random() * 6, vr: (Math.random() - .5) * .5 }); } }); runFx(); }
+function cannons(n) { const pal = ['#FF5E7A', '#FFC93C', '#5FD3A8', '#4FB3F0', '#B98CFF', '#FFFFFF']; [[0, 820, 1], [(window.APPW || 390), 820, -1]].forEach(([x, y, d]) => { for (let k = 0; k < n; k++) { const a = -Math.PI / 2 + d * (0.25 + Math.random() * .55), sp = 9 + Math.random() * 9; parts.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, g: .22, life: -(k % 6), max: 80 + Math.random() * 40, sz: 4 + Math.random() * 3, c: pal[k % pal.length], sh: k % 3 ? 'r' : 's', rot: Math.random() * 6, vr: (Math.random() - .5) * .5 }); } }); runFx(); }
 let edgeEl = null;
 function edgeGlow(p) { if (!edgeEl) { edgeEl = document.createElement('div'); edgeEl.className = 'edgeglow'; app.appendChild(edgeEl); } if (edgeEl.animate) edgeEl.animate([{ opacity: 0 }, { opacity: Math.min(1, .45 + p * .1) }, { opacity: 0 }], { duration: 520, easing: 'ease-out' }); }
 orderFx = (o => function (fromXY, coin, urg, upMul) {
@@ -3177,7 +3197,7 @@ lvFlush = (o => function () { const had = !!(S.lvPend && S.lvPend.length); o.app
 setInterval(() => { if (document.hidden || !scrOn('main') || parts.length > 300) return; const cand = S.b.map((x, i) => [x, i]).filter(([x]) => x && x.lv >= 3 && !x.vine && x.k !== 'gen'); if (!cand.length) return; const [, i] = cand[Math.floor(Math.random() * cand.length)]; const te = tileEl(i); if (te) twinkles(elXY(te), 3, 16); }, 2200);
 renderAll = (o => function () { const r = o.apply(this, arguments); const bd = $('#board'); if (bd) bd.classList.toggle('fvr', feverOn()); return r; })(renderAll);
 
-boom = (o => function (x, y, text, color, size) { const sz = size || 32, w = String(text).length * sz * .56; x = Math.max(w / 2 + 6, Math.min(390 - w / 2 - 6, x)); return o.call(this, x, y, text, color, size); })(boom);
+boom = (o => function (x, y, text, color, size) { const sz = size || 32, w = String(text).length * sz * .56; x = Math.max(w / 2 + 6, Math.min((window.APPW || 390) - w / 2 - 6, x)); return o.call(this, x, y, text, color, size); })(boom);
 
 
 /* ---------- v19: hanok counter strip behind the orders ---------- */
@@ -3548,7 +3568,7 @@ function custLeave(card, cls) {
     const g = document.createElement('div'); g.className = 'custbye ' + cls;
     g.style.left = L + 'px'; g.style.top = T + 'px'; g.style.width = W + 'px'; g.style.height = H + 'px';
     const say = cls === 'happy' ? THX[Math.floor(Math.random() * THX.length)] : '다음에 올게...';
-    const right = L + W / 2 < 260;
+    const right = L + W / 2 < (window.APPW || 390) - 130;
     g.innerHTML = '<img alt="" src="' + seat.src + '"><div class="cbub ' + (right ? 'r' : 'l') + '">' + say + '</div>';
     app.appendChild(g); setTimeout(() => g.remove(), 1300);
   } catch (e) {}
@@ -3694,6 +3714,49 @@ function v23Start() {
 let rankPushLast = null;
 rankPush = (o0 => function (force, keep) { const p = o0(force, keep); if (p) rankPushLast = p; return p; })(rankPush);
 v23Start();
+
+
+/* ===== v24: 넓은 폰에서 화면 꽉 채우기 + 손님 골고루 ===== */
+function scriptOrder(i) { const o = JSON.parse(JSON.stringify(SCRIPT[i])); try { if (i >= 3 && S.orders.some(x => x && x.who === o.who)) o.who = pickWho(SP_ORDER.filter(k => S.sp[k]).concat(NB_ORDER)); else { const h = S.whoHist || (S.whoHist = []); h.push(o.who); if (h.length > 16) h.splice(0, h.length - 16); } } catch (e) {} return o; }
+function pickWho(pool) {
+  pool = (pool || []).filter(Boolean); if (!pool.length) return 'duck';
+  const on = new Set((S.orders || []).map(o => o && o.who));
+  const hist = S.whoHist || (S.whoHist = []);
+  const keep = Math.max(0, Math.min(6, pool.length - 4));
+  const recent = new Set(hist.slice(hist.length - keep));
+  let cand = pool.filter(k => !on.has(k) && !recent.has(k));
+  if (!cand.length) cand = pool.filter(k => !on.has(k));
+  if (!cand.length) cand = pool.slice();
+  const w = cand[Math.floor(Math.random() * cand.length)];
+  hist.push(w); if (hist.length > 16) hist.splice(0, hist.length - 16);
+  return w;
+}
+(function fixDupNow() {
+  try {
+    const pool = SP_ORDER.filter(k => S.sp[k]).concat(NB_ORDER); let ch = false;
+    S.orders.forEach((o, i) => { if (S.orders.findIndex(x => x.who === o.who) < i) { const keepO = S.orders; const others = keepO.filter((x, j) => j !== i); const tmp = S.orders; S.orders = others; o.who = pickWho(pool); S.orders = tmp; ch = true; } });
+    if (ch) save();
+  } catch (e) {}
+})();
+/* 도둑은 만들기 화면(가운데 기둥) 안에 있어서 앱 좌표에서 옆 여백만큼 빼 줌 */
+placeThief = (o0 => function () { const r = o0.apply(this, arguments); try { const el = document.getElementById('thief'); if (el && el.style.display !== 'none' && window.EXW) { el.style.left = (parseFloat(el.style.left) - window.EXW) + 'px'; } } catch (e) {} return r; })(placeThief);
+/* 정원 그림 양옆: 거울처럼 이어 붙여서 빈 띠가 안 보이게 */
+function gdnSides() {
+  const g = document.getElementById('gdn'), sc = document.getElementById('sc-garden'); if (!g || !sc) return;
+  const off = g.querySelector('.gl.off'), on = g.querySelector('.gl.on'); if (!off || !on) return;
+  ['l', 'r'].forEach(s => {
+    let e = document.getElementById('gdnx-' + s);
+    if (!e) { e = document.createElement('div'); e.id = 'gdnx-' + s; e.className = 'gdn gdnx gdn' + s; e.innerHTML = '<div class="gl off"></div><div class="gl on"></div>'; sc.insertBefore(e, g); }
+    const [eo, en] = e.querySelectorAll('.gl');
+    if (eo.style.backgroundImage !== off.style.backgroundImage) eo.style.backgroundImage = off.style.backgroundImage;
+    if (en.style.backgroundImage !== on.style.backgroundImage) en.style.backgroundImage = on.style.backgroundImage;
+    const cs = on.style;
+    ['webkitMaskImage', 'maskImage', 'webkitMaskSize', 'maskSize', 'webkitMaskPosition', 'maskPosition', 'webkitMaskRepeat', 'maskRepeat', 'opacity'].forEach(p => { if (en.style[p] !== cs[p]) en.style[p] = cs[p]; });
+  });
+}
+renderGarden = (o0 => function () { const r = o0.apply(this, arguments); try { if (window.EXW > 0) gdnSides(); } catch (e) {} return r; })(renderGarden);
+window.onAppWidth = () => { try { if (window.EXW > 0 && document.getElementById('sc-garden').classList.contains('on')) gdnSides(); placeThief(); } catch (e) {} };
+fit();
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
