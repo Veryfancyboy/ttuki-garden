@@ -2783,6 +2783,9 @@ html,body{overscroll-behavior:none}
 #app #popbox .kp56f span{font-family:'Jua';font-size:16px;color:#6A4A3A}
 #app .rays img.kp56b{max-width:140px;max-height:132px}
 
+
+/* v57: economy */
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -3078,7 +3081,7 @@ const ROAD = [
   { f: ['x3_holly_clip', '열매 머리핀', '눈놀이 옷', { item: 'x3' }], p: ['x7_bojagi_gift', '선물 보따리', '산타 옷'] },
   { f: ['ui_key', '열쇠 5개', '선물 상자 5번', { key: 5 }], p: ['x5_saekdong_scarf', '무지개 목도리', '산타 옷'] }
 ];
-const EN_MAX = 100, EN_SEC = 30; /* demo: 30s per energy (live design: 2 min) */
+const EN_MAX = 100, EN_SEC = 120; /* demo: 30s per energy (live design: 2 min) */
 
 /* ---------- state ---------- */
 const KEY = 'sinsu_demo_v4', OLDKEY = 'sinsu_demo_v3';
@@ -3148,7 +3151,7 @@ function fx(u) {
 const fxText = (u, v) => FX[u][1] + v + FX[u][2];
 const enMax = () => EN_MAX + Math.round(fx('enmax'));
 const enSec = () => EN_SEC / (1 + fx('regen') / 100);
-const songEn = () => 15 + Math.round(fx('song'));
+const songEn = () => 10 + Math.round(fx('song'));
 const moreScrap = n => Math.round(n * (1 + fx('scrap') / 100));
 const chance = u => Math.random() * 100 < Math.min(100, fx(u));
 function rollVariant() {
@@ -3173,7 +3176,7 @@ function tickEnergy() {
   const now = Date.now(), M = enMax(), sec = enSec();
   if (S.en >= M) { S.eT = now; } else { const n = Math.floor((now - S.eT) / (sec * 1000)); if (n > 0) { S.en = Math.min(M, S.en + n); S.eT += n * sec * 1000; } }
   const rem = Math.max(0, Math.ceil(sec - (now - S.eT) / 1000));
-  const left = S.en >= M ? '' : `+1 0:${String(rem).padStart(2, '0')}`;
+  const left = S.en >= M ? '' : `+1 ${Math.floor(rem / 60)}:${String(rem % 60).padStart(2, '0')}`;
   $('#p-en').innerHTML = `<img src="${I('c10_songpyeon')}"><b class="pv">${S.en}</b><span class="pm">/${M}</span>${left ? `<i class="ptm">${left.replace('+1 ', '')}</i>` : ''}`;
   if ($('#sc-event') && $('#sc-event').classList.contains('on')) renderRaceLive();
 }
@@ -4440,7 +4443,7 @@ function enOut() {
   showPop({ title: '에너지가 바닥났어요', big: `<img class="pit" src="${I('c10_songpyeon')}">`, name: `${hm}에 가득 차요`, text: `1개는 ${next}초 뒤에 차요.` + (tips.length ? '<br>그동안 ' + tips.slice(0, 2).join(' · ') : ''), btns: act ? [[act[0], 'red', act[1]], ['기다리기', 'yellow', null]] : [['기다리기', 'yellow', null]] });
 }
 /* garden friends leave gifts over time (demo: every 10 min, up to 3 each) */
-const GG_MIN = 10;
+const GG_MIN = 30;
 const GG = { gate: { rw: { scrap: 10 }, img: 'ui_scraps' }, pond: { rw: { en: 10 }, img: 'c10_songpyeon' }, jars: { rw: { coin: 30 }, img: 'c09_coin_pouch' }, flower: { rw: { scrap: 10 }, img: 'ui_scraps' }, pavilion: { rw: { coin: 40 }, img: 'c09_coin_pouch' }, tree: { rw: { en: 20 }, img: 'c10_songpyeon' } };
 function ggReady(g) { if (!S.gd.r[g.id]) return 0; S.gg = S.gg || {}; const t0 = S.gg[g.id] || S.gd.r[g.id]; return Math.max(0, Math.min(3, Math.floor((Date.now() - t0) / (GG_MIN * 60000)))); }
 function ggTotal() { return GARDEN.reduce((a, g) => a + ggReady(g), 0); }
@@ -4953,13 +4956,13 @@ const HOST_PERK = {
   gumiho: { w: 'look', t: '새 옷 칸에 천 조각 30 더', s: '천 조각 30 더' }, bonghwang: { w: 'joker', t: '여의주 칸 1개 더', s: '여의주 1개 더' }, bulgasari: { w: 'mirror', t: '요술 거울 칸 1개 더', s: '요술 거울 1개 더' }, imugi: { w: 'fire', t: '도깨비불 칸 1개 더', s: '도깨비불 1개 더' }
 };
 const SHOPS = [
-  { id: 'tea', n: '찻집', who: 'imugi', cost: 100, base: 3, up: [200, 500, 1200, 2500], ph: 'c37_teapot' },
-  { id: 'rice', n: '떡방앗간', who: 'rabbit', cost: 800, base: 6, up: [600, 1500, 3500, 7000], ph: 'c38_steamer' },
-  { id: 'sew', n: '바느질 공방', who: 'bulgasari', cost: 2000, base: 10, up: [1500, 3500, 8000, 15000], ph: 'c08_sewing_basket' },
-  { id: 'hanbok', n: '한복집', who: 'gumiho', cost: 4000, base: 16, up: [3000, 7000, 15000, 30000], ph: 'x6_santa_cape' }
+  { id: 'tea', n: '찻집', who: 'imugi', cost: 200, base: 1, up: [400, 1000, 2400, 5000], ph: 'c37_teapot' },
+  { id: 'rice', n: '떡방앗간', who: 'rabbit', cost: 1600, base: 2, up: [1200, 3000, 7000, 14000], ph: 'c38_steamer' },
+  { id: 'sew', n: '바느질 공방', who: 'bulgasari', cost: 4000, base: 3, up: [3000, 7000, 16000, 30000], ph: 'c08_sewing_basket' },
+  { id: 'hanbok', n: '한복집', who: 'gumiho', cost: 8000, base: 5, up: [6000, 14000, 30000, 60000], ph: 'x6_santa_cape' }
 ];
 const SHOP_BY = Object.fromEntries(SHOPS.map(d => [d.id, d]));
-const SH_MUL = [1, 1.5, 2.2, 3.2, 4.5], SH_CAP_MIN = 120;
+const SH_MUL = [1, 1.4, 1.8, 2.3, 3], SH_CAP_MIN = 120;
 const shSlots = lv => lv >= 5 ? 3 : lv >= 3 ? 2 : 1;
 if (!S.hired) S.hired = { ttuki: 1 };
 if (S.host === undefined) S.host = 'ttuki';
@@ -5612,10 +5615,10 @@ function yutDaily() { const Y = S.yut; if (!Y) return 0; const k = ydayKey(); if
 function yutStation() { const Y = S.yut; return YROUTE[Y.r][Y.i]; }
 function yutRwOf(st, mult) {
   const lv = S.lv || 1, m = mult || 1, k = YRW[st];
-  const cs = 15 + 3 * lv, cb = 80 + 15 * lv;
+  const cs = 8 + 2 * lv, cb = 40 + 8 * lv;
   switch (k) {
     case 'coin': return { coin: cs * m }; case 'bigcoin': return { coin: cb * m };
-    case 'en': return { en: 5 * m }; case 'bigen': return { en: 30 * m };
+    case 'en': return { en: 5 * m }; case 'bigen': return { en: 15 * m };
     case 'scrap': return { scrap: 10 * m }; case 'key': return { key: 1 * m }; case 'key2': return { key: 2 * m };
     case 'fert': return S.tree ? { fert: 15 * m } : { coin: cs * m };
     case 'jack': return { coin: cs * 6 * m, scrap: 30 * m };
@@ -5698,7 +5701,7 @@ async function yutThrow() {
   const tokEl = document.getElementById('y-tok'); const from = elXY(tokEl);
   if (lap) {
     Y.laps = (Y.laps || 0) + 1; const lv = S.lv || 1;
-    const got = yutGrant({ coin: (200 + 20 * lv) * m, key: 1 * m, scrap: 20 * m });
+    const got = yutGrant({ coin: (80 + 10 * lv) * m, key: 1, scrap: 20 * m });
     Y.r = 'O'; Y.i = 0; yutPlaceTok(true);
     try { sfx('levelup'); burst(from[0], from[1], 40, { sp: 7, life: 50 }); coinFly(from, elXY(document.getElementById('y-pill')), 14); } catch (e) {}
     setTimeout(() => showPop({ title: '한 바퀴 다 돌았어요!', big: '<img class="ypop" src="' + I('ui_chest_open') + '">', name: Y.laps + '바퀴째', text: '선물: ' + got + (m > 1 ? ' (×' + m + ')' : ''), btns: [['좋아!', 'yellow', null]] }), 300);
@@ -9124,6 +9127,11 @@ function kp56Flush() {
   if (kp56Q.length) setTimeout(kp56Flush, 2500);
 }
 /* v56: keep */
+
+
+/* ===== v57: 떡·돈 줄이기 안내 (한 번만) ===== */
+try { if (!S.ec57 && (S.done || 0) > 0) { S.ec57 = 1; save(); setTimeout(() => { try { toast('이제 떡 에너지는 2분마다 1개씩 차요. 가게 수입과 정원 친구 몫도 줄었어요. 동전은 슬롯 · 방물장수 · 번개놀이에서 써 보세요'); } catch (e) {} }, 4000); } else if (!S.ec57) { S.ec57 = 1; } } catch (e) {}
+/* v57: economy */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
