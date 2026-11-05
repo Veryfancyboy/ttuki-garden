@@ -1982,6 +1982,13 @@ html,body{overscroll-behavior:none}
 #app .shk39{animation:shk39 .4s ease}
 @keyframes shk39{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
 
+
+/* v39b: info card */
+#app #info img.cur39{flex:none}
+#app #info .nxl{display:flex;align-items:center;gap:3px;white-space:nowrap;min-width:0}
+#app #info .nxl .nx39a{font-style:normal;flex:none}
+#app #info .nxl .nx39n{font-style:normal;color:#8A6A54;overflow:hidden;text-overflow:ellipsis;min-width:0}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -2085,7 +2092,7 @@ html,body{overscroll-behavior:none}
 <div class="screen" id="sc-event">
   <div class="dot" style="left:-60px;top:-50px;width:170px;height:170px;background:var(--red)"></div>
   <div class="dot" style="left:300px;top:430px;width:160px;height:160px;background:var(--sky)"></div>
-  <div class="head"><div class="title">이벤트</div></div>
+  <div class="head"><div class="title">놀이마당</div></div>
   <div class="evlist" id="evlist"></div>
 </div>
 
@@ -2096,7 +2103,7 @@ html,body{overscroll-behavior:none}
   <div class="bsub" id="rsub"></div>
   <div class="tracks" id="tracks"></div>
   <div class="note">보상은 미리 다 보여 줘요 · 스페셜 칸 옷도 선물 상자나 천 조각으로 무료로 얻어요</div>
-  <div class="btn cream back h" id="b-back">‹ 이벤트</div>
+  <div class="btn cream back h" id="b-back">‹ 놀이마당</div>
 </div>
 
 <div class="nav" id="nav">
@@ -2105,7 +2112,7 @@ html,body{overscroll-behavior:none}
   <div data-s="grow"><img data-i="ui_star_gold">키우기</div>
   <div data-s="dress"><img data-i="x1_santa_gamtu">꾸미기</div>
   <div data-s="album"><img data-i="c03_egg3">도감</div>
-  <div data-s="event"><img data-i="x7_bojagi_gift">이벤트</div>
+  <div data-s="event"><img data-i="x7_bojagi_gift">놀이마당</div>
 </div>
 
 <canvas id="fxc"></canvas><div id="flash"></div><div id="danger"></div><div id="susp"><img></div>
@@ -2713,7 +2720,7 @@ function renderGrow() {
     const ids = Object.keys(ITEMS).sort((a, b) => (S.owned[b] ? 1 : 0) - (S.owned[a] ? 1 : 0));
     html = sets + ids.map(id => {
       const it = ITEMS[id], u = ITEM_FX[id].u;
-      if (!S.owned[id]) return `<div class="gc lock"><div class="gpic it"><img src="${I(it.img)}"></div><div class="gtx"><b>${it.n}</b><span class="gtag g${it.g}">${GRADE[it.g]}</span><br><small>선물 상자·이벤트에서 얻어요</small><div class="gval">${FX[u][0]} ${fxText(u, itemVal(id, 1))}</div></div><div class="btn cream gup off h">잠김</div></div>`;
+      if (!S.owned[id]) return `<div class="gc lock"><div class="gpic it"><img src="${I(it.img)}"></div><div class="gtx"><b>${it.n}</b><span class="gtag g${it.g}">${GRADE[it.g]}</span><br><small>선물 상자·놀이마당에서 얻어요</small><div class="gval">${FX[u][0]} ${fxText(u, itemVal(id, 1))}</div></div><div class="btn cream gup off h">잠김</div></div>`;
       const st = S.star[id] || 1, mx = st >= STAR_MAX, sc = STAR_SCRAP[st + 1], c = STAR_COIN[st + 1], can = !mx && S.scraps >= sc && S.coin >= c;
       const stars = [1, 2, 3, 4, 5].map(i => `<i class="${i <= st ? 'on' : ''}"></i>`).join('');
       return `<div class="gc"><div class="gpic it${st >= 5 ? ' gold' : ''}"><img src="${I(it.img)}"><span class="stars">${stars}</span></div><div class="gtx"><b>${it.n}</b><span class="gtag g${it.g}">${GRADE[it.g]}</span><br><small>${FX[u][0]} · ${lookOf(id).n}</small><div class="gval">${fxText(u, itemVal(id))}${mx ? ' <em>최고</em>' : ` → <em>${fxText(u, itemVal(id, st + 1))}</em>`}</div></div><div class="btn ${can ? 'red' : 'cream'} gup h${mx ? ' off' : ''}" data-up="it:${id}">${mx ? '최고' : '레벨업'}${mx ? '' : `<small class="cost"><img src="${I('ui_scraps')}">${sc} <img src="${I('c09_coin_pouch')}">${c}</small>`}</div></div>`;
@@ -2766,7 +2773,7 @@ function raceAdd() {
   const R = S.race; if (!R || R.myT) return '';
   if (raceView().end) return '';
   R.me++;
-  if (R.me >= RACE_GOAL) { R.myT = (Date.now() - R.t0) / 1000; return `썰매 경주 도착! ${raceView().rank}위 · 이벤트에서 보상 받기`; }
+  if (R.me >= RACE_GOAL) { R.myT = (Date.now() - R.t0) / 1000; return `썰매 경주 도착! ${raceView().rank}위 · 놀이마당에서 보상 받기`; }
   return `썰매 경주 ${R.me}/${RACE_GOAL} · 지금 ${raceView().rank}위`;
 }
 function raceCan() { const v = raceView(); return !!v && v.end && !S.race.got; }
@@ -3391,7 +3398,7 @@ const CTX = [
   { id: 'gen', mode: 'info', when: () => scrOn('main') && !(S.unl && S.unl.teapot) && S.coin >= GEN.teapot.cost && S.b.some(x => x && x.k === 'lock' && x.g === 'teapot'), tgt: () => tileQ(S.b.findIndex(x => x && x.k === 'lock' && x.g === 'teapot')), text: '동전으로 <b>찻주전자</b>를 살 수 있어! 사면 새 재료가 나오고 새 손님도 와.' },
   { id: 'grow', mode: 'info', when: () => navOpen('grow') && S.done >= 4 && canUpgrade(), tgt: () => navQ('grow'), text: '<b>키우기</b>가 열렸어! 동전으로 친구와 살림을 키우면 더 많이 벌어.' },
   { id: 'album', mode: 'info', when: () => navOpen('album') && Object.keys(S.sp).length > 1, tgt: () => navQ('album'), text: '새 친구를 만났어! <b>도감</b>에서 만난 친구들을 볼 수 있어.' },
-  { id: 'event', mode: 'info', when: () => navOpen('event'), tgt: () => navQ('event'), text: '<b>이벤트</b>가 열렸어! 썰매 경주, 매일 받는 선물, 크리스마스 선물이 있어.', after: () => { if (attCan()) setTimeout(showAtt, 500); } },
+  { id: 'event', mode: 'info', when: () => navOpen('event'), tgt: () => navQ('event'), text: '<b>놀이마당</b>가 열렸어! 썰매 경주, 매일 받는 선물, 크리스마스 선물이 있어.', after: () => { if (attCan()) setTimeout(showAtt, 500); } },
   { id: 'streak', soft: 1, when: () => (S.stk || 0) >= 3 && scrOn('main'), text: '연속 <b>3번</b>! 끊기지 않고 보내면 동전이 늘어나. 6번 ×1.2, 10번 ×1.3!' },
   { id: 'fever', soft: 1, when: () => !feverOn() && (S.fev || 0) >= FEV_MAX - 6 && scrOn('main'), text: '<b>신나는 시간</b> 게이지가 거의 찼어! 다 차면 잠깐 동안 에너지 없이 톡톡 할 수 있어.' }
 ];
@@ -4425,7 +4432,7 @@ CTX.push(
   row.querySelector('#b-rank').onclick = () => { $('#set').style.display = 'none'; rankOpen(false); };
   if (rb) rb.onclick = () => { $('#set').style.display = 'none'; showPop({ title: '처음부터 다시 하기', text: '처음부터 새로 시작해요. 지금까지 모은 것은 지워져요. 이름과 순위 기록은 그대로예요.', btns: [['다시 시작', 'red', () => { const nk = S.nick, pid = S.pid; S = fresh(); S.nick = nk; S.pid = pid; fillOrders(); save(); tgHide(); go('main'); }], ['취소', 'yellow', null]] }); };
 })();
-/* --- 이벤트 화면 맨 위 순위 카드 --- */
+/* --- 놀이마당 화면 맨 위 순위 카드 --- */
 renderEvent = (o0 => function () {
   const r = o0.apply(this, arguments);
   const list = document.getElementById('evlist'); if (!list) return r;
@@ -4641,7 +4648,7 @@ rankOpen = async function (first, then) {
   else if (rankCache) stat.textContent = '새 순위를 아직 못 받았어요. 위는 조금 전 순위예요';
   else list.innerHTML = '<div class="rkload">지금은 순위를 불러오지 못했어요.<br>조금 뒤에 다시 볼 수 있어요.</div>' + rkMyRow();
 };
-/* 미리 받아 두기: 들어오자마자, 이름 짓는 동안, 이벤트 화면에서 */
+/* 미리 받아 두기: 들어오자마자, 이름 짓는 동안, 놀이마당 화면에서 */
 try { const nk = document.getElementById('nick'); if (nk && nk.style.display === 'block') rankFetch(); } catch (e) {}
 setTimeout(() => { try { if (RANK_URL && Date.now() - rankAt > 20000) rankFetch(); } catch (e) {} }, 1500);
 setInterval(() => { try { if (RANK_URL && document.visibilityState === 'visible' && Date.now() - rankAt > 120000) rankFetch(); } catch (e) {} }, 30000);
@@ -4828,7 +4835,7 @@ function yutSticks(name) { const flatN = { '빽도': 1, '도': 1, '개': 2, '걸
 let yutBusy = false;
 (function buildYut() {
   const sc = document.createElement('div'); sc.className = 'screen'; sc.id = 'sc-yut';
-  sc.innerHTML = '<div class="yhead"><div class="btn cream h yback" id="y-back">‹ 이벤트</div><div class="ytitle">뚝이네 윷놀이</div><div class="pill ypill" id="y-pill"></div></div>'
+  sc.innerHTML = '<div class="yhead"><div class="btn cream h yback" id="y-back">‹ 놀이마당</div><div class="ytitle">뚝이네 윷놀이</div><div class="pill ypill" id="y-pill"></div></div>'
     + '<div class="yboard" id="y-board"><svg class="ylines" viewBox="0 0 340 340"></svg><div class="ysts" id="y-sts"></div><div class="ytok" id="y-tok"></div><div class="ybanner" id="y-ban"></div></div>'
     + '<div class="ythrow"><div class="ysticks" id="y-sticks"></div><div class="yres" id="y-res">윷을 던져 봐요!</div></div>'
     + '<div class="ybtns"><div class="ymult" id="y-mult"><div data-m="1">×1</div><div data-m="2">×2</div><div data-m="3">×3</div></div><div class="btn red h ygo" id="y-go">던지기</div></div>'
@@ -6064,7 +6071,7 @@ st35();
 
 
 /* ===== v36: guide card with clear kinds ===== */
-const TK36 = { reward: '보상', warn: '주의', tip: '안내', event: '이벤트', story: '이야기' };
+const TK36 = { reward: '보상', warn: '주의', tip: '안내', event: '놀이마당', story: '이야기' };
 const TKR36 = [
   ['warn', /꽉 차|꽉 찼|필요해요|모자라요|없어요|없어서|놓을 수 없|것만 놓을 수|못 만난|물고 도망|빈손으로 도망|늦었|나타났어요|두목이에요|아직|부터 심을 수|닫았어요/],
   ['reward', /\+\s?\d|받았어요|선물|보상|끝!|완료|Lv\s?\d|★\s?\d|행운|공짜 찬스|껑충|됐어요|팔았어요|입혔어요|샀어요|문을 열었어요|넓어졌어요|쫓아냈어요|떨어뜨렸어요|막았어요|되살렸어요|옮겨 왔어요|생겼어요|올랐어요|깨끗해졌어요|맡았어요|고용|나왔어요|자랐어요|거뒀어요|땄어요/],
@@ -6329,6 +6336,29 @@ setTimeout(set39, 0);
 /* 5) locked friends in the staff list shake a little when tapped */
 document.addEventListener('click', e => { const s = e.target && e.target.closest && e.target.closest('#stpick .spc.lock'); if (!s) return; s.classList.remove('shk39'); void s.offsetWidth; s.classList.add('shk39'); setTimeout(() => s.classList.remove('shk39'), 420); try { sfx('tap', { rate: .7, vol: .4 }); } catch (x) {} try { buzz(15); } catch (x) {} }, true);
 /* v39: app feel */
+
+
+/* ===== v39b: picked-item card shows the item you picked, and names the next step ===== */
+const _renderHelper39 = renderHelper;
+renderHelper = function () {
+  _renderHelper39.apply(this, arguments);
+  try {
+    if (typeof ttukMode !== 'undefined' && ttukMode) return;
+    const x = sel >= 0 ? S.b[sel] : null;
+    const info = document.getElementById('info'); if (!info || !x || !x.lv || x.vine || !CH[x.k]) return;
+    /* the picked item first, so the name never sits next to a different picture */
+    if (!info.querySelector(':scope > img')) { const im = document.createElement('img'); im.className = 'cur39'; im.src = itemImg(x); im.alt = ''; info.insertBefore(im, info.firstChild); }
+    /* next step with its name: "2개 → [그림] 꽃 알" */
+    const nx = info.querySelector('.nxl');
+    if (nx && x.lv < MAXLV) {
+      const known = !S.disc || S.disc[x.k + (x.lv + 1)];
+      const nm = known ? CHN[x.k][x.lv] : '???';
+      nx.innerHTML = '<i class="nx39a">2개 →</i><img class="nxi' + (known ? '' : ' unk') + '" src="' + I(CH[x.k][x.lv]) + '" alt=""><i class="nx39n">' + nm + '</i>';
+      const nn = nx.querySelector('.nx39n'); if (nn && (nn.scrollWidth > nn.clientWidth + 1 || nx.scrollWidth > nx.clientWidth + 1)) nn.remove();
+    }
+  } catch (e) {}
+};
+/* v39b: info card */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
