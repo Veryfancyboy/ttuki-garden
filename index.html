@@ -1711,12 +1711,13 @@ body.phone{background:#FFE4CC}
 
 /* v29b: guide message in the middle, tap to close */
 #app #tcatch{position:absolute;inset:0;z-index:71;display:none;background:rgba(40,20,10,.2);cursor:pointer}
-#app #toast.tc{top:50% !important;left:50% !important;bottom:auto !important;right:auto !important;transform:translate(-50%,-50%) !important;z-index:72 !important;pointer-events:auto !important;cursor:pointer;white-space:normal !important;text-wrap:balance;word-break:keep-all;width:max-content;min-width:220px;max-width:322px !important;font-size:20px !important;line-height:27px !important;padding:16px 22px 12px !important;border-radius:20px !important;text-align:center;animation:v29tin .3s cubic-bezier(.2,1.5,.4,1) !important}
+#app #toast.tc{top:50% !important;left:50% !important;bottom:auto !important;right:auto !important;transform:translate(-50%,-50%) !important;z-index:77 !important;pointer-events:auto !important;cursor:pointer;white-space:normal !important;text-wrap:balance;word-break:keep-all;width:max-content;min-width:220px;max-width:322px !important;font-size:20px !important;line-height:27px !important;padding:16px 22px 12px !important;border-radius:20px !important;text-align:center;animation:v29tin .3s cubic-bezier(.2,1.5,.4,1) !important}
 #app #toast.tc::after{content:'눌러서 닫기';display:block;margin-top:7px;font-size:13.5px;line-height:17px;color:rgba(255,236,190,.8);letter-spacing:0}
 @keyframes v29tin{0%{opacity:0;transform:translate(-50%,-50%) scale(.82)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 #app #toast.tc .tql + .tql{margin-top:9px;padding-top:9px;border-top:1.5px dashed rgba(255,211,107,.4)}
 #app #toast.tc.bump{animation:v29tbump .32s ease-out !important}
 @keyframes v29tbump{0%{transform:translate(-50%,-50%) scale(1)}40%{transform:translate(-50%,-50%) scale(1.04)}100%{transform:translate(-50%,-50%) scale(1)}}
+/* v29c: guide card above effects */
 
 </style>
 </head>
