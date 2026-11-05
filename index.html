@@ -1072,7 +1072,7 @@ body.phone{background:#FFE4CC}
 #app .cards{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 #app .tracks{grid-template-columns:34px minmax(0,1fr) minmax(0,1fr)}
 
-/* ===== v21: 귀한 돌림판 + 돌림판 담당 + 가게 거리 ===== */
+/* ===== v21: 귀한 돌림판 + 돌림판 담당 + 저잣거리 ===== */
 #wheel .whub span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Jua';font-size:31px;color:#8A4B0C;text-shadow:0 1px 0 rgba(255,250,220,.85),0 -1px 0 rgba(120,60,0,.35)}
 #wheel .whub{box-shadow:inset 0 0 0 3px rgba(255,240,190,.85),inset 0 -5px 7px rgba(120,60,0,.35),0 4px 0 #7A4610,0 6px 10px rgba(0,0,0,.35)}
 #wheel .whub img{display:none}
@@ -1100,7 +1100,7 @@ body.phone{background:#FFE4CC}
 @keyframes wpopb{50%{transform:scale(1.18)}}
 #app #b-box.ready{animation:wreadyb 1.6s ease-in-out infinite}
 @keyframes wreadyb{50%{transform:translateY(-2px) scale(1.03)}}
-/* 정원 | 가게 거리 */
+/* 정원 | 저잣거리 */
 #app .gtog{position:absolute;left:50%;top:58px;transform:translateX(-50%);display:flex;background:rgba(255,255,255,.96);border-radius:22px;padding:4px;box-shadow:0 2px 0 rgba(176,118,64,.25),0 4px 10px rgba(120,70,30,.15);z-index:6}
 #app .gtog > div{padding:0 16px;height:34px;line-height:34px;border-radius:17px;font-family:'Jua';font-size:17px;color:#7A5A44;cursor:pointer;white-space:nowrap}
 #app .gtog > div.on{background:linear-gradient(180deg,#FFE893,#FFC93C);color:#5A3A10;box-shadow:0 2px 0 #D49A17}
@@ -1772,6 +1772,49 @@ body.phone{background:#FFE4CC}
 #wheel .wres .wtier.t4{background:linear-gradient(180deg,#FFB547,#E8483A)}
 #wheel .wres.t3{border-color:#B48CFF;box-shadow:0 8px 0 rgba(90,50,140,.8),0 0 18px 4px rgba(180,140,255,.7)}
 #wheel .wres.t4{border-color:#FFC21F;box-shadow:0 8px 0 rgba(122,70,16,.8),0 0 24px 8px rgba(255,200,60,.85)}
+
+
+/* v32: living dress friend */
+#app #stage.live{background:#F6B9A4}
+#app #stage .lroom{position:absolute;left:-1px;top:-1px;right:-1px;bottom:-1px;background-size:cover;background-position:50% 62%;z-index:0}
+#app #stage .lshadow,#app .spic .lshadow{position:absolute;height:14px;border-radius:50%;background:radial-gradient(ellipse at 50% 50%,rgba(80,40,30,.38),rgba(80,40,30,0) 70%);z-index:1;animation:lshad 1.9s ease-in-out infinite alternate}
+@keyframes lshad{0%{transform:scaleX(1)}100%{transform:scaleX(.94)}}
+#app #stage .lchar,#app .spic .lchar{position:absolute;width:0;height:0;z-index:1;cursor:pointer}
+#app .lchar .lsw{position:absolute;left:0;top:0;transform-origin:0 0;animation:lsway 3.8s ease-in-out infinite alternate}
+#app .lchar .lbr{position:absolute;left:0;top:0;transform-origin:0 0;animation:lbreath 1.9s ease-in-out infinite alternate}
+#app .lchar img{position:absolute;left:0;max-width:none;pointer-events:auto;filter:drop-shadow(0 3px 2px rgba(80,40,20,.18))}
+#app .lchar .lcheer{opacity:0}
+#app .lchar.cheer .lidle{opacity:0}
+#app .lchar.cheer .lcheer{opacity:1}
+@keyframes lsway{0%{transform:rotate(-1.4deg)}100%{transform:rotate(1.4deg)}}
+@keyframes lbreath{0%{transform:scale(1,1)}100%{transform:scale(.988,1.028)}}
+#app .lchar.hop{animation:lhop .62s cubic-bezier(.3,.7,.4,1)}
+@keyframes lhop{0%{transform:translateY(0) scale(1,1)}18%{transform:translateY(0) scale(1.08,.9)}48%{transform:translateY(-22px) scale(.95,1.06)}78%{transform:translateY(0) scale(1.06,.93)}100%{transform:translateY(0) scale(1,1)}}
+#app .lchar.jump{animation:ljump .9s cubic-bezier(.25,.8,.35,1)}
+@keyframes ljump{0%{transform:translateY(0) scale(1,1)}12%{transform:translateY(0) scale(1.12,.86)}42%{transform:translateY(-46px) scale(.94,1.08)}70%{transform:translateY(0) scale(1.08,.92)}84%{transform:translateY(-8px) scale(1,1)}100%{transform:translateY(0) scale(1,1)}}
+#app .lchar.spin{animation:lspin .55s ease-in-out}
+@keyframes lspin{0%{transform:scaleX(1)}50%{transform:scaleX(.05) scaleY(1.06)}100%{transform:scaleX(1)}}
+#app .lchar.turn{animation:lturn 1.25s ease-in-out}
+@keyframes lturn{0%,100%{transform:scaleX(1)}25%,75%{transform:scaleX(-1)}}
+#app .lchar.wob{animation:lwob .5s ease-in-out}
+@keyframes lwob{0%,100%{transform:rotate(0)}25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+#app .lchar.enter{animation:lenter .6s cubic-bezier(.2,1.5,.4,1)}
+@keyframes lenter{0%{transform:translateY(30px) scale(.4);opacity:0}100%{transform:none;opacity:1}}
+#app .lchar.party{animation:lparty .8s ease-in-out infinite}
+@keyframes lparty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+#app #stage .lheart{position:absolute;width:22px;height:22px;z-index:5;pointer-events:none;animation:lheart 1.3s ease-out forwards;opacity:0}
+@keyframes lheart{0%{opacity:0;transform:translate(0,10px) scale(.4)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-70px) scale(1.1)}}
+#app #stage .lbub{position:absolute;right:12px;top:14px;max-width:150px;padding:7px 11px;border-radius:16px 16px 4px 16px;background:#fff;border:2px solid rgba(122,78,44,.45);box-shadow:0 3px 0 rgba(122,78,44,.25);font-family:'Jua';font-size:15.5px;line-height:20px;color:#4A2A1E;z-index:6;opacity:0;transform:scale(.6);transform-origin:90% 100%;transition:opacity .18s,transform .22s cubic-bezier(.3,1.6,.5,1);pointer-events:none;word-break:keep-all;text-align:center}
+#app #stage .lbub.on{opacity:1;transform:none}
+#app #stage.live:not(.framed) .plate.p29{top:10px;bottom:auto;left:10px;transform:none}
+#app #stage.live.framed .lbub{top:6px;right:8px}
+#app .spic.live{overflow:visible;border:0;background:transparent;box-shadow:none}
+#app .sport .spic.live .dframe{opacity:.95}
+/* garden group: the same top pills on every tab */
+#app #gd-coin,#app #sh-coin,#app #tr-coin{min-width:120px !important;padding:0 12px 0 2px !important;gap:2px !important;justify-content:flex-start}
+#app #gd-coin img,#app #sh-coin img,#app #tr-coin img{width:auto !important;height:34px !important;margin:0 2px 0 -4px !important;max-width:none}
+#app #gd-prog,#app #sh-prog,#app #tr-got{min-width:80px !important;padding:0 12px 0 2px !important;gap:2px !important;justify-content:center}
+#app #gd-prog img,#app #sh-prog img,#app #tr-got img{width:auto !important;height:34px !important;margin:0 2px 0 -4px !important;max-width:none}
 
 </style>
 </head>
@@ -3914,7 +3957,7 @@ renderAll = (o0 => function () {
 setInterval(() => { const noEn = S.en < 1 && !(typeof feverOn === 'function' && feverOn()); document.querySelectorAll('#board .t.gen').forEach(el => el.classList.toggle('noen', noEn)); }, 1000);
 
 
-/* ===== v21: 돌림판은 귀하게(열쇠 5개=1번) + 돌림판 담당(고용한 친구, 바꾸기 가능) + 가게 거리(가게 열기·직원·수입) ===== */
+/* ===== v21: 돌림판은 귀하게(열쇠 5개=1번) + 돌림판 담당(고용한 친구, 바꾸기 가능) + 저잣거리(가게 열기·직원·수입) ===== */
 const HIRE_FEE = 150;
 const HOST_PERK = {
   ttuki: { w: 'ttuk', t: '뚝딱 칸 2배', s: '뚝딱 2배' }, haetae: { w: 'pity', t: '대박이 7번 안에 꼭', s: '대박 7번 안에' }, rabbit: { w: 'en', t: '떡 에너지 칸 2배', s: '떡 에너지 2배' }, toad: { w: 'coin', t: '동전 칸 2배', s: '동전 2배' },
@@ -4008,9 +4051,9 @@ function staffPick(role) {
 /* shop screen */
 (function buildShopScreen() {
   const sc = document.createElement('div'); sc.className = 'screen'; sc.id = 'sc-shop';
-  sc.innerHTML = `<div class="pill gcoin" id="sh-coin"></div><div class="gtog"><div data-g="garden">정원</div><div data-g="shop" class="on">가게 거리</div></div><div class="pill gscrap" id="sh-prog"></div><div class="shlist" id="shlist"></div>`;
+  sc.innerHTML = `<div class="pill gcoin" id="sh-coin"></div><div class="gtog"><div data-g="garden">정원</div><div data-g="shop" class="on">저잣거리</div></div><div class="pill gscrap" id="sh-prog"></div><div class="shlist" id="shlist"></div>`;
   const g = $('#sc-garden'); g.parentNode.insertBefore(sc, g.nextSibling);
-  const tg = document.createElement('div'); tg.className = 'gtog'; tg.innerHTML = '<div data-g="garden" class="on">정원</div><div data-g="shop">가게 거리</div>'; g.appendChild(tg);
+  const tg = document.createElement('div'); tg.className = 'gtog'; tg.innerHTML = '<div data-g="garden" class="on">정원</div><div data-g="shop">저잣거리</div>'; g.appendChild(tg);
   document.querySelectorAll('.gtog > div').forEach(d => d.onclick = () => { if (d.classList.contains('on')) return; go(d.dataset.g); if (d.dataset.g === 'shop' && !S.shopSeen) { S.shopSeen = 1; save(); setTimeout(() => toast('가게를 열고 친구에게 맡기면 동전이 저절로 쌓여요'), 300); } });
 })();
 function renderShop() {
@@ -4179,7 +4222,7 @@ setInterval(() => { try { if (S.tg && !S.tg.all && S.tg.c >= CHAIN.length && (S.
 CTX.push(
   { id: 'wheel', pri: 1, mode: 'info', when: () => scrOn('main') && S.keys >= 5 && !(S.opens > 0) && !!document.querySelector('#b-box'), tgt: () => '#b-box', text: '열쇠 <b>5개</b>가 모였어! <b>돌림판</b>을 돌려 봐. <b>멈춰!</b>를 누르는 순간 선물이 정해져.' },
   { id: 'dress2', mode: 'info', when: () => scrOn('main') && Object.keys(S.owned || {}).length > 0 && navOpen('dress'), tgt: () => navQ('dress'), text: '옷이 나왔어! 같은 코디 <b>4조각</b>을 모아 <b>꾸미기</b>에서 입히면, 그 친구 주문은 동전 <b>1.5배</b>!' },
-  { id: 'shop1', mode: 'info', when: () => scrOn('garden') && !Object.keys(S.shop || {}).length && S.coin >= 100 && S.done >= 6 && !!document.querySelector('#sc-garden .gtog [data-g="shop"]'), tgt: () => '#sc-garden .gtog [data-g="shop"]', text: '<b>가게 거리</b>에 가 봐! 찻집을 열고 친구에게 맡기면 동전이 저절로 쌓여.' }
+  { id: 'shop1', mode: 'info', when: () => scrOn('garden') && !Object.keys(S.shop || {}).length && S.coin >= 100 && S.done >= 6 && !!document.querySelector('#sc-garden .gtog [data-g="shop"]'), tgt: () => '#sc-garden .gtog [data-g="shop"]', text: '<b>저잣거리</b>에 가 봐! 찻집을 열고 친구에게 맡기면 동전이 저절로 쌓여.' }
 );
 /* --- 설정 창: 하는 법 / 이름 바꾸기 / 순위, 처음부터 다시 하기 --- */
 (function setTxt() { const box = document.querySelector('#set .box'); if (!box) return; const w = document.createTreeWalker(box, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { if (n.nodeValue.includes('선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기)')) n.nodeValue = n.nodeValue.replace('선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기)', '돌림판은 주문으로 모은 열쇠로만 돌려요(아래 확률 보기)'); } })();
@@ -4287,7 +4330,7 @@ function fmtAway(ms) { const m = Math.max(1, Math.round(ms / 60000)); if (m < 60
 function awayLines(away) {
   const L = [];
   try { const en0 = (S.v25h && typeof S.v25h.en === 'number') ? S.v25h.en : null; if (en0 !== null && S.en > en0) L.push(['c10_songpyeon', '에너지가 ' + en0 + '에서 ' + S.en + '까지 찼어요']); } catch (e) {}
-  try { if (typeof shopStored === 'function' && S.shop) { const tot = Object.keys(S.shop).reduce((a, id) => a + (shopStored(id) || 0), 0); if (tot > 0) L.push(['c09_coin_pouch', '가게 거리에 동전 ' + Math.floor(tot).toLocaleString() + '개가 모였어요']); } } catch (e) {}
+  try { if (typeof shopStored === 'function' && S.shop) { const tot = Object.keys(S.shop).reduce((a, id) => a + (shopStored(id) || 0), 0); if (tot > 0) L.push(['c09_coin_pouch', '저잣거리에 동전 ' + Math.floor(tot).toLocaleString() + '개가 모였어요']); } } catch (e) {}
   try { if (typeof ggTotal === 'function' && ggTotal() > 0) L.push(['ui_lantern', '정원 친구들이 선물 ' + ggTotal() + '개를 두고 갔어요']); } catch (e) {}
   try { if (typeof treeAwayLine === 'function') { const t = treeAwayLine(); if (t) L.unshift(t); } } catch (e) {}
   if (!L.length) L.push(['c03_egg3', '푹 쉬었으니 오늘도 힘내 보자!']);
@@ -4454,7 +4497,7 @@ function treeAwayLine() { if (!S.tree) return null; treeTick(); const T = S.tree
 /* 화면 */
 (function buildTree() {
   const sc = document.createElement('div'); sc.className = 'screen'; sc.id = 'sc-tree';
-  sc.innerHTML = '<div class="pill gcoin" id="tr-coin"></div><div class="gtog"><div data-g="garden">정원</div><div data-g="shop">가게 거리</div><div data-g="tree" class="on">감나무</div></div><div class="pill gscrap" id="tr-got"></div>'
+  sc.innerHTML = '<div class="pill gcoin" id="tr-coin"></div><div class="gtog"><div data-g="garden">정원</div><div data-g="shop">저잣거리</div><div data-g="tree" class="on">감나무</div></div><div class="pill gscrap" id="tr-got"></div>'
     + '<div class="tstage" id="tr-stage"><div class="thill"></div><div class="tffly"><i></i><i></i><i></i><i></i><i></i><i></i></div><img class="ttree" id="tr-img" alt=""><div class="tfr" id="tr-fr"></div></div>'
     + '<div class="tpanel panel" id="tr-panel"></div>';
   const ref = document.getElementById('sc-shop') || document.getElementById('sc-garden'); ref.parentNode.insertBefore(sc, ref.nextSibling);
@@ -5208,6 +5251,7 @@ function tq29Catch() {
 toast = (o0 => function (msg) {
   if (msg == null || msg === '') return;
   msg = String(msg);
+  if (/^썰매 경주/.test(msg)) { const onMain = typeof scrOn === 'function' ? scrOn('main') : true; if (!onMain || Date.now() - (toast.__race || 0) < 90000) return; toast.__race = Date.now(); }
   const t = document.getElementById('toast');
   if (!TQ29.length && tq29Blocked()) { if (!TP29.includes(msg)) TP29.push(msg); while (TP29.length > 3) TP29.shift(); if (!tp29T) tp29T = setInterval(tq29Flush, 400); return; }
   if (TQ29.length && t && t.style.display === 'block' && t.classList.contains('tc')) {
@@ -5416,6 +5460,59 @@ wheelLanded = (o0 => function () {
 })(wheelLanded);
 (function () { const old = document.getElementById('wheel'); if (old) old.remove(); })();
 /* v31: wheel you can read */
+
+
+/* ===== v32: a living friend on the dress stage: cut-out on a dressing room, breathes, hops, reacts to taps, spins into new clothes ===== */
+const CH_URL = 'https://veryfancyboy.github.io/ttuki-garden/char/';
+const CH_META = {"ttuki":{"base":{"idle":[358,452],"cheer":[365,462]},"xmas":{"idle":[346,452],"cheer":[348,462]},"snow":{"idle":[333,452],"cheer":[334,462]}},"haetae":{"base":{"idle":[456,454],"cheer":[453,472]},"xmas":{"idle":[458,470],"cheer":[483,492]},"snow":{"idle":[480,454],"cheer":[474,477]}},"rabbit":{"base":{"idle":[395,453],"cheer":[410,501]},"xmas":{"idle":[411,452],"cheer":[429,498]},"snow":{"idle":[412,454],"cheer":[427,499]}},"toad":{"base":{"idle":[365,452],"cheer":[392,449]},"xmas":{"idle":[407,454],"cheer":[432,451]},"snow":{"idle":[418,451],"cheer":[431,457]}},"gumiho":{"base":{"idle":[464,453],"cheer":[469,464]},"xmas":{"idle":[464,453],"cheer":[468,468]},"snow":{"idle":[464,453],"cheer":[467,471]}},"bonghwang":{"base":{"idle":[544,454],"cheer":[539,451]},"xmas":{"idle":[570,456],"cheer":[572,462]},"snow":{"idle":[538,459],"cheer":[548,462]}},"bulgasari":{"base":{"idle":[374,452],"cheer":[350,438]},"xmas":{"idle":[374,465],"cheer":[381,457]},"snow":{"idle":[378,451],"cheer":[360,434]}},"imugi":{"base":{"idle":[349,452],"cheer":[354,465]},"xmas":{"idle":[367,455],"cheer":[387,466]},"snow":{"idle":[375,457],"cheer":[368,466]}}};
+const CH_LINES = { tap: ['헤헤, 간지러워!', '나 어때? 예쁘지?', '오늘 옷 마음에 들어!', '더 꾸며 줘!', '히히, 반짝반짝!', '같이 놀자!', '한 바퀴 돌아 볼까?'], dress: ['짠! 어울려?', '와, 새 옷이다!', '반짝반짝 빛나!', '이거 마음에 쏙!', '거울 보러 가야지!'], hi: ['안녕! 오늘은 뭐 입을까?', '꾸며 줄 거야?', '나 왔어!'] };
+const chSrc = (k, look, pose) => CH_URL + k + '_' + look + '_' + pose + '.webp';
+const chHas = (k, look) => !!(CH_META[k] && CH_META[k][look]);
+const ch32 = { k: '', sig: '', idleT: 0, busy: 0, bubT: 0 };
+function chPick(a) { return a[Math.floor(Math.random() * a.length)]; }
+function chLayers(k, look, H, cx, feet, bubRight) {
+  const m = CH_META[k][look], sc = H / 440;
+  const iw = Math.round(m.idle[0] * sc), ih = Math.round(m.idle[1] * sc), cw = Math.round(m.cheer[0] * sc), chh = Math.round(m.cheer[1] * sc);
+  return '<div class="lshadow" style="left:' + cx + 'px;top:' + (feet - 7) + 'px;width:' + Math.round(iw * .62) + 'px;margin-left:' + (-Math.round(iw * .31)) + 'px"></div>'
+    + '<div class="lchar" style="left:' + cx + 'px;top:' + feet + 'px"><div class="lsw"><div class="lbr"><img class="lidle" src="' + chSrc(k, look, 'idle') + '" style="width:' + iw + 'px;height:' + ih + 'px;margin-left:' + (-iw / 2) + 'px;top:' + (-ih) + 'px" alt=""><img class="lcheer" src="' + chSrc(k, look, 'cheer') + '" style="width:' + cw + 'px;height:' + chh + 'px;margin-left:' + (-cw / 2) + 'px;top:' + (-chh) + 'px" alt=""></div></div></div>'
+    + '<div class="lbub' + (bubRight ? ' r' : '') + '"></div>';
+}
+function chEl() { return document.querySelector('#stage .lchar'); }
+function chSay(t, ms) { const b = document.querySelector('#stage .lbub'); if (!b) return; b.textContent = t; b.classList.remove('on'); void b.offsetWidth; b.classList.add('on'); clearTimeout(ch32.bubT); ch32.bubT = setTimeout(() => b.classList.remove('on'), ms || 1900); }
+function chHearts(src, n) { const st = document.getElementById('stage'), c = chEl(); if (!st || !c || !src) return; const top = parseFloat(c.style.top), left = parseFloat(c.style.left), img = c.querySelector('.lidle'); const h = img ? img.offsetHeight : 180; for (let i = 0; i < n; i++) { const e = document.createElement('img'); e.className = 'lheart'; e.src = src; e.style.left = (left - 50 + Math.random() * 100) + 'px'; e.style.top = (top - h - 18 + Math.random() * 16) + 'px'; e.style.animationDelay = (i * 0.09).toFixed(2) + 's'; e.style.setProperty('--dx', (Math.random() * 60 - 30).toFixed(0) + 'px'); st.appendChild(e); setTimeout(() => e.remove(), 1600); } }
+function chAct(kind) {
+  const c = chEl(); if (!c) return;
+  if (kind === 'tap' || kind === 'dress') { if (ch32.busy) return; ch32.busy = 1; }
+  const set = cls => { c.classList.remove('hop', 'jump', 'spin', 'turn', 'wob', 'cheer', 'enter'); void c.offsetWidth; cls.forEach(x => c.classList.add(x)); };
+  if (kind === 'tap') { set(['cheer', 'jump']); try { sfx('tap', { rate: 1.35, vol: .55 }); sfx('ting', { vol: .35 }); } catch (e) {} chHearts((window.DECO_ART || {}).fx_heart, 5); chSay(chPick(CH_LINES.tap)); setTimeout(() => { c.classList.remove('cheer', 'jump'); ch32.busy = 0; }, 950); }
+  else if (kind === 'dress') { set(['spin']); try { sfx('reveal', { vol: .7 }); } catch (e) {} const xy = elXY(c); try { burst(xy[0], xy[1] - 90, 26, { sp: 5 }); } catch (e) {} setTimeout(() => { set(['cheer', 'jump']); chHearts((window.DECO_ART || {}).fx_star, 6); chSay(chPick(CH_LINES.dress)); }, 520); setTimeout(() => { c.classList.remove('cheer', 'jump', 'spin'); ch32.busy = 0; }, 1500); }
+  else if (kind === 'enter') { set(['enter']); setTimeout(() => c.classList.remove('enter'), 650); if (Math.random() < .5) setTimeout(() => chSay(chPick(CH_LINES.hi), 1600), 500); }
+  else if (kind === 'hop') { set(['hop']); setTimeout(() => c.classList.remove('hop'), 700); }
+  else if (kind === 'yay') { set(['cheer', 'hop']); setTimeout(() => c.classList.remove('cheer', 'hop'), 900); }
+  else if (kind === 'turn') { set(['turn']); setTimeout(() => c.classList.remove('turn'), 1300); }
+}
+function ch32Stage() {
+  const st = document.getElementById('stage'); if (!st) return;
+  const k = S.cur, look = S.lk[k] || 'base';
+  st.classList.toggle('live', chHas(k, look));
+  if (!chHas(k, look)) { ch32.k = ''; return; }
+  const framed = v29Framed(k);
+  const inner = st.querySelector('.inner'); if (inner) inner.remove();
+  const H = framed ? 150 : 198, cx = framed ? 180 : 184, feet = framed ? 224 : 268;
+  st.insertAdjacentHTML('afterbegin', '<div class="lroom" style="background-image:url(' + CH_URL + 'room.webp)"></div>' + chLayers(k, look, H, cx, feet, true));
+  const c = chEl(); if (c) c.onclick = e => { e.stopPropagation(); chAct('tap'); };
+  const sig = k + '|' + look + '|' + JSON.stringify((S.gc && S.gc.eq[k]) || {});
+  if (ch32.k !== k) setTimeout(() => chAct('enter'), 30);
+  else if (ch32.sig !== sig) setTimeout(() => chAct('dress'), 30);
+  ch32.k = k; ch32.sig = sig; ch32.idleT = Date.now() + 3500 + Math.random() * 3000;
+}
+v29Dress = (o0 => function () { const r = o0.apply(this, arguments); try { ch32Stage(); } catch (e) { console.error(e); } return r; })(v29Dress);
+setInterval(() => { try { const sc = document.getElementById('sc-dress'); if (!sc || !sc.classList.contains('on') || ovOpen() || ch32.busy || Date.now() < ch32.idleT) return; const r = Math.random(); chAct(r < .45 ? 'hop' : r < .8 ? 'yay' : 'turn'); ch32.idleT = Date.now() + 4000 + Math.random() * 4500; } catch (e) {} }, 700);
+/* the style show: the friend stands on the stage instead of a framed picture */
+showOpen = (o0 => function () { const r = o0.apply(this, arguments); try { const k = S.cur, look = S.lk[k] || 'base'; const sp = document.querySelector('#show .spic'); if (sp && chHas(k, look)) { const inner = sp.querySelector('.inner'); if (inner) inner.remove(); sp.classList.add('live'); sp.insertAdjacentHTML('beforeend', chLayers(k, look, 188, 125, 214, false).replace('<div class="lbub"></div>', '')); } } catch (e) { console.error(e); } return r; })(showOpen);
+custFace = (o0 => function (j, mood) { const r = o0.apply(this, arguments); try { if (showBusy) { const c = document.querySelector('#show .lchar'); if (c) { c.classList.remove('cheer', 'jump', 'wob'); void c.offsetWidth; if (mood === 'glad') c.classList.add('cheer', 'jump'); else if (mood === 'sulk') c.classList.add('wob'); setTimeout(() => c.classList.remove('cheer', 'jump', 'wob'), 900); } } } catch (e) {} return r; })(custFace);
+showRun = (o0 => async function () { const r = await o0.apply(this, arguments); try { const b = document.querySelector('#show .ssum b'); const tot = b ? parseInt(b.textContent, 10) : 0; const c = document.querySelector('#show .lchar'); if (c && tot >= 18) { c.classList.add('cheer', 'party'); } } catch (e) {} return r; })(showRun);
+/* v32: living dress friend */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
