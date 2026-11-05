@@ -2786,6 +2786,17 @@ html,body{overscroll-behavior:none}
 
 /* v57: economy */ /* v57b: copy */
 
+
+/* v58: weasel fix */
+#app #thief.boss41{width:104px;height:96px;margin:-54px 0 0 -52px}
+#app #thief.boss41 img{width:96px;height:96px;margin-left:4px}
+#app #thief.boss41.shield::after{width:128px;height:128px;margin:-64px 0 0 -64px}
+#app #thief.boss41 .hp41{top:auto;bottom:-15px;width:92px;height:11px}
+#app #thief.boss41 .tc{bottom:auto;top:-13px}
+#app #thief41d.b48{width:104px;height:96px;margin:-54px 0 0 -52px}
+#app #thief41d.b48 img{width:96px;height:96px;margin-left:4px;opacity:.5;filter:grayscale(.4) drop-shadow(0 0 7px rgba(170,210,255,.95));animation:th58ghost 1.3s ease-in-out infinite}
+@keyframes th58ghost{0%,100%{transform:translateY(0);opacity:.42}50%{transform:translateY(-5px);opacity:.62}}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -3857,7 +3868,7 @@ function thiefHit(e) {
     S.thief = null; S.tst.chased++; S.nextThief = Date.now() + rnd(THIEF.gap) * 1000;
     const t = grant({ coin: 40 }); save(); renderAll(); toast(`족제비를 쫓아냈어요! ${t}`); koFx(kxy); return;
   }
-  const cells = eggCells().filter(i => i !== T.at);
+  const cells = T.boss ? [] : eggCells().filter(i => i !== T.at);
   if (cells.length) T.at = cells[Math.floor(Math.random() * cells.length)];
   save(); placeThief(true);
 }
@@ -6531,7 +6542,7 @@ function th33Loop() {
   if (!T.next) { T.next = now + 900; return; }
   if (now < T.next) return;
   if (T.hid) { T.hid = 0; T.at = th33Cells(T); el.classList.remove('hidev'); placeThief(true); el.classList.remove('peek'); void el.offsetWidth; el.classList.add('peek'); T.next = now + th33Gap(T); return; }
-  if (T.hits >= 1 && Math.random() < .3) { T.hid = 1; el.classList.add('hidev'); T.next = now + 650 + Math.random() * 400; return; }
+  if (!T.boss && T.hits >= 1 && Math.random() < .3) { T.hid = 1; el.classList.add('hidev'); T.next = now + 650 + Math.random() * 400; return; }
   T.at = th33Cells(T); placeThief(true); T.next = now + th33Gap(T);
 }
 setInterval(th33Loop, 90);
@@ -7988,7 +7999,7 @@ thiefHit = function (e) {
     return;
   }
   th48Hit.call(this, e);
-  try { const T2 = S.thief; if (T2) { T2.lh = Date.now(); T2.nb = Date.now() + TH48.noBite; T2.bite = 0; if (!T2.hid) { T2.at = th48Far(T2); placeThief(true); } } } catch (x) {}
+  try { const T2 = S.thief; if (T2) { T2.lh = Date.now(); T2.nb = Date.now() + TH48.noBite; T2.bite = 0; if (!T2.hid && !T2.boss) { T2.at = th48Far(T2); placeThief(true); } } } catch (x) {}
 };
 (function () { const el = document.getElementById('thief'); if (el) { el.removeEventListener('pointerdown', th48Hit); el.addEventListener('pointerdown', thiefHit); } })();
 /* v48: weasel harder */
@@ -9132,6 +9143,38 @@ function kp56Flush() {
 /* ===== v57: 떡·돈 줄이기 안내 (한 번만) ===== */
 try { if (!S.ec57 && (S.done || 0) > 0) { S.ec57 = 1; save(); setTimeout(() => { try { toast('이제 떡 에너지는 2분마다 1개씩 차요. 가게 수입과 정원 친구 몫도 줄었어요. 동전은 슬롯 · 방물장수 · 번개놀이에서 써 보세요'); } catch (e) {} }, 4000); } else if (!S.ec57) { S.ec57 = 1; } } catch (e) {}
 /* v57: economy */
+
+
+/* ===== v58: 족제비 고치기 - 덜 자주(5~8분), 싸움 중 안내 카드는 끝나고 보여 줌, 방패는 막기만, 가짜는 흐릿하게, 두목 크기 줄이고 판 안에만 ===== */
+THIEF.first = [150, 240]; THIEF.gap = [300, 480];
+try { if (S.nextThief && S.nextThief - Date.now() < 150000 && !S.thief) S.nextThief = Date.now() + (150 + Math.random() * 90) * 1000; } catch (e) {}
+try { TH48.healBoss = 3000; } catch (e) {}
+try { Object.assign(BOSS41, { need: 26, needGate: 23, lim: 20, limGate: 22, cycle: 2600, guard: 900 }); } catch (e) {}
+th33Gap = (o0 => function (T) { if (T && T.boss) return (T.rage ? 1100 : 1600) + Math.random() * 400; return o0.apply(this, arguments); })(th33Gap);
+tq29Blocked = (o0 => function () { if (o0.apply(this, arguments)) return true; try { return !!(S.thief && document.getElementById('sc-main').classList.contains('on')); } catch (e) { return false; } })(tq29Blocked);
+function th58Clamp(el, half) {
+  try {
+    const b = document.getElementById('board'), a = document.getElementById('app'); if (!b || !a || !el) return;
+    const br = b.getBoundingClientRect(), ar = a.getBoundingClientRect(), sc = (typeof scale !== 'undefined' && scale) || 1;
+    const L = (br.left - ar.left) / sc, T = (br.top - ar.top) / sc, W = br.width / sc, H = br.height / sc;
+    const x = parseFloat(el.style.left), y = parseFloat(el.style.top);
+    if (!isNaN(x)) el.style.left = Math.max(L + half, Math.min(L + W - half, x)) + 'px';
+    if (!isNaN(y)) el.style.top = Math.max(T + half, Math.min(T + H - half, y)) + 'px';
+  } catch (e) {}
+}
+placeThief = (o0 => function () { const r = o0.apply(this, arguments); try { const el = document.getElementById('thief'); if (S.thief && S.thief.boss && el && el.style.display === 'block') th58Clamp(el, 50); } catch (e) {} return r; })(placeThief);
+th41Decoy = (o0 => function () { const r = o0.apply(this, arguments); try { const d = document.getElementById('thief41d'); if (d && d.style.display === 'block') th58Clamp(d, 50); } catch (e) {} return r; })(th41Decoy);
+const th58Hit = thiefHit;
+thiefHit = function (e) {
+  const T = S.thief;
+  if (T && T.boss && T.shield && !ttukMode) { if (e) { e.stopPropagation(); e.preventDefault(); } const el = document.getElementById('thief'); try { const xy = elXY(el); boom(xy[0], xy[1] - 44, '막았다!', '#9ED8FF', 20); } catch (x) {} try { sfx('fail', { vol: .45 }); } catch (x) {} try { buzz(15); } catch (x) {} return; }
+  const h0 = T ? T.hits : 0, r = th58Hit.apply(this, arguments);
+  try { const T2 = S.thief; if (T2 && T2.boss && T2.hits > h0 && T2.hits % 4 === 0 && !T2.bite) { T2.at = th48Far(T2); T2.next = Date.now() + th33Gap(T2); placeThief(true); } } catch (x) {}
+  return r;
+};
+(function () { const el = document.getElementById('thief'); if (el) { el.removeEventListener('pointerdown', th58Hit); el.addEventListener('pointerdown', thiefHit); } })();
+setInterval(() => { try { if (!S.thief) { const b = document.getElementById('board'); if (b) b.classList.remove('th48late'); const t = document.getElementById('thief'); if (t) t.classList.remove('late', 'shield'); } } catch (e) {} }, 500);
+/* v58: weasel fix */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
