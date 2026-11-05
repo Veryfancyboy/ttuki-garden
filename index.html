@@ -2784,7 +2784,7 @@ html,body{overscroll-behavior:none}
 #app .rays img.kp56b{max-width:140px;max-height:132px}
 
 
-/* v57: economy */
+/* v57: economy */ /* v57b: copy */
 
 </style>
 </head>
@@ -2919,7 +2919,7 @@ html,body{overscroll-behavior:none}
 <div id="pop"><div class="dim"></div><div class="box panel" id="popbox"></div></div>
 <div id="set"><div class="dim" style="position:absolute;inset:0;background:rgba(60,30,25,.55)"></div><div class="box panel">
   <div class="h" style="font-size:21.5px;margin-bottom:6px">게임 안내</div>
-  같은 걸 겹쳐 키워서 이웃 주문을 들어주고, 모은 동전으로 <b>정원</b>을 고치는 게임이에요. 정원을 고치면 떠났던 친구들이 돌아와요. <b>급한 주문</b>은 시간 안에 보내고, <b>족제비 도둑</b>은 눌러서 쫓아내요. 에너지는 30초에 1씩 차요. 선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기). 진행은 이 폰에 저장돼요.
+  같은 걸 겹쳐 키워서 이웃 주문을 들어주고, 모은 동전으로 <b>정원</b>을 고치는 게임이에요. 정원을 고치면 떠났던 친구들이 돌아와요. <b>급한 주문</b>은 시간 안에 보내고, <b>족제비 도둑</b>은 눌러서 쫓아내요. 에너지는 2분에 1씩 차요. 선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기). 진행은 이 폰에 저장돼요.
   <div class="btn red h" id="b-reset" style="height:44px;margin-top:14px">안내 다시 보기</div><div style="display:flex;gap:8px;margin-top:8px"><div class="btn sky h" id="b-day" style="flex:1;height:42px;display:none">하루 넘기기</div><div class="btn yellow h" id="b-close" style="flex:1;height:42px">닫기</div></div>
   <div style="display:flex;gap:8px;margin-top:8px"><div class="btn cream h" id="b-snd" style="flex:1;height:38px;font-size:16px">소리 켜짐</div><div class="btn cream h" id="b-vib" style="flex:1;height:38px;font-size:16px">진동 켜짐</div><div class="btn cream h" id="b-odds2" style="flex:1;height:38px;font-size:16px">확률 보기</div></div>
 </div></div>
@@ -3076,10 +3076,10 @@ const SCRIPT = [
 const ROAD = [
   { f: ['c09_coin_pouch', '동전 100', '', { coin: 100 }], p: ['x1_santa_gamtu', '산타 모자', '산타 옷'] },
   { f: ['x4_red_nose', '빨간 코', '눈놀이 옷', { item: 'x4' }], p: ['c12_gem', '보석 50', ''] },
-  { f: ['ui_key', '열쇠 3개', '선물 상자 3번', { key: 3 }], p: ['x6_santa_cape', '산타 망토', '산타 옷'] },
+  { f: ['ui_key', '열쇠 3개', '돌림판에 써요', { key: 3 }], p: ['x6_santa_cape', '산타 망토', '산타 옷'] },
   { f: ['c10_songpyeon', '떡 20', '에너지', { en: 20 }], p: ['x2_earmuffs', '눈송이 귀마개', '눈놀이 옷'] },
   { f: ['x3_holly_clip', '열매 머리핀', '눈놀이 옷', { item: 'x3' }], p: ['x7_bojagi_gift', '선물 보따리', '산타 옷'] },
-  { f: ['ui_key', '열쇠 5개', '선물 상자 5번', { key: 5 }], p: ['x5_saekdong_scarf', '무지개 목도리', '산타 옷'] }
+  { f: ['ui_key', '열쇠 5개', '돌림판에 써요', { key: 5 }], p: ['x5_saekdong_scarf', '무지개 목도리', '산타 옷'] }
 ];
 const EN_MAX = 100, EN_SEC = 120; /* demo: 30s per energy (live design: 2 min) */
 
@@ -4188,7 +4188,7 @@ const CTX = [
   { id: 'ggift', mode: 'info', when: () => ggTotal() > 0 && (scrOn('main') || scrOn('garden')), tgt: () => { if (scrOn('garden')) { const g = GARDEN.find(x => ggReady(x) > 0); return g ? `#gdn-mk .gmk[data-g="${g.id}"]` : null; } return navQ('garden'); }, text: '정원 친구가 <b>선물</b>을 두고 갔어! 정원에서 친구를 톡 하면 받아. 시간이 지나면 또 생겨.' },
   { id: 'vine', pri: 1, mode: 'info', when: () => scrOn('main') && S.b.some(x => x && x.vine), tgt: () => { const p = vinePair(); if (p) return [tileQ(p[0]), tileQ(p[1])]; const j = S.b.findIndex(x => x && x.vine); return j >= 0 ? tileQ(j) : null; }, get text() { return vinePair() ? '덩굴 속에 <b>똑같은 게</b> 있어! 끌어다 겹치면 덩굴이 걷히고 한 단계 올라가.' : '덩굴에 덮인 건 할머니 물건이야. <b>똑같은 걸</b> 만들어 겹치면 꺼낼 수 있어. 꺼내면 한 단계 올라가!'; } },
   { id: 'urgent', pri: 1, mode: 'info', when: () => scrOn('main') && S.orders.some(o => o.urg), tgt: () => ordQ(S.orders.findIndex(o => o.urg)), text: '<b>시계</b>가 달린 주문은 급한 주문이야! 시간 안에 보내면 동전 <b>1.5배</b>에 열쇠도 받아. 늦으면 손님이 가 버려.' },
-  { id: 'en0', pri: 1, mode: 'info', when: () => false, tgt: () => '#p-en', text: '에너지가 다 떨어졌어. <b>30초</b>마다 1개씩 차. 기다리는 동안 겹칠 수 있는 걸 겹쳐 봐!' },
+  { id: 'en0', pri: 1, mode: 'info', when: () => false, tgt: () => '#p-en', text: '에너지가 다 떨어졌어. <b>2분</b>마다 1개씩 차. 기다리는 동안 겹칠 수 있는 걸 겹쳐 봐!' },
   { id: 'glow', mode: 'info', when: () => scrOn('main') && lvCells('egg', 3).length > 0, tgt: () => tileQ(lvCells('egg', 3)[0]), text: '<b>빛나는 알</b>이 됐어! 누르고 아래 <b>깨우기</b>를 누르면 새 친구가 나와. 주문에 써도 돼.' },
   { id: 'sew4', mode: 'info', when: () => scrOn('main') && lvCells('sew', 4).length > 0, tgt: () => tileQ(lvCells('sew', 4)[0]), text: '<b>매듭 장식</b>이 됐어! 누르고 아래 <b>상자 열기</b>를 누르면 옷이 나와.' },
   { id: 'ttuk', mode: 'info', when: () => scrOn('main') && S.done >= 4 && S.ttuk > 0, tgt: () => '#b-ttuk', text: '<b>뚝딱</b> 방망이! 누르고 <b>손님</b>을 고르면 모자란 물건이 바로 나와. <b>물건</b>을 고르면 2단계 넘게 껑충! 주문 3개마다 1번 생겨.' },
