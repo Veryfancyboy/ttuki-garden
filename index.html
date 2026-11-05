@@ -1989,6 +1989,18 @@ html,body{overscroll-behavior:none}
 #app #info .nxl .nx39a{font-style:normal;flex:none}
 #app #info .nxl .nx39n{font-style:normal;color:#8A6A54;overflow:hidden;text-overflow:ellipsis;min-width:0}
 
+
+/* v40: dress polish */
+#app #stage .plate .pv40t{display:inline-block;margin-left:5px;font-family:'Jua',sans-serif;font-weight:400;font-size:13.5px;line-height:18px;color:#fff;background:linear-gradient(#FF9DBE,#E0507C);padding:0 7px;border-radius:9px;vertical-align:1px;animation:pv40p 1s ease-in-out infinite}
+@keyframes pv40p{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+#app #pieces .ph .pv40h{display:inline;font-family:'Jua',sans-serif;font-weight:400;color:#D9467A}
+#app #stage .plate .psc{cursor:pointer}
+#app #stage .plate .psl40{font-style:normal;font-family:'Jua',sans-serif;font-size:.82em;color:#B8862E;margin-right:2px}
+#app #sc-dress #d29row{margin-top:-3px}
+#app #sc-dress #looks{margin-top:-3px}
+#app #sc-dress #pieces{margin-top:-4px}
+#app #stage .plate.pv40on .psc{display:none}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -6359,6 +6371,40 @@ renderHelper = function () {
   } catch (e) {}
 };
 /* v39b: info card */
+
+
+/* ===== v40: dress tab polish (try a look on before it is complete, readable style score) ===== */
+let PV40 = null; /* { k, l, until, mute } */
+document.addEventListener('click', e => {
+  const lc = e.target && e.target.closest && e.target.closest('#looks .lc'); if (!lc) return;
+  const id = lc.dataset.l, L = LOOKS.find(x => x.id === id);
+  if (!L || id === 'base' || lookDone(L) || (typeof chHas === 'function' && !chHas(S.cur, id))) { PV40 = null; return; }
+  PV40 = { k: S.cur, l: id, until: Date.now() + 6000, mute: Date.now() + 400 };
+  setTimeout(() => { if (PV40 && Date.now() >= PV40.until - 50) { PV40 = null; try { renderDress(); } catch (x) {} } }, 6100);
+}, true);
+const _toast40 = toast;
+toast = function (m) { if (PV40 && PV40.mute > Date.now() && /모으면 입힐 수 있어요/.test(String(m))) return; return _toast40.apply(this, arguments); };
+const _v29Dress40 = v29Dress;
+v29Dress = function () {
+  const pv = PV40 && PV40.k === S.cur && Date.now() < PV40.until ? PV40 : null;
+  let r;
+  if (pv) {
+    const had = Object.prototype.hasOwnProperty.call(S.lk, pv.k), real = S.lk[pv.k];
+    S.lk[pv.k] = pv.l;
+    try { r = _v29Dress40.apply(this, arguments); } finally { if (had) S.lk[pv.k] = real; else delete S.lk[pv.k]; }
+    const L = LOOKS.find(x => x.id === pv.l); const left = L.items.length - L.items.filter(id => S.owned[id]).length;
+    const nm = document.querySelector('#stage .plate .pnm'); if (nm && !nm.querySelector('.pv40t')) { nm.insertAdjacentHTML('beforeend', '<b class="pv40t">미리 보기</b>'); const pl = nm.closest('.plate'); if (pl) pl.classList.add('pv40on'); }
+    const ph = document.querySelector('#pieces .ph'); if (ph && !ph.querySelector('.pv40h')) ph.innerHTML = '<b class="pv40h">미리 보기 중</b> · ' + L.n + ' 조각 ' + left + '개 더 모으면 입어요';
+    const sc = document.querySelector('#stage .plate .psc'); if (sc) { const tn = [...sc.childNodes].filter(n => n.nodeType === 3).pop(); if (tn) tn.nodeValue = String(styleOf(pv.k)); }
+  } else r = _v29Dress40.apply(this, arguments);
+  /* style score: say what the number is, explain on tap */
+  try {
+    const ps = document.querySelector('#stage .plate .psc');
+    if (ps && !ps.querySelector('.psl40')) { ps.insertAdjacentHTML('afterbegin', '<i class="psl40">멋</i>'); ps.onclick = ev => { ev.stopPropagation(); toast('멋 점수예요. 옷 조각을 모으고 별을 올리고, 액자·반짝이·칭호를 달면 올라가요. 높을수록 뽐내기 대회 점수가 잘 나와요'); }; }
+  } catch (e) {}
+  return r;
+};
+/* v40: dress polish */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
