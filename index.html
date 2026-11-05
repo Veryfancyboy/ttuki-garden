@@ -1945,6 +1945,43 @@ body.phone{background:#FFE4CC}
 #app .order .rew .en38{display:inline-flex;align-items:center;margin-left:4px;font-size:.82em}
 #app .order .rew .en38 img{height:1.25em;margin-right:1px}
 
+
+/* v39: app feel */
+html,body{overscroll-behavior:none}
+#app{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+#app input,#app textarea,#app [contenteditable]{-webkit-user-select:text;user-select:text}
+#app img{-webkit-user-drag:none}
+#rot39{display:none;position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147482000;background:linear-gradient(#D7E9F8,#FFF1DA);flex-direction:column;align-items:center;justify-content:center;gap:10px;font-family:'Jua',sans-serif;color:#4A2A1E;text-align:center}
+#rot39 b{font-weight:400;font-size:22px}
+#rot39 span{font-size:15px;color:#7A5A44}
+#rot39 .r39f{width:64px;height:64px;border-radius:50%;box-shadow:0 0 0 3px #fff}
+#rot39 .r39ph{width:34px;height:56px;border:4px solid #4A2A1E;border-radius:9px;position:relative;animation:r39 1.8s ease-in-out infinite}
+#rot39 .r39ph i{position:absolute;left:50%;bottom:4px;width:9px;height:3px;margin-left:-4.5px;border-radius:2px;background:#4A2A1E}
+@keyframes r39{0%,30%{transform:rotate(-90deg)}60%,100%{transform:rotate(0)}}
+@media (orientation: landscape) and (max-height: 520px) and (pointer: coarse){#rot39{display:flex}}
+#app #set .box.set39{padding:16px 16px 12px}
+#app #set .h39{font-family:'Jua',sans-serif;font-size:23px;color:#4A2A1E;text-align:center;margin:0 0 4px}
+#app #set .sec39{margin-top:12px}
+#app #set .st39{font-family:'Jua',sans-serif;font-size:15.5px;color:#9A7A62;margin:0 4px 6px}
+#app #set .row39{display:flex;gap:8px}
+#app #set .row39 .btn{flex:1;height:42px;font-size:16px;margin:0;min-width:0;padding:0 4px;white-space:nowrap}
+#app #set .ab39{margin-top:14px;background:rgba(255,246,226,.85);border-radius:12px;padding:9px 12px;box-shadow:inset 0 0 0 1.5px rgba(160,120,80,.25)}
+#app #set .ab39 summary{font-family:'Jua',sans-serif;font-size:16px;color:#6A4A3A;cursor:pointer;list-style:none;outline:none}
+#app #set .ab39 summary::-webkit-details-marker{display:none}
+#app #set .ab39 summary::after{content:'  펼치기';font-size:13.5px;color:#A88A72}
+#app #set .ab39[open] summary::after{content:'  접기'}
+#app #set .ab39t{font-family:'Gowun Dodum','Jua',sans-serif;font-size:15px;line-height:22px;color:#46291D;margin-top:6px;word-break:keep-all}
+#app #set .ab39t b{font-family:'Jua',sans-serif;font-weight:400}
+#app #set .cl39{margin-top:14px}
+#app #set .cl39 .btn{height:48px;font-size:19px}
+#app #set .rr39{text-align:center;margin-top:8px}
+#app #set .btn.rs39{display:inline-block;width:auto;height:auto;background:none !important;box-shadow:none !important;border:0 !important;color:#B8402C !important;font-size:15px;line-height:20px;padding:8px 12px;text-decoration:underline;text-underline-offset:3px;text-shadow:none !important}
+#app #set .r39b{margin-top:8px}
+#app #set .box.set39{max-height:770px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#app #set .ab39t{max-height:200px;overflow-y:auto}
+#app .shk39{animation:shk39 .4s ease}
+@keyframes shk39{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -6203,6 +6240,95 @@ document.addEventListener('click', function fb38(e) {
   if (db) { const key = db.dataset.dm; try { if (key === 'all') { toast(S.dm.got.all ? '오늘 선물은 이미 받았어요' : '오늘의 할 일 3개를 모두 하면 받아요'); } else { const i = +key, m = DM[i], n = Math.min(m.goal, S.dm[m.k] || 0); toast(S.dm.got[i] ? '이미 받았어요. 내일 새로 바뀌어요' : m.n + ' ' + n + '/' + m.goal + ' · 다 하면 받아요'); } } catch (x) {} try { sfx('tap', { rate: .7, vol: .4 }); } catch (x) {} }
 }, true);
 /* v38b: counter */
+
+
+/* ===== v39: feels like an app (back button, no pull-to-refresh / long-press menu, rotate hint, tidy settings) ===== */
+/* 1) Android back: close the top window, else go back to 만들기, else ask once more before leaving */
+(function back39() {
+  if (!window.history || !history.pushState) return;
+  let armed = false, exitAsk = 0;
+  const arm = () => { if (armed) return; try { history.pushState({ g39: 1 }, '', location.href); armed = true; } catch (e) {} };
+  document.addEventListener('pointerdown', arm, true);
+  document.addEventListener('keydown', arm, true);
+  const vis = el => el && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden';
+  const clickClose = (root) => {
+    const cands = [...root.querySelectorAll('.btn, [id$="-x"], .ovgo, .x, .close')].filter(b => vis(b));
+    const pref = cands.find(b => /^(닫기|나중에|다 했어요|알겠어요|좋아!?|확인|기다리기|돌아가기)$/.test((b.textContent || '').trim()));
+    const b = pref || null;
+    if (b) { b.click(); return true; }
+    const dim = root.querySelector('.ovdim, .dim'); if (dim && typeof dim.onclick === 'function') { dim.onclick(); return true; }
+    return false;
+  };
+  const closeTop = () => {
+    const sp = document.getElementById('sp38'); if (sp) return true;
+    const t = document.getElementById('toast'); if (t && t.classList.contains('tc') && vis(t)) { try { tq29Close(); } catch (e) { t.style.display = 'none'; } return true; }
+    const layers = ['pop', 'info2', 'set', 'wheel', 'story', 'stpick', 'shut'].map(id => document.getElementById(id)).concat([...document.querySelectorAll('.v23ov')]).filter(el => el && vis(el));
+    if (!layers.length) return false;
+    layers.sort((a, b) => (parseInt(getComputedStyle(b).zIndex, 10) || 0) - (parseInt(getComputedStyle(a).zIndex, 10) || 0));
+    const top = layers[0];
+    if (top.id === 'story') return true;
+    if (top.id === 'shut') { try { shutOpen(); } catch (e) {} return true; }
+    if (top.id === 'set') { const c = document.getElementById('b-close'); if (c) c.click(); else top.style.display = 'none'; return true; }
+    if (top.id === 'info2') { const c = document.getElementById('b-oclose'); if (c) c.click(); else top.style.display = 'none'; return true; }
+    if (top.id === 'wheel') { const c = document.getElementById('w-close'); if (c && vis(c)) c.click(); return true; }
+    if (top.id === 'pop') { const bs = [...top.querySelectorAll('#popbox .btn')]; const b = bs.find(x => /닫기|나중에|좋아|확인|알겠어요|기다리기/.test(x.textContent)) || (bs.length === 1 ? bs[0] : null); if (b) b.click(); return true; }
+    if (!clickClose(top)) top.style.display = 'none';
+    return true;
+  };
+  window.addEventListener('popstate', () => {
+    armed = false;
+    try {
+      if (closeTop()) { exitAsk = 0; return; }
+      const on = document.querySelector('.screen.on'); const id = on ? on.id : 'sc-main';
+      if (id === 'sc-yut' || id === 'sc-road') { go('event'); exitAsk = 0; return; }
+      if (id !== 'sc-main') { go('main'); exitAsk = 0; return; }
+      if (Date.now() - exitAsk > 2500) { exitAsk = Date.now(); toast('한 번 더 누르면 게임을 나가요'); try { setTimeout(arm, 0); } catch (e) {} }
+      else { history.back(); }
+    } catch (e) {}
+  });
+})();
+/* 2) no long-press image menu, no image dragging */
+document.addEventListener('contextmenu', e => { if (!(e.target && e.target.closest && e.target.closest('input,textarea'))) e.preventDefault(); }, true);
+document.addEventListener('dragstart', e => { if (e.target && e.target.tagName === 'IMG') e.preventDefault(); }, true);
+/* 3) rotate hint for phones held sideways */
+(function rot39() {
+  if (document.getElementById('rot39')) return;
+  const d = document.createElement('div'); d.id = 'rot39';
+  d.innerHTML = '<div class="r39ph"><i></i></div><img class="r39f" src="' + HEAD('ttuki') + '" alt=""><b>폰을 세로로 돌려 주세요</b><span>뚝이네 정원은 세로 화면에서 가장 잘 보여요</span>';
+  document.body.appendChild(d);
+})();
+/* 4) settings: sections instead of one long wall */
+function set39() {
+  const box = document.querySelector('#set .box'); if (!box || box.dataset.v39) return;
+  const $id = id => document.getElementById(id);
+  const ids = ['b-snd', 'b-vib', 'b-nick', 'b-pin', 'b-inst', 'b-howto', 'b-odds2', 'b-rank', 'b-reset', 'b-close'];
+  if (ids.some(id => !$id(id))) return;
+  box.dataset.v39 = 1;
+  const about = document.createElement('div'); about.className = 'ab39t';
+  const h = box.querySelector('.h');
+  /* collect the intro text (text nodes and <b> between the heading and the first button) */
+  const nodes = []; let n = h ? h.nextSibling : null;
+  while (n && !(n.nodeType === 1 && (n.classList.contains('btn') || n.querySelector && n.querySelector('.btn')))) { const nx = n.nextSibling; nodes.push(n); n = nx; }
+  nodes.forEach(x => about.appendChild(x));
+  const mk = (cls, html) => { const e = document.createElement('div'); e.className = cls; if (html) e.innerHTML = html; return e; };
+  const sec = (title, list) => { const s = mk('sec39', '<div class="st39">' + title + '</div>'); const r = mk('row39'); list.forEach(id => { const b = $id(id); if (b) { b.style.cssText = ''; r.appendChild(b); } }); s.appendChild(r); return s; };
+  const frag = document.createDocumentFragment();
+  const head = mk('h39', '설정'); frag.appendChild(head);
+  frag.appendChild(sec('소리와 진동', ['b-snd', 'b-vib']));
+  { const s2 = sec('내 기록', ['b-nick', 'b-pin']); const r2 = mk('row39 r39b'); const bi = $id('b-inst'); if (bi) { bi.style.cssText = ''; r2.appendChild(bi); } s2.appendChild(r2); frag.appendChild(s2); }
+  frag.appendChild(sec('도움말', ['b-howto', 'b-odds2', 'b-rank']));
+  const det = document.createElement('details'); det.className = 'ab39'; det.innerHTML = '<summary>게임 안내</summary>'; det.appendChild(about); frag.appendChild(det);
+  const cl = $id('b-close'); cl.style.cssText = ''; const crow = mk('row39 cl39'); crow.appendChild(cl); frag.appendChild(crow);
+  const rs = $id('b-reset'); rs.style.cssText = ''; rs.classList.add('rs39'); const rrow = mk('rr39'); rrow.appendChild(rs); frag.appendChild(rrow);
+  const day = $id('b-day');
+  [...box.childNodes].forEach(x => { if (x !== day) x.remove(); });
+  box.appendChild(frag); if (day) { day.style.display = 'none'; box.appendChild(day); }
+  box.classList.add('set39');
+}
+setTimeout(set39, 0);
+/* 5) locked friends in the staff list shake a little when tapped */
+document.addEventListener('click', e => { const s = e.target && e.target.closest && e.target.closest('#stpick .spc.lock'); if (!s) return; s.classList.remove('shk39'); void s.offsetWidth; s.classList.add('shk39'); setTimeout(() => s.classList.remove('shk39'), 420); try { sfx('tap', { rate: .7, vol: .4 }); } catch (x) {} try { buzz(15); } catch (x) {} }, true);
+/* v39: app feel */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
