@@ -2001,6 +2001,25 @@ html,body{overscroll-behavior:none}
 #app #sc-dress #pieces{margin-top:-4px}
 #app #stage .plate.pv40on .psc{display:none}
 
+
+/* v41: weasel boss */
+#app #thief.boss41{width:128px;height:118px;margin:-66px 0 0 -64px}
+#app #thief.boss41 img{width:118px;height:118px;object-fit:cover;border-radius:50%;margin-left:5px;box-shadow:0 0 0 3px #FFE066,0 0 0 6px #C62A20;filter:drop-shadow(0 0 12px rgba(255,60,40,.85));animation:boss41 1.1s ease-in-out infinite}
+@keyframes boss41{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.06) rotate(3deg)}}
+#app #thief.boss41::before{display:none}
+#app #thief .hp41{display:none;position:absolute;left:50%;top:-18px;transform:translateX(-50%);width:112px;height:13px;border-radius:7px;background:#3A1C12;box-shadow:0 0 0 2px #FFE066,0 2px 0 2px rgba(74,42,30,.35);overflow:hidden;pointer-events:none;z-index:3}
+#app #thief.boss41 .hp41{display:block}
+#app #thief .hp41 i{display:block;height:100%;width:100%;background:linear-gradient(#FF8A6B,#D3261B);transition:width .2s}
+#app #thief.boss41 .tn{right:-2px;top:-4px}
+#app #thief.boss41.shield::after{content:'';position:absolute;left:50%;top:50%;width:156px;height:156px;margin:-78px 0 0 -78px;border-radius:50%;background:radial-gradient(circle,rgba(160,225,255,.10) 56%,rgba(120,200,255,.55) 68%,rgba(255,255,255,.95) 71%,rgba(120,200,255,0) 75%);pointer-events:none;animation:sh41 .95s ease-in-out}
+@keyframes sh41{0%{transform:scale(.6);opacity:0}25%{transform:scale(1.04);opacity:1}100%{transform:scale(1);opacity:.95}}
+#app #thief41d{position:absolute;z-index:8;width:76px;height:60px;margin:-36px 0 0 -38px;display:none;transition:left .18s ease-out,top .18s ease-out;touch-action:none;cursor:pointer}
+#app #thief41d img{width:76px;height:auto;pointer-events:none;animation:wig .5s ease-in-out infinite;filter:drop-shadow(0 3px 0 rgba(74,42,30,.35));opacity:.92}
+#app #boss41{position:absolute;left:0;right:0;top:330px;z-index:79;display:none;pointer-events:none;text-align:center}
+#app #boss41 .bb{display:inline-flex;align-items:center;gap:10px;padding:8px 22px 8px 10px;background:linear-gradient(#FF6B5E,#B81F16);color:#fff;font-family:'Jua',sans-serif;font-size:30px;line-height:36px;border-radius:16px;box-shadow:0 0 0 3px #FFE066,0 10px 26px rgba(0,0,0,.35);text-shadow:0 2px 0 rgba(90,10,5,.45);animation:bb41 1.7s ease-out forwards}
+#app #boss41 .bb img{width:58px;height:58px;border-radius:50%;box-shadow:0 0 0 3px #fff;object-fit:cover}
+@keyframes bb41{0%{transform:scale(.3);opacity:0}14%{transform:scale(1.12);opacity:1}24%{transform:scale(1)}80%{opacity:1;transform:scale(1)}100%{opacity:0;transform:translateY(-24px)}}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -6405,6 +6424,83 @@ v29Dress = function () {
   return r;
 };
 /* v40: dress polish */
+
+
+/* ===== v41: weasel is harder, the boss is a different fight (own face, HP bar, shield, decoy when angry, entrance, big bundle) ===== */
+THIEF.need = 6; THIEF.needGate = 5; THIEF.lim = 12; THIEF.limGate = 14;
+const BOSS41 = { need: 14, needGate: 12, lim: 22, limGate: 24, cycle: 2600, guard: 950 };
+th33Gap = function (T) { const base = T.boss ? (T.rage ? 600 : 820) : 900; return Math.max(T.boss ? 360 : 420, base - T.hits * (T.boss ? 30 : 110)) + Math.random() * 180; };
+const TH41_IMG = (() => { try { return I('ui_thief'); } catch (e) { return ''; } })();
+const BOSS41_IMG = (typeof CH2_URL !== 'undefined' ? CH2_URL : 'https://veryfancyboy.github.io/ttuki-garden/char/') + 'head_wboss.webp';
+let boss41Ready = false; (function () { const im = new Image(); im.onload = () => { boss41Ready = true; }; im.src = BOSS41_IMG; })();
+function th41Parts() {
+  const el = document.getElementById('thief'); if (!el) return null;
+  if (!el.querySelector('.hp41')) el.insertAdjacentHTML('beforeend', '<div class="hp41"><i></i></div>');
+  let d = document.getElementById('thief41d');
+  if (!d) { d = document.createElement('div'); d.id = 'thief41d'; d.innerHTML = '<img alt="">'; d.querySelector('img').src = TH41_IMG; el.parentNode.appendChild(d); d.addEventListener('pointerdown', e => { e.stopPropagation(); e.preventDefault(); const xy = elXY(d); boom(xy[0], xy[1] - 30, '가짜다!', '#FFE066', 24); try { sfx('tap', { rate: .6, vol: .6 }); } catch (x) {} th41Decoy(true); }); }
+  let b = document.getElementById('boss41');
+  if (!b) { b = document.createElement('div'); b.id = 'boss41'; el.parentNode.appendChild(b); }
+  return { el, d, b };
+}
+function th41Decoy(move) {
+  const P = th41Parts(), T = S.thief; if (!P) return;
+  if (!T || !T.boss || !T.rage || T.hid || T.bite || !document.getElementById('sc-main').classList.contains('on')) { P.d.style.display = 'none'; return; }
+  if (move || T.dAt === undefined || T.dAt === T.at) { const cells = S.b.map((x, i) => i).filter(i => i !== T.at && !(S.b[i] && (S.b[i].vine || S.b[i].k === 'fog' || S.b[i].k === 'lock'))); T.dAt = cells[Math.floor(Math.random() * cells.length)]; }
+  const tile = document.querySelector('#board .t[data-i="' + T.dAt + '"]'); if (!tile) { P.d.style.display = 'none'; return; }
+  const r = tile.getBoundingClientRect(), a = app.getBoundingClientRect();
+  P.d.style.display = 'block'; P.d.style.left = ((r.left - a.left) / scale + r.width / scale / 2) + 'px'; P.d.style.top = ((r.top - a.top) / scale + r.height / scale / 2) + 'px';
+}
+function th41Entrance() {
+  const P = th41Parts(); if (!P) return;
+  P.b.innerHTML = '<div class="bb">' + (boss41Ready ? '<img src="' + BOSS41_IMG + '" alt="">' : '') + '족제비 두목 등장!</div>';
+  P.b.style.display = 'block'; setTimeout(() => { P.b.style.display = 'none'; }, 1700);
+  try { shake(1.2); } catch (e) {} try { buzz([60, 40, 90]); } catch (e) {} try { sfx('heartbeat', { vol: .9 }); } catch (e) {}
+}
+let th41Last = -1;
+setInterval(() => {
+  try {
+    const P = th41Parts(); if (!P) return; const T = S.thief, el = P.el, img = el.querySelector('img');
+    const boss = !!(T && T.boss);
+    el.classList.toggle('boss41', boss);
+    if (img) { const want = boss && boss41Ready ? BOSS41_IMG : TH41_IMG; if (want && img.getAttribute('src') !== want) img.setAttribute('src', want); }
+    if (!T) { P.d.style.display = 'none'; el.classList.remove('shield'); th41Last = -1; return; }
+    if (boss) {
+      const hp = Math.max(0, T.need - T.hits) / T.need; el.querySelector('.hp41 i').style.width = Math.round(hp * 100) + '%';
+      if (!T.sh0) T.sh0 = Date.now();
+      const paused = (typeof th33CardOpen === 'function' && th33CardOpen()) || ovOpen();
+      if (paused) T.sh0 += 90;
+      const ph = (Date.now() - T.sh0) % BOSS41.cycle; const sh = !T.bite && !T.hid && ph > BOSS41.cycle - BOSS41.guard;
+      if (sh !== !!T.shield) { T.shield = sh; el.classList.toggle('shield', sh); if (sh) { try { sfx('tick', { rate: .6, vol: .5 }); } catch (e) {} } }
+      if (!T.rage && T.hits >= Math.ceil(T.need / 2)) { T.rage = 1; const xy = elXY(el); boom(xy[0], xy[1] - 60, '두목이 화났다!', '#FF6B5E', 26); try { shake(.8); } catch (e) {} }
+      if (T.at !== th41Last) { th41Last = T.at; th41Decoy(true); } else th41Decoy(false);
+    } else { P.d.style.display = 'none'; el.classList.remove('shield'); }
+  } catch (e) {}
+}, 90);
+thiefTick = (o0 => function (now) {
+  const had = !!S.thief; const r = o0.apply(this, arguments);
+  if (!had && S.thief && S.thief.boss) {
+    const gate = !!(S.gd && S.gd.r && S.gd.r.gate);
+    S.thief.need = gate ? BOSS41.needGate : BOSS41.need; S.thief.lim = gate ? BOSS41.limGate : BOSS41.lim; S.thief.sh0 = Date.now(); S.thief.rage = 0; save(); placeThief();
+    th41Entrance();
+  }
+  return r;
+})(thiefTick);
+const th41Hit = thiefHit;
+thiefHit = function (e) {
+  const T = S.thief, el = document.getElementById('thief');
+  if (T && T.boss && T.shield) { if (e) { e.stopPropagation(); e.preventDefault(); } const xy = elXY(el); boom(xy[0], xy[1] - 48, '막았다!', '#9ED8FF', 24); try { sfx('fail', { vol: .5 }); } catch (x) {} try { buzz(20); } catch (x) {} return; }
+  const wasBoss = !!(T && T.boss), lv = S.lv || 1;
+  th41Hit.call(this, e);
+  if (wasBoss && !S.thief) {
+    try {
+      const extra = grant({ coin: 150 + 10 * lv, key: 1, scrap: 30 }); save(); renderAll();
+      const P = th41Parts(); if (P) P.d.style.display = 'none';
+      setTimeout(() => showPop({ title: '두목을 물리쳤어요!', big: boss41Ready ? '<img class="sp" src="' + BOSS41_IMG + '" style="filter:grayscale(.2)">' : '', name: '두목의 큰 보따리', text: '추가 선물: ' + extra + '<br>두목은 세 번째 족제비마다 나타나요', btns: [['좋아!', 'yellow', null]] }), 700);
+    } catch (x) {}
+  }
+};
+(function () { const el = document.getElementById('thief'); if (el) { el.removeEventListener('pointerdown', th41Hit); el.addEventListener('pointerdown', thiefHit); } })();
+/* v41: weasel boss */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
