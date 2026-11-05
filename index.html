@@ -2040,6 +2040,16 @@ html,body{overscroll-behavior:none}
 #app .topbar #b-today42::before,#app .topbar #b-rank42::before{content:'';position:absolute;left:-3px;right:-3px;top:-8px;bottom:-8px}
 #app #stage .plate .psl40{font-size:.95em}
 
+
+/* v43: fixes */
+#app #th43b{position:absolute;left:0;right:0;top:236px;z-index:76;display:none;pointer-events:none;text-align:center}
+#app #th43b b,#app #th43b span{display:block;margin:0 auto;width:max-content;font-family:'Jua',sans-serif;font-weight:400}
+#app #th43b b{font-size:24px;line-height:30px;color:#fff;background:linear-gradient(#6A4636,#3E2418);padding:3px 18px;border-radius:14px;box-shadow:0 0 0 2.5px #FFE066,0 6px 16px rgba(0,0,0,.3)}
+#app #th43b span{margin-top:5px;font-size:16px;line-height:20px;color:#4A2A1E;background:rgba(255,250,240,.95);padding:2px 12px;border-radius:10px}
+#app #th43b.boss b{background:linear-gradient(#FF6B5E,#B81F16);font-size:27px}
+#app #th43b.go{animation:th43 2.2s ease-out forwards}
+@keyframes th43{0%{opacity:0;transform:translateY(10px) scale(.9)}12%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -6569,6 +6579,44 @@ const _renderAll42 = renderAll;
 renderAll = function () { const r = _renderAll42.apply(this, arguments); dots42(); return r; };
 setTimeout(dots42, 0);
 /* v42: homes */
+
+
+/* ===== v43: fixes. (1) 오늘 할 일 updates the moment you claim. (2) weasel: no tap-blocking cards when it appears, boss count matches ===== */
+/* 1) the today sheet re-renders right after any tap inside it */
+document.addEventListener('click', e => {
+  const ov = document.getElementById('today42'); if (!ov || ov.style.display !== 'block') return;
+  if (!(e.target && e.target.closest && e.target.closest('#td42b'))) return;
+  setTimeout(() => { try { renderEvent(); } catch (x) {} try { dots42(); } catch (x) {} try { renderHelper(); } catch (x) {} }, 30);
+  setTimeout(() => { try { renderEvent(); } catch (x) {} try { dots42(); } catch (x) {} }, 400);
+}, false);
+/* 2) weasel appears: a quick banner over the board instead of cards that swallow the first taps */
+let TH43 = 0;
+const _toast43 = toast;
+toast = function (m) {
+  const s = String(m);
+  if (Date.now() < TH43 && /족제비 도둑이 나타났어요|이리저리 뛰어다녀요|덩치 큰 족제비 두목/.test(s)) return;
+  return _toast43.apply(this, arguments);
+};
+function th43Banner(boss, need) {
+  let b = document.getElementById('th43b');
+  if (!b) { b = document.createElement('div'); b.id = 'th43b'; document.getElementById('app').appendChild(b); }
+  b.className = boss ? 'boss' : '';
+  b.innerHTML = boss ? '<b>족제비 두목!</b><span>' + need + '번 때려요 · 파란 방패일 땐 안 맞아요</span>' : '<b>족제비 도둑!</b><span>' + need + '번 눌러 쫓아내요</span>';
+  b.style.display = 'block'; b.classList.remove('go'); void b.offsetWidth; b.classList.add('go');
+  clearTimeout(th43Banner.h); th43Banner.h = setTimeout(() => { b.style.display = 'none'; }, 2200);
+}
+thiefTick = (o0 => function (now) {
+  const had = !!S.thief;
+  const bossNext = !had && ((S.tst && S.tst.seen) || 0) % 3 === 2;
+  const keep = { need: THIEF.need, needGate: THIEF.needGate, lim: THIEF.lim, limGate: THIEF.limGate };
+  if (bossNext) { THIEF.need = BOSS41.need - 2; THIEF.needGate = BOSS41.needGate - 2; THIEF.lim = BOSS41.lim - 3; THIEF.limGate = BOSS41.limGate - 3; }
+  TH43 = Date.now() + 1500;
+  let r; try { r = o0.apply(this, arguments); } finally { Object.assign(THIEF, keep); }
+  if (!had && S.thief) th43Banner(!!S.thief.boss, S.thief.need - S.thief.hits);
+  else TH43 = 0;
+  return r;
+})(thiefTick);
+/* v43: fixes */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
