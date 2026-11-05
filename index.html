@@ -11,6 +11,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#F4837A">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="뚝이네 정원 (데모)">
 <meta property="og:description" content="같은 걸 겹쳐 키우고, 엉망이 된 정원을 같이 고쳐요">
@@ -1718,6 +1721,20 @@ body.phone{background:#FFE4CC}
 #app #toast.tc.bump{animation:v29tbump .32s ease-out !important}
 @keyframes v29tbump{0%{transform:translate(-50%,-50%) scale(1)}40%{transform:translate(-50%,-50%) scale(1.04)}100%{transform:translate(-50%,-50%) scale(1)}}
 /* v29c: guide card above effects */
+
+
+/* v30: install card */
+#app .v23ov.v30{z-index:95}
+#app .v30 .inbox{top:150px;padding:20px 20px 16px}
+#app .v30 .inico{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 auto 10px}
+#app .v30 .inico img{width:84px;height:84px;border-radius:20px;object-fit:cover;box-shadow:0 4px 10px rgba(60,30,10,.3);border:2px solid #fff}
+#app .v30 .inico span{font-family:'Jua';font-size:15px;line-height:18px;color:#6B4A36}
+#app .v30 .ovs{font-size:16.5px;line-height:24px;margin-top:8px;word-break:keep-all}
+#app .v30 .ovs b{font-weight:400;color:#C2410C}
+#app .v30 .inmsg{min-height:20px;margin-top:8px;font-family:'Jua';font-size:15px;line-height:20px;color:#2E8B3E;word-break:keep-all}
+#app .v30 .inlater{margin-top:12px;font-family:'Jua';font-size:16px;line-height:22px;color:#8A6A54;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#app .v30set{display:flex;margin:0 0 8px}
+#app .v30set .btn{flex:1;height:46px;font-size:17px;margin:0;background:linear-gradient(180deg,#FFE68A,#F8C537)}
 
 </style>
 </head>
@@ -5174,6 +5191,113 @@ toast = (o0 => function (msg) {
   tq29Catch().style.display = 'block';
 })(toast);
 /* v29b: guide messages centered, tap to close */
+
+
+/* ===== v30: home screen install + move out of in-app browsers together with the save ===== */
+const LIVE30 = 'https://veryfancyboy.github.io/ttuki-garden/';
+const UA30 = navigator.userAgent || '';
+const IS_IOS30 = /iPhone|iPad|iPod/.test(UA30) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const IS_AND30 = /Android/i.test(UA30);
+const INAPP30 = (() => {
+  if (/KAKAOTALK/i.test(UA30)) return 'kakao';
+  if (/Telegram/i.test(UA30) || typeof window.TelegramWebviewProxy !== 'undefined' || typeof window.TelegramWebview !== 'undefined') return 'telegram';
+  if (/Instagram|FBAN|FBAV|FB_IAB|Line\/|NAVER\(inapp|DaumApps|everytimeApp|Twitter|Snapchat/i.test(UA30)) return 'app';
+  if (IS_AND30 && /; wv\)/.test(UA30)) return 'webview';
+  return '';
+})();
+const APPNAME30 = { kakao: '카카오톡', telegram: '텔레그램', app: '앱', webview: '앱' };
+const STANDALONE30 = () => (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+const BASE30 = /^https?:/.test(location.protocol) ? location.origin + location.pathname : LIVE30;
+let bip30 = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); bip30 = e; const ov = document.getElementById('inst'); if (ov && ov.style.display === 'block') instRender(); else instAuto(); });
+window.addEventListener('appinstalled', () => { bip30 = null; try { S.inst = 2; save(); } catch (e) {} const ov = document.getElementById('inst'); if (ov) ov.style.display = 'none'; toast('홈 화면에 뚝이네 정원이 생겼어요! 다음부터는 아이콘으로 들어오세요'); });
+try { if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {}
+try { if (navigator.storage && navigator.storage.persist && !INAPP30 && location.protocol === 'https:') navigator.storage.persist().catch(() => {}); } catch (e) {}
+/* pack the save into the address so it travels with the player to Chrome */
+const b64u30 = u => { let b = ''; for (let i = 0; i < u.length; i++) b += String.fromCharCode(u[i]); return btoa(b).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+const unb64u30 = s => { s = s.replace(/-/g, '+').replace(/_/g, '/'); s += '='.repeat((4 - s.length % 4) % 4); const bin = atob(s); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; };
+async function v30Pack() {
+  const js = JSON.stringify(S);
+  try { if (window.CompressionStream) { const st = new Blob([js]).stream().pipeThrough(new CompressionStream('deflate-raw')); return 'z' + b64u30(new Uint8Array(await new Response(st).arrayBuffer())); } } catch (e) {}
+  return 'p' + b64u30(new TextEncoder().encode(js));
+}
+async function v30Unpack(s) {
+  const t = s[0], u = unb64u30(s.slice(1));
+  if (t === 'z') { const st = new Blob([u]).stream().pipeThrough(new DecompressionStream('deflate-raw')); return JSON.parse(await new Response(st).text()); }
+  return JSON.parse(new TextDecoder().decode(u));
+}
+async function v30ChromeURL() {
+  let url = LIVE30;
+  try { save(); const p = await v30Pack(); if (p.length < 60000) url = LIVE30 + '?imp=' + p; } catch (e) {}
+  if (INAPP30 === 'kakao') return { url, go: 'kakaotalk://web/openExternal?url=' + encodeURIComponent(url) };
+  if (IS_AND30) { const u = new URL(url); return { url, go: 'intent://' + u.host + u.pathname + u.search + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(url) + ';end' }; }
+  return { url, go: '' };
+}
+async function v30OpenChrome() {
+  const { url, go } = await v30ChromeURL();
+  if (go) { instMsg('크롬으로 옮기는 중이에요...'); location.href = go; return; }
+  try { await navigator.clipboard.writeText(url); instMsg('주소를 복사했어요. 사파리를 열고 주소창에 붙여 넣어 주세요'); } catch (e) { instMsg('사파리를 열고 주소창에 ' + LIVE30 + ' 을 넣어 주세요'); }
+}
+/* arriving in Chrome with a packed save */
+async function v30Import(search, store, goTo, clean) {
+  const q = new URLSearchParams(search); const imp = q.get('imp'); if (!imp) return 'none';
+  try {
+    const s = await v30Unpack(imp);
+    if (s && s.v === 4 && (s.done || 0) >= (S.done || 0)) { const js = JSON.stringify(s); store(KEY, js); store(KEY + '_bk', js); try { sessionStorage.setItem('v30moved', '1'); } catch (e) {} goTo(BASE30); return 'imported'; }
+    clean(); return 'kept-local';
+  } catch (e) { clean(); return 'bad'; }
+}
+if (/^https?:/.test(location.protocol) && /[?&]imp=/.test(location.search)) v30Import(location.search, (k, v) => localStorage.setItem(k, v), u => location.replace(u), () => { try { history.replaceState(null, '', BASE30); } catch (x) {} });
+window.__v30 = { get bip() { return !!bip30; }, inapp: INAPP30, ios: IS_IOS30, and: IS_AND30, standalone: STANDALONE30() };
+/* install card */
+function instMsg(t) { const e = document.getElementById('in-msg'); if (e) { e.textContent = t; e.classList.remove('flash'); void e.offsetWidth; e.classList.add('flash'); } }
+function instRender() {
+  const ov = document.getElementById('inst'); if (!ov) return;
+  let h = '', btn = '', act = null, sub = '';
+  if (INAPP30) {
+    h = APPNAME30[INAPP30] + ' 안에서는 기록이 지워질 수 있어요';
+    sub = IS_IOS30 ? '오른쪽 아래 나침반 버튼을 눌러 <b>사파리로 열고</b>, 공유 버튼 → <b>홈 화면에 추가</b>를 눌러 주세요.' : '크롬으로 옮기면 <b>하던 기록도 같이</b> 가요. 크롬에서 홈 화면에 넣어 두면 앱처럼 열려요.';
+    btn = IS_IOS30 ? '주소 복사하기' : '크롬에서 열기'; act = v30OpenChrome;
+  } else if (bip30) {
+    h = '홈 화면에 뚝이네 정원 넣기'; sub = '아이콘을 누르면 앱처럼 바로 열리고, <b>기록도 안전하게</b> 남아요.'; btn = '홈 화면에 추가';
+    act = async () => { const e = bip30; if (!e) return; try { e.prompt(); const r = await e.userChoice; if (r && r.outcome === 'accepted') { S.inst = 2; save(); ov.style.display = 'none'; } else instMsg('나중에 설정에서 다시 넣을 수 있어요'); } catch (x) {} bip30 = null; };
+  } else if (IS_IOS30) {
+    h = '홈 화면에 뚝이네 정원 넣기'; sub = '아래 가운데 <b>공유 버튼</b>(네모에 위쪽 화살표) → <b>홈 화면에 추가</b> → 오른쪽 위 <b>추가</b>를 눌러 주세요. 아이콘으로 열면 기록이 안전하게 남아요.'; btn = '알겠어요'; act = () => { ov.style.display = 'none'; };
+  } else {
+    h = '홈 화면에 뚝이네 정원 넣기'; sub = '브라우저 오른쪽 위 <b>점 세 개</b> 메뉴에서 <b>홈 화면에 추가</b> 또는 <b>앱 설치</b>를 눌러 주세요. 아이콘으로 열면 기록이 안전하게 남아요.'; btn = '알겠어요'; act = () => { ov.style.display = 'none'; };
+  }
+  ov.innerHTML = '<div class="ovdim"></div><div class="ovbox inbox"><div class="inico"><img src="' + (HEAD('ttuki') || '') + '" alt=""><span>뚝이네 정원</span></div><div class="ovh">' + h + '</div><div class="ovs">' + sub + '</div><div class="inmsg" id="in-msg"></div><div class="btn red h ovgo" id="in-go">' + btn + '</div><div class="inlater" id="in-x">' + (INAPP30 ? '그냥 여기서 할게요' : '나중에') + '</div></div>';
+  ov.querySelector('#in-go').onclick = () => { try { act && act(); } catch (e) {} };
+  ov.querySelector('#in-x').onclick = () => { ov.style.display = 'none'; };
+}
+function instOpen() { const ov = ovEl('inst'); ov.classList.add('v30'); ov.style.display = 'block'; instRender(); S.instN = (S.instN || 0) + 1; S.instDay = ydayKey(); save(); }
+let instShownNow = false;
+function instAuto() {
+  try {
+    if (instShownNow || STANDALONE30() || S.inst === 2) return;
+    if (INAPP30) { instShownNow = true; instOpen(); return; }
+    const moved = (() => { try { return sessionStorage.getItem('v30moved') === '1'; } catch (e) { return false; } })();
+    if (!(IS_AND30 || IS_IOS30)) return;
+    if (!moved && (S.instDay === ydayKey() || (S.instN || 0) >= 6)) return;
+    if (!moved && ((S.done || 0) < 1 || tgOn())) return;
+    if (!bip30 && !IS_IOS30 && !moved) return;
+    const blocked = ['pop', 'story', 'nick', 'rank', 'set', 'info2', 'gacha', 'deco', 'show', 'shut'].some(id => { const e = document.getElementById(id); return e && getComputedStyle(e).display !== 'none'; });
+    if (blocked && !moved) return;
+    instShownNow = true; instOpen();
+  } catch (e) { console.error(e); }
+}
+setTimeout(instAuto, 700);
+setInterval(instAuto, 15000);
+setTimeout(() => { try { if (sessionStorage.getItem('v30moved') === '1') { sessionStorage.removeItem('v30moved'); toast(APPNAME30.telegram + '에서 하던 기록을 그대로 옮겨 왔어요!'); } } catch (e) {} }, 900);
+/* settings: one more button */
+(function v30Set() {
+  const box = document.querySelector('#set .box'); if (!box || document.getElementById('b-inst')) return;
+  const row = document.createElement('div'); row.className = 'v30set';
+  row.innerHTML = '<div class="btn cream h" id="b-inst">홈 화면에 추가하기</div>';
+  const v23 = box.querySelector('.v23set'); box.insertBefore(row, v23 || box.firstChild);
+  row.querySelector('#b-inst').onclick = () => { $('#set').style.display = 'none'; instOpen(); };
+})();
+/* v30: home screen + move with save */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
