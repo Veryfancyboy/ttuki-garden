@@ -2103,6 +2103,43 @@ html,body{overscroll-behavior:none}
 #app .o44n span{white-space:nowrap}
 #app .o44n img{width:20px;height:20px}
 
+
+/* v45: grow */
+#app #gsum .gs45h{display:flex;align-items:baseline;gap:6px}
+#app #gsum .gs45h b{font-weight:400;font-size:17px;color:#4A2A1E;white-space:nowrap}
+#app #gsum .gs45h small{font-size:14.5px;color:#9A7A62;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#app #gsum .gs45h i{font-style:normal;font-size:14.5px;color:#C2410C;text-decoration:underline;text-underline-offset:2px;cursor:pointer;white-space:nowrap}
+#app #gsum .gs45c{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:6px}
+#app .c45{display:flex;align-items:center;gap:3px;padding:2px 6px 2px 3px;min-width:0;border-radius:14px;background:#FFF3DA;box-shadow:inset 0 0 0 1.5px rgba(200,150,80,.35)}
+#app .c45 img{width:22px;height:22px;object-fit:contain;flex:none}
+#app .c45 b{font-weight:400;font-size:14.5px;color:#6A4A3A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#app .c45 em{font-style:normal;font-size:15px;color:#C2410C;white-space:nowrap;margin-left:auto}
+#app .c45.z{opacity:.45}
+#app .gs45e{font-size:15px;color:#9A7A62}
+#app #glist .gc.lock45,#app #glist .gc.genl45{display:block;cursor:pointer}
+#app .l45h b{font-weight:400;font-size:17px;color:#4A2A1E;margin-right:6px}
+#app .l45h small{font-size:14.5px;color:#9A7A62}
+#app .l45f{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+#app .l45f span{width:48px;height:48px;border-radius:50%;background:#EADCC8;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px rgba(160,120,80,.3)}
+#app .l45f img{width:100%;height:100%;object-fit:cover;filter:brightness(0) opacity(.35)}
+#app .l45f.g span{border-radius:12px;background:#F1E6D6}
+#app .l45f.g img{width:40px;height:40px;object-fit:contain;filter:grayscale(1) opacity(.55)}
+#app .od45{display:flex;gap:6px;margin-top:4px}
+#app .od45 span{display:flex;flex-direction:column;align-items:center;min-width:38px}
+#app .od45 img{width:30px;height:30px;object-fit:contain}
+#app .od45 b{font-weight:400;font-size:14.5px;line-height:16px;color:#4A2A1E}
+#app .od45 em{font-style:normal;font-size:14.5px;line-height:16px;color:#2F8A3A}
+#app .od45 em::before{content:'→'}
+#app .od45 span.z{opacity:.4}
+#app #glist .gc.up45{animation:up45 .6s ease-out}
+@keyframes up45{0%{transform:scale(1)}30%{transform:scale(1.04);box-shadow:0 0 0 3px #FFE066}100%{transform:scale(1)}}
+#app .l45f.e span{position:relative;background:#FFF3DA;overflow:visible}
+#app .l45f.e img{width:38px;height:38px;object-fit:contain;filter:grayscale(.6) opacity(.7)}
+#app .l45f.e i{position:absolute;right:-2px;bottom:-2px;font-style:normal;font-size:15px;line-height:20px;width:20px;height:20px;text-align:center;border-radius:50%;background:#9A7A62;color:#fff}
+#app #popbox .fl45{display:inline-flex;align-items:center;gap:6px}
+#app #popbox .fl45 img{width:24px;height:24px;object-fit:contain}
+#app #popbox .fl45.z{opacity:.45}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -6803,6 +6840,67 @@ renderFarm = (o0 => function () {
 renderAll = (o0 => function () { const r = o0.apply(this, arguments); try { const F = S.farm && f44(); if (F) { const ng = document.querySelector('.nav > div[data-s="garden"]'); if (ng && (F.ord || []).some(o => canOrd44(o))) ng.classList.add('n'); } } catch (e) {} return r; })(renderAll);
 try { if (S.farm) { f44(); fillOrders44(); } } catch (e) {}
 /* v44: farm market */
+
+
+/* ===== v45: 키우기 tidy-up (bonus chips with icons, unmet friends in one card, item odds as pictures) ===== */
+const FXS45 = { coin: '주문', regen: '충전', enmax: '최대', song: '떡', scrap: '천 조각', good: '좋은 재료', jump: '껑충', key: '열쇠', free: '공짜 톡' };
+const FXI45 = { coin: 'c09_coin_pouch', regen: 'c10_songpyeon', enmax: 'c10_songpyeon', song: 'c25_rice1', scrap: 'ui_scraps', good: 'ui_star_gold', jump: 'ui_star_blue', key: 'ui_key', free: 'c04_nest' };
+let GS45open = false;
+const _renderGrow45 = renderGrow;
+renderGrow = function () {
+  const r = _renderGrow45.apply(this, arguments);
+  try {
+    /* 1) bonus summary: only what you actually get, with pictures */
+    const gs = document.getElementById('gsum');
+    if (gs) {
+      const keys = ['coin', 'regen', 'enmax', 'song', 'scrap', 'good', 'jump', 'key', 'free'];
+      const on = keys.filter(u => fx(u));
+      const chip = u => '<span class="c45"><img src="' + (I(FXI45[u]) || '') + '" alt=""><b>' + FXS45[u] + '</b><em>' + fxText(u, fx(u)) + '</em></span>';
+      const top = on.sort((a, b) => keys.indexOf(a) - keys.indexOf(b)).slice(0, 6);
+      gs.innerHTML = '<div class="gs45h"><b>지금 받는 보너스</b><small>친구 · 옷 · 세트 · 정원</small><i id="gs45t">모두 보기</i></div><div class="gs45c">' + (top.map(chip).join('') || '<span class="gs45e">아직 없어요. 친구와 옷을 키우면 생겨요</span>') + '</div>';
+      gs.querySelector('#gs45t').onclick = () => { showPop({ title: '지금 받는 보너스', text: keys.map(u => '<span class="fl45' + (fx(u) ? '' : ' z') + '"><img src="' + (I(FXI45[u]) || '') + '" alt="">' + FX[u][0] + ' <b>' + fxText(u, fx(u)) + '</b></span>').join('<br>') + '<br><small>친구 특기, 옷, 세트, 정원에서 모여요</small>', btns: [['닫기', 'yellow', null]] }); };
+    }
+    const list = document.getElementById('glist'); if (!list) return r;
+    /* 2) friends not met yet: one card with their shadows */
+    if (S.gtab === 'sp') {
+      const locks = [...list.querySelectorAll('.gc.lock')];
+      if (locks.length) {
+        const miss = SP_ORDER.filter(k => !S.sp[k]);
+        const card = document.createElement('div'); card.className = 'gc lock45';
+        card.innerHTML = '<div class="l45h"><b>아직 못 만난 친구 ' + miss.length + '명</b><small>빛나는 알을 깨우면 만나요</small></div><div class="l45f e">' + miss.map(k => '<span><img src="' + I('c03_egg3') + '" alt=""><i>?</i></span>').join('') + '</div>';
+        locks[0].before(card); locks.forEach(x => x.remove());
+        card.onclick = () => toast('빛나는 알(3단계 알)을 깨우면 친구가 나와요. 한 번 만난 친구가 또 나오면 우정 구슬이 생겨요');
+      }
+    }
+    /* 3) household tools: odds as item pictures, now → next */
+    if (S.gtab !== 'sp' && S.gtab !== 'it') {
+      list.querySelectorAll('.gc.gen').forEach(card => {
+        const b = card.querySelector('[data-up^="gen:"]'); if (!b) return; const g = b.dataset.up.split(':')[1];
+        const L = S.glv[g] || 1, mx = L >= GEN_MAX, cur = genOdds(g), nx = mx ? null : genOddsAt(L + 1), chain = GEN[g].k;
+        const gv = card.querySelector('.gval'), sm = card.querySelector('.gtx small'); if (!gv) return;
+        if (sm) sm.textContent = '누르면 나오는 단계';
+        gv.outerHTML = '<div class="od45">' + [0, 1, 2, 3].map(i => '<span class="' + (cur[i] < 0.5 && (!nx || nx[i] < 0.5) ? 'z' : '') + '"><img src="' + I(CH[chain][i]) + '" alt=""><b>' + Math.round(cur[i]) + '%</b>' + (nx && Math.round(nx[i]) !== Math.round(cur[i]) ? '<em>' + Math.round(nx[i]) + '%</em>' : '') + '</span>').join('') + '</div>';
+      });
+      const lockedGens = GEN_ORDER.filter(g => !(g === 'nest' || g === 'basket' || S.unl[g]));
+      if (lockedGens.length && !list.querySelector('.genl45')) {
+        const c = document.createElement('div'); c.className = 'gc genl45';
+        c.innerHTML = '<div class="l45h"><b>아직 들이지 않은 살림 ' + lockedGens.length + '개</b><small>만들기 판의 잠긴 칸을 눌러 동전으로 들여요</small></div><div class="l45f g">' + lockedGens.map(g => '<span><img src="' + I(GEN[g].img) + '" alt=""></span>').join('') + '</div>';
+        const note = list.querySelector('.gnote'); if (note) note.before(c); else list.appendChild(c);
+      }
+    }
+  } catch (e) {}
+  return r;
+};
+/* level-up moment: a burst on the card that grew */
+['upSpirit', 'upStar', 'upGen'].forEach(fn => {
+  try {
+    const f0 = window.__noop45 || null;
+    const orig = eval(fn); if (typeof orig !== 'function') return;
+    const wrapped = function (id) { const before = JSON.stringify([S.splv, S.star, S.glv]); const r = orig.apply(this, arguments); try { if (JSON.stringify([S.splv, S.star, S.glv]) !== before) { const el = document.querySelector('#glist [data-up$=":' + id + '"]'); const card = el && el.closest('.gc'); if (card) { card.classList.remove('up45'); void card.offsetWidth; card.classList.add('up45'); const xy = elXY(card); burst(xy[0], xy[1], 26, { sp: 5 }); } } } catch (e) {} return r; };
+    eval(fn + ' = wrapped');
+  } catch (e) {}
+});
+/* v45: grow */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
