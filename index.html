@@ -2411,6 +2411,50 @@ html,body{overscroll-behavior:none}
 #app.hud50 #f47-pill{position:relative;height:32px !important;font-size:19px !important;padding:0 12px 0 31px !important;gap:0 !important}
 #app.hud50 #f47-pill > img{position:absolute !important;grid-row:auto !important;grid-column:auto !important;left:-9px !important;top:50% !important;width:38px !important;height:38px !important;max-width:none !important;margin:0 !important;transform:translateY(-50%) !important;object-fit:contain;filter:drop-shadow(0 2px 1.5px rgba(30,15,5,.35));pointer-events:none}
 
+
+/* v51: bag */
+#app #board .t.act51{animation:act51g 1.6s ease-in-out infinite}
+@keyframes act51g{0%,100%{box-shadow:inset 0 0 0 2.5px rgba(255,201,60,.95),0 0 6px 1px rgba(255,214,90,.55)}50%{box-shadow:inset 0 0 0 2.5px rgba(255,236,140,1),0 0 14px 4px rgba(255,214,90,.95)}}
+#app #board .t.act51.sel{animation:none;box-shadow:inset 0 0 0 3px #FF8C3C,0 0 14px 4px rgba(255,170,60,.95)}
+#app #board .t.act51::after{content:'';position:absolute;right:2px;top:2px;width:15px;height:15px;pointer-events:none;background:radial-gradient(circle,#fff 0 16%,rgba(255,236,150,.95) 28%,rgba(255,236,150,0) 68%);animation:act51tw 1.2s ease-in-out infinite}
+@keyframes act51tw{0%,100%{transform:scale(.6) rotate(0);opacity:.7}50%{transform:scale(1.15) rotate(45deg);opacity:1}}
+#app #info .act.act51b{animation:act51b 1.1s ease-in-out infinite}
+@keyframes act51b{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+#app #info .act.bag51b{display:flex;align-items:center;gap:2px;padding:0 10px 0 6px}
+#app #info .act.bag51b img{width:26px;height:26px;object-fit:contain;max-width:none}
+#app #fev{left:74px !important}
+#app #bag51c{position:absolute;left:6px;top:667px;height:22px;z-index:3;display:flex;align-items:center;padding:0 8px 0 26px;border-radius:12px;background:linear-gradient(180deg,#FFFFFF,#FFF0D8);box-shadow:inset 0 0 0 1.5px rgba(176,118,64,.5),0 2px 0 rgba(176,118,64,.35);font-family:'Jua';cursor:pointer;box-sizing:border-box}
+#app #bag51c::before{content:'';position:absolute;left:-4px;right:-4px;top:-8px;bottom:-4px}
+#app #bag51c img{position:absolute;left:-5px;top:50%;width:30px;height:30px;transform:translateY(-50%);object-fit:contain;max-width:none;filter:drop-shadow(0 1px 1px rgba(60,30,10,.3));pointer-events:none}
+#app #bag51c b{font-weight:400;font-size:15px;line-height:1;color:#6A4A30;white-space:nowrap}
+#app #bag51c.full b{color:#C2410C}
+#app #bag51c.pop{animation:bag51pop .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes bag51pop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+#app .bag51fly{position:absolute;z-index:80;width:46px;height:46px;object-fit:contain;transform:translate(-50%,-50%);transition:left .4s ease-in,top .4s ease-in,transform .4s ease-in,opacity .4s;pointer-events:none}
+#app #bag51{position:absolute;inset:0;z-index:62;background:rgba(40,25,15,.45);display:none}
+#app .b51p{position:absolute;left:10px;right:10px;bottom:96px;border-radius:22px;background:#FFF8EC;box-shadow:0 6px 0 rgba(74,42,30,.25);padding:12px 14px 14px;box-sizing:border-box}
+#app .b51h{display:flex;align-items:center;gap:6px}
+#app .b51h img{width:34px;height:34px;object-fit:contain}
+#app .b51h b{font-family:'Jua';font-weight:400;font-size:22px;color:#4A2A1E}
+#app .b51h small{flex:1;font-family:'Jua';font-size:16px;color:#9A7A62}
+#app .b51h i{font-style:normal;font-family:'Jua';font-size:16px;color:#C2410C;text-decoration:underline;cursor:pointer;padding:4px}
+#app .b51g{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:10px 0 8px}
+#app .b51s{position:relative;aspect-ratio:1;border-radius:14px;background:#EFE5D6;box-shadow:inset 0 0 0 1.5px rgba(160,120,80,.25);display:flex;align-items:center;justify-content:center;cursor:pointer}
+#app .b51s img{width:78%;height:78%;object-fit:contain}
+#app .b51s i{position:absolute;left:4px;bottom:2px;font-style:normal;font-family:'Jua';font-size:14px;color:#4A2A1E;text-shadow:0 0 2px #fff,0 0 2px #fff}
+#app .b51s.on{background:#FFF1C8;box-shadow:inset 0 0 0 3px #FFC93C,0 0 10px rgba(255,201,60,.7)}
+#app .b51s.e{cursor:default;background:#F6EFE4}
+#app .b51s.lk{cursor:default;background:#E2D6C4;opacity:.7}
+#app .b51s.lk span{font-family:'Jua';font-size:14px;color:#8A6A52}
+#app .b51f{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(200,150,80,.35)}
+#app .b51f b{flex:1;font-family:'Jua';font-weight:400;font-size:17px;color:#4A2A1E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#app .b51f .btn{height:38px;padding:0 12px;font-size:16px;display:flex;align-items:center;white-space:nowrap}
+#app .b51x{font-family:'Jua';font-size:15px;color:#9A7A62;text-decoration:underline;cursor:pointer;padding:4px 2px;white-space:nowrap}
+#app .b51n{font-family:'Gowun Dodum';font-size:14.5px;line-height:19px;color:#6A4A3A;padding:2px 2px 0}
+#app .b51u{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding:8px 10px;border-radius:14px;background:#FFF1D6}
+#app .b51u span{font-family:'Jua';font-size:16px;color:#4A2A1E}
+#app .b51u .btn{height:38px;padding:0 12px;font-size:16px;display:flex;align-items:center;white-space:nowrap}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -2901,7 +2945,7 @@ function tapTile(i) {
 }
 function spawn(gi) {
   if (S.en < 1 && !feverOn()) { enOut(); sfx('tick', { rate: .6 }); shake(.3); return; }
-  const t = emptyNear(gi); if (t < 0) { toast('판이 꽉 찼어요. 같은 걸 겹치거나 주문을 보내 보세요'); return; }
+  const t = emptyNear(gi); if (t < 0) { toast('판이 꽉 찼어요. 같은 걸 겹치거나 보관함에 넣어 보세요'); return; }
   const g = S.b[gi].g, freeTap = feverOn() || (!tgOn() && chance('free')); if (!freeTap) S.en--; S.tap[g]++; dmAdd('t');
   let lv = tgOn() ? 1 : rollGen(g); const od = genOdds(g); if (feverOn() && Math.random() < .35) lv = Math.min(4, lv + 1);
   S.b[t] = (!tgOn() && S.done >= 4 && Math.random() < GIFT_P) ? { k: 'gift' } : { k: GEN[g].k, lv }; sel = t;
@@ -7662,7 +7706,7 @@ completeOrder = (o0 => function (idx, el) {
   const miss = []; o.need.forEach(([k, lv, c]) => { for (let n = countOnBoard(k, lv); n < c; n++) miss.push([k, lv]); });
   if (!miss.length) { ttukMode = false; renderAll(); return o0.call(this, idx, tk49Ord(idx) || el); }
   const empty = S.b.map((x, i) => x ? -1 : i).filter(i => i >= 0);
-  if (empty.length < miss.length) { toast('판에 빈칸이 ' + (miss.length - empty.length) + '개 더 있어야 해요. 물건을 팔거나 겹쳐서 자리를 만들어요'); return; }
+  if (empty.length < miss.length) { toast('판에 빈칸이 ' + (miss.length - empty.length) + '개 더 있어야 해요. 겹치거나 보관함에 넣어서 자리를 만들어요'); return; }
   S.ttuk--; ttukMode = false; tk49Busy = true;
   for (let n = empty.length - 1; n > 0; n--) { const m = Math.floor(Math.random() * (n + 1)); [empty[n], empty[m]] = [empty[m], empty[n]]; }
   const put = miss.map(([k, lv], n) => { const i = empty[n]; S.b[i] = { k, lv }; lastFx[i] = 'pop'; return i; });
@@ -7721,6 +7765,82 @@ renderLv = (o0 => function () {
 })(renderLv);
 try { renderLv(); } catch (e) {}
 /* v50: hud */
+
+
+/* ===== v51: 물건 칸 개편 - 깨울 수 있는 알/열 수 있는 물건은 판 위에서 반짝, 한 번 더 누르면 바로 깨우기, 팔기 대신 보관함 ===== */
+const BAG51_COST = [1000, 3000, 8000, 20000, 50000], BAG51_MAX = 9;
+function bag51() { S.bag = S.bag || { n: 4, items: [] }; S.bag.items = S.bag.items || []; S.bag.n = S.bag.n || 4; return S.bag; }
+const act51 = x => !!(x && x.lv && !x.vine && ACT_AT[x.k] && x.lv >= ACT_AT[x.k]);
+const store51 = x => !!(x && x.lv && !x.vine && x.k !== 'gen' && x.k !== 'fog' && x.k !== 'lock' && CH[x.k]);
+/* 1) on the board: ready-to-wake eggs / ready-to-open items glow */
+renderBoard = (o0 => function () {
+  const r = o0.apply(this, arguments);
+  try { document.querySelectorAll('#board .t').forEach(t => { const i = +t.dataset.i; t.classList.toggle('act51', act51(S.b[i])); }); } catch (e) {}
+  return r;
+})(renderBoard);
+/* 2) tap a selected ready item again = wake / open */
+tapTile = (o0 => function (i) {
+  const x = S.b[i];
+  if (!ttukMode && !(typeof tk49Busy !== 'undefined' && tk49Busy) && sel === i && act51(x)) { try { sfx('tap', { rate: 1.2 }); } catch (e) {} actOn(i); return; }
+  const r = o0.apply(this, arguments);
+  try { if (!ttukMode && sel === i && act51(S.b[i]) && !S.act51tip) { S.act51tip = 1; save(); setTimeout(() => toast((S.b[i] && S.b[i].k === 'egg' ? '빛나는 알은 한 번 더 누르면 바로 깨워요' : '이 물건은 한 번 더 누르면 바로 열어요') + '. 판 위에서 반짝이는 게 그런 물건이에요'), 250); } } catch (e) {}
+  return r;
+})(tapTile);
+/* 3) the card: no 팔기, big wake/open button, 보관 for the rest */
+renderHelper = (o0 => function () {
+  const r = o0.apply(this, arguments);
+  try {
+    const inf = document.getElementById('info'), x = sel >= 0 ? S.b[sel] : null;
+    const sb = document.getElementById('b-sell');
+    if (sb && x && store51(x)) { const b = document.createElement('div'); b.className = 'btn cream act bag51b h'; b.id = 'b-bag51'; b.innerHTML = '<img src="' + I('x7_bojagi_gift') + '" alt="">보관'; sb.replaceWith(b); b.onclick = e => { e.stopPropagation(); bag51Put(sel); }; }
+    else if (sb) sb.remove();
+    const ba = document.getElementById('b-act');
+    if (ba && x && act51(x)) { ba.classList.add('act51b'); ba.innerHTML = ACT_NAME[x.k]; }
+    bag51Chip();
+    const nb = inf && inf.querySelector('.itx b'); if (nb && typeof fitPill === 'function') fitPill(nb, 14);
+  } catch (e) {}
+  return r;
+})(renderHelper);
+/* 4) 보관함 */
+function bag51Chip() {
+  let c = document.getElementById('bag51c');
+  if (!c) { c = document.createElement('div'); c.id = 'bag51c'; c.onclick = e => { e.stopPropagation(); bag51Open(); }; const sc = document.getElementById('sc-main'); if (sc) sc.appendChild(c); }
+  const B = bag51(); c.innerHTML = '<img src="' + I('x7_bojagi_gift') + '" alt=""><b>' + B.items.length + '/' + B.n + '</b>'; c.classList.toggle('full', B.items.length >= B.n);
+}
+function bag51Put(i) {
+  const x = S.b[i], B = bag51(); if (!store51(x)) return;
+  if (B.items.length >= B.n) { toast('보관함이 가득 찼어요 (' + B.items.length + '/' + B.n + '). 꺼내 쓰거나 칸을 늘려요'); bag51Open(); return; }
+  let xy = null; try { xy = elXY(document.querySelector('#board .t[data-i="' + i + '"]')); } catch (e) {}
+  S.b[i] = null; if (sel === i) sel = -1; B.items.push({ k: x.k, lv: x.lv }); save(); renderAll();
+  try { sfx('tap', { rate: .9 }); const c = document.getElementById('bag51c'); if (xy && c) { const to = elXY(c), fl = document.createElement('img'); fl.className = 'bag51fly'; fl.src = itemImg(x); const a = document.getElementById('app'); fl.style.left = xy[0] + 'px'; fl.style.top = xy[1] + 'px'; a.appendChild(fl); requestAnimationFrame(() => { fl.style.left = to[0] + 'px'; fl.style.top = to[1] + 'px'; fl.style.transform = 'translate(-50%,-50%) scale(.35)'; fl.style.opacity = '.4'; }); setTimeout(() => { fl.remove(); c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }, 420); } } catch (e) {}
+}
+function bag51Open() {
+  let el = document.getElementById('bag51');
+  if (!el) { el = document.createElement('div'); el.id = 'bag51'; el.onclick = e => { if (e.target === el) bag51Close(); }; document.getElementById('app').appendChild(el); }
+  el.style.display = 'block'; el.dataset.pick = ''; bag51Render();
+}
+function bag51Close() { const el = document.getElementById('bag51'); if (el) el.style.display = 'none'; }
+function bag51Render() {
+  const el = document.getElementById('bag51'); if (!el || el.style.display !== 'block') return; const B = bag51(), pick = el.dataset.pick === '' ? -1 : +el.dataset.pick;
+  let cells = ''; for (let j = 0; j < BAG51_MAX; j++) { const it = B.items[j]; cells += j < B.n ? (it ? '<div class="b51s' + (pick === j ? ' on' : '') + '" data-j="' + j + '"><img src="' + I(CH[it.k][it.lv - 1]) + '" alt=""><i>' + it.lv + '</i></div>' : '<div class="b51s e"></div>') : '<div class="b51s lk"><span>잠김</span></div>'; }
+  const it = pick >= 0 ? B.items[pick] : null;
+  const foot = it ? '<div class="b51f"><b>' + CHN[it.k][it.lv - 1] + '</b><div class="btn red h" data-a="out">판에 꺼내기</div><div class="b51x" data-a="toss">버리기</div></div>' : '<div class="b51n">판이 꽉 찰 때 물건을 여기 넣어 두세요. 판의 물건을 고르고 보관을 누르면 들어와요</div>';
+  const up = B.n < BAG51_MAX ? '<div class="b51u"><span>칸 늘리기 (' + B.n + ' → ' + (B.n + 1) + ')</span><div class="btn yellow h" data-a="up">동전 ' + BAG51_COST[B.n - 4].toLocaleString() + '</div></div>' : '';
+  el.innerHTML = '<div class="b51p"><div class="b51h"><img src="' + I('x7_bojagi_gift') + '" alt=""><b>보관함</b><small>' + B.items.length + '/' + B.n + '</small><i data-a="close">닫기</i></div><div class="b51g">' + cells + '</div>' + foot + up + '</div>';
+  el.querySelectorAll('[data-j]').forEach(s => s.onclick = e => { e.stopPropagation(); el.dataset.pick = el.dataset.pick === s.dataset.j ? '' : s.dataset.j; bag51Render(); });
+  el.querySelectorAll('[data-a]').forEach(b => b.onclick = e => { e.stopPropagation(); bag51Act(b.dataset.a, pick); });
+}
+function bag51Act(a, j) {
+  const B = bag51(), el = document.getElementById('bag51');
+  if (a === 'close') { bag51Close(); return; }
+  if (a === 'up') { const cost = BAG51_COST[B.n - 4]; if (S.coin < cost) { toast('동전이 ' + (cost - S.coin).toLocaleString() + '개 모자라요'); return; } S.coin -= cost; B.n++; save(); try { sfx('restore'); } catch (e) {} toast('보관함 칸이 늘었어요 (' + B.n + '칸)'); renderAll(); bag51Render(); return; }
+  const it = B.items[j]; if (!it) return;
+  if (a === 'out') { const t = S.b.findIndex((x, i) => !x && i < 56); if (t < 0) { toast('판에 빈칸이 없어요. 같은 걸 겹쳐서 자리를 만들어요'); return; } B.items.splice(j, 1); S.b[t] = { k: it.k, lv: it.lv }; sel = t; lastFx[t] = 'pop'; el.dataset.pick = ''; save(); renderAll(); bag51Render(); try { sfx('tap'); } catch (e) {} if (!B.items.length) bag51Close(); return; }
+  if (a === 'toss') { showPop({ title: '버릴까요?', big: '<img class="pit" src="' + I(CH[it.k][it.lv - 1]) + '">', name: CHN[it.k][it.lv - 1], text: '보관함에서 없어져요. 되돌릴 수 없어요.', btns: [['버리기', 'red', () => { const k = B.items.indexOf(it); if (k >= 0) B.items.splice(k, 1); el.dataset.pick = ''; save(); renderAll(); bag51Render(); }], ['그만두기', 'yellow', null]] }); return; }
+}
+ovOpen = (o0 => function () { return o0() || (() => { const e = document.getElementById('bag51'); return !!e && e.style.display === 'block'; })(); })(ovOpen);
+renderAll = (o0 => function () { const r = o0.apply(this, arguments); try { bag51Chip(); bag51Render(); } catch (e) {} return r; })(renderAll);
+/* v51: bag */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
