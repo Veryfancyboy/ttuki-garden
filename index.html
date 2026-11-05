@@ -2342,6 +2342,20 @@ html,body{overscroll-behavior:none}
 #app #thief41d.b48{width:128px;height:118px;margin:-66px 0 0 -64px}
 #app #thief41d.b48 img{width:118px;height:118px;object-fit:cover;border-radius:50%;margin-left:5px;box-shadow:0 0 0 3px #FFE066,0 0 0 6px #C62A20;filter:drop-shadow(0 0 12px rgba(255,60,40,.85));animation:boss41 1.1s ease-in-out infinite;opacity:1}
 
+
+/* v49: ttuk */
+#app .tk49club{position:absolute;z-index:80;width:84px;height:84px;margin:-92px 0 0 -10px;pointer-events:none;transform-origin:20% 90%;animation:tk49sw .62s cubic-bezier(.3,.6,.4,1) forwards;filter:drop-shadow(0 4px 2px rgba(74,42,30,.35))}
+#app .tk49club.big{width:104px;height:104px;margin:-112px 0 0 -14px}
+@keyframes tk49sw{0%{transform:rotate(-70deg) scale(.7);opacity:0}25%{opacity:1}55%{transform:rotate(25deg) scale(1.05)}70%{transform:rotate(12deg) scale(1)}100%{transform:rotate(18deg);opacity:0}}
+#app .tk49slot{position:absolute;z-index:81;min-width:58px;height:40px;margin:-62px 0 0 -29px;padding:0 8px;box-sizing:border-box;border-radius:12px;background:linear-gradient(#FFF6D6,#FFE27A);box-shadow:0 0 0 3px #C98A1A,0 4px 0 rgba(74,42,30,.3);font-family:'Jua';font-size:24px;line-height:40px;text-align:center;color:#7A3A0A;pointer-events:none;white-space:nowrap}
+#app .tk49slot.land{animation:tk49land .35s cubic-bezier(.2,1.6,.4,1)}
+#app .tk49slot.top{background:linear-gradient(#FFE9A0,#F6C343);color:#B3261E;box-shadow:0 0 0 3px #B3261E,0 0 18px 4px rgba(255,214,80,.9)}
+@keyframes tk49land{0%{transform:scale(.6)}100%{transform:scale(1)}}
+#app.tk49 #orders .order .seat{animation:tk49wig .7s ease-in-out infinite;filter:drop-shadow(0 0 7px #FFE066) drop-shadow(0 0 3px #FFD23F)}
+@keyframes tk49wig{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+#app.tk49 #thief img{filter:drop-shadow(0 0 10px #FFE066) drop-shadow(0 3px 0 rgba(74,42,30,.35))}
+#app #info #tk49o{color:#C2410C;text-underline-offset:2px;cursor:pointer;margin-left:4px}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -3747,7 +3761,7 @@ const CTX = [
   { id: 'en0', pri: 1, mode: 'info', when: () => false, tgt: () => '#p-en', text: '에너지가 다 떨어졌어. <b>30초</b>마다 1개씩 차. 기다리는 동안 겹칠 수 있는 걸 겹쳐 봐!' },
   { id: 'glow', mode: 'info', when: () => scrOn('main') && lvCells('egg', 3).length > 0, tgt: () => tileQ(lvCells('egg', 3)[0]), text: '<b>빛나는 알</b>이 됐어! 누르고 아래 <b>깨우기</b>를 누르면 새 친구가 나와. 주문에 써도 돼.' },
   { id: 'sew4', mode: 'info', when: () => scrOn('main') && lvCells('sew', 4).length > 0, tgt: () => tileQ(lvCells('sew', 4)[0]), text: '<b>매듭 장식</b>이 됐어! 누르고 아래 <b>상자 열기</b>를 누르면 옷이 나와.' },
-  { id: 'ttuk', mode: 'info', when: () => scrOn('main') && S.done >= 4 && S.ttuk > 0, tgt: () => '#b-ttuk', text: '<b>뚝딱</b> 방망이! 누르고 알이나 재료를 고르면 바로 <b>한 단계</b> 올려 줘. 주문 3개마다 1번 더 생겨.' },
+  { id: 'ttuk', mode: 'info', when: () => scrOn('main') && S.done >= 4 && S.ttuk > 0, tgt: () => '#b-ttuk', text: '<b>뚝딱</b> 방망이! 누르고 <b>손님</b>을 고르면 모자란 물건이 바로 나와. <b>물건</b>을 고르면 2단계 넘게 껑충! 주문 3개마다 1번 생겨.' },
   { id: 'gen', mode: 'info', when: () => scrOn('main') && !(S.unl && S.unl.teapot) && S.coin >= GEN.teapot.cost && S.b.some(x => x && x.k === 'lock' && x.g === 'teapot'), tgt: () => tileQ(S.b.findIndex(x => x && x.k === 'lock' && x.g === 'teapot')), text: '동전으로 <b>찻주전자</b>를 살 수 있어! 사면 새 재료가 나오고 새 손님도 와.' },
   { id: 'grow', mode: 'info', when: () => navOpen('grow') && S.done >= 4 && canUpgrade(), tgt: () => navQ('grow'), text: '<b>키우기</b>가 열렸어! 동전으로 친구와 살림을 키우면 더 많이 벌어.' },
   { id: 'album', mode: 'info', when: () => navOpen('album') && Object.keys(S.sp).length > 1, tgt: () => navQ('album'), text: '새 친구를 만났어! <b>도감</b>에서 만난 친구들을 볼 수 있어.' },
@@ -7548,6 +7562,93 @@ thiefHit = function (e) {
 };
 (function () { const el = document.getElementById('thief'); if (el) { el.removeEventListener('pointerdown', th48Hit); el.addEventListener('pointerdown', thiefHit); } })();
 /* v48: weasel harder */
+
+
+/* ===== v49: 뚝딱 개편 - 손님에게: 모자란 물건이 나와서 바로 배달 / 물건에: 2단계 60% · 3단계 30% · 최고 단계 10% / 족제비에: 한 방에 절반 ===== */
+const TK49 = [[2, 60], [3, 30], [9, 10]];
+let tk49Busy = false;
+function tk49Roll() { const r = Math.random() * 100; let acc = 0; for (const [j, p] of TK49) { acc += p; if (r < acc) return j; } return 2; }
+function tk49Pos(el) { const r = el.getBoundingClientRect(), a = document.getElementById('app').getBoundingClientRect(); return { x: (r.left - a.left) / scale + r.width / scale / 2, y: (r.top - a.top) / scale + r.height / scale / 2 }; }
+function tk49Club(el, big) {
+  try { const p = tk49Pos(el), c = document.createElement('img'); c.className = 'tk49club' + (big ? ' big' : ''); c.src = I('c11_club'); c.style.left = p.x + 'px'; c.style.top = p.y + 'px'; document.getElementById('app').appendChild(c); setTimeout(() => c.remove(), 700); } catch (e) {}
+  setTimeout(() => { try { sfx('hammer', { vol: .9 }); } catch (e) {} try { shake(big ? .6 : .35); } catch (e) {} try { buzz(35); } catch (e) {} }, 260);
+}
+function tk49Ord(idx) { const o = S.orders[idx]; return o ? document.querySelector('#orders .order[data-oid="' + o.id + '"]') : null; }
+function tk49Odds() {
+  showPop({ title: '뚝딱 쓰는 곳', big: '<img class="pit" src="' + I('c11_club') + '">', text: '<b>손님</b>을 누르면 그 주문에 모자란 물건이 모두 나와서 바로 배달돼요. 판에 빈칸이 있어야 해요.<br><b>물건</b>을 누르면 한 번에 껑충 올라가요: 2단계 60% · 3단계 30% · 최고 단계 10%<br><b>족제비</b>를 누르면 한 방에 절반을 깎아요. 두목 방패도 뚫어요.<br>뚝딱은 주문 3개마다 1개 생겨요(최대 5개). 돈으로 팔지 않아요.', btns: [['알겠어요', 'yellow', null]] });
+}
+/* 1) items: a big jump with a roll you can see */
+function tk49Slot(tile, lv0, lv1, top, done) {
+  const p = tk49Pos(tile), s = document.createElement('div'); s.className = 'tk49slot'; s.style.left = p.x + 'px'; s.style.top = p.y + 'px'; document.getElementById('app').appendChild(s);
+  const seq = ['+2', '+3', '최고', '+2', '+3', '최고', '+2', '+3'], fin = top ? '최고!' : '+' + (lv1 - lv0);
+  let n = 0; const iv = setInterval(() => { s.textContent = seq[n % seq.length]; n++; try { sfx('tick', { vol: .35, rate: 1 + n * 0.04 }); } catch (e) {} }, 70);
+  setTimeout(() => { clearInterval(iv); s.textContent = fin; s.classList.add('land'); if (top) s.classList.add('top'); try { sfx(top ? 'reveal_big' : 'reveal', { vol: .8 }); } catch (e) {} try { const xy = elXY(tile); burst(xy[0], xy[1], top ? 46 : 24, { sp: top ? 8 : 5 }); } catch (e) {} done(); setTimeout(() => s.remove(), 900); }, 760);
+}
+tapTile = (o0 => function (i) {
+  if (tk49Busy) return;
+  if (!ttukMode) return o0.apply(this, arguments);
+  const x = S.b[i];
+  if (!(x && x.lv && !x.vine)) return o0.apply(this, arguments);
+  if (x.lv >= MAXLV) { toast('이미 가장 높은 단계예요. 손님을 누르면 모자란 물건이 나와요'); return; }
+  const j = tk49Roll(), lv0 = x.lv, lv1 = j >= 9 ? MAXLV : Math.min(MAXLV, lv0 + j), top = lv1 === MAXLV;
+  S.ttuk--; ttukMode = false; tk49Busy = true; save(); renderAll();
+  const tile = document.querySelector('#board .t[data-i="' + i + '"]') || document.getElementById('board');
+  tk49Club(tile, top);
+  tk49Slot(tile, lv0, lv1, top, () => {
+    tk49Busy = false; const y = S.b[i]; if (!y || y !== x) { renderAll(); return; }
+    y.lv = lv1; lastFx[i] = 'pop'; sel = i; save(); renderAll(); discCheck(i);
+    const nm = CHN[y.k][y.lv - 1]; toast((top ? '대박! 최고 단계 ' : '뚝딱! ' + (lv1 - lv0) + '단계 껑충, ') + nm + iga(nm) + ' 됐어요');
+  });
+})(tapTile);
+/* 2) customers: the missing things appear and go straight out */
+completeOrder = (o0 => function (idx, el) {
+  if (!ttukMode) return o0.apply(this, arguments);
+  const o = S.orders[idx]; if (!o) return;
+  const miss = []; o.need.forEach(([k, lv, c]) => { for (let n = countOnBoard(k, lv); n < c; n++) miss.push([k, lv]); });
+  if (!miss.length) { ttukMode = false; renderAll(); return o0.call(this, idx, tk49Ord(idx) || el); }
+  const empty = S.b.map((x, i) => x ? -1 : i).filter(i => i >= 0);
+  if (empty.length < miss.length) { toast('판에 빈칸이 ' + (miss.length - empty.length) + '개 더 있어야 해요. 물건을 팔거나 겹쳐서 자리를 만들어요'); return; }
+  S.ttuk--; ttukMode = false; tk49Busy = true;
+  for (let n = empty.length - 1; n > 0; n--) { const m = Math.floor(Math.random() * (n + 1)); [empty[n], empty[m]] = [empty[m], empty[n]]; }
+  const put = miss.map(([k, lv], n) => { const i = empty[n]; S.b[i] = { k, lv }; lastFx[i] = 'pop'; return i; });
+  save(); tk49Club(el || document.getElementById('orders'), true);
+  setTimeout(() => { renderAll(); put.forEach(i => { try { discCheck(i); const t = document.querySelector('#board .t[data-i="' + i + '"]'); if (t) { const xy = elXY(t); burst(xy[0], xy[1], 14, { sp: 4 }); } } catch (e) {} }); try { const xy = elXY(tk49Ord(idx) || el); boom(xy[0], xy[1] - 30, '금 나와라 뚝딱!', '#FFE066', 26); } catch (e) {} }, 300);
+  setTimeout(() => { tk49Busy = false; const e2 = tk49Ord(idx); if (S.orders[idx] === o && ready(o)) completeOrder(idx, e2 || el); else renderAll(); }, 1000);
+})(completeOrder);
+/* 3) the weasel: half its hits in one swing, through the boss shield too */
+const th49Hit = thiefHit;
+thiefHit = function (e) {
+  const T = S.thief;
+  if (ttukMode && T && S.ttuk > 0) {
+    if (e) { e.stopPropagation(); e.preventDefault(); }
+    const el = document.getElementById('thief'), half = Math.ceil(T.need / 2), add = Math.min(half, T.need - T.hits);
+    S.ttuk--; ttukMode = false;
+    tk49Club(el, true);
+    try { const xy = elXY(el); boom(xy[0], xy[1] - 64, '뚝딱 한 방! -' + add, '#FFE066', 28); } catch (x) {}
+    T.hid = 0; T.shield = false; el.classList.remove('shield', 'hidev'); T.hits += add - 1;
+    const fake = { stopPropagation() {}, preventDefault() {} };
+    try { th49Hit.call(this, fake); } catch (x) { console.error(x); }
+    if (S.thief) { const n = Date.now(); S.thief.next = n + 1800; S.thief.nb = n + 1800; S.thief.lh = n; }
+    save(); renderAll();
+    return;
+  }
+  return th49Hit.apply(this, arguments);
+};
+(function () { const el = document.getElementById('thief'); if (el) { el.removeEventListener('pointerdown', th49Hit); el.addEventListener('pointerdown', thiefHit); } })();
+/* helper card text, first-time explanation, targets wiggle while 뚝딱 is on */
+renderHelper = (o0 => function () {
+  const r = o0.apply(this, arguments);
+  try {
+    document.getElementById('app').classList.toggle('tk49', !!ttukMode);
+    if (ttukMode) { const inf = document.getElementById('info'); inf.innerHTML = '<img src="' + I('c11_club') + '"><div class="itx"><b>어디에 쓸까요?</b><span>손님이나 물건을 눌러요 <u id="tk49o">확률</u></span></div>'; const u = document.getElementById('tk49o'); if (u) u.onclick = ev => { ev.stopPropagation(); tk49Odds(); }; }
+  } catch (e) {}
+  return r;
+})(renderHelper);
+(function () {
+  const b = document.getElementById('b-ttuk'); if (!b) return; const f0 = b.onclick;
+  b.onclick = function () { const was = ttukMode; const r = f0 && f0.apply(this, arguments); if (!was && ttukMode && !S.tk49) { S.tk49 = 1; save(); setTimeout(tk49Odds, 120); } return r; };
+})();
+/* v49: ttuk */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
