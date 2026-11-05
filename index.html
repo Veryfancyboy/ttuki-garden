@@ -2936,6 +2936,75 @@ html,body{overscroll-behavior:none}
 #app.ui60 .o44 .o44h{padding-right:4px}
 #app.ui60 #tracks .hd.prem{height:auto !important;min-height:34px}
 
+/* v61: button system - 높이 3단계 · 글자 3단계 · 양옆 여백 글자 한 자 이상 · 두 줄 버튼 위아래 여백 12 안팎 · 글자 위아래 가운데(주아 0.07em 보정) */
+#app.ui61 .btn, #app.ui61 .btn *{line-height:1}
+#app.ui61 #pop .pbtns .btn, #app.ui61 .ovgo, #app.ui61 #b-close{height:52px !important;min-height:52px !important;font-size:19px !important;line-height:1 !important;padding:2.7px 26px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #pop .pbtns .btn{min-width:150px}
+#app.ui61 #y-go, #app.ui61 #f47-go, #app.ui61 #s-go{height:56px !important;min-height:56px !important;font-size:21px !important;line-height:1 !important;padding:2.9px 28px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #bb53-go, #app.ui61 #sl52-go{height:68px !important;min-height:68px !important;font-size:24px !important;line-height:1 !important;padding:3px 28px 0 !important;box-sizing:border-box !important;display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;gap:6px !important}
+#app.ui61 #bb53-go > b, #app.ui61 #bb53-go > span:first-child, #app.ui61 #sl52-go > b, #app.ui61 #sl52-go > span:first-child{font-size:24px !important;line-height:1 !important}
+#app.ui61 #bb53-go > small, #app.ui61 #bb53-go > span:last-child:not(:first-child), #app.ui61 #sl52-go > small, #app.ui61 #sl52-go > span:last-child:not(:first-child){font-size:14.5px !important;line-height:1 !important;display:flex !important;align-items:center !important;gap:2px;margin:0 !important;height:14.5px}
+#app.ui61 #bb53-go small img, #app.ui61 #bb53-go > span img, #app.ui61 #sl52-go small img, #app.ui61 #sl52-go > span img{height:16.7px !important;width:auto !important;margin:0 1px 0 0 !important}
+#app.ui61 #g-1{height:64px !important;min-height:64px !important;font-size:19px !important;line-height:1 !important;padding:2.7px 18px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #g-10{height:64px !important;min-height:64px !important;font-size:19px !important;line-height:1 !important;padding:3px 14px 0 !important;box-sizing:border-box !important;display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;gap:5px !important}
+#app.ui61 #g-10 > b, #app.ui61 #g-10 > span:first-child{font-size:19px !important;line-height:1 !important}
+#app.ui61 #g-10 > small, #app.ui61 #g-10 > span:last-child:not(:first-child){font-size:13px !important;line-height:1 !important;display:flex !important;align-items:center !important;gap:2px;margin:0 !important;height:13px}
+#app.ui61 #g-10 small img, #app.ui61 #g-10 > span img{height:14.9px !important;width:auto !important;margin:0 1px 0 0 !important}
+#app.ui61 .shbtns .btn:not(.shopen), #app.ui61 #b-snd, #app.ui61 #b-vib, #app.ui61 #b-nick, #app.ui61 #b-pin, #app.ui61 #b-inst, #app.ui61 .b51u .btn, #app.ui61 .j47up .btn{height:44px !important;min-height:44px !important;font-size:16px !important;line-height:1 !important;padding:2.2px 18px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 .shbtns .btn{width:100px !important}
+#app.ui61 .shbtns .btn.shopen, #app.ui61 #gd-go{height:54px !important;min-height:54px !important;font-size:16px !important;line-height:1 !important;padding:4px 14px 0 !important;box-sizing:border-box !important;display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;gap:4px !important}
+#app.ui61 .shbtns .btn.shopen > b, #app.ui61 .shbtns .btn.shopen > span:first-child, #app.ui61 #gd-go > b, #app.ui61 #gd-go > span:first-child{font-size:16px !important;line-height:1 !important}
+#app.ui61 .shbtns .btn.shopen > small, #app.ui61 .shbtns .btn.shopen > span:last-child:not(:first-child), #app.ui61 #gd-go > small, #app.ui61 #gd-go > span:last-child:not(:first-child){font-size:13px !important;line-height:1 !important;display:flex !important;align-items:center !important;gap:2px;margin:0 !important;height:13px}
+#app.ui61 .shbtns .btn.shopen small img, #app.ui61 .shbtns .btn.shopen > span img, #app.ui61 #gd-go small img, #app.ui61 #gd-go > span img{height:14.9px !important;width:auto !important;margin:0 1px 0 0 !important}
+#app.ui61 #gd-go{width:100px !important}
+#app.ui61 #glist .btn.gup{height:54px !important;min-height:54px !important;font-size:16px !important;line-height:1 !important;padding:4px 14px 0 !important;box-sizing:border-box !important;display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;gap:4px !important}
+#app.ui61 #glist .btn.gup > b, #app.ui61 #glist .btn.gup > span:first-child{font-size:16px !important;line-height:1 !important}
+#app.ui61 #glist .btn.gup > small, #app.ui61 #glist .btn.gup > span:last-child:not(:first-child){font-size:13px !important;line-height:1 !important;display:flex !important;align-items:center !important;gap:2px;margin:0 !important;height:13px}
+#app.ui61 #glist .btn.gup small img, #app.ui61 #glist .btn.gup > span img{height:14.9px !important;width:auto !important;margin:0 1px 0 0 !important}
+#app.ui61 #glist .btn.gup{width:88px !important}
+#app.ui61 .evb, #app.ui61 #evlist .ev .btn.red{height:40px !important;min-height:40px !important;font-size:15.5px !important;line-height:1 !important;padding:2.2px 16px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 .evb, #app.ui61 #evlist .ev .btn.red{width:auto !important;min-width:0 !important;white-space:nowrap}
+#app.ui61 #sl52-bets .sl52b{height:54px !important;min-height:54px !important;font-size:19px !important;line-height:1 !important;padding:3px 10px 0 !important;box-sizing:border-box !important;display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;gap:4px !important}
+#app.ui61 #sl52-bets .sl52b > b, #app.ui61 #sl52-bets .sl52b > span:first-child{font-size:19px !important;line-height:1 !important}
+#app.ui61 #sl52-bets .sl52b > small, #app.ui61 #sl52-bets .sl52b > span:last-child:not(:first-child){font-size:14px !important;line-height:1 !important;display:flex !important;align-items:center !important;gap:2px;margin:0 !important;height:14px}
+#app.ui61 #sl52-bets .sl52b small img, #app.ui61 #sl52-bets .sl52b > span img{height:16.1px !important;width:auto !important;margin:0 1px 0 0 !important}
+#app.ui61 #dex46t > div{height:52px !important;min-height:52px !important;font-size:14px !important;line-height:1 !important;padding:3.5px 2px 0 !important;box-sizing:border-box !important;display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;gap:4px !important}
+#app.ui61 #dex46t > div > b, #app.ui61 #dex46t > div > span:first-child{font-size:14px !important;line-height:1 !important}
+#app.ui61 #dex46t > div > small, #app.ui61 #dex46t > div > span:last-child:not(:first-child){font-size:11.5px !important;line-height:1 !important;display:flex !important;align-items:center !important;gap:2px;margin:0 !important;height:11.5px}
+#app.ui61 #dex46t > div small img, #app.ui61 #dex46t > div > span img{height:13.2px !important;width:auto !important;margin:0 1px 0 0 !important}
+#app.ui61 #fp-fert, #app.ui61 #fp-mkt, #app.ui61 #fp-all{height:34px !important;min-height:34px !important;font-size:14.5px !important;line-height:1 !important;padding:2.0px 13px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #fp-fert, #app.ui61 #fp-mkt, #app.ui61 #fp-all{width:auto !important}
+#app.ui61 #fp-mkt > #f-inv44{font-size:14.5px !important;line-height:1 !important}
+#app.ui61 #td42b .btn.dmb{height:34px !important;min-height:34px !important;font-size:15px !important;line-height:1 !important;padding:2.1px 12px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 .mk44r .btn{height:34px !important;min-height:34px !important;font-size:14.5px !important;line-height:1 !important;padding:2.0px 12px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 .mk44r .btn{width:auto !important;min-width:48px}
+#app.ui61 .pd54c .btn{height:36px !important;min-height:36px !important;font-size:15.5px !important;line-height:1 !important;padding:2.2px 14px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 .yback, #app.ui61 #b-back{height:36px !important;min-height:36px !important;font-size:15px !important;line-height:1 !important;padding:2.1px 14px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 .yback, #app.ui61 #b-back{width:auto !important}
+#app.ui61 #set #b-reset{height:36px !important;min-height:36px !important;font-size:14.5px !important;line-height:1 !important;padding:2.0px 16px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #tr-pick, #app.ui61 #tr-water{height:40px !important;min-height:40px !important;font-size:15px !important;line-height:1 !important;padding:2.1px 12px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #tr-pick, #app.ui61 #tr-water{width:auto !important;min-width:75px;flex:0 0 auto !important}
+#app.ui61 .tbtns{width:auto !important;flex-wrap:nowrap}
+#app.ui61 #b-howto, #app.ui61 #b-odds2, #app.ui61 #b-rank{height:44px !important;min-height:44px !important;font-size:16px !important;line-height:1 !important;padding:2.2px 12px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 .gtog > div{height:36px !important;font-size:16px !important;line-height:1 !important;padding:2.2px 16px 0 !important;display:flex !important;align-items:center !important;box-sizing:border-box !important}
+#app.ui61 .gtog{height:auto !important}
+#app.ui61 .o44x{height:19px !important;line-height:1 !important;font-size:12.5px !important;padding:1.6px 9px 0 !important;display:flex !important;align-items:center !important;box-sizing:border-box !important;top:-13px !important}
+#app.ui61 .o44{padding-top:4px !important}
+#app.ui61 .btn .cntb{padding-top:2px !important}
+#app.ui61 .f47b, #app.ui61 #f47-jar{padding-top:2.2px !important}
+
+#app.ui61 #bb53-out{height:58px !important;min-height:58px !important;font-size:19px !important;line-height:1 !important;padding:2.7px 20px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #bb53-again{height:58px !important;min-height:58px !important;font-size:19px !important;line-height:1 !important;padding:3px 16px 0 !important;box-sizing:border-box !important;display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;gap:4px !important}
+#app.ui61 #bb53-again > b, #app.ui61 #bb53-again > span:first-child{font-size:19px !important;line-height:1 !important}
+#app.ui61 #bb53-again > small, #app.ui61 #bb53-again > span:last-child:not(:first-child){font-size:13px !important;line-height:1 !important;display:flex !important;align-items:center !important;gap:2px;margin:0 !important;height:13px}
+#app.ui61 #bb53-again small img, #app.ui61 #bb53-again > span img{height:14.9px !important;width:auto !important;margin:0 1px 0 0 !important}
+#app.ui61 #w-stop{display:flex !important;align-items:center !important;justify-content:center !important;line-height:1 !important;padding-top:4.8px !important;box-sizing:border-box !important}
+#app.ui61 #w-odds, #app.ui61 #w-close{height:40px !important;min-height:40px !important;font-size:16px !important;line-height:1 !important;padding:2.2px 18px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #pn-x, #app.ui61 #in-x{height:40px !important;min-height:40px !important;font-size:16px !important;line-height:1 !important;padding:2.2px 18px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #dc-off, #app.ui61 #dc-x{height:50px !important;min-height:50px !important;font-size:18px !important;line-height:1 !important;padding:2.5px 20px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #deco .dtabs > div{height:38px !important;min-height:38px !important;font-size:16px !important;line-height:1 !important;padding:2.2px 14px 0 !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important}
+#app.ui61 #f47-jar{padding-top:3.2px !important}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -3071,7 +3140,7 @@ html,body{overscroll-behavior:none}
   <div class="h" style="font-size:21.5px;margin-bottom:6px">게임 안내</div>
   같은 걸 겹쳐 키워서 이웃 주문을 들어주고, 모은 동전으로 <b>정원</b>을 고치는 게임이에요. 정원을 고치면 떠났던 친구들이 돌아와요. <b>급한 주문</b>은 시간 안에 보내고, <b>족제비 도둑</b>은 눌러서 쫓아내요. 에너지는 2분에 1씩 차요. 선물 상자에서 나오는 건 모두 무료로만 얻어요(아래 확률 보기). 진행은 이 폰에 저장돼요.
   <div class="btn red h" id="b-reset" style="height:44px;margin-top:14px">안내 다시 보기</div><div style="display:flex;gap:8px;margin-top:8px"><div class="btn sky h" id="b-day" style="flex:1;height:42px;display:none">하루 넘기기</div><div class="btn yellow h" id="b-close" style="flex:1;height:42px">닫기</div></div>
-  <div style="display:flex;gap:8px;margin-top:8px"><div class="btn cream h" id="b-snd" style="flex:1;height:38px;font-size:16px">소리 켜짐</div><div class="btn cream h" id="b-vib" style="flex:1;height:38px;font-size:16px">진동 켜짐</div><div class="btn cream h" id="b-odds2" style="flex:1;height:38px;font-size:16px">확률 보기</div></div>
+  <div style="display:flex;gap:8px;margin-top:8px"><div class="btn cream h" id="b-snd" style="flex:1;height:38px;font-size:16px">소리 켜짐</div><div class="btn cream h" id="b-vib" style="flex:1;height:38px;font-size:16px">진동 켜짐</div><div class="btn cream h" id="b-odds2" style="flex:1;height:38px;font-size:16px">확률</div></div>
 </div></div>
 </div></div>
 
@@ -5372,7 +5441,7 @@ CTX.push(
   const rb = document.getElementById('b-reset'); if (rb) rb.textContent = '처음부터 다시 하기';
   const box = document.querySelector('#set .box'); if (!box) return;
   const row = document.createElement('div'); row.className = 'v23set';
-  row.innerHTML = '<div class="btn cream h" id="b-howto">하는 법 보기</div><div class="btn cream h" id="b-nick">이름 바꾸기</div><div class="btn cream h" id="b-rank">순위 보기</div>';
+  row.innerHTML = '<div class="btn cream h" id="b-howto">하는 법</div><div class="btn cream h" id="b-nick">이름 바꾸기</div><div class="btn cream h" id="b-rank">순위</div>';
   box.insertBefore(row, rb || box.firstChild);
   row.querySelector('#b-howto').onclick = () => { $('#set').style.display = 'none'; howtoOpen(); };
   row.querySelector('#b-nick').onclick = () => { $('#set').style.display = 'none'; nickOpen(false); };
@@ -9434,7 +9503,7 @@ setInterval(() => { try { if (!S.thief) { const b = document.getElementById('boa
 (function ui60() {
   const a = document.getElementById('app'); if (!a) return;
   const K = window.CAP60K; if (K) { a.style.setProperty('--capL', 'url(' + K.L + ')'); a.style.setProperty('--capR', 'url(' + K.R + ')'); a.style.setProperty('--capM', 'url(' + K.M + ')'); }
-  a.classList.add('ui60');
+  a.classList.add('ui60'); a.classList.add('ui61');
   const RATIO = (window.HUDKIT && HUDKIT.capRatio) || 0.551;
   const fix = (el) => { const h = el.offsetHeight; if (h) el.style.setProperty('--capw', (h * RATIO).toFixed(2) + 'px'); };
   const ro = new ResizeObserver(es => es.forEach(e => fix(e.target)));
@@ -9447,7 +9516,7 @@ setInterval(() => { try { if (!S.thief) { const b = document.getElementById('boa
 /* ===== v60b: 글자 자동 맞춤 - 칸 크기에 맞춰 글자가 스스로 줄어듦 (최소 72%) ===== */
 (function fit60() {
   const app = document.getElementById('app'); if (!app) return;
-  const SEL = ['.pill', '#nav > div', '.btn', '.gtag', '.cntb', '#stk', '#board .t > span.lkp', '#board .t > span.fogbuy', '#tr-pick > span', '.o44h > b', '.o44n > span', '.o44 > i.o44x', '#bb53-lob .gc > b', '#info .itx > b', '#info .itx > span', '#gdpanel .gdnote', '#pieces .pc .ex', '.d29t > b', '.d29t > small', '#tracks .hd', '#tracks .rw > div', '#tracks .rw > span.st', '#dex46t > div > small', '#dex46t > div > b', '.dx46h > span', '#f47-tod', '.ftime', '.glv', '.ln .av > span', '#fev > span', '.c45', '.gcost', '.ptm', '#bb53-go', '#sl52-go', '.sl52b > span', '.pd54c > .btn', '.b51s > span', '.ad > span', '.ad > small'].join(',');
+  const SEL = ['.pill', '#nav > div', '.gtag', '.cntb', '#stk', '#board .t > span.lkp', '#board .t > span.fogbuy', '.o44h > b', '.o44n > span', '#bb53-lob .gc > b', '#info .itx > b', '#info .itx > span', '#gdpanel .gdnote', '#pieces .pc .ex', '#tracks .hd', '#tracks .rw > div', '#tracks .rw > span.st', '.dx46h > span', '#f47-tod', '.ftime', '.glv', '.ln .av > span', '#fev > span', '.c45', '.gcost', '.ptm', '.b51s > span', '.ad > span', '.ad > small'].join(',');
   const boxOf = (el) => { if (el.matches('.pill, .btn, .gtag, .cntb, #stk, #nav > div, .c45, .gcost, .ptm, .sl52b > span, #tr-pick > span')) return el; for (let c = el; c && c !== app; c = c.parentElement) { const cs = getComputedStyle(c); const bg = cs.backgroundImage !== 'none' || !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.backgroundColor) || parseFloat(cs.borderTopWidth) > 0.5; if (bg || c === el.parentElement && /flex|grid/.test(cs.display) && cs.overflow !== 'visible') return c; } return el.parentElement; };
   const fits = (el, c) => {
     const rs = []; const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); for (let n = tw.nextNode(); n; n = tw.nextNode()) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (p && p !== el && getComputedStyle(p).position === 'absolute') continue; const rg = document.createRange(); rg.selectNodeContents(n); for (const r of rg.getClientRects()) if (r.width > 0.5) rs.push(r); } if (!rs.length) return true;
@@ -9479,7 +9548,7 @@ setInterval(() => { try { if (!S.thief) { const b = document.getElementById('boa
 /* ===== v60c: 묶음 글자 맞춤 - 여러 줄이 든 고정 칸은 글자를 함께 줄여서 칸 안에 넣음 ===== */
 (function gfit60() {
   const app = document.getElementById('app'); if (!app) return;
-  const GSEL = ['#info', '#gdpanel', '.o44h', '#tr-panel', '.bb53-hero2', '.o44', '#tracks .hd', '.bb53-hero2 .ht2', '.bb53-hero2 .hb2', '#bb53-lob .bb53-grid .gc', '.dx46h', '.d29t', '.pd54c', '.shc .shtx', '#tracks .rw', '.fbt', '.fcell', '.sdtx', '.mk44t', '.b51h', '.evh', '.dm'].join(',');
+  const GSEL = ['#info', '#gdpanel', '.o44h', '#tr-panel', '.bb53-hero2', '.o44', '#tracks .hd', '.bb53-hero2 .ht2', '.bb53-hero2 .hb2', '#bb53-lob .bb53-grid .gc', '.dx46h', '.pd54c', '.shc .shtx', '#tracks .rw', '.fbt', '.fcell', '.sdtx', '.mk44t', '.b51h', '.evh', '.dm'].join(',');
   const textEls = (g) => { const out = new Set(); const tw = document.createTreeWalker(g, NodeFilter.SHOW_TEXT); for (let n = tw.nextNode(); n; n = tw.nextNode()) { if (!n.nodeValue.trim() || !n.parentElement) continue; const p = n.parentElement; if (getComputedStyle(p).position === 'absolute' && p !== g) continue; out.add(p); } return [...out]; };
   const fitsG = (g, els) => {
     const b = g.getBoundingClientRect(); if (!b.width) return true; const s = g.offsetWidth ? b.width / g.offsetWidth : 1; const cs = getComputedStyle(g);
