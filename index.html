@@ -2925,6 +2925,17 @@ html,body{overscroll-behavior:none}
 #app.ui60 #tracks .rw > div{font-size:13.5px !important;line-height:14px !important;word-break:keep-all}
 #app.ui60 #tracks .rw > div small{font-size:12px !important;line-height:13px !important}
 
+
+/* v60b: autofit */
+#app.ui60 #board .t.gen > span.lv{top:4px !important;bottom:auto !important;left:5px !important}
+#app.ui60 .gtag{vertical-align:1px}
+@supports (text-box: trim-both cap alphabetic){#app.ui60 .gtag{padding:3.5px 5px 3px !important}}
+#app.ui60 #tracks .hd.prem{padding-top:2.5px !important}
+#app.ui60 #b-box > span.wico{transform:translateY(-2px) scale(.94)}
+#app.ui60 #gdpanel .gdnote{white-space:normal !important;word-break:keep-all}
+#app.ui60 .o44 .o44h{padding-right:4px}
+#app.ui60 #tracks .hd.prem{height:auto !important;min-height:34px}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -9431,6 +9442,71 @@ setInterval(() => { try { if (!S.thief) { const b = document.getElementById('boa
   watch(); new MutationObserver(() => { if (!q) q = requestAnimationFrame(watch); }).observe(a, { childList: true, subtree: true });
 })();
 /* v60: text safe */
+
+
+/* ===== v60b: 글자 자동 맞춤 - 칸 크기에 맞춰 글자가 스스로 줄어듦 (최소 72%) ===== */
+(function fit60() {
+  const app = document.getElementById('app'); if (!app) return;
+  const SEL = ['.pill', '#nav > div', '.btn', '.gtag', '.cntb', '#stk', '#board .t > span.lkp', '#board .t > span.fogbuy', '#tr-pick > span', '.o44h > b', '.o44n > span', '.o44 > i.o44x', '#bb53-lob .gc > b', '#info .itx > b', '#info .itx > span', '#gdpanel .gdnote', '#pieces .pc .ex', '.d29t > b', '.d29t > small', '#tracks .hd', '#tracks .rw > div', '#tracks .rw > span.st', '#dex46t > div > small', '#dex46t > div > b', '.dx46h > span', '#f47-tod', '.ftime', '.glv', '.ln .av > span', '#fev > span', '.c45', '.gcost', '.ptm', '#bb53-go', '#sl52-go', '.sl52b > span', '.pd54c > .btn', '.b51s > span', '.ad > span', '.ad > small'].join(',');
+  const boxOf = (el) => { if (el.matches('.pill, .btn, .gtag, .cntb, #stk, #nav > div, .c45, .gcost, .ptm, .sl52b > span, #tr-pick > span')) return el; for (let c = el; c && c !== app; c = c.parentElement) { const cs = getComputedStyle(c); const bg = cs.backgroundImage !== 'none' || !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.backgroundColor) || parseFloat(cs.borderTopWidth) > 0.5; if (bg || c === el.parentElement && /flex|grid/.test(cs.display) && cs.overflow !== 'visible') return c; } return el.parentElement; };
+  const fits = (el, c) => {
+    const rs = []; const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); for (let n = tw.nextNode(); n; n = tw.nextNode()) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (p && p !== el && getComputedStyle(p).position === 'absolute') continue; const rg = document.createRange(); rg.selectNodeContents(n); for (const r of rg.getClientRects()) if (r.width > 0.5) rs.push(r); } if (!rs.length) return true;
+    const t = rs.reduce((a, r) => ({ l: Math.min(a.l, r.left), r: Math.max(a.r, r.right), t: Math.min(a.t, r.top), b: Math.max(a.b, r.bottom) }), { l: 1e9, r: -1e9, t: 1e9, b: -1e9 });
+    const b = c.getBoundingClientRect(); const s = c.offsetWidth ? b.width / c.offsetWidth : 1; const cs = getComputedStyle(c);
+    const own = c === el; const pl = own ? parseFloat(cs.paddingLeft) || 0 : 0, pr = own ? parseFloat(cs.paddingRight) || 0 : 0; const bl = ((parseFloat(cs.borderLeftWidth) || 0) + pl) * s, br = ((parseFloat(cs.borderRightWidth) || 0) + pr) * s, bt = (parseFloat(cs.borderTopWidth) || 0) * s, bb = (parseFloat(cs.borderBottomWidth) || 0) * s;
+    const fs = parseFloat(getComputedStyle(el).fontSize) * s; const slackV = fs * 0.18;
+    const m = own ? 0 : 2 * s; return t.l >= b.left + bl + m - 0.6 && t.r <= b.right - br - m + 0.6 && t.t >= b.top + bt - slackV && t.b <= b.bottom - bb + slackV;
+  };
+  const fitOne = (el) => {
+    if (!el.isConnected || el.offsetParent === null || !el.textContent.trim()) return;
+    if (el.__f60) { el.style.removeProperty('font-size'); if (el.__f60orig) el.style.setProperty('font-size', el.__f60orig); }
+    const c = boxOf(el); if (!c) return;
+    if (fits(el, c)) { el.__f60 = 0; return; }
+    if (!el.__f60) el.__f60orig = el.style.fontSize || '';
+    const base = parseFloat(getComputedStyle(el).fontSize); const mr = el.matches('#nav > div') ? 0.6 : 0.72; let lo = base * mr, hi = base, best = lo;
+    for (let k = 0; k < 7; k++) { const mid = (lo + hi) / 2; el.style.setProperty('font-size', mid.toFixed(2) + 'px', 'important'); if (fits(el, c)) { best = mid; lo = mid; } else hi = mid; }
+    el.style.setProperty('font-size', best.toFixed(2) + 'px', 'important'); el.__f60 = 1;
+  };
+  let q = 0; const run = () => { q = 0; app.querySelectorAll(SEL).forEach(fitOne); };
+  window.fit60Run = run;
+  new MutationObserver(() => { if (!q) q = requestAnimationFrame(run); }).observe(app, { childList: true, subtree: true, characterData: true });
+  addEventListener('resize', () => { if (!q) q = requestAnimationFrame(run); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  run();
+})();
+/* v60b: autofit */
+
+/* ===== v60c: 묶음 글자 맞춤 - 여러 줄이 든 고정 칸은 글자를 함께 줄여서 칸 안에 넣음 ===== */
+(function gfit60() {
+  const app = document.getElementById('app'); if (!app) return;
+  const GSEL = ['#info', '#gdpanel', '.o44h', '#tr-panel', '.bb53-hero2', '.o44', '#tracks .hd', '.bb53-hero2 .ht2', '.bb53-hero2 .hb2', '#bb53-lob .bb53-grid .gc', '.dx46h', '.d29t', '.pd54c', '.shc .shtx', '#tracks .rw', '.fbt', '.fcell', '.sdtx', '.mk44t', '.b51h', '.evh', '.dm'].join(',');
+  const textEls = (g) => { const out = new Set(); const tw = document.createTreeWalker(g, NodeFilter.SHOW_TEXT); for (let n = tw.nextNode(); n; n = tw.nextNode()) { if (!n.nodeValue.trim() || !n.parentElement) continue; const p = n.parentElement; if (getComputedStyle(p).position === 'absolute' && p !== g) continue; out.add(p); } return [...out]; };
+  const fitsG = (g, els) => {
+    const b = g.getBoundingClientRect(); if (!b.width) return true; const s = g.offsetWidth ? b.width / g.offsetWidth : 1; const cs = getComputedStyle(g);
+    const L = b.left + ((parseFloat(cs.borderLeftWidth) || 0) + (parseFloat(cs.paddingLeft) || 0) * 0.5) * s, R = b.right - ((parseFloat(cs.borderRightWidth) || 0) + (parseFloat(cs.paddingRight) || 0) * 0.5) * s, T = b.top + (parseFloat(cs.borderTopWidth) || 0) * s, B = b.bottom - (parseFloat(cs.borderBottomWidth) || 0) * s;
+    for (const e of els) { const fs = parseFloat(getComputedStyle(e).fontSize) * s; const tw = document.createTreeWalker(e, NodeFilter.SHOW_TEXT); for (let n = tw.nextNode(); n; n = tw.nextNode()) { if (!n.nodeValue.trim() || n.parentElement !== e) continue; const rg = document.createRange(); rg.selectNodeContents(n); for (const r of rg.getClientRects()) { if (r.width < 0.5) continue; if (r.left < L - 0.6 || r.right > R + 0.6 || r.top < T - fs * 0.16 || r.bottom > B + fs * 0.16) return false; } } }
+    if (/hidden|clip/.test(cs.overflow) && (g.scrollHeight > g.clientHeight + 1 || g.scrollWidth > g.clientWidth + 1)) return false;
+    const rs = []; for (const e of els) { const rg = document.createRange(); rg.selectNodeContents(e); const fs2 = parseFloat(getComputedStyle(e).fontSize) * s; for (const r of rg.getClientRects()) if (r.width > 0.5) rs.push({ e, l: r.left, r: r.right, t: r.top + fs2 * 0.12, b: r.bottom - fs2 * 0.12 }); }
+    for (let i = 0; i < rs.length; i++) for (let j = i + 1; j < rs.length; j++) { const a = rs[i], c = rs[j]; if (a.e === c.e || a.e.contains(c.e) || c.e.contains(a.e)) continue; if (Math.min(a.r, c.r) - Math.max(a.l, c.l) > 1 && Math.min(a.b, c.b) - Math.max(a.t, c.t) > 1) return false; }
+    return true;
+  };
+  const fitG = (g) => {
+    if (!g.isConnected || g.offsetParent === null) return; const els = textEls(g); if (!els.length) return;
+    if (g.__g60) { els.forEach(e => { if (e.__g60b) e.style.removeProperty('font-size'); }); g.__g60 = 0; }
+    if (fitsG(g, els)) return;
+    const base = els.map(e => parseFloat(getComputedStyle(e).fontSize)); els.forEach(e => e.__g60b = 1);
+    let lo = 0.72, hi = 1, best = 0.72; const apply = (k) => els.forEach((e, i) => e.style.setProperty('font-size', (base[i] * k).toFixed(2) + 'px', 'important'));
+    for (let it = 0; it < 6; it++) { const mid = (lo + hi) / 2; apply(mid); if (fitsG(g, els)) { best = mid; lo = mid; } else hi = mid; }
+    apply(best); g.__g60 = 1;
+  };
+  let q = 0; const run = () => { q = 0; app.querySelectorAll(GSEL).forEach(fitG); if (window.fit60Run) window.fit60Run(); };
+  window.gfit60Run = run;
+  new MutationObserver(() => { if (!q) q = requestAnimationFrame(run); }).observe(app, { childList: true, subtree: true, characterData: true });
+  addEventListener('resize', () => { if (!q) q = requestAnimationFrame(run); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  run();
+})();
+/* v60c: group fit */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
