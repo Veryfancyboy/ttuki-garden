@@ -2140,6 +2140,70 @@ html,body{overscroll-behavior:none}
 #app #popbox .fl45 img{width:24px;height:24px;object-fit:contain}
 #app #popbox .fl45.z{opacity:.45}
 
+
+/* v46: dex */
+#app #sc-album.dx46 #anext{display:none}
+#app #sc-album.dx46 #aprog .dx46p{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+#app #sc-album.dx46 #aprog .dx46p b{font-family:'Jua';font-weight:400;font-size:16px;color:#4A2A1E;white-space:nowrap}
+#app #sc-album.dx46 #aprog .dx46p .bar{flex:1;margin:0}
+#app #dex46t{position:absolute;left:10px;right:10px;top:102px;height:46px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;z-index:2}
+#app #dex46t>div{position:relative;border-radius:12px;background:#FFF8EC;box-shadow:inset 0 0 0 1.5px rgba(200,150,80,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Jua';font-size:15px;line-height:17px;color:#6A4A3A;cursor:pointer;min-width:0}
+#app #dex46t>div small{font-family:'Jua';font-size:14px;line-height:15px;color:#9A7A62}
+#app #dex46t>div.on{background:linear-gradient(#FFE27A,#F6C343);color:#4A2A1E;box-shadow:inset 0 -2px 0 rgba(160,100,20,.35)}
+#app #dex46t>div.on small{color:#7A4A1E}
+#app #dex46t>div i{position:absolute;top:-3px;right:-2px;width:11px;height:11px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 2px #fff}
+#app #sc-album.dx46 #cards.dx46g{position:absolute;left:10px;right:10px;top:154px;bottom:92px;overflow-y:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;align-content:start;padding:2px 2px 12px}
+#app .dx46h{grid-column:1/-1;display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:12px;background:rgba(255,248,236,.92);font-family:'Gowun Dodum';font-size:14.5px;line-height:19px;color:#46291D;min-height:40px}
+#app .dx46h b{font-family:'Jua';font-weight:400;color:#C2410C}
+#app .dx46h em{font-style:normal;color:#8A6A52}
+#app .dx46h .btn{flex:none;padding:7px 12px;font-size:15px;line-height:18px}
+#app .dx46n{grid-column:1/-1;font-family:'Gowun Dodum';font-size:14px;line-height:18px;color:#6A4A3A;padding:0 4px 2px}
+#app .dx46c{position:relative;border-radius:14px;background:#EFE5D6;box-shadow:inset 0 0 0 1.5px rgba(160,120,80,.22);padding:7px 4px;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;cursor:pointer}
+#app .dx46c.got{background:#FFF8EC;box-shadow:inset 0 0 0 1.5px rgba(200,150,80,.5),0 1px 0 rgba(120,80,40,.15)}
+#app .dx46i{width:58px;height:58px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+#app .dx46i img{max-width:100%;max-height:100%;object-fit:contain}
+#app .dx46c.f .dx46i img{width:58px;height:58px;border-radius:50%;object-fit:cover}
+#app .dx46c.f.nb .dx46i img{object-fit:contain;border-radius:0}
+#app .dx46c.f.egg .dx46i img{object-fit:contain;border-radius:0}
+#app .dx46c:not(.got) .dx46i img{filter:grayscale(1) opacity(.45)}
+#app .dx46c.sil:not(.got) .dx46i img{filter:brightness(0) opacity(.2)}
+#app .dx46c.v1.got .dx46i{box-shadow:0 0 0 3px #7FD3FF,0 0 12px 2px rgba(127,211,255,.8)}
+#app .dx46c.v2.got .dx46i{box-shadow:0 0 0 3px #F6C343,0 0 14px 3px rgba(246,195,67,.85)}
+#app .dx46tg{margin-top:4px;font-family:'Jua';font-size:14px;line-height:16px;padding:1px 7px;border-radius:9px;background:#E9DCC8;color:#6A4A3A;white-space:nowrap}
+#app .dx46c.v1 .dx46tg{background:#DCEFFF;color:#1F7FB8}
+#app .dx46c.v2 .dx46tg,#app .dx46c.cr.c2 .dx46tg,#app .dx46c.g4 .dx46tg{background:#FCE9B8;color:#9A5A00}
+#app .dx46c.nb.t1 .dx46tg{background:#FFE3D0;color:#B4501E}
+#app .dx46c.nb.t2 .dx46tg{background:#FFD0D8;color:#B0263E}
+#app .dx46c.cr.c1 .dx46tg{background:#E2F2D0;color:#3F7A1E}
+#app .dx46c.g2 .dx46tg{background:#DCEBFF;color:#2A5BB0}
+#app .dx46c.g3 .dx46tg{background:#EADCFF;color:#6A3AB0}
+#app .dx46c b{font-family:'Jua';font-weight:400;font-size:15px;line-height:17px;color:#4A2A1E;margin-top:3px;word-break:keep-all}
+#app .dx46c small{font-family:'Gowun Dodum';font-size:14px;line-height:16px;color:#8A6A52;margin-top:2px;word-break:keep-all}
+#app .dx46c.got small{color:#2F8A3A}
+#app .dx46tt{font-family:'Jua';font-size:15px;color:#fff;background:linear-gradient(#C2410C,#9A2A06);padding:4px 9px;border-radius:8px}
+#app .dx46c:not(.got) .dx46tt{background:#BBA990}
+#app #cards.dx46g .card.dx46fr{grid-column:1/-1;display:flex;align-items:stretch;min-height:104px;cursor:pointer}
+#app #cards.dx46g .card.dx46fr .pic{flex:none;width:168px;height:104px;border-bottom:0;border-right:2.5px solid var(--bd)}
+#app .dx46fb{flex:1;min-width:0;padding:5px 6px 5px 8px;display:flex;flex-direction:column;justify-content:space-between}
+#app .dx46fn{display:flex;align-items:center;gap:6px;min-width:0}
+#app .dx46fn b{font-family:'Jua';font-weight:400;font-size:18px;line-height:22px;color:#4A2A1E;white-space:nowrap}
+#app .dx46fn small{font-family:'Gowun Dodum';font-size:14px;line-height:16px;color:#8A6A52;word-break:keep-all}
+#app .dx46lv{font-family:'Jua';font-size:14px;line-height:18px;padding:0 6px;border-radius:9px;background:#4A2A1E;color:#fff}
+#app .dx46ff{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+#app .fm46{display:flex;flex-direction:column;align-items:center;min-width:0;cursor:pointer}
+#app .fm46 i{width:38px;height:38px;border-radius:50%;overflow:hidden;display:block;background:#EFE5D6;box-shadow:inset 0 0 0 2px rgba(160,120,80,.25)}
+#app .fm46 i img{width:100%;height:100%;object-fit:cover}
+#app .fm46:not(.got) i img{filter:grayscale(1) opacity(.4)}
+#app .fm46.v0.got i{box-shadow:0 0 0 2.5px #E8B27A}
+#app .fm46.v1.got i{box-shadow:0 0 0 2.5px #7FD3FF,0 0 8px 1px rgba(127,211,255,.9)}
+#app .fm46.v2.got i{box-shadow:0 0 0 2.5px #F6C343,0 0 9px 2px rgba(246,195,67,.9)}
+#app .fm46 em{font-style:normal;font-family:'Jua';font-size:14px;line-height:16px;color:#9A8A7A;margin-top:2px;white-space:nowrap}
+#app .fm46.got em{color:#4A2A1E}
+#app .fm46.v1.got em{color:#1F7FB8}
+#app .fm46.v2.got em{color:#B07A00}
+#app .fm46 small{font-family:'Gowun Dodum';font-size:14px;line-height:16px;color:#8A6A52;white-space:nowrap}
+#app .fm46.got small{color:#2F8A3A}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -2222,7 +2286,7 @@ html,body{overscroll-behavior:none}
 <div class="screen" id="sc-album">
   <div class="dot" style="left:-60px;top:-60px;width:170px;height:170px;background:var(--sky)"></div>
   <div class="dot" style="left:300px;top:560px;width:160px;height:160px;background:var(--yellow)"></div>
-  <div class="head"><div class="title">친구 도감</div></div>
+  <div class="head"><div class="title">도감</div></div>
   <div class="prog panel" id="aprog"></div>
   <div class="cards" id="cards"></div>
   <div class="next panel" id="anext"></div>
@@ -2665,7 +2729,7 @@ function hatch(lv) {
   save(); renderAll();
   const vt = v ? `<span class="tag ${v === 2 ? 'g3' : 'mint'}">${VAR_NAME[v]}</span>` : '<span class="tag">보통</span>';
   const text = (isNew ? `${SP[k].n}${iga(SP[k].n)} ${homeOf(k) ? homeOf(k).n + '에 돌아왔어요' : '정원에 놀러 왔어요'}.${v ? ` 그것도 ${VAR_NAME[v]} 친구예요!` : ''} 특기: ${BLESS[k].n}` : better ? `${VAR_NAME[v]} ${SP[k].n}${eul(SP[k].n)} 처음 만났어요! 도감에서 볼 수 있어요.` : '이미 만난 친구예요. 동전 +30') + (orbs ? ` · ${SP[k].n} 우정 구슬 +${orbs} (키우기에 써요)` : '');
-  showPop({ title: isNew ? '새 친구가 나왔어요!' : better ? `${VAR_NAME[v]} 친구!` : '또 만났어요!', big: `<img class="sp" src="${HEAD(k)}">`, raysCls: v ? 'v' + v : '', fx: v ? 'big' : 'hatch', name: (v ? VAR_NAME[v] + ' ' : '') + SP[k].n, tags: vt + `<span class="tag">도감 ${Object.keys(S.sp).length}/8</span>` + (lv > 3 ? `<span class="tag g3">${CHN.egg[lv - 1]}</span>` : ''), text, pity: `반짝 이상은 ${VAR_PITY1 - S.pity.h1}번, 황금은 ${VAR_PITY2 - S.pity.h2}번 안에 꼭 나와요`, btns: [isNew ? ['꾸며 주기', 'red', () => { S.cur = k; go('dress'); }] : ['키우러 가기', 'red', () => { S.gtab = 'sp'; go('grow'); }], ['좋아요', 'yellow', null]] });
+  showPop({ title: isNew ? '새 친구가 나왔어요!' : better ? `${VAR_NAME[v]} 친구!` : '또 만났어요!', big: `<img class="sp" src="${HEAD(k)}">`, raysCls: v ? 'v' + v : '', fx: v ? 'big' : 'hatch', name: (v ? VAR_NAME[v] + ' ' : '') + SP[k].n, tags: vt + `<span class="tag">친구 ${Object.keys(S.sp).length}/8</span>` + (lv > 3 ? `<span class="tag g3">${CHN.egg[lv - 1]}</span>` : ''), text, pity: `반짝 이상은 ${VAR_PITY1 - S.pity.h1}번, 황금은 ${VAR_PITY2 - S.pity.h2}번 안에 꼭 나와요`, btns: [isNew ? ['꾸며 주기', 'red', () => { S.cur = k; go('dress'); }] : ['키우러 가기', 'red', () => { S.gtab = 'sp'; go('grow'); }], ['좋아요', 'yellow', null]] });
 }
 function openBox(fromSewing, lv) {
   if (!fromSewing) { if (S.keys <= 0) { toast('열쇠가 없어요. 주문을 보내면 1개씩 받아요'); return; } S.keys--; }
@@ -6901,6 +6965,89 @@ renderGrow = function () {
   } catch (e) {}
 });
 /* v45: grow */
+
+
+/* ===== v46: 도감 확장 (친구 3모습 · 이웃 단골 · 물건 · 채소 · 옷 · 장식, 칸마다 얻는 조건, 묶음마다 25%씩 선물) ===== */
+const DEXT46 = [['sp', '친구'], ['nb', '이웃'], ['it', '물건'], ['crop', '채소'], ['look', '옷'], ['deco', '장식']];
+const DEXR46 = [{ coin: 200, key: 1 }, { coin: 500, scrap: 30 }, { coin: 800, key: 3 }, { coin: 2000, key: 5, scrap: 60 }];
+const NBT46 = [[1, '첫 손님'], [10, '단골'], [30, '찐단골']];
+let DEX46TAB = 'sp';
+function dex46() {
+  S.dex = S.dex || {}; const D = S.dex; D.sp = D.sp || {}; D.nb = D.nb || {}; D.rw = D.rw || {};
+  SP_ORDER.forEach(k => { if (S.sp[k]) D.sp[k] = (D.sp[k] || 0) | 1; if (S.vr && S.vr[k]) D.sp[k] = (D.sp[k] || 0) | (1 << S.vr[k]); });
+  return D;
+}
+function dex46List(cat) {
+  const D = dex46(), out = [];
+  if (cat === 'sp') SP_ORDER.forEach(k => [0, 1, 2].forEach(v => { const got = !!((D.sp[k] || 0) & (1 << v)), met = !!S.sp[k]; out.push({ got, k, img: met ? HEAD(k) : I('c03_egg3'), cls: 'f v' + v + (met ? '' : ' egg'), name: met ? SP[k].n : '???', tag: VAR_NAME[v], cond: v === 0 ? '빛나는 알 깨우기' : v === 1 ? '반짝이 12%' : '황금빛 3%', long: v === 0 ? '빛나는 알(3단계 알)을 깨우면 만나요' : (v === 1 ? '알을 깨울 때 12%로 반짝이 모습이 나와요. ' + Math.max(1, VAR_PITY1 - S.pity.h1) : '알을 깨울 때 3%로 황금빛 모습이 나와요. ' + Math.max(1, VAR_PITY2 - S.pity.h2)) + '번 안에는 꼭 만나요' }); }));
+  if (cat === 'nb') NB_ORDER.forEach(k => NBT46.forEach(([n, t], i) => { const c = D.nb[k] || 0; out.push({ got: c >= n, img: custFace(k, 'joy'), cls: 'f nb t' + i, name: SP[k].n, tag: t, cond: '주문 ' + Math.min(c, n) + '/' + n + '번', long: SP[k].n + '의 주문을 ' + n + '번 들어주면 ' + t + (n === 1 ? '으로 올라요' : '이 돼요') + ' · 지금 ' + c + '번' }); }));
+  if (cat === 'it') Object.keys(CHN).forEach(k => CHN[k].forEach((nm, j) => { const lv = j + 1, got = !!(S.disc && S.disc[k + lv]); out.push({ got, img: I(CH[k][j]), cls: 'sil', name: got ? nm : '???', tag: lv + '단계', cond: lv <= 2 ? '살림에서 꺼내기' : '겹쳐서 만들기', long: lv <= 2 ? '만들기 판의 살림을 누르면 나와요' : '같은 것 2개를 겹치면 ' + lv + '단계가 나와요' }); }));
+  if (cat === 'crop') CROP_ORDER.forEach(k => { const st = (S.farm && S.farm.stat && S.farm.stat[k]) || { n: 0, d: 0, g: 0 }, C = CROPS[k], lock = (S.lv || 1) < C.lv; [['n', '보통', '거두기'], ['d', '대풍년', '대풍년 10%'], ['g', '황금', '황금 작물']].forEach(([f, tg, cd], i) => out.push({ got: (st[f] || 0) > 0, img: vegImg(k), cls: 'cr c' + i, name: C.n, tag: tg, cond: lock ? '레벨 ' + C.lv + '부터' : cd, long: lock ? '레벨 ' + C.lv + '부터 심을 수 있어요' : i === 0 ? '텃밭에서 ' + C.n + eul(C.n) + ' 거두면 돼요' : i === 1 ? '거둘 때 10%로 대풍년이 나요' : '거둘 때 ' + Math.round((C.golden || 0.03) * 100) + '%로 황금 작물이 나와요' })); });
+  if (cat === 'look') Object.keys(ITEMS).forEach(id => { const it = ITEMS[id]; out.push({ got: !!S.owned[id], img: I(it.img), cls: 'sil g' + (it.g || 1), name: it.n, tag: GRADE[it.g || 1], cond: '꾸미기 · 돌림판', long: '꾸미기에서 천 조각으로 사거나 옷장 뽑기, 돌림판, 주문 선물로 얻어요' }); });
+  if (cat === 'deco') Object.keys(DECO).forEach(id => { const d = DECO[id], own = !!(S.gc && S.gc.own && S.gc.own[id]); out.push({ got: own, img: d.a ? gcImg({ kind: d.k, id }) : '', txt: d.a ? '' : '칭호', cls: 'sil g' + (d.g || 1), name: d.n, tag: GRADE[d.g || 1], cond: '옷장 뽑기', long: '꾸미기의 옷장 뽑기에서 나와요' }); });
+  return out;
+}
+function dex46Count() { let got = 0, all = 0; const per = {}; DEXT46.forEach(([c]) => { const l = dex46List(c); const g = l.filter(x => x.got).length; per[c] = [g, l.length]; got += g; all += l.length; }); return { got, all, per }; }
+const dex46Need = (all, step) => Math.ceil(all * (step + 1) / 4);
+function dex46Ready(C, D) { return DEXT46.filter(([c]) => { const [g, all] = C.per[c], st = D.rw[c] || 0; return st < 4 && g >= dex46Need(all, st); }).map(x => x[0]); }
+const dex46RwTxt = rw => Object.entries(rw).map(([k, v]) => (k === 'coin' ? '동전 ' : k === 'key' ? '열쇠 ' : '천 조각 ') + v).join(' · ');
+function dex46Claim(cat) {
+  const D = dex46(), C = dex46Count(), [g, all] = C.per[cat], step = D.rw[cat] || 0;
+  if (step >= 4 || g < dex46Need(all, step)) return;
+  const got = grant(DEXR46[step]); D.rw[cat] = step + 1; save();
+  try { sfx('levelup'); } catch (e) {}
+  try { const b = document.getElementById('dx46c'); if (b) { const xy = elXY(b); burst(xy[0], xy[1], 30, { sp: 6 }); } } catch (e) {}
+  showPop({ title: '도감 선물', big: '<img class="sp" src="' + I('x7_bojagi_gift') + '">', name: DEXT46.find(x => x[0] === cat)[1] + ' ' + (step + 1) * 25 + '% 채움', text: got, btns: [['좋아요', 'yellow', null]] });
+  renderAll();
+}
+renderAlbum = (o0 => function () {
+  const r = o0.apply(this, arguments);
+  try {
+    const sc = document.getElementById('sc-album'), cards = document.getElementById('cards'), ap = document.getElementById('aprog'); if (!sc || !cards || !ap) return r;
+    const C = dex46Count(), D = dex46(), ready = dex46Ready(C, D);
+    ap.innerHTML = '<div class="dx46p"><b>모은 칸 ' + C.got + '/' + C.all + '</b><div class="bar"><i style="width:' + Math.round(C.got / C.all * 100) + '%"></i></div></div>';
+    let tb = document.getElementById('dex46t');
+    if (!tb) { tb = document.createElement('div'); tb.id = 'dex46t'; sc.insertBefore(tb, cards); }
+    tb.innerHTML = DEXT46.map(([c, n]) => '<div class="' + (c === DEX46TAB ? 'on' : '') + '" data-c="' + c + '">' + n + '<small>' + C.per[c][0] + '/' + C.per[c][1] + '</small>' + (ready.includes(c) ? '<i></i>' : '') + '</div>').join('');
+    tb.querySelectorAll('[data-c]').forEach(t => t.onclick = () => { DEX46TAB = t.dataset.c; try { sfx('tap', { vol: .5 }); } catch (e) {} renderAlbum(); const cc = document.getElementById('cards'); if (cc) cc.scrollTop = 0; });
+    const [g, all] = C.per[DEX46TAB], step = D.rw[DEX46TAB] || 0, need = step < 4 ? dex46Need(all, step) : 0, can = step < 4 && g >= need;
+    let head = '<div class="dx46h">' + (step >= 4 ? '<span>이 묶음을 다 채웠어요!</span>' : can ? '<div class="btn red" id="dx46c">' + (step + 1) * 25 + '% 선물 받기</div><span>' + dex46RwTxt(DEXR46[step]) + '</span>' : '<span><b>' + need + '칸</b>을 채우면 ' + (step + 1) * 25 + '% 선물<br><em>' + dex46RwTxt(DEXR46[step]) + '</em></span>') + '</div>';
+    if (DEX46TAB === 'sp') head += '<div class="dx46n">반짝이는 ' + Math.max(1, VAR_PITY1 - S.pity.h1) + '번, 황금빛은 ' + Math.max(1, VAR_PITY2 - S.pity.h2) + '번 안에 꼭 나와요</div>';
+    if (DEX46TAB === 'nb') head += '<div class="dx46n">손님 주문을 들어준 횟수예요. 이번 업데이트부터 세요</div>';
+    cards.className = 'dx46g'; sc.classList.add('dx46');
+    const list = dex46List(DEX46TAB);
+    if (DEX46TAB === 'sp') {
+      cards.innerHTML = head + SP_ORDER.map((k, ki) => {
+        const met = !!S.sp[k], bits = D.sp[k] || 0, cur = S.lk[k] || 'base', vb = S.vr[k] || 0;
+        const forms = [0, 1, 2].map(v => { const got = !!(bits & (1 << v)); return '<span class="fm46 v' + v + (got ? ' got' : '') + '" data-i="' + (ki * 3 + v) + '"><i><img src="' + (met ? HEAD(k) : I('c03_egg3')) + '" alt=""></i><em>' + VAR_NAME[v] + '</em><small>' + (got ? '모았어요' : v === 0 ? '알 깨우기' : v === 1 ? '12%' : '3%') + '</small></span>'; }).join('');
+        return '<div class="card dx46fr' + (met ? '' : ' lock') + (vb ? ' v' + vb : '') + '" data-k="' + k + '"><div class="pic">' + (met ? stageHTML(k, 168, 104, 1.25, cur) : '<div class="egg"><img src="' + I('c03_egg3') + '"></div>') + '</div><div class="dx46fb"><div class="dx46fn"><b>' + (met ? SP[k].n : '???') + '</b>' + (met ? '<span class="dx46lv">Lv' + spLv(k) + '</span>' : '<small>알을 깨우면 만나요</small>') + '</div><div class="dx46ff">' + forms + '</div></div></div>';
+      }).join('');
+      cards.querySelectorAll('.dx46fr').forEach(c => c.onclick = () => { const k = c.dataset.k; if (!S.sp[k]) { toast('빛나는 알(3단계 알)을 깨우면 만나요'); return; } S.cur = k; go('dress'); });
+      cards.querySelectorAll('.fm46').forEach(f => f.onclick = e => { e.stopPropagation(); const x = list[+f.dataset.i]; if (!x) return; toast(x.got ? x.name + ' · ' + x.tag + ' 모았어요' : (x.name === '???' ? '아직 못 만난 친구예요. ' : '') + x.long); });
+    } else {
+      cards.innerHTML = head + list.map((x, i) => '<div class="dx46c' + (x.got ? ' got' : '') + ' ' + x.cls + '" data-i="' + i + '"><div class="dx46i">' + (x.img ? '<img src="' + x.img + '" alt="">' : '<span class="dx46tt">' + x.txt + '</span>') + '</div>' + (x.tag ? '<span class="dx46tg">' + x.tag + '</span>' : '') + '<b>' + x.name + '</b><small>' + (x.got ? '모았어요' : x.cond) + '</small></div>').join('');
+      cards.querySelectorAll('.dx46c').forEach(c => c.onclick = () => { const x = list[+c.dataset.i]; if (!x) return; toast(x.got ? x.name + (x.tag ? ' · ' + x.tag : '') + ' 모았어요' : (x.name === '???' ? '아직 모르는 칸이에요. ' : '') + (x.long || x.cond)); });
+    }
+    const cb = document.getElementById('dx46c'); if (cb) cb.onclick = () => dex46Claim(DEX46TAB);
+  } catch (e) { console.error(e); }
+  return r;
+})(renderAlbum);
+/* track friend forms from the hatch pop-up, and neighbour orders */
+hatch = (o0 => function () {
+  const sp = showPop; let seen = null;
+  showPop = function (o) { try { const src = (String(o.big || '').match(/src="([^"]+)"/) || [])[1]; const k = SP_ORDER.find(x => HEAD(x) === src); const v = VAR_NAME.findIndex((n, i) => i > 0 && String(o.name || '').startsWith(n + ' ')); if (k) seen = [k, v > 0 ? v : 0]; } catch (e) {} return sp.apply(this, arguments); };
+  let r; try { r = o0.apply(this, arguments); } finally { showPop = sp; }
+  try { if (seen) { const D = dex46(); D.sp[seen[0]] = (D.sp[seen[0]] || 0) | (1 << seen[1]); save(); } } catch (e) {}
+  return r;
+})(hatch);
+completeOrder = (o0 => function (idx) {
+  const o = S.orders[idx], d0 = S.done; const r = o0.apply(this, arguments);
+  try { if (o && S.done > d0 && NB[o.who]) { const D = dex46(), c1 = (D.nb[o.who] || 0) + 1; D.nb[o.who] = c1; save(); const hit = NBT46.find(([n]) => n === c1); if (hit && c1 > 1) setTimeout(() => toast(SP[o.who].n + iga(SP[o.who].n) + ' ' + hit[1] + '이 됐어요! 도감에 올랐어요'), 1400); } } catch (e) {}
+  return r;
+})(completeOrder);
+/* the 도감 tab lights up when a 25% gift is ready */
+renderAll = (o0 => function () { const r = o0.apply(this, arguments); try { const na = document.querySelector('#nav [data-s=album]'); if (na && dex46Ready(dex46Count(), dex46()).length) na.classList.add('n'); } catch (e) {} return r; })(renderAll);
+/* v46: dex */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
