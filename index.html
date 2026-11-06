@@ -4054,8 +4054,14 @@ html,body{overscroll-behavior:none}
 @keyframes inv78knock{0%,100%{margin-left:0}30%{margin-left:-6px}70%{margin-left:6px}}
 #popbox img.inv78big{width:150px;height:auto;margin:14px auto 6px;display:block;filter:drop-shadow(0 6px 8px rgba(120,70,20,.25))}
 
+/* v79a: 배달 */
+#app #b-act.p79b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:52px !important;min-width:70px;padding:5px 8px 4px !important;line-height:1;box-sizing:border-box}
+#app #b-act.p79b .p79m{font-family:'Jua';font-size:18px;line-height:1;padding-top:.12em;white-space:nowrap}
+#app #b-act.p79b .p79s{font-family:'Jua';font-size:11.5px;line-height:1;opacity:.92;white-space:nowrap}
+#app #b-act.p79b.p79off{color:#7A5236;text-shadow:none}
+
 </style>
-<script>window.BUILD64="v78-202611070109";</script>
+<script>window.BUILD64="v79a-202611070230";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -13943,6 +13949,37 @@ revealFx = (o0 => function (kind) { if (kind !== 'hatch') return o0.apply(this, 
     showPop({ title: '알이 초대장이 됐어요', big: '<img class="inv78big" src="' + I('c03_egg3') + '" alt="">', name: '초대장을 보내 친구를 불러요', text: '편지함을 누르면 쪽지가 나와요. 겹치면 편지, 초대장이 돼요.<br>초대장을 보내면 오리 우체부가 전해 주고 친구가 놀러 와요.<br>판에 있던 알은 같은 단계 초대장으로 바뀌었어요.', btns: [['좋아!', 'yellow', null]] });
   }, 1500);
 })();
+
+/* v79a: 오리 우체부 배달 - 4시간마다 1번, 최대 3번. 초대장은 만들 수 있지만 보내는 건 배달이 있을 때만 (친구가 너무 쉽게 생기지 않게) */
+const POST79_MS = 4 * 3600e3, POST79_MAX = 3;
+function post79() { const now = Date.now(); if (!S.post79) S.post79 = { n: POST79_MAX, t: now }; const P = S.post79; if (P.n >= POST79_MAX) { P.n = POST79_MAX; P.t = now; return P; } const k = Math.floor((now - P.t) / POST79_MS); if (k > 0) { P.n = Math.min(POST79_MAX, P.n + k); P.t = P.n >= POST79_MAX ? now : P.t + k * POST79_MS; } return P; }
+function post79Left() { const P = post79(); return P.n >= POST79_MAX ? 0 : Math.max(0, P.t + POST79_MS - Date.now()); }
+function post79Fmt(ms) { const m = Math.max(1, Math.ceil(ms / 60000)), h = Math.floor(m / 60), mm = m % 60; return h > 0 ? h + '시간' + (mm ? ' ' + mm + '분' : '') : mm + '분'; }
+function post79Short(ms) { const s = Math.max(0, Math.ceil(ms / 1000)), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = s % 60; return h > 0 ? h + ':' + String(m).padStart(2, '0') + ':' + String(ss).padStart(2, '0') : m + ':' + String(ss).padStart(2, '0'); }
+actOn = (o0 => function (i) {
+  const x = S.b[i];
+  if (x && x.k === 'egg' && !x.vine && x.lv >= (ACT_AT.egg || 3)) {
+    const P = post79();
+    if (P.n <= 0) { toast('오리 우체부가 쉬는 중이에요. ' + post79Fmt(post79Left()) + ' 뒤에 배달해요 (4시간마다 1번, 최대 3번)'); try { sfx('tap', { rate: .7, vol: .4 }); } catch (e) {} return; }
+    const r = o0.apply(this, arguments);
+    if (!S.b[i]) { P.n = Math.max(0, P.n - 1); save(); }
+    return r;
+  }
+  return o0.apply(this, arguments);
+})(actOn);
+function post79Btn() {
+  const ba = document.getElementById('b-act'); const x = (typeof sel === 'number' && sel >= 0) ? S.b[sel] : null;
+  if (!ba || !x || x.k !== 'egg') return;
+  const P = post79();
+  if (P.n > 0) { ba.classList.remove('cream', 'p79off'); ba.classList.add('red'); const h = '<span class="p79m">보내기</span><small class="p79s">배달 ' + P.n + '/' + POST79_MAX + '</small>'; if (ba.innerHTML !== h) ba.innerHTML = h; }
+  else { ba.classList.remove('red'); ba.classList.add('cream', 'p79off'); const ms = post79Left(); let hh = Math.floor(ms / 3600e3), mm = Math.ceil((ms % 3600e3) / 60000); if (mm >= 60) { hh++; mm = 0; } const main = hh > 0 ? hh + '시간' : Math.max(1, mm) + '분', sub = hh > 0 && mm > 0 ? mm + '분 뒤' : '뒤 배달'; const h = '<span class="p79m">' + main + '</span><small class="p79s">' + sub + '</small>'; if (ba.innerHTML !== h) ba.innerHTML = h; }
+  ba.classList.add('p79b');
+  if (!S.p79tip) { S.p79tip = 1; save(); setTimeout(() => toast('오리 우체부는 4시간마다 1번 배달해요(최대 3번). 높은 초대장일수록 귀한 친구가 잘 와요'), 300); }
+}
+renderHelper = (o0 => function () { const r = o0.apply(this, arguments); try { post79Btn(); } catch (e) {} return r; })(renderHelper);
+renderBoard = (o0 => function () { const r = o0.apply(this, arguments); try { if (post79().n <= 0) document.querySelectorAll('#board .t.act51').forEach(t => { const x = S.b[+t.dataset.i]; if (x && x.k === 'egg') t.classList.remove('act51'); }); } catch (e) {} return r; })(renderBoard);
+setInterval(() => { try { if (document.querySelector('#b-act.p79b')) post79Btn(); const P = S.post79; if (P && P.n < POST79_MAX && Date.now() - P.t >= POST79_MS) { post79(); save(); renderAll(); } } catch (e) {} }, 1000);
+showOdds = (o0 => function () { const r = o0.apply(this, arguments); try { const sec = document.querySelector('#info2box .r77sec'); if (sec && !sec.querySelector('.p79n')) { const P = post79(); const d = document.createElement('div'); d.className = 'p79n'; d.style.cssText = 'font-size:14px;opacity:.8;margin-top:6px'; d.textContent = '초대장은 오리 우체부가 4시간마다 1번 배달해요(최대 3번). 지금 배달 ' + P.n + '/' + POST79_MAX + (P.n < POST79_MAX ? ' · 다음 배달 ' + post79Fmt(post79Left()) + ' 뒤' : ''); sec.appendChild(d); } } catch (e) {} return r; })(showOdds);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
