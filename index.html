@@ -3022,6 +3022,16 @@ html,body{overscroll-behavior:none}
 #app.ui61 #bb53-lob .bb53-grid .gc > b{top:52px !important;left:9px !important;right:9px !important;width:auto !important;height:28px !important;white-space:normal !important;word-break:keep-all !important;text-align:center !important;font-size:13.5px !important;line-height:14px !important;display:flex !important;align-items:center !important;justify-content:center !important;overflow:visible !important;padding-top:1px}
 #app.ui61 #bb53-lob .bb53-grid .gc > small{top:auto !important;bottom:9px !important;left:5px !important;right:5px !important;width:auto !important;font-size:12px !important;line-height:12px !important;height:12px !important;text-align:center !important;white-space:nowrap}
 
+
+/* v62: focus */
+#app #nav{transition:transform .22s ease,opacity .22s ease}
+#app.focus62 #nav{transform:translateY(105%);opacity:0;pointer-events:none !important}
+#app #foc62{display:none;position:absolute;left:0;right:0;bottom:0;height:86px;z-index:6;touch-action:none;background:transparent}
+#app.focus62 #foc62{display:block}
+#app .f47pond{bottom:222px !important}
+#app .f47bot{bottom:112px !important}
+#app.focus62 #f47-jar, #app.focus62 #f47-odds, #app.focus62 #f47-baits{opacity:.45;pointer-events:none !important;transition:opacity .2s}
+
 </style>
 </head>
 <body><div id="sp38"><style>
@@ -9593,6 +9603,27 @@ setInterval(() => { try { if (!S.thief) { const b = document.getElementById('boa
   run();
 })();
 /* v60c: group fit */
+
+
+/* ===== v62: 낚시 · 번개놀이 중에는 아래 메뉴를 숨겨서 실수로 눌러 나가는 일을 막음 ===== */
+(function focus62() {
+  const app = document.getElementById('app'); if (!app) return;
+  const cat = document.createElement('div'); cat.id = 'foc62'; app.appendChild(cat);
+  let on = false, offAt = 0;
+  const fishOn = () => { const sc = document.getElementById('sc-fish'); return !!sc && sc.classList.contains('on') && typeof FS47 !== 'undefined' && !!FS47.st && FS47.st !== 'idle'; };
+  const bbOn = () => { const sc = document.getElementById('sc-bb'); return !!sc && sc.classList.contains('on') && typeof BB !== 'undefined' && !!BB && !!BB.phase && BB.phase !== 'end'; };
+  window.focus62On = () => on;
+  const tick = () => {
+    const a = fishOn() || bbOn();
+    if (a) { offAt = 0; if (!on) { on = true; app.classList.add('focus62'); } }
+    else if (on) { if (!offAt) offAt = Date.now() + 800; else if (Date.now() >= offAt) { on = false; offAt = 0; app.classList.remove('focus62'); } }
+  };
+  setInterval(tick, 80);
+  cat.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); try { if (fishOn()) { if (FS47.st === 'reel') FS47.hold = true; else if (FS47.st === 'bite') hook47(true); } } catch (x) {} });
+  let allow = false; const bk = document.getElementById('f47-back'); if (bk) bk.addEventListener('click', () => { allow = true; setTimeout(() => allow = false, 400); }, true);
+  go = (o0 => function (s) { try { if (!allow && fishOn() && s !== 'fish') { toast('낚시가 끝나면 움직일 수 있어요'); try { history.pushState({ g39: 1 }, '', location.href); } catch (x) {} return; } } catch (x) {} return o0.apply(this, arguments); })(go);
+})();
+/* v62: focus */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
