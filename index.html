@@ -4037,8 +4037,15 @@ html,body{overscroll-behavior:none}
 #app .evo76ct small{font-family:'Gowun Dodum',sans-serif;font-size:13.5px;line-height:1.25;color:#8A6A52;white-space:nowrap}
 #app .evo76c.got .evo76ct small{color:#2F8A3A}
 
+/* v77: 친구 등급 */
+#app .tag.r77t2{background:#EEE3FF;color:#6B3FC6}
+#app .tag.r77t3{background:linear-gradient(#FFE58A,#F2B227);color:#6E4100}
+#app .r77{font-style:normal;font-family:'Jua';font-size:12px;line-height:1;padding:3px 6px 2px;border-radius:8px;margin-left:5px;vertical-align:2px;white-space:nowrap}
+#app .r77.r77t2{background:#EEE3FF;color:#6B3FC6}
+#app .r77.r77t3{background:linear-gradient(#FFE58A,#F2B227);color:#6E4100;box-shadow:0 0 6px rgba(242,178,39,.6)}
+
 </style>
-<script>window.BUILD64="v76c-202611062248";</script>
+<script>window.BUILD64="v77-202611070026";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -13842,6 +13849,48 @@ evo76Apply();
 /* 이미 Lv5를 넘은 친구가 있으면 처음 한 번만 알려 줘요 */
 setTimeout(() => { try { if (S.evo76seen) return; const ev = SP_ORDER.filter(k => evo76Stage(k) >= 2); S.evo76seen = 1; save(); if (ev.length) { const who = ev.map(k => SP[k].n).slice(0, 3).join(' · ') + (ev.length > 3 ? ' 외 ' + (ev.length - 3) + '명' : ''); toast(who + iga(who) + ' 진화했어요! 키우기와 도감에서 봐요'); } } catch (e) {} }, 4000);
 /* v76e: evo */
+
+/* v77: 친구 희소성 - 등급(보통·귀함·전설), 알 단계별 확률, 보장 횟수. 새 친구가 순서대로 다 나오던 것을 바꿈 */
+const RARE77 = { ttuki: 1, haetae: 1, rabbit: 1, toad: 1, gumiho: 2, bonghwang: 2, bulgasari: 2, imugi: 3 };
+const RARE77_N = ['', '흔함', '귀함', '전설'], RARE77_ADJ = ['', '흔한', '귀한', '전설'];
+const RARE77_ODDS = { 3: [85, 13, 2], 4: [70, 25, 5], 5: [50, 38, 12], 6: [30, 45, 25] };
+const RARE77_P2 = 15, RARE77_P3 = 60;
+function rare77St() { if (!S.pity77) S.pity77 = { r: 0, l: 0 }; return S.pity77; }
+function rare77Pick(lv) {
+  const P = rare77St(); P.r++; P.l++;
+  const met = SP_ORDER.filter(k => S.sp[k]).length;
+  let tier;
+  if (met <= 1) tier = 1;
+  else { const o = RARE77_ODDS[Math.max(3, Math.min(6, lv || 3))]; const r = Math.random() * 100; tier = r < o[2] ? 3 : r < o[2] + o[1] ? 2 : 1; if (P.l >= RARE77_P3) tier = 3; else if (tier < 2 && P.r >= RARE77_P2) tier = 2; }
+  if (tier >= 2) P.r = 0; if (tier === 3) P.l = 0;
+  let pool = SP_ORDER.filter(k => (RARE77[k] || 1) === tier);
+  if (met <= 1) pool = pool.filter(k => !S.sp[k]);
+  return pool[Math.floor(Math.random() * pool.length)] || 'haetae';
+}
+function rare77PityTxt() { const P = rare77St(); return '귀함 이상은 ' + Math.max(1, RARE77_P2 - P.r) + '번, 전설은 ' + Math.max(1, RARE77_P3 - P.l) + '번 안에 꼭 나와요'; }
+hatch = (o0 => function (lv) {
+  const L = lv || 3, k = rare77Pick(L), isNew = !S.sp[k], t = RARE77[k] || 1;
+  const RV = rollVariantLv, v = RV(L); rollVariantLv = () => v;
+  const mr = Math.random; let once = false; const H0 = HATCH.slice(); const sp0 = showPop;
+  showPop = function (o) { try { o = Object.assign({}, o); if (t >= 2) o.tags = (o.tags || '') + '<span class="tag r77t' + t + '">' + RARE77_N[t] + '</span>'; if (isNew && t >= 2) { o.fx = 'big'; if (!o.raysCls) o.raysCls = t === 3 ? 'v2' : 'v1'; } if (o.pity) o.pity = o.pity + '<br>' + rare77PityTxt(); } catch (e) {} return sp0.call(this, o); };
+  try {
+    HATCH.length = 0; S.hi = 0;
+    if (isNew) HATCH.push(k);
+    else { const idx = SP_ORDER.indexOf(k); Math.random = function () { if (!once) { once = true; return (idx + 0.5) / SP_ORDER.length; } return mr(); }; }
+    return o0.apply(this, arguments);
+  } finally {
+    Math.random = mr; rollVariantLv = RV; showPop = sp0;
+    HATCH.length = 0; H0.forEach(x => HATCH.push(x)); S.hi = HATCH.filter(x => S.sp[x]).length; save();
+  }
+})(hatch);
+/* 도감 위 '다음에 만날 친구' 줄: 순서가 없어졌으니 남은 수와 확률로 */
+renderAlbum = (o0 => function () { const r = o0.apply(this, arguments); try { const el = document.getElementById('anext'); const miss = SP_ORDER.filter(k => !S.sp[k]).length; if (el && miss > 0) el.innerHTML = '<img src="' + I('c03_egg3') + '"><div><b>아직 못 만난 친구 ' + miss + '명</b><br>빛나는 알에서 귀함 13%, 전설 2%. 높은 알일수록 잘 나와요</div>'; } catch (e) {} return r; })(renderAlbum);
+/* 확률 보기에 친구 등급 */
+showOdds = (o0 => function () { const r = o0.apply(this, arguments); try { const box = document.querySelector('#info2box .oddsbox'); if (box && !box.querySelector('.r77sec')) { const P = rare77St(); const tr = (a, b) => '<tr><td>' + a + '</td><td>' + b + '</td></tr>'; const sec = document.createElement('div'); sec.className = 'r77sec'; sec.innerHTML = '<h4>알에서 나오는 친구 등급</h4><table class="odds-t">' + tr('빛나는 알 (3단계)', '흔함 85% · 귀함 13% · 전설 2%') + tr('꽃 알 (4단계)', '흔함 70% · 귀함 25% · 전설 5%') + tr('금빛 알 (5단계)', '흔함 50% · 귀함 38% · 전설 12%') + tr('무지개 알 (6단계)', '흔함 30% · 귀함 45% · 전설 25%') + tr('흔한 친구', '뚝이 · 해태 · 달토끼 · 금두꺼비') + tr('귀한 친구', '구미호 · 봉황 · 바늘곰') + tr('전설 친구', '이무기') + tr('보장', RARE77_P2 + '번 안에 귀함 이상, ' + RARE77_P3 + '번 안에 전설') + tr('지금', '귀함까지 ' + Math.max(1, RARE77_P2 - P.r) + '번 · 전설까지 ' + Math.max(1, RARE77_P3 - P.l) + '번') + '</table><div style="font-size:14px;opacity:.8">같은 등급 안에서는 똑같은 확률이에요. 처음 깨우는 알에서는 흔한 친구를 꼭 만나요. 이미 만난 친구가 또 나오면 우정 구슬이 생겨요</div>'; const anchor = [...box.querySelectorAll('h4')].find(h => /새 옷 칸이 나오면/.test(h.textContent)); if (anchor) box.insertBefore(sec, anchor); else box.appendChild(sec); } } catch (e) {} return r; })(showOdds);
+/* 키우기 친구 카드 이름 옆 등급 */
+renderGrow = (o0 => function () { const r = o0.apply(this, arguments); try { if (S.gtab === 'sp') document.querySelectorAll('#glist [data-up^="sp:"]').forEach(b => { const k = b.dataset.up.split(':')[1], t = RARE77[k] || 1; if (t < 2) return; const card = b.closest('.gc'), nm = card && card.querySelector('.gtx b'); if (nm && !nm.querySelector('.r77')) nm.insertAdjacentHTML('beforeend', '<i class="r77 r77t' + t + '">' + RARE77_N[t] + '</i>'); }); } catch (e) {} return r; })(renderGrow);
+/* 도감 친구 칸 설명에 등급 */
+dex46List = (o0 => function (cat) { const out = o0.apply(this, arguments); try { if (cat === 'sp') out.forEach(x => { if (x.k && RARE77[x.k] && x.long && !/친구예요$/.test(x.long)) x.long = x.long + ' · ' + RARE77_ADJ[RARE77[x.k]] + ' 친구예요'; }); } catch (e) {} return out; })(dex46List);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
