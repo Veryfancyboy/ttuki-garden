@@ -4211,8 +4211,102 @@ html,body{overscroll-behavior:none}
 #app#app#app .ev.road.ui79sroad > .evt{grid-area:title;position:static !important;width:auto !important;left:auto !important;top:auto !important;bottom:auto !important;align-self:center;margin:0 !important}
 #app#app#app .ev.road.ui79sroad > .evb.btn{grid-area:btn;position:static !important;transform:none !important;left:auto !important;right:auto !important;top:auto !important;bottom:auto !important;align-self:center;justify-self:end;margin:0 !important}
 
+/* v79g: 키우기 · 꾸미기 · 도감 정리 (UI 규칙 v79) */
+/* 공통: 칩 글자는 잉크 기준 가운데. Jua 잉크가 글자 상자보다 0.05~0.09em 위에 있어 위 여백을 0.14em 더 줌 */
+/* 키우기: 보너스 한 줄 (글자 하나로, 넘치면 '외 N'으로 줄임) */
+#app #gsum.ui79g-s1{height:auto !important;min-height:0 !important;padding:9px 12px 8px !important;display:flex !important;align-items:center;gap:8px;box-sizing:border-box}
+#app #gsum.ui79g-s1 .gs45h{display:contents !important}
+#app #gsum.ui79g-s1 .gs45h > b{flex:none;font-size:15px !important;line-height:1.3 !important;color:#4A2A1E;margin:0 !important}
+#app #gsum.ui79g-s1 .gs45h > small,#app #gsum.ui79g-s1 .gs45c{display:none !important}
+#app #gsum.ui79g-s1 .ui79g-sl{display:block;flex:1 1 auto;min-width:0;font-family:'Jua',sans-serif;font-size:13px;line-height:1.3;color:#8A7460;white-space:nowrap;overflow:hidden;cursor:pointer}
+#app #gsum.ui79g-s1 #gs45t{flex:none;position:static !important;font-size:13px !important;line-height:1.3 !important;margin:0 !important;padding:0 !important}
+/* 키우기 목록: 카드 사이 8 */
+#app #glist.ui79g-L{display:flex !important;flex-direction:column;gap:8px}
+#app #glist.ui79g-L > *{margin-top:0 !important;margin-bottom:0 !important;flex:none}
+/* 목록 카드: 그림 56 · 글 · 단추 96 */
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45){display:flex !important;align-items:center;gap:12px;min-height:88px;height:auto !important;padding:12px !important;box-sizing:border-box;position:relative}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gpic{flex:0 0 56px;width:56px !important;height:56px !important;margin:-6px 0 0 !important;position:relative;left:auto !important;top:auto !important}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gpic > img{width:56px !important;height:56px !important;object-fit:contain;position:static !important;margin:0 !important}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gpic > .glv{position:absolute !important;bottom:auto !important;text-box:normal !important;text-box-trim:none !important;left:50% !important;right:auto !important;transform:translateX(-50%) !important;height:auto !important;width:auto !important;line-height:1 !important;padding:.26em .45em .08em !important;font-size:13px !important;border-radius:7px !important;white-space:nowrap;z-index:2}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gtx{flex:1 1 auto;min-width:0;display:flex !important;flex-wrap:wrap;align-items:center;align-content:center;column-gap:6px;row-gap:3px;margin:0 !important;padding:0 !important;position:static !important;cursor:pointer}
+#app #glist.ui79g-L > .gc > .gtx > br{display:none !important}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gtx > b{order:1;font-size:19px !important;line-height:1.2 !important;white-space:nowrap;margin:0 !important}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gtx > .gtag,#app #glist.ui79g-L .gtx > b > .r77{order:2;flex:none;display:inline-block !important;margin:0 !important;font-size:13px !important;line-height:1 !important;height:auto !important;padding:.30em .55em .08em !important;box-sizing:border-box;white-space:nowrap;vertical-align:.12em;text-box:normal !important;text-box-trim:none !important}
+#app #glist.ui79g-L .gtx > b > .r77{margin-left:5px !important}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gtx > .ui79g-aux{order:5;flex:0 0 100%;font-family:'Jua',sans-serif;font-size:13px;line-height:1.3;color:#8A7460;white-space:nowrap}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gtx > .ui79g-aux.no{color:#D2402F}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gtx > .ui79g-aux.ok{color:#3E8A2A}
+/* 단추: 두 줄(위 이름 15 · 아래 동전 13), 높이 52 */
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gup{flex:0 0 96px;width:96px !important;min-width:0 !important;max-width:96px !important;height:52px !important;min-height:52px !important;max-height:52px !important;margin:0 !important;padding:2px 4px 0 !important;box-sizing:border-box;display:flex !important;flex-direction:column;align-items:center;justify-content:center;gap:0 !important;font-size:15px !important;line-height:1.1 !important;position:relative !important;inset:auto !important;white-space:nowrap}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gup small{font-size:13px !important;line-height:1.1 !important;display:flex !important;align-items:center;justify-content:center;gap:2px;white-space:nowrap;margin:0 !important;padding:0 !important;position:static !important}
+#app #glist.ui79g-L > .gc:not(.lock45):not(.genl45) > .gup small img{width:15px !important;height:13px !important;object-fit:contain;margin:0 !important}
+/* 친구 탭: 이름 / 특기 지금 → 다음 / (구슬) */
+#app #glist.ui79g-L.ui79g-sp > .gc:not(.lock45):not(.genl45) > .gtx > b{flex:0 0 100%}
+#app #glist.ui79g-sp > .gc:not(.lock45) > .gtx > small,#app #glist.ui79g-sp > .gc:not(.lock45) > .gtx > .evo76n{display:none !important}
+#app #glist.ui79g-L.ui79g-sp > .gc:not(.lock45):not(.genl45) > .gtx > .gtag{background:none !important;box-shadow:none !important;border:0 !important;padding:0 !important;font-size:15px !important;line-height:1.3 !important;color:#8A7460 !important;vertical-align:baseline}
+#app #glist.ui79g-L.ui79g-sp > .gc:not(.lock45):not(.genl45) > .gtx > .gval{order:3;font-size:15px !important;line-height:1.3 !important;white-space:nowrap;margin:0 !important}
+#app #glist.ui79g-L.ui79g-sp > .gc:not(.lock45):not(.genl45) > .gtx > .gval em{font-size:15px !important}
+/* 옷 탭 */
+#app #glist.ui79g-L.ui79g-it > .gc:not(.lock45):not(.genl45) > .gtx > .gval{order:3;flex:0 0 100%;font-size:15px !important;line-height:1.3 !important;margin:0 !important}
+#app #glist.ui79g-L.ui79g-it > .gc:not(.lock45):not(.genl45) > .gtx > small{order:4;flex:0 0 100%;font-size:13px !important;line-height:1.3 !important;color:#8A7460 !important;white-space:nowrap;margin:0 !important}
+#app #glist .ui79g-sets{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+#app #glist .ui79g-sets.one{grid-template-columns:minmax(0,1fr)}
+#app #glist .ui79g-setsh{grid-column:1 / -1;font-family:'Jua',sans-serif;font-size:13px;line-height:1.3;color:#8A7460;padding:0 4px}
+#app #glist .ui79g-sets > .gset{margin:0 !important;height:auto !important;min-height:52px;padding:9px 12px 7px !important;box-sizing:border-box;display:grid !important;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;column-gap:6px;row-gap:2px;font-size:13px !important;line-height:1.3 !important}
+#app #glist .ui79g-sets > .gset > b{grid-column:1;grid-row:1;font-size:15px !important;line-height:1.3 !important;white-space:nowrap;overflow:hidden;margin:0 !important}
+#app #glist .ui79g-sets > .gset > span:not(.ui79g-bn){grid-column:2;grid-row:1;font-size:13px !important;line-height:1.3 !important;position:static !important;margin:0 !important;white-space:nowrap}
+#app #glist .ui79g-sets > .gset > .ui79g-bn{grid-column:1 / 3;grid-row:2;color:#8A7460;white-space:nowrap;overflow:hidden}
+#app #glist .ui79g-sets.one > .gset > b,#app #glist .ui79g-sets.one > .gset > .ui79g-bn{white-space:normal;overflow:visible;word-break:keep-all}
+/* 살림 탭: 지금 확률 4개만 (다음 레벨 값은 누르면) */
+#app #glist.ui79g-L.ui79g-gen > .gc.gen:not(.lock45):not(.genl45) > .gtx > small{display:none !important}
+#app #glist.ui79g-L.ui79g-gen > .gc.gen:not(.lock45):not(.genl45) > .gtx > .od45{order:3;flex:0 0 100%;display:flex !important;gap:8px;margin:2px 0 0 !important;height:auto !important}
+#app #glist.ui79g-gen > .gc.gen .od45 > span{flex:none;width:auto !important;min-width:30px;display:flex !important;flex-direction:column;align-items:center;margin:0 !important}
+#app #glist.ui79g-gen > .gc.gen .od45 img{width:26px !important;height:26px !important;margin:0 !important}
+#app #glist.ui79g-gen > .gc.gen .od45 b{font-size:13px !important;line-height:1.2 !important;margin:0 !important}
+#app #glist.ui79g-gen > .gc.gen .od45 em{display:none !important}
+/* 묶음 상자(못 만난 친구 · 들이지 않은 살림 · 안내) */
+#app #glist.ui79g-L > .gc.lock45,#app #glist.ui79g-L > .gc.genl45{display:block !important;height:auto !important;min-height:0 !important;padding:12px !important;box-sizing:border-box}
+#app #glist.ui79g-L > .gc.lock45 .l45h,#app #glist.ui79g-L > .gc.genl45 .l45h{display:flex !important;flex-wrap:wrap;align-items:baseline;column-gap:6px;row-gap:2px;margin:0 0 8px !important;padding:0 !important;position:static !important}
+#app #glist.ui79g-L > .gc.lock45 .l45h b,#app #glist.ui79g-L > .gc.genl45 .l45h b{font-size:15px !important;line-height:1.3 !important;margin:0 !important}
+#app #glist.ui79g-L > .gc.lock45 .l45h small,#app #glist.ui79g-L > .gc.genl45 .l45h small{font-size:13px !important;line-height:1.3 !important;color:#8A7460 !important;margin:0 !important;position:static !important}
+#app #glist.ui79g-L > .gc.lock45 .l45f,#app #glist.ui79g-L > .gc.genl45 .l45f{margin:0 !important;padding:0 0 6px !important}
+#app #glist.ui79g-L > .gc.lock45 .l45f.e > span > i{top:calc(100% - 7px) !important;bottom:auto !important;right:-3px !important;left:auto !important}
+#app #glist.ui79g-L > .gnote{padding:12px !important;font-size:13px !important;line-height:1.4 !important;box-sizing:border-box}
+/* 도감: 분류 탭 4칸 × 2줄(이름 위 · 개수 아래) */
+#app #dex46t.ui79g-t.ui79g-t:not([style*="display: none"]){display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;grid-auto-flow:row !important;gap:6px !important;height:auto !important;left:12px !important;right:12px !important;width:auto !important;overflow:visible !important;flex-wrap:nowrap !important}
+#app #dex46t.ui79g-t.ui79g-t > div:not([style*="display: none"]){width:auto !important;min-width:0 !important;max-width:none !important;height:auto !important;min-height:0 !important;margin:0 !important;padding:6px 4px 5px !important;display:flex !important;flex-direction:column !important;align-items:center;justify-content:center;gap:1px;font-size:15px !important;line-height:1.1 !important;white-space:nowrap;position:relative;box-sizing:border-box}
+#app #dex46t.ui79g-t.ui79g-t > div > small:not([style*="display: none"]){position:static !important;display:block !important;font-size:13px !important;line-height:1.1 !important;margin:0 !important;padding:0 !important;transform:none !important}
+#app #dex46t.ui79g-t.ui79g-t > div > i{position:absolute !important;right:3px !important;top:3px !important;left:auto !important;bottom:auto !important}
+/* 도감: 머리말 한 줄(좁으면 두 줄), 보장 안내는 머리말을 누르면 */
+#app #cards .dx46h.ui79g-h{padding:8px 12px !important;min-height:40px;box-sizing:border-box;cursor:pointer}
+#app #cards .dx46h.ui79g-h > span{flex:1 1 auto;min-width:0;font-size:13px !important;line-height:1.35 !important;white-space:normal;word-break:keep-all}
+#app #cards .dx46h.ui79g-h > span *{font-size:inherit !important;line-height:inherit !important}
+#app #cards .dx46n{display:none !important}
+#app #sc-album #cards,#app #sc-album #cards *{font-family:'Jua',sans-serif !important}
+/* 도감: 칸 이름표·Lv 칩 (글자가 커져도 칩 안에) */
+#app #cards .dx46tg,#app #cards .dx46lv{display:inline-block !important;height:auto !important;min-height:0 !important;line-height:1 !important;text-box:normal !important;text-box-trim:none !important;padding:.30em .55em .08em !important;font-size:13px !important;box-sizing:border-box;white-space:nowrap;max-width:100%}
+#app #cards .dx46tg{align-self:center}
+/* 꾸미기 */
+#app #looks.ui79g-more{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 40px),transparent)}
+#app #ui79g-arr{position:absolute;width:26px;height:26px;border-radius:50%;background:#FFF4DF;box-shadow:0 1px 3px rgba(74,42,30,.35);display:none;align-items:center;justify-content:center;pointer-events:none;z-index:6;box-sizing:border-box}
+#app #ui79g-arr.on{display:flex}
+#app #ui79g-arr::before{content:'';display:block;width:7px;height:7px;border-right:2.5px solid #8A6A50;border-bottom:2.5px solid #8A6A50;transform:rotate(-45deg);margin-left:-3px}
+#app #d29row .d29t small{font-size:13px !important;line-height:1.2 !important}
+#app #d29row .d29t b{line-height:1.2 !important}
+#app #pieces .ph.ui79g-ph{display:flex !important;align-items:baseline;gap:6px;white-space:nowrap;overflow:hidden;cursor:pointer;height:auto !important;min-height:0 !important}
+#app #pieces .ph.ui79g-ph > b{flex:none;font-size:15px !important;line-height:1.3 !important}
+#app #pieces .ph.ui79g-ph > .ui79g-pd{flex:1 1 auto;min-width:0;font-size:13px;line-height:1.3;color:#8A7460;overflow:hidden}
+#app #pieces .pc > img{width:48px !important;height:48px !important;object-fit:contain}
+#app #pieces .pc .nm{font-size:13px !important;line-height:1.15 !important;white-space:normal !important;word-break:keep-all;text-align:center;max-width:78px;margin-top:2px}
+#app #pieces .pc .ex{font-size:13px !important;line-height:1 !important;height:auto !important;padding:.24em 0 .1em !important;white-space:nowrap}
+
+/* v79m: 인사하기 - 노란 큰 알약 대신 크림색 보조 칩(손님 성격 아이콘 + 인사하기) */
+#app#app .gr66{height:32px !important;padding:0 12px 0 5px !important;gap:3px !important;background:#FFF8EA !important;box-shadow:inset 0 0 0 1.5px #D6B48A,0 2px 0 rgba(110,70,30,.22) !important;border-radius:16px !important}
+#app#app .gr66 > b{font-size:13px !important;line-height:1 !important;color:#6A4A3A !important;padding-top:2px !important;text-shadow:none !important;letter-spacing:0 !important}
+#app#app .gr66 > .tr66{width:22px !important;height:22px !important;margin-right:2px !important;background-size:16px 16px !important;box-shadow:inset 0 0 0 1.5px rgba(74,42,30,.3) !important;vertical-align:middle !important}
+
 </style>
-<script>window.BUILD64="v79s-202611070325";</script>
+<script>window.BUILD64="v79t-202611070340";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -14249,6 +14343,108 @@ setInterval(() => { try { const sc = document.getElementById('sc-event'); if (sc
 try { ui79sShop(); ui79sEvents(); } catch (e) {}
 
 /* v79h */
+/* v79g: 키우기 · 꾸미기 · 도감 정리 (UI 규칙 v79). 정보는 지우지 않고 접거나 누르면 보이게 */
+function ui79gEsc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+function ui79gFit(el, parts) { const set = k => { const t = parts.slice(0, k).join(' · ') + (k < parts.length ? ' 외 ' + (parts.length - k) : ''); if (el.textContent !== t) el.textContent = t; }; let k = parts.length; set(k); while (k > 1 && el.scrollWidth > el.clientWidth + 0.5) { k--; set(k); } if (el.scrollWidth > el.clientWidth + 0.5) el.textContent = parts.length + '가지'; }
+function ui79gSum() {
+  const gs = document.getElementById('gsum'); if (!gs) return; const h = gs.querySelector('.gs45h'), c = gs.querySelector('.gs45c'); if (!h || !c) return;
+  const parts = [...c.querySelectorAll('.c45')].map(x => (((x.querySelector('b') || {}).textContent || '') + ' ' + ((x.querySelector('em') || {}).textContent || '')).trim()).filter(Boolean);
+  const hb = h.querySelector('b'); if (hb && hb.textContent !== '보너스') hb.textContent = '보너스';
+  let sl = h.querySelector('.ui79g-sl'); if (!sl) { sl = document.createElement('span'); sl.className = 'ui79g-sl'; if (hb) hb.after(sl); else h.prepend(sl); sl.onclick = () => { const t = document.getElementById('gs45t'); if (t) t.click(); }; }
+  gs.classList.add('ui79g-s1');
+  if (parts.length) ui79gFit(sl, parts); else sl.textContent = '아직 없어요';
+}
+function ui79gFlow() {
+  const gs = document.getElementById('gsum'), sg = document.getElementById('gseg'), gl = document.getElementById('glist');
+  if (gs && sg && getComputedStyle(sg).position === 'absolute' && sg.offsetParent === gs.offsetParent) { const v = (gs.offsetTop + gs.offsetHeight + 8) + 'px'; if (sg.style.top !== v) sg.style.top = v; }
+  if (sg && gl && getComputedStyle(gl).position === 'absolute' && gl.offsetParent === sg.offsetParent) { const v = (sg.offsetTop + sg.offsetHeight + 8) + 'px'; if (gl.style.top !== v) gl.style.top = v; }
+}
+/* 단추는 이름 + 동전만. 구슬 · 천 조각은 글 칸 아래 줄로 */
+function ui79gBtn(card) {
+  const btn = card.querySelector(':scope > .gup'), tx = card.querySelector(':scope > .gtx'); if (!btn || !tx || btn.dataset.ui79g) return; btn.dataset.ui79g = 1;
+  const coin = I('c09_coin_pouch'), aux = [];
+  btn.querySelectorAll('small').forEach(sm => {
+    if (!sm.classList.contains('cost')) { const t = sm.textContent.trim(); if (t) aux.push({ t: t.replace(/^구슬/, '우정 구슬'), m: t.match(/(\d+)\s*\/\s*(\d+)/) }); sm.remove(); return; }
+    const imgs = [...sm.querySelectorAll('img')]; if (imgs.length < 2) return;
+    const parts = []; let cur = null; [...sm.childNodes].forEach(n => { if (n.nodeName === 'IMG') { cur = { img: n, t: '' }; parts.push(cur); } else if (cur) cur.t += n.textContent; });
+    const keep = parts.find(p => p.img.getAttribute('src') === coin) || parts[parts.length - 1];
+    parts.filter(p => p !== keep).forEach(p => { const need = parseInt(String(p.t).replace(/[^0-9]/g, ''), 10) || 0; const isScrap = p.img.getAttribute('src') === I('ui_scraps'); aux.push({ t: (isScrap ? '천 조각 ' : '') + (isScrap ? (S.scraps || 0) + '/' + need : p.t.trim()), m: isScrap ? [0, S.scraps || 0, need] : null }); });
+    sm.innerHTML = ''; sm.appendChild(keep.img); sm.appendChild(document.createTextNode(keep.t.trim()));
+  });
+  if (aux.length) { const d = document.createElement('div'); d.className = 'ui79g-aux'; d.textContent = aux.map(a => a.t).join(' · '); const lack = aux.some(a => a.m && +a.m[1] < +a.m[2]); d.classList.add(lack ? 'no' : 'ok'); tx.appendChild(d); }
+}
+function ui79gTap(card) {
+  const up = card.querySelector('[data-up]'), b = card.querySelector('.gtx > b'); if (!b) return;
+  const name = (b.firstChild && b.firstChild.nodeType === 3 ? b.firstChild.nodeValue : b.textContent).trim();
+  const q = s => { const e = card.querySelector(s); return e ? e.textContent.trim() : ''; };
+  const lines = [];
+  if (card.classList.contains('gen')) {
+    const sp = [...card.querySelectorAll('.od45 > span')];
+    const cur = sp.map(s => (s.querySelector('b') || {}).textContent || '').filter(Boolean), nx = sp.map(s => (s.querySelector('em') || {}).textContent || '').filter(Boolean);
+    if (q('.gtx > .gtag')) lines.push(ui79gEsc(q('.gtx > .gtag')));
+    if (cur.length) lines.push('누르면 나오는 단계: ' + ui79gEsc(cur.join(' · ')));
+    if (nx.length) lines.push('다음 레벨: ' + ui79gEsc(nx.map(x => x.replace(/^→\s*/, '')).join(' · ')));
+  } else {
+    if (q('.gtx > small')) lines.push(ui79gEsc(q('.gtx > small')));
+    const v = [q('.gtx > .gtag'), q('.gtx > .gval')].filter(Boolean).join(' '); if (v) lines.push('<b>' + ui79gEsc(v) + '</b>');
+    if (q('.gtx > .evo76n')) lines.push(ui79gEsc(q('.gtx > .evo76n')));
+    if (q('.gtx > .ui79g-aux')) lines.push(ui79gEsc(q('.gtx > .ui79g-aux')));
+  }
+  if (up && up.textContent.trim()) lines.push('<small>' + ui79gEsc(up.innerText.replace(/\s*\n\s*/g, ' · ')) + '</small>');
+  showPop({ title: name, text: lines.join('<br>'), btns: [['닫기', 'yellow', null]] });
+}
+function ui79gSets(gl) {
+  if (gl.querySelector('.ui79g-sets')) return;
+  const sets = [...gl.children].filter(e => e.classList && e.classList.contains('gset')); if (!sets.length) return;
+  const box = document.createElement('div'); box.className = 'ui79g-sets'; sets[0].before(box);
+  const hd = document.createElement('div'); hd.className = 'ui79g-setsh'; hd.textContent = '코디 세트: 세트 옷을 모두 ★3으로 키우면 보너스가 켜져요'; box.appendChild(hd);
+  sets.forEach(st => { const tn = [...st.childNodes].find(n => n.nodeType === 3 && n.nodeValue.trim()); if (tn) { const m = tn.nodeValue.trim().match(/^(.*?)→\s*(.*)$/); const sp = document.createElement('span'); sp.className = 'ui79g-bn'; sp.textContent = m ? (m[1].replace(/^\d+가지\s*모두\s*/, '').trim() + ' → ' + m[2].trim()) : tn.nodeValue.trim(); tn.replaceWith(sp); } box.appendChild(st); });
+  if ([...box.querySelectorAll('.gset > b, .gset > .ui79g-bn, .gset > span')].some(e => e.scrollWidth > e.clientWidth + 0.5)) box.classList.add('one');
+}
+function ui79gGrow() {
+  const gl = document.getElementById('glist'); if (!gl) return;
+  ui79gSum();
+  const tab = S.gtab === 'sp' ? 'sp' : S.gtab === 'it' ? 'it' : 'gen';
+  gl.classList.add('ui79g-L'); ['sp', 'it', 'gen'].forEach(t => gl.classList.toggle('ui79g-' + t, t === tab));
+  if (tab === 'it') ui79gSets(gl);
+  gl.querySelectorAll(':scope > .gc:not(.lock45):not(.genl45)').forEach(card => { ui79gBtn(card); const tx = card.querySelector(':scope > .gtx'); if (tx && !tx.dataset.ui79g) { tx.dataset.ui79g = 1; tx.addEventListener('click', e => { if (e.target.closest('.btn')) return; e.stopPropagation(); ui79gTap(card); }); } });
+  gl.querySelectorAll(':scope > .gc:not(.lock45):not(.genl45) > .gpic').forEach(p => { const im = p.querySelector(':scope > img'), lv = p.querySelector(':scope > .glv'); if (!im || !lv) return; const v = (im.offsetTop + im.offsetHeight - 3) + 'px'; if (lv.style.top !== v) lv.style.top = v; });
+  ui79gFlow();
+}
+renderGrow = (o0 => function () { const r = o0.apply(this, arguments); try { ui79gGrow(); } catch (e) {} return r; })(renderGrow);
+function ui79gAlbum() {
+  const t = document.getElementById('dex46t'); if (t) t.classList.add('ui79g-t');
+  const h = document.querySelector('#cards .dx46h'), n = document.querySelector('#cards .dx46n');
+  if (h && !h.classList.contains('ui79g-h')) { h.classList.add('ui79g-h'); const sp = h.querySelector(':scope > span') || h; sp.innerHTML = sp.innerHTML.replace(/<br\s*\/?>/gi, ' · '); const tip = n ? n.textContent.trim() : ''; if (tip) h.onclick = () => { try { toast(tip); } catch (e) {} }; }
+  const cards = document.getElementById('cards');
+  if (t && cards && getComputedStyle(cards).position === 'absolute' && cards.offsetParent === t.offsetParent) { const v = (t.offsetTop + t.offsetHeight + 8) + 'px'; if (cards.style.top !== v) cards.style.top = v; }
+}
+renderAlbum = (o0 => function () { const r = o0.apply(this, arguments); try { ui79gAlbum(); } catch (e) {} return r; })(renderAlbum);
+function ui79gDress() {
+  const lk = document.getElementById('looks'), sc = document.getElementById('sc-dress'); if (!lk || !sc) return;
+  let ar = document.getElementById('ui79g-arr'); if (!ar) { ar = document.createElement('div'); ar.id = 'ui79g-arr'; sc.appendChild(ar); }
+  const upd = () => { const more = lk.scrollWidth - lk.clientWidth - lk.scrollLeft > 6; lk.classList.toggle('ui79g-more', more); ar.classList.toggle('on', more); ar.style.left = (lk.offsetLeft + lk.offsetWidth - 30) + 'px'; ar.style.top = (lk.offsetTop + lk.offsetHeight / 2 - 13) + 'px'; };
+  if (!lk.dataset.ui79g) { lk.dataset.ui79g = 1; lk.addEventListener('scroll', upd, { passive: true }); }
+  upd();
+  const ph = document.querySelector('#pieces .ph');
+  if (ph && !ph.classList.contains('ui79g-ph')) {
+    const b = ph.querySelector('b'); const full = ph.textContent.replace(/\s+/g, ' ').trim();
+    const rest = [...ph.childNodes].filter(x => x !== b); const txt = rest.map(x => x.textContent).join('').replace(/\s+/g, ' ').trim().replace(/^·\s*/, ''); rest.forEach(x => x.remove());
+    const pd = document.createElement('span'); pd.className = 'ui79g-pd'; ph.appendChild(pd); ph.classList.add('ui79g-ph');
+    const sents = txt.split(/(?<=[.!?요])\s+/).filter(Boolean); const tries = [sents.join(' '), sents[0] || '', ''];
+    for (const tr of tries) { pd.textContent = tr ? '· ' + tr : ''; if (pd.scrollWidth <= pd.clientWidth + 0.5 && ph.scrollWidth <= ph.clientWidth + 0.5) break; }
+    if (!ph.onclick && full) ph.onclick = () => { try { toast(full); } catch (e) {} };
+  }
+}
+renderDress = (o0 => function () { const r = o0.apply(this, arguments); try { ui79gDress(); } catch (e) {} return r; })(renderDress);
+
+/* v79m: 만들기 화면 정리 2 - 키우기 점은 새로 생긴 강화거리만, 인사하기는 보조 칩 */
+function ui79mKeys() { const out = []; try { for (const k in S.sp) { const L = spLv(k); if (L < SP_MAX && S.coin >= SP_COST[L + 1] && (S.orb[k] || 0) >= SP_ORB[L + 1]) out.push('s:' + k + ':' + (L + 1)); } for (const g of GEN_ORDER.filter(g => g === 'nest' || g === 'basket' || S.unl[g])) { const L = S.glv[g] || 1; if (L < GEN_MAX && S.coin >= GEN_COST[L + 1]) out.push('g:' + g + ':' + (L + 1)); } for (const id in S.owned) { const st = S.star[id] || 1; if (st < STAR_MAX && S.scraps >= STAR_SCRAP[st + 1] && S.coin >= STAR_COIN[st + 1]) out.push('o:' + id + ':' + (st + 1)); } } catch (e) {} return out; }
+function ui79mDot() { const gN = document.querySelector('.nav [data-s=grow]'); if (!gN) return; const keys = ui79mKeys(); S.ui79m = S.ui79m || { seen: [] }; const seen = new Set(S.ui79m.seen || []); const sc = document.getElementById('sc-grow'); if (sc && sc.classList.contains('on')) { let ch = false; keys.forEach(k => { if (!seen.has(k)) { seen.add(k); ch = true; } }); if (ch) S.ui79m.seen = [...seen].slice(-300); gN.classList.remove('n'); return; } gN.classList.toggle('n', keys.some(k => !seen.has(k))); }
+renderAll = (o0 => function () { const r = o0.apply(this, arguments); try { ui79mDot(); } catch (e) {} return r; })(renderAll);
+go = (o0 => function () { const r = o0.apply(this, arguments); try { ui79mDot(); } catch (e) {} return r; })(go);
+try { ui79mDot(); } catch (e) {}
+
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
 window.__demo = { get S() { return S; }, set S(v) { S = v; }, go, buyGen, buyFog, flyItems, thanksFx, restoreSpot, renderGarden, playStory, nextLine, GARDEN, sfx, mergeFx, orderFx, revealFx, hitFx, koFx, stealFx, missFx, restoreFx, fevAdd, suspense, feverOn, audioInit, sbuf: () => Object.keys(sbuf), tickTension, thiefTick, thiefSteal, thiefHit, urgMiss, renderStk, placeThief, fillOrders, makeOrder, dropOn, tapTile, completeOrder, openBox, hatch, showOdds, renderAll, actOn, upSpirit, upGen, upStar, raceStart, raceClaim, raceView, attClaim, showAtt, fx, genOdds, canUpgrade };
