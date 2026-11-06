@@ -3738,8 +3738,23 @@ html,body{overscroll-behavior:none}
 #app .bb53-ec .bbe-rib{--h:60px;min-width:200px;top:-36px !important;font-size:23px;padding:0 calc(var(--h) * .9) 3px !important}
 @keyframes rb74in{0%{transform:translateX(-50%) scale(.6);opacity:0}100%{transform:translateX(-50%) scale(1);opacity:1}}
 
+/* v74b: compact rating card + medal scales with text */
+#app .rc66.cu71rc.cu74{width:var(--cu74w,124px) !important;max-width:none !important;min-width:0 !important;padding:6px 7px 7px !important;gap:2px !important;border-radius:14px !important}
+#app .rc66.cu71rc.cu74 .cu71r1{flex-direction:column;gap:2px}
+#app .rc66.cu71rc.cu74 .st{gap:1px}
+#app .rc66.cu71rc.cu74 .st i{width:16px;height:16px}
+#app .rc66.cu71rc.cu74 .tx{font-size:13px;line-height:1.2;text-align:center;word-break:keep-all;overflow-wrap:anywhere}
+#app .rc66.cu71rc.cu74 .ch,#app .rc66.cu71rc.cu74 .rp{display:none !important}
+#app .rc66.cu71rc.cu74 .tp{font-size:12.5px;line-height:1.15;text-align:center;white-space:normal}
+#app .rep72r{font-size:15px;width:8.53em !important;height:8.53em !important;padding:.6em !important}
+#app .rep72c small{font-size:1em !important;line-height:1.13 !important}
+#app .rep72c b{font-size:3.33em !important;line-height:1 !important;margin-top:.12em !important}
+#app .order .tagh.tu{width:auto !important;min-width:34px}
+#app .order .tagh.tu b.ut{white-space:nowrap}
+#app #popbox .rays.rep72{font-size:15px !important;width:12.67em !important;height:12.67em !important}
+
 </style>
-<script>window.BUILD64="v74-202611061918";</script>
+<script>window.BUILD64="v74b-202611061937";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -12866,6 +12881,10 @@ card66 = (o0 => function (rect, stars, txt) {
 function rb74Fit(el) { if (!el) return; el.style.fontSize = ''; const base = parseFloat(getComputedStyle(el).fontSize) || 24, min = Math.round(base * 0.72); let f = base; while (el.scrollWidth > el.clientWidth + 1 && f > min) { f -= 1; el.style.fontSize = f + 'px'; } }
 (function () { const sp = showPop; showPop = function (o) { const r = sp.apply(this, arguments); try { rb74Fit(document.querySelector('#popbox .ribbon')); } catch (e) {} return r; }; })();
 (function () { if (typeof bb53EndRender !== 'function') return; const f = bb53EndRender; bb53EndRender = function () { const r = f.apply(this, arguments); try { rb74Fit(document.querySelector('#bb53-end .bbe-rib')); } catch (e) {} return r; }; })();
+
+/* v74b: compact rating card inside the served customer's column */
+cu71Bye = (f => function (card, o, A) { const r = f.apply(this, arguments); try { if (r && CU71.last && card) { const app = document.getElementById('app'), a = app.getBoundingClientRect(), s = a.width / app.offsetWidth, cr = card.getBoundingClientRect(); CU71.last.cw = cr.width / s; CU71.last.cl = (cr.left - a.left) / s; } } catch (e) {} return r; })(cu71Bye);
+cu71Card = (f => function (stars, L) { const r = f.apply(this, arguments); try { const app = document.getElementById('app'), cs = app.querySelectorAll('.rc66.cu71rc'), c = cs[cs.length - 1]; if (c && L && L.el && L.cw > 0) { const w = Math.max(96, Math.round(L.cw - 6)); c.classList.add('cu74'); c.style.setProperty('--cu74w', w + 'px'); c.classList.remove('cu71tight'); const cx = L.cl + L.cw / 2; c.style.left = cx + 'px'; c.style.setProperty('--cu71tx', (w / 2) + 'px'); c.style.top = (L.top + L.h * 0.58) + 'px'; setTimeout(() => c.classList.add('out'), 1750); setTimeout(() => c.remove(), 2250); } } catch (e) {} return r; })(cu71Card);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
