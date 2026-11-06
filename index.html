@@ -3169,8 +3169,12 @@ html,body{overscroll-behavior:none}
 
 #app .dm .dn{text-align:left !important}
 
+#app #sc-yut #y-mult{display:none !important}
+#app #sc-yut .ybtns{justify-content:center}
+#app #sc-yut .ygo{max-width:none}
+
 </style>
-<script>window.BUILD64="v67-202611061420";</script>
+<script>window.BUILD64="v67b-202611061426";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -6046,12 +6050,12 @@ function renderYut() {
   sc.querySelectorAll('#y-mult > div').forEach(d => { d.classList.toggle('on', +d.dataset.m === (Y.mult || 1)); d.classList.toggle('no', +d.dataset.m > Math.max(1, Y.t) && !Y.free); });
   const gb = document.getElementById('y-go'); gb.classList.toggle('free', Y.free > 0); gb.classList.toggle('off', !Y.free && Y.t < (Y.mult || 1));
   gb.textContent = Y.free > 0 ? '한 번 더! (공짜)' : '던지기' + ((Y.mult || 1) > 1 ? ' · 윷 ' + Y.mult + '개' : '');
-  document.getElementById('y-info').textContent = '주문 하나에 윷 1개 · 매일 ' + YUT_DAILY + '개 공짜 · 한 바퀴 ' + (Y.laps || 0) + '번';
+  document.getElementById('y-info').textContent = '주문마다 던지기 1번 · 매일 ' + YUT_DAILY + '번 공짜';
 }
 async function yutThrow() {
   const Y = S.yut; if (!Y || yutBusy) return;
   const m = Y.mult || 1, free = Y.free > 0;
-  if (!free && Y.t < m) { toast(Y.t > 0 ? '윷이 ' + Y.t + '개 있어요. ×' + Y.t + ' 이하로 던져요' : '윷이 없어요. 주문을 보내면 1개씩 생겨요'); return; }
+  if (!free && Y.t < m) { toast(Y.t > 0 ? '윷이 ' + Y.t + '개 있어요. ×' + Y.t + ' 이하로 던져요' : '던질 기회가 없어요. 주문을 보내면 1번씩 생겨요'); return; }
   yutBusy = true;
   if (free) Y.free--; else Y.t -= m;
   const thr = yutRoll(), sticks = yutSticks(thr[0]);
@@ -6105,12 +6109,12 @@ async function yutThrow() {
   save(); yutBusy = false; renderYut(); renderAll();
 }
 function yutOdds() {
-  showPop({ title: '윷 확률', text: '윷가락 4개가 각각 반반 확률로 엎어지거나 젖혀져요.<br>' + YTHROW.map(([n, step, w]) => '<b>' + n + '</b> ' + (step < 0 ? '한 칸 뒤로' : step + '칸') + ' · ' + (w / 16 * 100).toFixed(2).replace(/\.?0+$/, '') + '%').join('<br>') + '<br><br>윷이나 모가 나오면 한 번 더 던져요(공짜). ×2, ×3은 윷을 그만큼 쓰고 선물도 그만큼 받아요. 윷은 주문과 매일 선물로만 생기고 돈으로 팔지 않아요.', btns: [['알겠어요', 'yellow', null]] });
+  showPop({ title: '윷 확률', text: '윷가락 4개가 각각 반반 확률로 엎어지거나 젖혀져요.<br>' + YTHROW.map(([n, step, w]) => '<b>' + n + '</b> ' + (step < 0 ? '한 칸 뒤로' : step + '칸') + ' · ' + (w / 16 * 100).toFixed(2).replace(/\.?0+$/, '') + '%').join('<br>') + '<br><br>윷이나 모가 나오면 한 번 더 던져요(공짜). 던지기는 주문과 매일 선물로만 생기고 돈으로 팔지 않아요.', btns: [['알겠어요', 'yellow', null]] });
 }
-go = (o0 => function (s) { const r = o0.apply(this, arguments); if (s === 'yut') { document.querySelectorAll('.nav > div').forEach(x => x.classList.toggle('on', x.dataset.s === 'event')); try { yutInit(); const add = yutDaily(); if (S.yut) { S.yut.seen = (S.yut.seen || 0) + 1; save(); } renderYut(); yutPlaceTok(false); if (add) setTimeout(() => toast('오늘의 공짜 윷 ' + add + '개!'), 300); } catch (e) {} } return r; })(go);
+go = (o0 => function (s) { const r = o0.apply(this, arguments); if (s === 'yut') { document.querySelectorAll('.nav > div').forEach(x => x.classList.toggle('on', x.dataset.s === 'event')); try { yutInit(); const add = yutDaily(); if (S.yut) { S.yut.seen = (S.yut.seen || 0) + 1; save(); } renderYut(); yutPlaceTok(false); if (add) setTimeout(() => toast('오늘의 공짜 던지기 ' + add + '번!'), 300); } catch (e) {} } return r; })(go);
 renderEvent = (o0 => function () {
   const r = o0.apply(this, arguments);
-  try { yutInit(); const list = document.getElementById('evlist'); if (list && S.yut) { const card = document.createElement('div'); card.className = 'ev yutc'; card.innerHTML = '<img class="yic" src="' + (YA.pouch || I('ui_key')) + '" alt=""><div class="ytx"><b>뚝이네 윷놀이</b><span>윷 ' + S.yut.t + '개 · 도개걸윷모로 판을 돌며 선물</span></div><div class="btn red h ygo2">던지러 가기</div>'; card.querySelector('.ygo2').onclick = () => go('yut'); list.insertBefore(card, list.firstChild); } } catch (e) {}
+  try { yutInit(); const list = document.getElementById('evlist'); if (list && S.yut) { const card = document.createElement('div'); card.className = 'ev yutc'; card.innerHTML = '<img class="yic" src="' + (YA.pouch || I('ui_key')) + '" alt=""><div class="ytx"><b>뚝이네 윷놀이</b><span>던지기 ' + S.yut.t + '번 · 도개걸윷모로 판을 돌며 선물</span></div><div class="btn red h ygo2">던지러 가기</div>'; card.querySelector('.ygo2').onclick = () => go('yut'); list.insertBefore(card, list.firstChild); } } catch (e) {}
   return r;
 })(renderEvent);
 completeOrder = (o0 => function () { const d0 = S.done; const r = o0.apply(this, arguments); try { if (S.done > d0) { yutInit(); if (S.yut && S.yut.t < YUT_CAP) { S.yut.t++; save(); } } } catch (e) {} return r; })(completeOrder);
@@ -8837,7 +8841,7 @@ const PD54 = [
   { id: 'key', n: '열쇠', u: '개', amt: 3, base: 15000, lim: 1, img: () => I('ui_key'), give: a => { S.keys = (S.keys || 0) + a; } },
   { id: 'scrap', n: '천 조각', u: '개', amt: 60, base: 2500, lim: 2, img: () => I('ui_scraps'), give: a => { S.scraps = (S.scraps || 0) + a; } },
   { id: 'bait', n: '낚싯밥', u: '개', amt: 5, base: 1200, lim: 3, img: () => (window.FISH_ART && FISH_ART.bait) || I('c10_songpyeon'), give: a => { try { fs47(); S.fs.bait = (S.fs.bait || 0) + a; } catch (e) {} } },
-  { id: 'yut', n: '윷', u: '개', amt: 5, base: 2000, lim: 1, img: () => (window.YUT_ART && YUT_ART.pouch) || I('ui_key'), give: a => { try { yutInit(); S.yut.t = (S.yut.t || 0) + a; } catch (e) {} } }
+  { id: 'yut', n: '윷 던지기', u: '번', amt: 5, base: 2000, lim: 1, img: () => (window.YUT_ART && YUT_ART.pouch) || I('ui_key'), give: a => { try { yutInit(); S.yut.t = (S.yut.t || 0) + a; } catch (e) {} } }
 ];
 function pd54() { const d = today(); if (!S.pd || S.pd.day !== d) S.pd = { day: d, b: {} }; return S.pd; }
 function pd54Price(it) { const P = pd54(), n = P.b[it.id] || 0, m = 1 + 0.12 * ((S.lv || 1) - 1); return Math.round(it.base * m * Math.pow(1.6, n) / 50) * 50; }
@@ -10106,21 +10110,16 @@ fertOpen = function () {
   ov.querySelector('#f-buy').onclick = () => { if (S.coin < cost) { toast('동전 ' + (cost - S.coin).toLocaleString() + '개가 더 있어야 해요'); return; } S.coin -= cost; try { treeTick(); S.tree.xp += bagXP; treeStageCheck(); } catch (e) {} const got = fz67Sel >= 0 ? fz67Apply(fz67Sel, bagMin * 60000) : 0; save(); try { sfx('restore', { vol: .5 }); } catch (e) {} toast('거름 한 포대! ' + (got > 0 ? '작물 ' + fmtMin(got / 60000) + ' 당김 · ' : '') + '감나무 +' + bagXP); fertOpen(); };
 };
 
-/* ---------- 2) 윷: 몇 개 걸지 뜻이 보이게 ---------- */
+/* ---------- 2) 윷 (v67b): 걸기(×2·×3)는 없애고 한 번에 1번씩 던져요. 던질 수 있는 횟수는 '던지기 N번' ---------- */
 function yut67Labels() {
-  const Y = S.yut; if (!Y) return; const m = Y.mult || 1, free = Y.free > 0;
-  document.querySelectorAll('#y-mult > div').forEach(d => { const k = +d.dataset.m; const t = k + '개'; if (d.textContent !== t) d.textContent = t; });
-  const gb = document.getElementById('y-go'); if (!gb) return; gb.classList.add('y67');
-  const big = free ? '공짜로 던지기' : '던지기', sm = free ? (m > 1 ? '선물 ' + m + '배 그대로' : '윷이 안 들어요') : (m > 1 ? '윷 ' + m + '개 · 선물 ' + m + '배' : '윷 1개 · 선물 그대로');
-  const h = '<b>' + big + '</b><small>' + sm + '</small>'; if (gb.innerHTML !== h) gb.innerHTML = h;
+  const Y = S.yut; if (!Y) return; if ((Y.mult || 1) !== 1) Y.mult = 1;
+  const mu = document.getElementById('y-mult'); if (mu && mu.style.display !== 'none') mu.style.display = 'none';
+  const gb = document.getElementById('y-go'); if (!gb) return; gb.classList.remove('y67'); gb.classList.remove('off');
+  if (!Y.free && Y.t < 1) gb.classList.add('off');
+  const t = Y.free > 0 ? '공짜로 한 번 더' : '던지기'; if (gb.textContent !== t) gb.textContent = t;
 }
 renderYut = (o0 => function () { const r = o0.apply(this, arguments); try { yut67Labels(); } catch (e) {} return r; })(renderYut);
-(function () {
-  const sc = document.getElementById('sc-yut'); if (!sc) return;
-  sc.querySelectorAll('#y-mult > div').forEach(d => { const o = d.onclick; d.onclick = () => { if (typeof yutBusy !== 'undefined' && yutBusy) return; const was = (S.yut && S.yut.mult) || 1; if (o) o(); const m = (S.yut && S.yut.mult) || 1; if (m > 1 && was !== m && !S.y67tip) { S.y67tip = 1; save(); try { showPop({ title: '윷을 ' + m + '개 걸면', text: '이번에 던져서 받는 선물이 ' + m + '배가 돼요. 한 바퀴 선물도 ' + m + '배예요.<br>나오는 확률은 1개 걸 때와 똑같아요. 큰 선물 칸이 가까울 때 많이 걸어 보세요.', btns: [['알겠어요', 'yellow', null]] }); } catch (e) {} } }; });
-})();
-yutOdds = (o0 => function () { const r = o0.apply(this, arguments); try { const t = document.querySelector('#pop .ptext, #pop .ptx, #pop .txt'); if (t && !t.querySelector('.y67o')) t.insertAdjacentHTML('beforeend', '<div class="y67o">윷을 2개, 3개 걸면 받는 선물만 2배, 3배가 되고 확률은 그대로예요.</div>'); } catch (e) {} return r; })(yutOdds);
-
+yutThrow = (o0 => function () { if (S.yut) S.yut.mult = 1; return o0.apply(this, arguments); })(yutThrow);
 /* ---------- 3) 돌림판: 열면 멈춰 있고, '돌리기'를 눌러야 돌아요. 받은 뒤에도 저절로 다시 돌지 않아요 ---------- */
 let wf67Again = false;
 function wf67Btn(mode) {
@@ -10152,6 +10151,7 @@ wheelOpen = (o0 => function () {
 wClaim = (o0 => function () { wf67Again = true; const r = o0.apply(this, arguments); return r; })(wClaim);
 wheelClose = (o0 => function () { wf67Again = false; return o0.apply(this, arguments); })(wheelClose);
 
+/* v67b: yut simple */
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
 window.__demo = { get S() { return S; }, set S(v) { S = v; }, go, buyGen, buyFog, flyItems, thanksFx, restoreSpot, renderGarden, playStory, nextLine, GARDEN, sfx, mergeFx, orderFx, revealFx, hitFx, koFx, stealFx, missFx, restoreFx, fevAdd, suspense, feverOn, audioInit, sbuf: () => Object.keys(sbuf), tickTension, thiefTick, thiefSteal, thiefHit, urgMiss, renderStk, placeThief, fillOrders, makeOrder, dropOn, tapTile, completeOrder, openBox, hatch, showOdds, renderAll, actOn, upSpirit, upGen, upStar, raceStart, raceClaim, raceView, attClaim, showAtt, fx, genOdds, canUpgrade };
