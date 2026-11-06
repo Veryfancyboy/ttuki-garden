@@ -3759,8 +3759,98 @@ html,body{overscroll-behavior:none}
 #app .rk69adm.adm74me{display:block;text-decoration:none;color:#5E8A3A;cursor:default}
 #app .v74ver{margin:8px auto 0;font-family:'Gowun Dodum',sans-serif;font-size:12px;line-height:1.2;color:#A89580;text-align:center;width:fit-content;padding:4px 8px;user-select:none;-webkit-user-select:none}
 
+/* v75: 윷놀이 시합 (뚝이 팀 vs 족제비 팀) */
+#app #sc-yut.y75on #y-sts,#app #sc-yut.y75on #y-tok,#app #sc-yut.y75on #y-mult{display:none !important}
+#app #sc-yut.y75on .ylines line.dg{stroke-dasharray:none;opacity:.75}
+#app #sc-yut.y75on .yboard{top:118px}
+/* 팀 막대 */
+#app #sc-yut .y75bar{position:absolute;left:14px;right:14px;top:60px;height:54px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+#app #sc-yut .y75tm{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:84px}
+#app #sc-yut .y75tm b{font-weight:normal;font-family:'Jua';font-size:14px;line-height:15px;color:#6B4A32;white-space:nowrap}
+#app #sc-yut .y75tm.wz b{color:#9A3324}
+#app #sc-yut .y75fs{display:flex;gap:8px}
+#app #sc-yut .y75fb{position:relative;width:34px;height:34px;border-radius:50%;transition:opacity .2s}
+#app #sc-yut .y75fb .y75f{width:34px;height:34px;border-width:2.5px}
+#app #sc-yut .y75fb.out{opacity:.3}
+#app #sc-yut .y75fb.out .y75f{border-style:dashed}
+#app #sc-yut .y75fb .y75ok{display:none;position:absolute;right:-5px;bottom:-4px;width:15px;height:15px;border-radius:50%;background:#3E9A2A;border:2px solid #fff;box-sizing:border-box}
+#app #sc-yut .y75fb .y75ok::after{content:'';position:absolute;left:3.5px;top:1.5px;width:3px;height:6px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+#app #sc-yut .y75fb.done .y75ok{display:block}
+#app #sc-yut .y75fb.done .y75f{border-color:#F2B01E;box-shadow:0 0 0 2px #FFF3C4,0 2px 0 #B9741A}
+#app #sc-yut .y75fb.can{cursor:pointer;animation:y75bob .9s ease-in-out infinite}
+#app #sc-yut .y75fb.sel .y75f{box-shadow:0 0 0 3px #fff,0 0 12px 5px #FFE45C}
+#app #sc-yut .y75turn{height:34px;padding:2.2px 14px 0;box-sizing:border-box;border-radius:17px;display:flex;align-items:center;justify-content:center;font-family:'Jua';font-size:16px;line-height:1;white-space:nowrap;background:rgba(255,255,255,.85);color:#7A5A44;box-shadow:0 2px 0 rgba(176,118,64,.25)}
+#app #sc-yut .y75turn:empty{visibility:hidden}
+#app #sc-yut .y75turn.me{background:linear-gradient(180deg,#FFE893,#FFC93C);color:#5A3A10;box-shadow:0 3px 0 #D49A17}
+#app #sc-yut .y75turn.wz{background:linear-gradient(180deg,#FFD9D1,#F5A99B);color:#7A1E12;box-shadow:0 3px 0 #C2563F}
+/* 말판 칸 */
+#app #sc-yut .y75sts{position:absolute;inset:0}
+#app #sc-yut .y75st{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FFFDF6,#FFE9C4);border:2.5px solid #9A6236;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 0 rgba(122,78,44,.35);box-sizing:border-box}
+#app #sc-yut .y75st.big{width:46px;height:46px;margin:-23px 0 0 -23px;border-width:3px;background:radial-gradient(circle at 40% 35%,#FFF8D6,#FFD978)}
+#app #sc-yut .y75st img{width:24px;height:24px;object-fit:contain;max-width:none}
+#app #sc-yut .y75st.big img{width:32px;height:32px}
+#app #sc-yut .y75st.emp img{display:none}
+#app #sc-yut .y75st.emp{background:radial-gradient(circle at 40% 35%,#FFFDF6,#F3E3C8)}
+#app #sc-yut .y75st.emp::after{content:'';width:7px;height:7px;border-radius:50%;background:rgba(154,98,54,.35)}
+#app #sc-yut .y75st.start span{font-family:'Jua';font-size:14.5px;line-height:1;padding-top:1px;color:#7A3E12}
+#app #sc-yut .y75st.hit{animation:ysthit .5s ease-out}
+#app #sc-yut .y75st.y75dst{cursor:pointer;z-index:2;border-color:#D49A17;animation:y75dst 1s ease-in-out infinite}
+#app #sc-yut .y75st.y75dst.cap{border-color:#D7262B;animation-name:y75dstr}
+#app #sc-yut .y75st.y75dst.stk{border-color:#3E7FD6;animation-name:y75dstb}
+#app #sc-yut .y75st.y75dst.home{border-color:#3E9A2A;animation-name:y75dstg}
+@keyframes y75dst{0%,100%{box-shadow:0 0 0 3px #FFE893,0 0 10px 4px rgba(255,201,60,.7)}50%{box-shadow:0 0 0 6px #FFE893,0 0 18px 8px rgba(255,201,60,.9)}}
+@keyframes y75dstr{0%,100%{box-shadow:0 0 0 3px #FFB3A8,0 0 10px 4px rgba(215,38,43,.55)}50%{box-shadow:0 0 0 6px #FFB3A8,0 0 18px 8px rgba(215,38,43,.75)}}
+@keyframes y75dstb{0%,100%{box-shadow:0 0 0 3px #BFE0FF,0 0 10px 4px rgba(62,127,214,.55)}50%{box-shadow:0 0 0 6px #BFE0FF,0 0 18px 8px rgba(62,127,214,.75)}}
+@keyframes y75dstg{0%,100%{box-shadow:0 0 0 3px #CDEFC0,0 0 10px 4px rgba(62,154,42,.55)}50%{box-shadow:0 0 0 6px #CDEFC0,0 0 18px 8px rgba(62,154,42,.75)}}
+/* 말 */
+#app #sc-yut .y75pcs{position:absolute;inset:0;pointer-events:none}
+#app #sc-yut .y75pc{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;z-index:3;transition:left .22s ease-out,top .22s ease-out,width .2s,height .2s,margin .2s,opacity .2s;pointer-events:auto;cursor:pointer}
+#app #sc-yut .y75pc.ride{width:22px;height:22px;margin:-11px 0 0 -11px;z-index:5}
+#app #sc-yut .y75pc.ride .y75f{border-width:2px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+#app #sc-yut .y75pc.wz{z-index:4}
+#app .y75f{display:block;width:100%;height:100%;border-radius:50%;border:3px solid #FFC93C;box-shadow:0 3px 0 #B9741A,0 5px 8px rgba(0,0,0,.22);overflow:hidden;background-color:#FFF4DE;box-sizing:border-box}
+#app .y75f img{width:100%;height:100%;object-fit:cover;max-width:none;display:block}
+#app .y75f.wz{border-color:#E0352B;box-shadow:0 3px 0 #8A1F14,0 5px 8px rgba(0,0,0,.22);background-color:#FFE9DA;background-image:var(--y75wz);background-repeat:no-repeat;background-size:190% auto;background-position:76% 16%}
+#app #sc-yut .y75pc.can{animation:y75bob .9s ease-in-out infinite}
+#app #sc-yut .y75pc.sel .y75f{box-shadow:0 0 0 3px #fff,0 0 12px 5px #FFE45C}
+@keyframes y75bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+#app #sc-yut .y75bag{position:absolute;transform:translate(0,-100%);min-width:1.42em;height:1.42em;padding:.1em .3em 0;border-radius:.71em;background:#EE7FA8;border:1.5px solid #fff;box-shadow:0 0 0 1.5px #4E9A3A,0 2px 3px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-family:'Jua';font-size:12px;line-height:1;color:#fff;z-index:6;pointer-events:none;box-sizing:border-box;white-space:nowrap}
+#app #sc-yut .y75bag.wz{background:#E0352B;box-shadow:0 0 0 1.5px #8A1F14,0 2px 3px rgba(0,0,0,.2)}
+#app #sc-yut.y75on .ybanner{z-index:6}
+#app #sc-yut.y75on .ybanner.small{font-size:42px}
+#app #sc-yut.y75on .ybanner.wz{color:#FFC9BE}
+/* 윷가락 · 결과 · 단추 */
+#app #sc-yut.y75on .ythrow{top:460px;height:116px;justify-content:flex-start}
+#app #sc-yut.y75on .ysticks{height:66px;gap:14px;flex:none}
+#app #sc-yut.y75on .ystk{height:62px}
+#app #sc-yut.y75on .ystk.css{width:14px;height:60px}
+/* y75-res-wrap */ #app #sc-yut.y75on .yres{margin-top:4px;font-size:17px;line-height:22px;white-space:normal;text-align:center;word-break:keep-all;max-width:100%;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#app #sc-yut.y75on .yres b{font-size:21px}
+#app #sc-yut.y75on .ybtns{top:580px;height:58px;gap:8px}
+#app #sc-yut.y75on .yinfo{top:648px}
+#app #sc-yut .y75chips{display:flex;gap:6px;flex:0 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;padding:4px 2px 6px}
+#app #sc-yut .y75chips:empty{display:none}
+#app #sc-yut .y75chip{flex:none;height:44px;min-width:50px;padding:2.2px 11px 0;box-sizing:border-box;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Jua';font-size:16px;line-height:1;white-space:nowrap;background:#FFF8EC;border:2px solid #C9A27A;color:#6B3E1E;box-shadow:0 3px 0 rgba(122,78,44,.25);cursor:pointer}
+#app #sc-yut .y75chip.hi{color:#B0700A}
+#app #sc-yut .y75chip.back{color:#3F5FA0}
+#app #sc-yut .y75chip.on{background:linear-gradient(180deg,#FFE893,#FFC93C);border-color:#D49A17;color:#5A3A10;box-shadow:0 3px 0 #D49A17}
+#app #sc-yut .y75chip.wz{background:#FFE9E4;border-color:#E9A496;color:#8A1F14;cursor:default}
+#app #sc-yut.y75on #y-go{flex:1;min-width:128px}
+/* 처음 안내 */
+#app .y75gd .hti .y75f.wz.big{width:52px;height:52px}
+#app #sc-yut.y75on.y75nogo .ybtns{justify-content:center}
+#app #sc-yut.y75on.y75nogo .y75chips{flex:none}
+/* 규칙과 확률 창 */
+#app #popbox .y75rl{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;text-align:left;font-size:14.5px;line-height:1.35;margin:0 0 10px;word-break:keep-all}
+#app #popbox .y75rl b{font-weight:normal;font-family:'Jua';color:#7A3E12;white-space:nowrap}
+#app #popbox .y75pt{font-size:14px;line-height:1.35;word-break:keep-all;margin-bottom:4px}
+#app #popbox .y75pr{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;gap:4px 14px;font-size:14.5px;line-height:1.35;margin-bottom:10px}
+#app #popbox .y75pr span{white-space:nowrap}
+#app #popbox .y75pr b{font-weight:normal;font-family:'Jua';color:#7A3E12}
+#app #popbox .y75nt{font-size:13.5px;line-height:1.4;color:#8A6A54;word-break:keep-all}
+
 </style>
-<script>window.BUILD64="v74c-202611062051";</script>
+<script>window.BUILD64="v75-202611062142";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -12913,6 +13003,409 @@ rk69AdminReq = async function () {
     setTimeout(() => showPop({ title: '요청했어요', text: '요청 번호 <b>' + (j.code || '----') + '</b><br>승인되면 순위 창에 \'이름 고치기\'가 보여요.', btns: [['알겠어요', 'yellow', null]] }), 250);
   }], ['닫기', 'cream', null]] });
 };
+
+/* ===== v75: 윷놀이 시합 (뚝이 팀 말 2개 vs 족제비 팀 말 2개 · 고르기 · 잡기 · 업기 · 보따리) =====
+   - 내 차례: 던지기 1번을 쓰고 던져요. 윷·모는 공짜로 한 번 더. 나온 결과를 모아 두고 하나씩 골라 옮길 말을 직접 골라요(말을 누르면 갈 칸이 빛나고, 그 칸을 누르면 가요).
+   - 모서리(5·10)에 멈추면 다음엔 지름길, 가운데(23)에 멈추면 집 쪽 지름길. 출발 칸에 닿거나 지나면 집에 들어와요. 빽도로 출발 칸에 서면 다음에 무엇이 나와도 들어와요.
+   - 잡기: 상대 말이 있는 칸에 멈추면 집으로 돌려보내고 한 번 더. 업기: 내 말끼리 같은 칸이면 같이 움직여요(잡히면 둘 다).
+   - 보따리: 말이 멈춘 칸의 선물(한 판에 한 번)을 들고 다녀요. 집에 들어오면 내 것. 잡히면 잡은 쪽이 가져가요.
+   - 족제비 차례는 던지기를 쓰지 않아요. 내 말 2개가 먼저 들어오면 승리 상자, 지면 위로 선물.
+   상태: S.yut2 (시합), S.yut2st (전적), S.yut2tip (처음 안내 봤음). 던지기 횟수는 예전 그대로 S.yut.t */
+/* ---------- v75 엔진 (화면 없이 돌아가는 규칙: 시험 봇도 같은 코드를 씀) ---------- */
+const Y75_R = { O: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 0], A: [5, 21, 22, 23, 28, 29, 15, 16, 17, 18, 19, 0], B: [10, 26, 27, 23, 24, 25, 0], C: [23, 24, 25, 0] };
+const Y75_T = [['빽도', -1, 1], ['도', 1, 3], ['개', 2, 6], ['걸', 3, 4], ['윷', 4, 1], ['모', 5, 1]];
+const Y75_GK = { 1: 'coin', 2: 'en', 3: 'scrap', 4: 'coin', 5: 'key2', 6: 'coin', 7: 'fert', 8: 'coin', 9: 'en', 10: 'bigcoin', 11: 'scrap', 12: 'coin', 13: 'key', 14: 'en', 15: 'bigen', 16: 'coin', 17: 'fert', 18: 'coin', 19: 'scrap', 21: 'coin', 22: 'en', 23: 'jack', 24: 'key', 25: 'coin', 26: 'scrap', 27: 'coin', 28: 'en', 29: 'coin' };
+const Y75_ECO = { g: 2.4, ge: 1, gk: 2, gf: 1.7, win: { c0: 120, c1: 14, key: 2, scrap: 30, en: 10 }, lose: { c0: 40, c1: 5, key: 1, scrap: 15, en: 0 } };
+function y75Amt(k, lv, tree) {
+  const E = Y75_ECO, g = E.g, ge = E.ge, gk = E.gk, cs = (8 + 2 * lv) * g, cb = (40 + 8 * lv) * g, R = Math.round;
+  switch (k) {
+    case 'coin': return { coin: R(cs) }; case 'bigcoin': return { coin: R(cb) };
+    case 'en': return { en: R(5 * ge) }; case 'bigen': return { en: R(15 * ge) };
+    case 'scrap': return { scrap: R(10 * g) }; case 'key': return { key: R(1 * gk) }; case 'key2': return { key: R(2 * gk) };
+    case 'fert': return tree ? { fert: R(15 * E.gf) } : { coin: R(cs) };
+    case 'jack': return { coin: R(cs * 6), scrap: R(30 * g) };
+  }
+  return {};
+}
+function y75BagAdd(b, a) { for (const k in a) b[k] = (b[k] || 0) + a[k]; return b; }
+function y75Piece() { return { h: 1, d: 0, r: 'O', i: 0, f: '', b: {}, n: 0 }; }
+function y75New(fr) { const gifts = {}; for (const k in Y75_GK) gifts[k] = Y75_GK[k]; return { v: 75, me: [y75Piece(), y75Piece()], wz: [y75Piece(), y75Piece()], gifts, chips: [], free: 0, turn: 'me', paid: 0, fr: fr || 'haetae', win: '' }; }
+function y75St(p) { return p.h || p.d ? -1 : Y75_R[p.r][p.i]; }
+function y75Other(t) { return t === 'me' ? 'wz' : 'me'; }
+/* 움직일 수 있는 묶음: 'h' = 집에 있는 말 하나, 숫자 = 그 칸에 있는 내 말 전부(업힌 말) */
+function y75Units(G, team) { const P = G[team], u = []; if (P.some(p => p.h && !p.d)) u.push('h'); const seen = {}; P.forEach(p => { const s = y75St(p); if (s >= 0 && !seen[s]) { seen[s] = 1; u.push(s); } }); return u; }
+function y75Members(G, team, u) { const m = G[team].filter(p => !p.d && (u === 'h' ? p.h : (!p.h && y75St(p) === u))); return u === 'h' ? m.slice(0, 1) : m; }
+/* 한 말의 길을 따라 v칸 (빽도는 -1): 지나간 칸 목록과 끝 상태 */
+function y75Walk(p0, v) {
+  const p = { h: p0.h, d: p0.d, r: p0.r, i: p0.i, f: p0.f }, path = [];
+  if (v < 0) {
+    if (p.h || p.d) return null;
+    if (p.r === 'O') { if (p.i === 1) p.i = 20; else p.i -= 1; }
+    else if (p.i > 0) p.i -= 1;
+    else if (p.r === 'A') { p.r = 'O'; p.i = 4; }
+    else if (p.r === 'B') { p.r = 'O'; p.i = 9; }
+    else { p.r = 'A'; p.i = 2; p.f = ''; }
+    path.push(Y75_R[p.r][p.i]);
+  } else {
+    if (p.h) { p.h = 0; p.r = 'O'; p.i = 0; }
+    for (let s = 0; s < v; s++) { p.i += 1; const R = Y75_R[p.r]; if (p.i >= R.length - 1) { p.i = R.length - 1; p.d = 1; path.push(0); break; } path.push(R[p.i]); }
+  }
+  if (!p.d) { const st = Y75_R[p.r][p.i]; if (p.r === 'O' && st === 5) { p.r = 'A'; p.i = 0; } else if (p.r === 'O' && st === 10) { p.r = 'B'; p.i = 0; } else if (p.r === 'A' && st === 23) { p.r = 'C'; p.i = 0; p.f = 'A'; } }
+  return { p, path, dest: p.d ? 'done' : Y75_R[p.r][p.i] };
+}
+/* 고를 수 있는 수: [{c: 결과 번호, u: 묶음, v, dest, cap, pick, stack, done, n}] */
+function y75Opts(G, team) {
+  const out = [], seen = {}, foe = y75Other(team), U = y75Units(G, team);
+  G.chips.forEach((v, c) => {
+    if (seen[v]) return; seen[v] = 1;
+    U.forEach(u => {
+      if (v < 0 && u === 'h') return; const m = y75Members(G, team, u); if (!m.length) return; const w = y75Walk(m[0], v); if (!w) return;
+      const o = { c, u, v, dest: w.dest, path: w.path, done: w.dest === 'done', cap: 0, pick: '', stack: 0, n: m.length };
+      if (!o.done) { o.cap = G[foe].filter(p => !p.d && !p.h && y75St(p) === w.dest).length; o.pick = G.gifts[w.dest] || ''; o.stack = G[team].filter(p => !p.d && !p.h && y75St(p) === w.dest && m.indexOf(p) < 0).length; }
+      out.push(o);
+    });
+  });
+  return out;
+}
+/* 수 두기: 결과를 하나 쓰고 일어난 일 목록을 돌려줌 */
+function y75Do(G, team, o, lv, tree) {
+  const foe = y75Other(team), m = y75Members(G, team, o.u), lead = m[0], w = y75Walk(lead, o.v), ev = [];
+  G.chips.splice(o.c, 1);
+  m.forEach(p => { p.h = w.p.h; p.d = w.p.d; p.r = w.p.r; p.i = w.p.i; p.f = w.p.f; });
+  ev.push({ t: 'move', team, u: o.u, path: w.path, n: m.length, v: o.v });
+  if (w.p.d) {
+    const bag = {}; let bn = 0; m.forEach(p => { y75BagAdd(bag, p.b); bn += p.n || 0; p.b = {}; p.n = 0; });
+    ev.push({ t: 'home', team, n: m.length, bag, bn });
+    if (G[team].every(p => p.d)) { G.win = team; ev.push({ t: 'win', team }); }
+    return ev;
+  }
+  const st = w.dest;
+  const caps = G[foe].filter(p => !p.d && !p.h && y75St(p) === st);
+  if (caps.length) { const bag = {}; let bn = 0; caps.forEach(p => { y75BagAdd(bag, p.b); bn += p.n || 0; p.b = {}; p.n = 0; p.h = 1; p.r = 'O'; p.i = 0; p.f = ''; }); y75BagAdd(lead.b, bag); lead.n = (lead.n || 0) + bn; G.free += 1; ev.push({ t: 'cap', team, st, n: caps.length, bag, bn }); }
+  const stk = G[team].filter(p => !p.d && !p.h && y75St(p) === st && m.indexOf(p) < 0);
+  if (stk.length) { stk.forEach(p => { p.r = lead.r; p.i = lead.i; p.f = lead.f; }); ev.push({ t: 'stack', team, st, n: stk.length + m.length }); }
+  const k = G.gifts[st]; if (k) { G.gifts[st] = 0; const a = y75Amt(k, lv, tree); y75BagAdd(lead.b, a); lead.n = (lead.n || 0) + 1; ev.push({ t: 'pick', team, st, k, a }); }
+  return ev;
+}
+function y75Roll(rng) { let r = (rng || Math.random)() * 16, acc = 0; for (const row of Y75_T) { acc += row[2]; if (r < acc) return row; } return Y75_T[2]; }
+/* ---------- 족제비(와 시험 봇)의 생각 ---------- */
+function y75Hit(G, team, st) { /* 상대가 다음에 한 번 던져서 st 칸에 멈출 확률(대략) */
+  const foe = y75Other(team); let pr = 0; const seen = {};
+  G[foe].forEach(p => { if (p.d) return; const key = p.h ? 'h' : y75St(p); if (seen[key]) return; seen[key] = 1; Y75_T.forEach(([n, v, wt]) => { if (v < 0 && p.h) return; const w = y75Walk(p, v); if (w && w.dest === st) pr += wt / 16; }); });
+  return Math.min(1, pr);
+}
+function y75Val(b) { if (!b) return 0; return (b.coin || 0) / 12 + (b.en || 0) * 1.2 + (b.scrap || 0) * 0.6 + (b.key || 0) * 12 + (b.fert || 0) * 0.5; }
+function y75Rem(p) { if (p.d) return 0; if (p.h) return 21; return Y75_R[p.r].length - 1 - p.i; }
+function y75Score(G, team, o, lv, tree, cfg) {
+  cfg = cfg || {}; const CW = cfg.cap || 1, RW = cfg.risk || 1, PW = cfg.pk === undefined ? 1 : cfg.pk, GW = cfg.prog === undefined ? 1 : cfg.prog;
+  const m = y75Members(G, team, o.u), lead = m[0], w = y75Walk(lead, o.v), foe = y75Other(team);
+  let s = 0; const bagv = m.reduce((a, p) => a + y75Val(p.b), 0), unitv = m.length * 18 + bagv;
+  if (o.done) return 70 * m.length + bagv * 1.2;
+  const r0 = m.reduce((a, p) => a + y75Rem(p), 0), r1 = y75Rem(w.p) * m.length; s += GW * (r0 - r1) * 2.2;
+  if (o.cap) { const caps = G[foe].filter(p => !p.d && !p.h && y75St(p) === o.dest); s += CW * (45 + caps.reduce((a, p) => a + 14 + (21 - y75Rem(p)) * 1.5 + y75Val(p.b), 0)); }
+  if (o.pick) s += PW * (y75Val(y75Amt(o.pick, lv, tree)) * 0.9 + 3);
+  if (o.stack) s += 4;
+  if ((w.p.r === 'A' || w.p.r === 'B') && w.p.i === 0) s += 8; if (w.p.r === 'C' && w.p.i === 0) s += 10;
+  const risk = y75Hit(G, team, o.dest); s -= RW * risk * (unitv + (21 - y75Rem(w.p)) * 1.6 * m.length) * 1.1;
+  if (o.u !== 'h') { const r0k = y75Hit(G, team, o.u); s += r0k * (unitv + (21 - y75Rem(lead)) * 1.6 * m.length) * 0.9; }
+  else s -= 2;
+  return s;
+}
+function y75Clone(G) { const cp = p => ({ h: p.h, d: p.d, r: p.r, i: p.i, f: p.f, b: Object.assign({}, p.b), n: p.n }); return { v: G.v, me: G.me.map(cp), wz: G.wz.map(cp), gifts: Object.assign({}, G.gifts), chips: G.chips.slice(), free: G.free, turn: G.turn, paid: G.paid, fr: G.fr, win: G.win }; }
+const Y75_W = { prog: 3.2, done: 75, hit: 1.0, thr: 0.55, bonus: 14, base: 12, bag: 0.35 };
+function y75Eval(G, team) {
+  const W = Y75_W;
+  if (G.win) return G.win === team ? 1e5 : -1e5;
+  const foe = y75Other(team); let s = 0;
+  const side = (t, sg) => { const seen = {}; G[t].forEach(p => { if (p.d) { s += sg * W.done; return; } s += sg * ((21 - y75Rem(p)) * W.prog + y75Val(p.b) * W.bag); if (p.h) return; const st = y75St(p); if (seen[st]) return; seen[st] = 1; const m = G[t].filter(q => !q.d && !q.h && y75St(q) === st); const val = m.reduce((a, q) => a + W.base + (21 - y75Rem(q)) * W.prog + y75Val(q.b) * W.bag, 0); s -= sg * y75Hit(G, t, st) * val * (t === team ? W.hit : W.thr); }); };
+  side(team, 1); side(foe, -1); return s;
+}
+function y75Plan(G, team, lv, tree, depth) {
+  const os = y75Opts(G, team); if (!os.length || depth > 3) return { s: y75Eval(G, team), o: null };
+  let best = { s: -1e9, o: null };
+  for (const o of os) { const G2 = y75Clone(G); const ev = y75Do(G2, team, o, lv, tree); let bonus = 0; if (G2.free > 0) { bonus = Y75_W.bonus * G2.free; G2.free = 0; } let pk = 0; ev.forEach(e => { if (e.t === 'pick') pk += y75Val(e.a) * 0.4; }); const r = G2.win ? { s: G2.win === team ? 1e5 : -1e5 } : y75Plan(G2, team, lv, tree, depth + 1); const sc = r.s + bonus + pk; if (sc > best.s) best = { s: sc, o }; }
+  return best;
+}
+/* cfg: {rand} 아무렇게나 / {eps} 가끔 아무렇게나 / {plan} 한 차례 전체를 계산 */
+function y75Pick(G, team, cfg, rng, lv, tree) {
+  const os = y75Opts(G, team); if (!os.length) return null; rng = rng || Math.random; cfg = cfg || {};
+  if (cfg.rand || (cfg.eps && rng() < cfg.eps)) return os[Math.floor(rng() * os.length)];
+  if (cfg.plan) return y75Plan(G, team, lv, tree, 0).o || os[0];
+  let best = null, bs = -1e9; os.forEach(o => { const sc = y75Score(G, team, o, lv, tree, cfg) + (cfg.noise ? (rng() - 0.5) * cfg.noise : 0); if (sc > bs) { bs = sc; best = o; } });
+  return best;
+}
+
+function y75Chest(win, lv) { const c = win ? Y75_ECO.win : Y75_ECO.lose, o = { coin: Math.round(c.c0 + c.c1 * lv) }; if (c.key) o.key = c.key; if (c.scrap) o.scrap = c.scrap; if (c.en) o.en = c.en; return o; }
+
+/* ---------- v75 화면 ---------- */
+const Y75_WZ = { eps: 0.2 }; /* 족제비 난이도: 봇 측정(34_윷놀이개편 봇측정.json)으로 정함 */
+const Y75_NM = { '-1': '빽도', 1: '도', 2: '개', 3: '걸', 4: '윷', 5: '모' };
+let y75Busy = false, y75Sel = { c: -1, u: null }, y75Wz = false, y75MsgT = 0, y75Throwing = false;
+/* 판 아래 안내 줄에 잠깐 알림 (판·얼굴을 가리는 알림 창 대신) */
+function y75Say(html, ms) { const res = document.getElementById('y-res'); if (!res) return; res.innerHTML = html; y75MsgT = Date.now() + (ms || 1700); clearTimeout(y75Say.h); y75Say.h = setTimeout(() => { y75MsgT = 0; try { y75Render(); } catch (e) {} }, (ms || 1700) + 30); }
+const y75Wait = ms => new Promise(r => setTimeout(r, ms * (window.__y75spd || 1)));
+function y75Friend() { try { const own = SP_ORDER.filter(k => k !== 'ttuki' && S.sp && S.sp[k] && HEAD(k)); if (own.length) return own[Math.floor(Math.random() * own.length)]; } catch (e) {} return 'haetae'; }
+function y75G() { let G = S.yut2; if (!G || G.v !== 75 || !G.me || !G.wz) { G = S.yut2 = y75New(y75Friend()); G.n = ((S.yut2st && S.yut2st.n) || 0) + 1; save(); } return G; }
+function y75Lv() { return S.lv || 1; }
+function y75Face(team, i) { const G = y75G(); if (team === 'me') return HEAD(i === 0 ? 'ttuki' : (G.fr || 'haetae')) || HEAD('ttuki'); return (window.WEASEL70 && WEASEL70.n && WEASEL70.n.idle && WEASEL70.n.idle.u) || ''; }
+/* 족제비 얼굴: 전신 그림에서 머리만 둥글게 */
+function y75FaceHtml(team, i, cls) { if (team === 'me') return '<i class="y75f ' + (cls || '') + '"><img src="' + y75Face(team, i) + '" alt=""></i>'; return '<i class="y75f wz ' + (cls || '') + '"></i>'; }
+function y75Icon(k) { return k === 'coin' || k === 'bigcoin' ? I('c09_coin_pouch') : k === 'en' || k === 'bigen' ? I('c10_songpyeon') : k === 'scrap' ? I('ui_scraps') : k === 'key' || k === 'key2' ? I('ui_key') : k === 'fert' ? ((S.tree && window.TREE_ART && window.TREE_ART.fert) || I('c09_coin_pouch')) : k === 'jack' ? I('ui_chest') : ''; }
+function y75Nb(t) { return String(t || '').split(' · ').map(s => s.replace(/ /g, '\u00a0')).join(' · '); }
+function y75BagTxt(b) { const o = []; if (b.coin) o.push('동전 ' + b.coin); if (b.en) o.push('에너지 ' + b.en); if (b.key) o.push('열쇠 ' + b.key); if (b.scrap) o.push('천 조각 ' + b.scrap); if (b.fert) o.push(S.tree ? '감나무 자람 ' + b.fert : '동전 ' + b.fert); return o.join(' · '); }
+function y75XY(st) { const p = YP[st] || YP[0]; return [p[0], p[1]]; }
+
+/* ---------- 자리 고르기 (판 좌표, 0~340) ----------
+   업힌 말(작은 얼굴)과 보따리 숫자를 묶음마다 함께 골라, 칸 그림 · 다른 말 얼굴 · 다른 숫자와 겹침이 가장 적은 자리(대부분 0)에 둠.
+   기본은 업힌 말 왼쪽 위, 숫자 오른쪽 위 */
+const Y75_RC = [[-18, -18], [18, -18], [-18, 18], [18, 18], [-25, 0], [25, 0], [0, -25], [0, 25]];
+const Y75_BC = [[1, -1, 12], [-1, -1, 12], [1, 1, 12], [-1, 1, 12], [0, -1, 17], [0, 1, 17], [1, 0, 17], [-1, 0, 17], [1, -1, 15], [-1, -1, 15], [1, 1, 15], [-1, 1, 15], [0, -1, 21], [0, 1, 21], [1, -1, 10], [-1, -1, 10], [1, 1, 10], [-1, 1, 10]];
+function y75OvC(ax, ay, ar, bx, by, br) { return Math.max(0, ar + br - Math.hypot(ax - bx, ay - by)); }
+function y75RcO(L, T, R, B, cx, cy, r) { const px = Math.max(L, Math.min(cx, R)), py = Math.max(T, Math.min(cy, B)); return Math.max(0, r - Math.hypot(px - cx, py - cy)); }
+function y75Layout(G) {
+  const units = [], spots = {};
+  ['me', 'wz'].forEach(t => { const by = {}; G[t].forEach((p, i) => { const s = y75St(p); if (s < 0) return; (by[s] = by[s] || []).push(i); }); Object.keys(by).forEach(s => { const L = by[s]; units.push({ t, st: +s, lead: L[0], rider: L.length > 1 ? L[1] : -1, n: L.reduce((a, i) => a + (G[t][i].n || 0), 0) }); }); });
+  const pics = []; document.querySelectorAll('#y75-sts .y75st').forEach(e => { const id = +e.dataset.id; if (units.some(u => u.st === id)) return; if (id !== 0 && e.classList.contains('emp')) return; const [x, y] = y75XY(id); pics.push([x, y, (id === 0 ? 19 : e.classList.contains('big') ? 16 : 12) + 1.2]); });
+  units.forEach(u => { const [x, y] = y75XY(u.st); u.x = x; u.y = y; spots[u.t + u.lead] = [x, y, 0]; });
+  const els = ['y75-bag-a', 'y75-bag-b', 'y75-bag-c', 'y75-bag-d'].map(id => document.getElementById(id)); els.forEach(b => { if (b) b.style.display = 'none'; });
+  const riders = [], badges = []; let k = 0;
+  const order = units.slice().sort((a, b) => (b.rider >= 0) - (a.rider >= 0) || b.n - a.n);
+  order.forEach(u => {
+    let w = 0, h = 0, b = null;
+    if (u.n) { b = els[k++]; if (b) { b.classList.toggle('wz', u.t === 'wz'); b.textContent = u.n; b.style.transform = 'none'; b.style.display = ''; b.dataset.own = u.t + u.lead; const bb = b.getBoundingClientRect(), bdr = document.getElementById('y-board').getBoundingClientRect(), kk = bdr.width / 340 || 1; w = bb.width / kk + 0.6; h = bb.height / kk + 0.6; } }
+    const rcs = u.rider >= 0 ? Y75_RC : [null], bcs = b ? Y75_BC : [null]; let best = null;
+    rcs.forEach((rc, ri) => {
+      let ro = 0, rx = 0, ry = 0;
+      if (rc) { rx = u.x + rc[0]; ry = u.y + rc[1]; pics.forEach(p => ro += y75OvC(rx, ry, 11, p[0], p[1], p[2])); units.forEach(f => ro += y75OvC(rx, ry, 11, f.x, f.y, f === u ? 12.4 : 17.6)); riders.forEach(r => ro += y75OvC(rx, ry, 11, r[0], r[1], 11)); badges.forEach(q => ro += y75RcO(q[0], q[1], q[2], q[3], rx, ry, 11)); ro += Math.max(0, 11 - Math.min(rx, 340 - rx, ry, 340 - ry)); }
+      bcs.forEach((bc, bi) => {
+        let bo = 0, L = 0, T = 0;
+        if (bc) { const [sx, sy, off] = bc, ax = u.x + off * sx, ay = u.y + off * sy; L = sx > 0 ? ax : sx < 0 ? ax - w : ax - w / 2; T = sy < 0 ? ay - h : sy > 0 ? ay : ay - h / 2; const R = L + w, B = T + h;
+          pics.forEach(p => bo += y75RcO(L, T, R, B, p[0], p[1], p[2])); units.forEach(f => bo += y75RcO(L, T, R, B, f.x, f.y, f === u ? 15 : 17.6)); riders.forEach(r => bo += y75RcO(L, T, R, B, r[0], r[1], 11)); if (rc) bo += y75RcO(L, T, R, B, rx, ry, 11);
+          badges.forEach(q => { if (Math.min(R, q[2]) - Math.max(L, q[0]) > 0 && Math.min(B, q[3]) - Math.max(T, q[1]) > 0) bo += 6; }); bo += Math.max(0, -L) + Math.max(0, R - 340) + Math.max(0, -T) + Math.max(0, B - 340); }
+        const sc = ro + bo + (ri + bi) * 0.001;
+        if (!best || sc < best.sc) best = { sc, rx, ry, L, T };
+      });
+    });
+    if (u.rider >= 0) { riders.push([best.rx, best.ry]); spots[u.t + u.rider] = [best.rx, best.ry, 1]; }
+    if (b) { b.style.left = best.L + 'px'; b.style.top = best.T + 'px'; badges.push([best.L, best.T, best.L + w, best.T + h]); }
+  });
+  return { units, spots };
+}
+function y75Badges() {}
+/* ---------- 화면 만들기 (한 번) ---------- */
+function y75Build() {
+  const sc = document.getElementById('sc-yut'); if (!sc || sc.dataset.y75) return !!sc; sc.dataset.y75 = '1'; sc.classList.add('y75on');
+  try { app.style.setProperty('--y75wz', 'url("' + y75Face('wz', 0) + '")'); } catch (e) {}
+  const bar = document.createElement('div'); bar.className = 'y75bar'; bar.id = 'y75-bar';
+  bar.innerHTML = '<div class="y75tm me"><b>뚝이 팀</b><div class="y75fs" id="y75-fme">' + [0, 1].map(i => '<div class="y75fb" data-i="' + i + '">' + y75FaceHtml('me', i) + '<em class="y75ok"></em></div>').join('') + '</div></div><div class="y75turn" id="y75-turn"></div><div class="y75tm wz"><b>족제비 팀</b><div class="y75fs" id="y75-fwz">' + [0, 1].map(i => '<div class="y75fb" data-i="' + i + '">' + y75FaceHtml('wz', i) + '<em class="y75ok"></em></div>').join('') + '</div></div>';
+  sc.insertBefore(bar, sc.querySelector('.yboard'));
+  const bd = document.getElementById('y-board');
+  const sts = document.createElement('div'); sts.className = 'y75sts'; sts.id = 'y75-sts'; bd.appendChild(sts);
+  const pcs = document.createElement('div'); pcs.className = 'y75pcs'; pcs.id = 'y75-pcs'; bd.appendChild(pcs);
+  const ban = document.getElementById('y-ban'); if (ban) bd.appendChild(ban);
+  const bt = sc.querySelector('.ybtns'); const ch = document.createElement('div'); ch.className = 'y75chips'; ch.id = 'y75-chips'; bt.insertBefore(ch, document.getElementById('y-go'));
+  const stk0 = document.getElementById('y-sticks'); if (stk0 && !stk0.children.length) { stk0.innerHTML = [1, 0, 1, 0].map((f, i) => yutStickHtml(f, i)).join(''); stk0.dataset.ok = 1; } /* y75-sticks-init */
+  const od = document.getElementById('y-odds'); if (od) { od.textContent = '규칙과 확률'; od.onclick = y75Odds; }
+  bd.addEventListener('click', y75BoardClick); bar.addEventListener('click', y75BarClick); ch.addEventListener('click', y75ChipClick);
+  sts.innerHTML = Object.keys(YP).map(Number).map(id => { const [x, y] = y75XY(id); const big = id === 0 || id === 5 || id === 10 || id === 15 || id === 23; return '<div class="y75st' + (big ? ' big' : '') + (id === 0 ? ' start' : '') + '" data-id="' + id + '" style="left:' + x + 'px;top:' + y + 'px">' + (id === 0 ? '<span>출발</span>' : '<img alt="">') + '</div>'; }).join('');
+  pcs.innerHTML = ['me', 'wz'].map(t => [0, 1].map(i => '<div class="y75pc ' + t + '" id="y75-p-' + t + i + '" data-t="' + t + '" data-i="' + i + '">' + y75FaceHtml(t, i) + '</div>').join('')).join('') + '<div class="y75bag" id="y75-bag-a"></div><div class="y75bag" id="y75-bag-b"></div><div class="y75bag wz" id="y75-bag-c"></div><div class="y75bag wz" id="y75-bag-d"></div>';
+  return true;
+}
+/* 말 자리: 같은 칸에 둘이면 나란히 (얼굴이 다 보이게) */
+function y75Spots(G) {
+  const out = {};
+  ['me', 'wz'].forEach(t => { const by = {}; G[t].forEach((p, i) => { const s = y75St(p); if (s < 0) return; (by[s] = by[s] || []).push(i); }); Object.keys(by).forEach(s => { const L = by[s], [x, y] = y75XY(+s); const pl = Y75_PLACE[s] || [-18, -18, 1, -1]; out[t + L[0]] = [x, y, 0]; if (L.length > 1) out[t + L[1]] = [x + pl[0], y + pl[1], 1]; }); });
+  return out;
+}
+function y75Units2(G) { /* 지금 고른 결과로 움직일 수 있는 묶음 */ const os = y75Opts(G, 'me').filter(o => G.chips[o.c] === G.chips[y75Sel.c]); return os; }
+function y75OptFor(G, u) { return y75Units2(G).find(o => String(o.u) === String(u)) || null; }
+function y75Render() {
+  if (!y75Build()) return; const G = y75G(), Y = S.yut; if (!Y) return;
+  const sc = document.getElementById('sc-yut');
+  const pill = document.getElementById('y-pill'); if (pill) pill.innerHTML = '<img src="' + (YA.pouch || I('ui_key')) + '" alt="">' + Y.t;
+  /* 결과 고르기 정리 */
+  if (G.turn !== 'me' || !G.chips.length) y75Sel = { c: -1, u: null };
+  else { if (y75Sel.c < 0 || y75Sel.c >= G.chips.length) { y75Sel.c = 0; y75Sel.u = null; } }
+  let opts = G.turn === 'me' && G.chips.length && !G.free && !y75Busy && !G.win ? y75Units2(G) : [];
+  if (G.turn === 'me' && G.chips.length && !G.free && !y75Busy && !opts.length) { const all = y75Opts(G, 'me'); if (all.length) { y75Sel = { c: all[0].c, u: null }; opts = y75Units2(G); } }
+  if (opts.length === 1 && y75Sel.u === null) y75Sel.u = opts[0].u;
+  if (y75Sel.u !== null && !opts.some(o => String(o.u) === String(y75Sel.u))) y75Sel.u = opts.length === 1 ? opts[0].u : null;
+  const selO = y75Sel.u !== null ? y75OptFor(G, y75Sel.u) : null;
+  /* 팀 막대 */
+  const fme = document.getElementById('y75-fme'), fwz = document.getElementById('y75-fwz');
+  const fcls = (t, p, i) => (p.d ? 'done' : p.h ? 'home' : 'out') + (t === 'me' && p.h && !p.d && opts.some(o => o.u === 'h') && G.me.findIndex(q => q.h && !q.d) === i ? ' can' + (selO && selO.u === 'h' ? ' sel' : '') : '');
+  [...fme.children].forEach((d, i) => { d.className = 'y75fb ' + fcls('me', G.me[i], i); const im = d.querySelector('img'), want = y75Face('me', i); if (im && im.getAttribute('src') !== want) im.src = want; });
+  [...fwz.children].forEach((d, i) => { d.className = 'y75fb ' + fcls('wz', G.wz[i], i); });
+  ['me', 'wz'].forEach(t => [0, 1].forEach(i => { const im = document.querySelector('#y75-p-' + t + i + ' img'); if (im && t === 'me') { const want = y75Face('me', i); if (im.getAttribute('src') !== want) im.src = want; } }));
+  const turn = document.getElementById('y75-turn'); turn.className = 'y75turn ' + (G.win ? '' : G.turn); turn.textContent = G.win ? '' : G.turn === 'me' ? '내 차례' : '족제비 차례';
+  /* 칸 선물 */
+  document.querySelectorAll('#y75-sts .y75st').forEach(e => { const id = +e.dataset.id; if (id === 0) return; const k = G.gifts[id]; const im = e.querySelector('img'); e.classList.toggle('emp', !k); if (k) { const s = y75Icon(k); if (im.getAttribute('src') !== s) im.src = s; } e.classList.remove('y75dst', 'cap', 'stk', 'home'); });
+  /* 말 · 업힌 말 · 보따리 숫자: 그림과 다른 말 얼굴을 피해 비어 있는 쪽에 둠 (칸 그림, 말 얼굴, 업힌 말, 다른 숫자와 겹침 0이 되는 첫 자리) */
+  const lay = y75Layout(G);
+  ['me', 'wz'].forEach(t => G[t].forEach((p, i) => { const el = document.getElementById('y75-p-' + t + i); if (!el) return; const sp = lay.spots[t + i]; if (!sp) { if (!el.classList.contains('y75mv')) el.style.display = 'none'; return; } el.style.display = ''; if (!el.classList.contains('y75mv')) { el.style.left = sp[0] + 'px'; el.style.top = sp[1] + 'px'; } el.classList.toggle('ride', sp[2] > 0); el.classList.remove('can', 'sel'); }));
+  /* 고를 수 있는 말 · 갈 칸 */
+  opts.forEach(o => { if (o.u === 'h') return; G.me.forEach((p, i) => { if (y75St(p) === o.u) { const el = document.getElementById('y75-p-me' + i); el.classList.add('can'); if (selO && String(selO.u) === String(o.u)) el.classList.add('sel'); } }); });
+  if (selO) { const st = selO.done ? 0 : selO.dest; const e = document.querySelector('#y75-sts .y75st[data-id="' + st + '"]'); if (e) { e.classList.add('y75dst'); if (selO.done) e.classList.add('home'); else if (selO.cap) e.classList.add('cap'); else if (selO.stack) e.classList.add('stk'); } }
+  /* 결과 칩 */
+  const ch = document.getElementById('y75-chips');
+  ch.innerHTML = G.chips.map((v, c) => '<div class="y75chip' + (v < 0 ? ' back' : v >= 4 ? ' hi' : '') + (c === y75Sel.c && G.turn === 'me' ? ' on' : '') + (G.turn !== 'me' ? ' wz' : '') + '" data-c="' + c + '">' + Y75_NM[v] + '</div>').join('');
+  /* 던지기 단추 */
+  const gb = document.getElementById('y-go'); const canThrow = G.turn === 'me' && !G.win && (G.free > 0 || !G.chips.length) && (!y75Busy || y75Throwing);
+  gb.style.display = canThrow ? '' : 'none'; sc.classList.toggle('y75nogo', !canThrow);
+  gb.classList.toggle('free', canThrow && G.free > 0); gb.classList.remove('off');
+  const gt = G.free > 0 ? '한 번 더 던지기' : Y.t < 1 ? '주문하러 가기' : '던지기';
+  if (gb.textContent !== gt) gb.textContent = gt;
+  /* 안내 글 */
+  const res = document.getElementById('y-res');
+  if (!y75Busy && !y75Wz && Date.now() > y75MsgT) {
+    let t = '';
+    if (G.win) t = '';
+    else if (G.turn !== 'me') t = '족제비가 생각하고 있어요';
+    else if (G.free > 0) t = '<b class="yr hi">한 번 더!</b> 던지기를 눌러요';
+    else if (!G.chips.length) t = Y.t > 0 ? '내 차례예요. 던지기를 눌러요' : '던질 기회가 없어요. 주문을 보내면 1번씩 생겨요';
+    else if (!selO) t = '<b class="yr">' + Y75_NM[G.chips[y75Sel.c]] + '</b> 옮길 말을 눌러요';
+    else t = '<b class="yr">' + Y75_NM[selO.v] + '</b> ' + (selO.done ? '빛나는 출발 칸을 누르면 집에 들어가요' : selO.cap ? '빛나는 칸을 누르면 족제비를 잡아요' : selO.stack ? '빛나는 칸을 누르면 업혀서 같이 가요' : selO.pick ? '빛나는 칸을 누르면 보따리를 주워요' : '빛나는 칸을 누르면 옮겨요');
+    res.innerHTML = t;
+  }
+  const info = document.getElementById('y-info'); if (info) { const st = S.yut2st || {}; info.textContent = '주문마다 던지기 1번 · 매일 ' + YUT_DAILY + '번 공짜' + (st.w || st.l ? ' · ' + (st.w || 0) + '승 ' + (st.l || 0) + '패' : ''); }
+  sc.classList.toggle('y75me', G.turn === 'me' && !G.win);
+}
+/* ---------- 누르기 ---------- */
+function y75ChipClick(e) { const c = e.target.closest('.y75chip'); if (!c || y75Busy) return; const G = y75G(); if (G.turn !== 'me' || G.free > 0) return; y75Sel = { c: +c.dataset.c, u: null }; try { sfx('tick', { rate: 1.2 }); } catch (er) {} y75Render(); }
+function y75BarClick(e) { const f = e.target.closest('#y75-fme .y75fb.can'); if (!f || y75Busy) return; const G = y75G(); const o = y75OptFor(G, 'h'); if (!o) return; if (y75Sel.u === 'h') { y75Go(o); return; } y75Sel.u = 'h'; try { sfx('tick', { rate: 1.1 }); } catch (er) {} y75Render(); }
+function y75BoardClick(e) {
+  if (y75Busy) return; const G = y75G(); if (G.turn !== 'me' || G.free > 0 || !G.chips.length) return;
+  const sel = y75Sel.u !== null ? y75OptFor(G, y75Sel.u) : null; const dst = sel ? (sel.done ? 0 : sel.dest) : null;
+  const pc = e.target.closest('.y75pc'), st = e.target.closest('.y75st');
+  let where = null; if (pc) { const t = pc.dataset.t, p = G[t][+pc.dataset.i]; where = y75St(p); } else if (st) where = +st.dataset.id;
+  if (sel && where === dst) { y75Go(sel); return; }
+  if (pc && pc.dataset.t === 'me') { const o = y75OptFor(G, where); if (o) { if (sel && String(sel.u) === String(where)) { y75Go(sel); return; } y75Sel.u = where; try { sfx('tick', { rate: 1.1 }); } catch (er) {} y75Render(); return; } }
+  if (y75Units2(G).length > 1) { y75Sel.u = null; y75Render(); }
+}
+/* ---------- 던지기 ---------- */
+async function y75StickShow(row, who) {
+  const stk = document.getElementById('y-sticks'); if (!stk) return; stk.classList.remove('land'); void stk.offsetWidth; stk.classList.add('fly');
+  try { sfx('chest_roll', { vol: .45 }); } catch (e) {}
+  await y75Wait(560);
+  const sticks = yutSticks(row[0]); stk.innerHTML = sticks.map((f, i) => yutStickHtml(f, i)).join(''); stk.classList.remove('fly'); stk.classList.add('land');
+  try { sfx('punch', { vol: .4, rate: 1.3 }); } catch (e) {}
+  const res = document.getElementById('y-res'); res.innerHTML = (who === 'wz' ? '족제비: ' : '') + '<b class="yr' + (row[1] >= 4 ? ' hi' : row[1] < 0 ? ' back' : '') + '">' + row[0] + '!</b> ' + (row[1] < 0 ? '한 칸 뒤로' : row[1] + '칸') + (row[1] >= 4 ? ' · 한 번 더!' : '');
+  const ban = document.getElementById('y-ban'); if (ban) { ban.textContent = row[0] + '!'; ban.className = 'ybanner on' + (row[1] >= 4 ? ' hi' : row[1] < 0 ? ' back' : '') + (who === 'wz' ? ' wz' : ''); setTimeout(() => { ban.className = 'ybanner'; }, 900); }
+  await y75Wait(420);
+}
+async function y75Throw() {
+  const Y = S.yut; if (!Y || y75Busy) return; const G = y75G(); if (G.win) return;
+  if (G.turn !== 'me') { toast('족제비 차례예요. 조금만 기다려요'); return; }
+  if (!G.free && G.chips.length) { toast('먼저 나온 결과로 말을 옮겨요'); return; }
+  if (!G.free) { if (Y.t < 1) { go('main'); setTimeout(() => toast('주문을 보내면 던지기가 1번씩 생겨요'), 300); return; } Y.t -= 1; G.paid = 1; } else G.free -= 1;
+  y75Busy = true; y75Throwing = true; save(); y75Render();
+  const row = y75Roll(); await y75StickShow(row, 'me'); y75Throwing = false;
+  G.chips.push(row[1]); if (row[1] >= 4) G.free += 1;
+  y75Sel = { c: G.chips.length - 1, u: null };
+  save(); y75Busy = false; y75Next();
+}
+/* 쓸 수 없는 결과는 버리고, 다 쓰면 족제비 차례 */
+function y75Next() {
+  const G = y75G(); if (G.win) { y75Render(); return; }
+  if (G.turn === 'me') {
+    if (G.free > 0) { y75Render(); return; }
+    if (G.chips.length && !y75Opts(G, 'me').length) { const n = G.chips.map(v => Y75_NM[v]).join(', '); G.chips = []; y75Say(n + ': 판 위에 말이 없어서 못 써요', 1900); save(); }
+    if (!G.chips.length && G.paid) { G.turn = 'wz'; G.paid = 0; save(); y75Render(); setTimeout(y75WzTurn, 650); return; }
+    y75Sel.c = Math.min(Math.max(0, y75Sel.c), G.chips.length - 1); y75Render(); return;
+  }
+  if (!y75Wz) setTimeout(y75WzTurn, 300);
+}
+/* ---------- 말 옮기기 (그림 · 소리 · 선물) ---------- */
+async function y75Anim(team, ix, path, enter) {
+  const els = ix.map(i => document.getElementById('y75-p-' + team + i)).filter(Boolean);
+  els.forEach(el => { el.classList.add('y75mv'); el.style.display = ''; });
+  if (enter) { const [x, y] = y75XY(0); els.forEach(el => { el.style.transition = 'none'; el.style.left = x + 'px'; el.style.top = y + 'px'; el.style.opacity = '0'; }); void (els[0] && els[0].offsetWidth); els.forEach(el => { el.style.transition = ''; el.style.opacity = '1'; }); await y75Wait(120); }
+  for (let s = 0; s < path.length; s++) { const [x, y] = y75XY(path[s]); els.forEach((el, k) => { el.style.left = (x + (k ? -18 : 0)) + 'px'; el.style.top = (y + (k ? -18 : 0)) + 'px'; }); try { sfx('tick', { rate: 1 + s * .08 }); } catch (e) {} await y75Wait(250); }
+  els.forEach(el => el.classList.remove('y75mv'));
+}
+function y75BoardXY(st) { const bd = document.getElementById('y-board'); const [x, y] = y75XY(st); const b = elXY(bd); return [b[0] - 170 + x, b[1] - 170 + y]; }
+async function y75Apply(team, o) {
+  const G = y75G(); const ms = y75Members(G, team, o.u), ix = ms.map(p => G[team].indexOf(p)), enter = o.u === 'h';
+  y75Busy = true; y75Render();
+  await y75Anim(team, ix, o.path, enter);
+  const ev = y75Do(G, team, o, y75Lv(), !!S.tree); save();
+  for (const e of ev) {
+    if (e.t === 'cap') {
+      const [x, y] = y75BoardXY(e.st); try { sfx('punch', { vol: .6 }); burst(x, y, 22, { sp: 5 }); } catch (er) {}
+      boom(x, y - 46, team === 'me' ? '잡았다!' : '잡혔어요', team === 'me' ? '#FFE45C' : '#FFB3A8', 26);
+      if (team === 'me') y75Say('<b class="yr hi">잡았다!</b> ' + (e.bn ? '족제비 보따리 ' + e.bn + '개를 가져왔어요' : '족제비는 집으로') + ' · 한 번 더', 1900); else y75Say('<b class="yr back">잡혔어요</b> ' + (e.bn ? '보따리 ' + e.bn + '개를 빼앗겼어요' : '말은 집으로 돌아가요'), 1900);
+    }
+    if (e.t === 'stack') { const [x, y] = y75BoardXY(e.st); if (team === 'me') boom(x, y - 46, '업었다!', '#BFE7FF', 22); }
+    if (e.t === 'pick') { const [x, y] = y75BoardXY(e.st); try { burst(x, y, 10, { sp: 3 }); sfx(team === 'me' ? 'coins' : 'tap', { vol: .4 }); } catch (er) {} const se = document.querySelector('#y75-sts .y75st[data-id="' + e.st + '"]'); if (se) { se.classList.remove('hit'); void se.offsetWidth; se.classList.add('hit'); } if (team === 'me') { boom(x, y - 46, '+' + y75BagTxt(e.a).split(' · ')[0].replace(/^(\S+) /, '$1 '), '#FFE45C', 18); y75Say('보따리에 담았어요: ' + y75Nb(y75BagTxt(e.a)), 1500); } }
+    if (e.t === 'home') {
+      const [x, y] = y75BoardXY(0);
+      if (team === 'me') { let txt = ''; if (e.bn) { txt = yutGrant(e.bag); try { coinFly([x, y], elXY(document.getElementById('p-coin') || document.getElementById('y-pill')), 10); sfx('coins'); } catch (er) {} } boom(x, y - 46, '들어왔다!', '#FFE45C', 24); y75Say('<b class="yr hi">집에 들어왔어요</b>' + (txt ? ' 보따리 ' + e.bn + '개: ' + y75Nb(txt) : ''), 2400); try { sfx('levelup', { vol: .5 }); burst(x, y, 30, { sp: 6 }); } catch (er) {} }
+      else { boom(x, y - 46, '족제비가 들어갔어요', '#FFB3A8', 20); y75Say('족제비가 집에 들어갔어요' + (e.bn ? '. 보따리 ' + e.bn + '개는 사라져요' : ''), 2000); }
+    }
+  }
+  if (team === 'me' && ev.some(e => e.t === 'cap')) { const ban = document.getElementById('y-ban'); if (ban) { ban.textContent = '한 번 더!'; ban.className = 'ybanner on hi'; setTimeout(() => { ban.className = 'ybanner'; }, 900); } }
+  y75Busy = false; y75Sel.u = null; y75Render();
+  if (G.win) { setTimeout(y75End, 700); return true; }
+  return false;
+}
+async function y75Go(o) { if (y75Busy) return; const G = y75G(); if (G.turn !== 'me') return; const ended = await y75Apply('me', o); if (!ended) y75Next(); }
+/* ---------- 족제비 차례 ---------- */
+async function y75WzTurn() {
+  const G = y75G(); if (y75Wz || G.win || G.turn !== 'wz') return; y75Wz = true;
+  try {
+    const ban = document.getElementById('y-ban'); if (ban) { ban.textContent = '족제비 차례'; ban.className = 'ybanner on wz small'; setTimeout(() => { ban.className = 'ybanner'; }, 900); }
+    await y75Wait(700);
+    if (!G.wzs) { G.wzs = 1; G.free = 1; save(); }
+    let guard = 0;
+    while (!G.win && guard++ < 40) {
+      while (G.free > 0) { G.free -= 1; const row = y75Roll(); y75Render(); await y75StickShow(row, 'wz'); G.chips.push(row[1]); if (row[1] >= 4) G.free += 1; save(); y75Render(); }
+      if (!G.chips.length) break;
+      const o = y75Pick(G, 'wz', Y75_WZ, Math.random, y75Lv(), !!S.tree);
+      if (!o) { G.chips = []; save(); break; }
+      document.getElementById('y-res').innerHTML = '족제비: <b class="yr">' + Y75_NM[o.v] + '</b> ' + (o.cap ? '잡으러 와요!' : o.done ? '집으로 가요' : '움직여요');
+      await y75Wait(380);
+      const ended = await y75Apply('wz', o); if (ended) return;
+      await y75Wait(260);
+    }
+    G.turn = 'me'; G.paid = 0; G.chips = []; G.free = 0; G.wzs = 0; save();
+    const ban2 = document.getElementById('y-ban'); if (ban2) { ban2.textContent = '내 차례'; ban2.className = 'ybanner on small'; setTimeout(() => { ban2.className = 'ybanner'; }, 900); }
+  } finally { y75Wz = false; y75Render(); }
+}
+/* ---------- 시합 끝 ---------- */
+function y75End() {
+  const G = y75G(); if (!G.win) return; const win = G.win === 'me', lv = y75Lv();
+  const st = S.yut2st = S.yut2st || { w: 0, l: 0, n: 0 }; st.n = (st.n || 0) + 1; if (win) st.w = (st.w || 0) + 1; else st.l = (st.l || 0) + 1;
+  const lost = {}; let ln = 0; if (!win) G.me.forEach(p => { if (!p.d && p.n) { y75BagAdd(lost, p.b); ln += p.n; } });
+  const got = yutGrant(y75Chest(win, lv));
+  S.yut2 = y75New(y75Friend()); S.yut2.n = st.n + 1; save(); renderAll();
+  try { if (win) { sfx('levelup'); const [x, y] = y75BoardXY(0); burst(x, y, 40, { sp: 7, life: 50 }); } } catch (e) {}
+  showPop({ title: win ? '족제비를 이겼어요!' : '아깝게 졌어요', big: '<img class="ypop" src="' + (win ? I('ui_chest_open') : I('x7_bojagi_gift')) + '">', name: win ? '승리 상자' : '위로 선물', text: '선물: ' + y75Nb(got) + (ln ? '<br>들고 있던 보따리 ' + ln + '개는 족제비가 가져갔어요' : '') + '<br>' + st.w + '승 ' + st.l + '패 · 새 판을 시작해요', btns: [['좋아!', 'yellow', null]] });
+}
+function y75Odds() {
+  const nb = s => s.replace(/(한) (번) (더)/g, '$1\u00a0$2\u00a0$3').replace(/둘 다/g, '둘\u00a0다').replace(/내 것/g, '내\u00a0것').replace(/판 위/g, '판\u00a0위');
+  const rows = [['말 고르기', '결과를 골라 옮길 말을 정해요. 윷·모는 한 번 더'], ['지름길', '모서리나 가운데에 멈추면 다음엔 지름길'], ['잡기', '족제비 칸에 멈추면 집으로 보내고 한 번 더'], ['업기', '내 말끼리 만나면 같이 가요. 잡히면 둘 다'], ['보따리', '멈춘 칸 선물을 들고 다니다 들어오면 내 것'], ['위 줄', '진한 얼굴은 집, 흐린 얼굴은 판 위, 초록 체크는 들어온 말']];
+  const pr = YTHROW.map(([n, step, w]) => '<span><b>' + n + '</b> ' + (w / 16 * 100).toFixed(2).replace(/\.?0+$/, '') + '%</span>').join('');
+  showPop({ title: '윷 규칙과 확률', text: '<div class="y75rl">' + rows.map(r => '<b>' + r[0] + '</b><span>' + nb(r[1]) + '</span>').join('') + '</div><div class="y75pr">' + pr + '</div><div class="y75nt">먼저 2개 들어오면 승리 상자. 족제비 차례는 던지기를 쓰지 않아요. 던지기는 돈으로 팔지 않아요</div>', btns: [['알겠어요', 'yellow', null]] });
+}
+function y75Guide(then) {
+  const ov = ovEl('y75guide'); try { app.style.setProperty('--y75wz', 'url("' + y75Face('wz', 0) + '")'); } catch (e) {}
+  ov.innerHTML = '<div class="ovdim"></div><div class="ovbox panel htbox y75gd"><div class="ovh">새 윷놀이: 족제비와 시합</div>'
+    + '<div class="ht"><div class="hti"><img src="' + (HEAD('ttuki') || '') + '" alt=""></div><div class="htt"><b>1. 말 고르기</b><span>던져서 나온 결과를 골라, 옮길 말을 눌러요. 빛나는 칸을 누르면 가요</span></div></div>'
+    + '<div class="ht"><div class="hti"><i class="y75f wz big"></i></div><div class="htt"><b>2. 잡기와 업기</b><span>족제비가 있는 칸에 멈추면 잡고 한 번 더! 내 말끼리 만나면 업혀서 같이 가요</span></div></div>'
+    + '<div class="ht"><div class="hti"><img src="' + I('x7_bojagi_gift') + '" alt=""></div><div class="htt"><b>3. 보따리</b><span>멈춘 칸 선물을 담아 다녀요(말 위 분홍 숫자). 집에 들어와야 내 것, 잡히면 빼앗겨요</span></div></div>'
+    + '<div class="htn">모서리나 가운데에 멈추면 다음엔 지름길로 가요</div><div class="btn red h ovgo" id="y75-gok">알겠어요</div></div>';
+  ov.style.display = 'block';
+  const close = () => { ov.style.display = 'none'; S.yut2tip = 1; save(); if (then) setTimeout(then, 200); };
+  ov.querySelector('#y75-gok').onclick = close; ov.querySelector('.ovdim').onclick = close;
+}
+/* ---------- 예전 윷놀이 함수 바꾸기 ---------- */
+yutThrow = function () { return y75Throw(); };
+renderYut = function () { try { y75Render(); } catch (e) {} };
+yutOdds = y75Odds;
+go = (o0 => function (s) { const r = o0.apply(this, arguments); if (s === 'yut') { try { y75Build(); y75Render(); const G = y75G(); if (!S.yut2tip) setTimeout(() => { if (!S.yut2tip) y75Guide(); }, 350); if (G.turn === 'wz' && !y75Wz) setTimeout(y75WzTurn, 900); } catch (e) {} } return r; })(go);
+renderEvent = (o0 => function () { const r = o0.apply(this, arguments); try { const sp = document.querySelector('#evlist .ev.yutc .ytx span'); if (sp && S.yut) sp.textContent = '던지기 ' + S.yut.t + '번 · 족제비와 윷 시합'; } catch (e) {} return r; })(renderEvent);
+ovOpen = (o0 => function () { return o0() || (() => { const e = document.getElementById('y75guide'); return !!e && e.style.display === 'block'; })(); })(ovOpen);
+/* v75: yut */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
