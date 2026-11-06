@@ -3121,8 +3121,56 @@ html,body{overscroll-behavior:none}
 #app .rc66 .tp em{font-style:normal;color:#C98A1A}
 #app .rc66 .rp{font-family:'Gowun Dodum',sans-serif;font-size:12.5px;line-height:1;color:#8A7460}
 
+/* v67: fixes */
+/* 거름 창 */
+#app .fbox.fz67 .ovs{font-size:15px;line-height:20px}
+#app .fz67h{font-family:'Jua';font-size:16px;line-height:20px;color:#4A2A1E;margin:8px 2px 4px}
+#app .fz67c{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
+#app .fz67c::-webkit-scrollbar{display:none}
+#app .fz67k{flex:none;width:72px;padding:4px 2px 5px;border-radius:12px;background:#FFF8EA;box-shadow:inset 0 0 0 2px rgba(122,82,48,.25);display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer}
+#app .fz67k img{width:34px;height:34px;object-fit:contain}
+#app .fz67k b{font-family:'Jua';font-weight:400;font-size:15px;line-height:18px;color:#4A2A1E;white-space:nowrap}
+#app .fz67k span{font-size:12px;line-height:15px;color:#7A5A44;white-space:nowrap;max-width:68px;overflow:hidden;text-overflow:clip}
+#app .fz67r{font-size:14.5px;line-height:19px;color:#5A3A20;margin:2px 2px 4px;word-break:keep-all}
+#app .fz67r b{font-family:'Jua';font-weight:400;color:#3F8F3A}
+#app .fz67k.on{background:#FFF1C4;box-shadow:inset 0 0 0 3px #E8A92A}
+#app .fz67k.full{opacity:.55}
+#app .fz67n{font-size:14.5px;line-height:19px;color:#7A5A44;margin:8px 2px 2px}
+#app .fz67s{font-size:13.5px;line-height:18px;color:#8A6A50;margin:4px 2px 0;word-break:keep-all}
+#app .fz67f{position:absolute;transform:translate(-50%,-6px);z-index:120;font-family:'Jua';font-size:16px;color:#3F8F3A;text-shadow:0 1px 0 #fff,1px 0 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;pointer-events:none;white-space:nowrap;animation:fz67up 1s ease-out forwards}
+@keyframes fz67up{0%{opacity:0;transform:translate(-50%,0)}15%{opacity:1}100%{opacity:0;transform:translate(-50%,-34px)}}
+
+/* 윷: 결과 글자가 '뒤로' 버튼 규칙(.back)을 물려받아 ×1 위로 가던 것 */
+#app #sc-yut .yres b.yr{position:static !important;left:auto !important;top:auto !important;height:auto !important;padding:0 !important;border-radius:0 !important;z-index:auto !important;font-size:24px !important;background:none !important;box-shadow:none !important}
+#app #sc-yut .ybanner.back{height:auto !important;padding:0 !important;border-radius:0 !important;background:none !important;box-shadow:none !important}
+#app #sc-yut .ymult > div{font-size:17px}
+#app #sc-yut .ygo.y67:not([style*="display: none"]){flex-direction:column !important;gap:1px;padding-top:3px !important;line-height:1 !important}
+#app #sc-yut .ygo.y67 b{font-family:'Jua';font-weight:400;font-size:22px;line-height:24px}
+#app #sc-yut .ygo.y67 small{font-family:'Jua';font-size:13.5px;line-height:16px;opacity:.92}
+#app #pop .y67o{margin-top:8px;padding-top:8px;border-top:1.5px dashed rgba(74,42,30,.3)}
+
+/* 돌림판: 쉬는 상태의 '돌리기' 버튼 */
+#app #wheel .wstop.wf67go:not([style*="display: none"]){flex-direction:column !important;gap:2px;padding-top:3px !important}
+#app #wheel .wstop.wf67go b{font-family:'Jua';font-weight:400;font-size:25px;line-height:27px}
+#app #wheel .wstop.wf67go small{font-family:'Jua';font-size:14.5px;line-height:17px;opacity:.9}
+
+/* 오늘 할 일: 이름+숫자 / 막대, 버튼은 오른쪽 두 줄 높이. 받은 칸은 버튼 대신 '받음' 표시 */
+#app .dm:not(.all){display:grid !important;grid-template-columns:minmax(0,1fr) auto 92px;grid-template-rows:20px 10px;grid-template-areas:"dn dc bt" "bar bar bt";column-gap:8px;row-gap:5px;align-items:center;height:auto !important;min-height:44px;padding:3px 0}
+#app .dm:not(.all) .dn{grid-area:dn;width:auto !important;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:20px}
+#app .dm:not(.all) .dc{grid-area:dc;width:auto !important;min-width:0;text-align:right;line-height:20px}
+#app .dm:not(.all) .bar{grid-area:bar;width:auto;height:9px;align-self:center}
+#app .dm:not(.all) .dmb{grid-area:bt;justify-self:stretch;align-self:center;width:auto !important;min-width:0 !important}
+#app .dm .dmb.off:not(:has(img)){background:none !important;box-shadow:none !important;border:none !important;filter:none !important;opacity:1 !important;color:#3F8F3A !important;font-family:'Jua'}
+#app .dm .dmb.off:not(:has(img))::before{content:'';width:16px;height:16px;margin-right:4px;border-radius:50%;background:#5BBF3A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.6 2.6L12 5.6' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;flex:none}
+#app .dm.all{display:flex;align-items:center;gap:8px;min-height:44px}
+#app .dm.all .dn{flex:1;min-width:0;width:auto !important}
+#app .dm.all .dmb{width:auto !important;min-width:92px !important;padding:2px 12px 0 !important;gap:3px}
+#app .dm .dmb img + img, #app .dm .dmb img:not(:first-child){margin-left:6px}
+
+#app .dm .dn{text-align:left !important}
+
 </style>
-<script>window.BUILD64="v66-202611061322";</script>
+<script>window.BUILD64="v67-202611061420";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -6750,7 +6798,7 @@ wheelStop = function () {
   for (const L of cands) { r -= L.a1 - L.a0; if (r <= 0) { W = L; break; } }
   const n = WLAY.length, jj = WLAY.findIndex(L => L.id === 'jack');
   let frac = .18 + Math.random() * .64;
-  if (W.id !== 'jack' && Math.random() < .55) { if ((W.j + 1) % n === jj) frac = .86 + Math.random() * .08; else if ((jj + 1) % n === W.j) frac = .06 + Math.random() * .08; }
+  /* v67: no near-miss landing bias */
   if (W.id === 'jack') frac = .3 + Math.random() * .4;
   wLand = W.j;
   const theta = W.a0 + (W.a1 - W.a0) * frac, want = -theta;
@@ -10006,6 +10054,103 @@ function card66(rect, stars, txt, ch, tip, RP, got, gotK) {
 /* v66: orders */
 
 floatAt = (o0 => function () { if (window.__nofl66) return; return o0.apply(this, arguments); })(floatAt);
+
+/* v67: fixes - 거름은 겹쳐 키운 물건만 · 윷 걸기 뜻 · 돌림판은 눌러야 돌아요 · 오늘 할 일 칸 */
+/* ---------- 1) 거름: 3단계부터, 고른 작물 하나에만, 작물마다 자라는 시간의 절반까지 ---------- */
+const FZ67_LV = 3;
+const fz67Min = lv => lv < FZ67_LV ? 0 : Math.round(6 * Math.pow(2.3, lv - FZ67_LV));
+const fz67XP = lv => lv < FZ67_LV ? 0 : Math.round(12 * Math.pow(2.15, lv - FZ67_LV));
+const fz67Room = p => (p && !plotReady(p)) ? Math.max(0, Math.min(plotLeft(p), p.dur * 0.5 - (p.fz || 0))) : 0;
+let fz67Sel = -1;
+function fz67Pick() {
+  const F = S.farm; if (!F) return -1;
+  if (fz67Sel >= 0 && F.plots[fz67Sel] && !plotReady(F.plots[fz67Sel])) return fz67Sel;
+  let best = -1, bv = -1; F.plots.forEach((p, i) => { if (!p || plotReady(p)) return; const r = fz67Room(p); if (r > bv) { bv = r; best = i; } }); return best;
+}
+function fz67Apply(i, ms) { const p = S.farm && S.farm.plots[i]; if (!p || plotReady(p)) return 0; const a = Math.min(ms, fz67Room(p)); if (a > 0) { p.t0 -= a; p.fz = (p.fz || 0) + a; } return a; }
+function fz67Float(el, txt) { try { const r = el.getBoundingClientRect(), a = app.getBoundingClientRect(), s = a.width / app.offsetWidth; const f = document.createElement('div'); f.className = 'fz67f'; f.textContent = txt; f.style.left = ((r.left - a.left + r.width / 2) / s) + 'px'; f.style.top = ((r.top - a.top) / s) + 'px'; app.appendChild(f); setTimeout(() => f.remove(), 1000); } catch (e) {} }
+fertOpen = function () {
+  const ov = ovEl('fert');
+  const need = {}; S.orders.forEach(o => o.need.forEach(([k, lv, c]) => { need[k + lv] = (need[k + lv] || 0) + c; }));
+  const groups = {}; S.b.forEach((x, i) => { if (!x || x.vine || !x.lv || !CH[x.k]) return; const key = x.k + x.lv; (groups[key] = groups[key] || { k: x.k, lv: x.lv, idx: [] }).idx.push(i); });
+  const all = Object.values(groups).map(g => Object.assign(g, { spare: g.idx.length - (need[g.k + g.lv] || 0) })).filter(g => g.spare > 0);
+  const list = all.filter(g => g.lv >= FZ67_LV).sort((a, b) => b.lv - a.lv || b.spare - a.spare).slice(0, 12);
+  const small = all.filter(g => g.lv < FZ67_LV).reduce((a, g) => a + g.spare, 0);
+  const st = S.tree ? treeStage(S.tree.xp) : 1, cost = 150 + 100 * (st - 1), bagXP = 40 + 20 * st, bagMin = 60;
+  const F = S.farm, sel = fz67Pick(); fz67Sel = sel;
+  const crops = F ? F.plots.map((p, i) => ({ p, i })).filter(o => o.p && !plotReady(o.p)) : [];
+  const selP = sel >= 0 ? F.plots[sel] : null, selRoom = fz67Room(selP);
+  const cropRow = crops.length
+    ? '<div class="fz67h">어느 작물에 줄까요?</div><div class="fz67c">' + crops.map(o => { const r = fz67Room(o.p); return '<div class="fz67k' + (o.i === sel ? ' on' : '') + (r <= 0 ? ' full' : '') + '" data-i="' + o.i + '"><img src="' + cropImg(o.p.c, plotStage(o.p)) + '" alt=""><b>' + CROPS[o.p.c].n + '</b><span>' + farmLeftTxt(plotLeft(o.p)) + '</span></div>'; }).join('') + '</div>' + (selP ? '<div class="fz67r">' + (selRoom > 0 ? CROPS[selP.c].n + ', 거름으로 <b>' + fmtMin(selRoom / 60000) + '</b> 더 당길 수 있어요' : CROPS[selP.c].n + '는 거름을 다 먹었어요. 다른 작물을 골라 주세요') + '</div>' : '')
+    : '<div class="fz67n">지금 자라는 작물이 없어요. 거름은 감나무만 키워요</div>';
+  ov.innerHTML = '<div class="ovdim"></div><div class="ovbox panel fbox fz67"><div class="ovh">거름 주기</div>'
+    + '<div class="ovs">3단계 넘게 키운 물건만 거름이 돼요. 높은 단계일수록 많이 당기고, 작물마다 자라는 시간의 절반까지 당겨요</div>'
+    + cropRow
+    + '<div class="fgrid">' + (list.length ? list.map(g => '<div class="fcell" data-k="' + g.k + '" data-lv="' + g.lv + '"><img src="' + I(CH[g.k][g.lv - 1]) + '" alt=""><b>×' + g.spare + '</b><span>' + (selP && selRoom > 0 ? fz67Min(g.lv) + '분 당김' : '감나무 +' + fz67XP(g.lv)) + '</span></div>').join('') : '<div class="fnone">거름으로 줄 3단계 넘는 물건이 없어요</div>') + '</div>'
+    + (small ? '<div class="fz67s">1·2단계 ' + small + '개는 너무 작아서 거름이 안 돼요. 겹쳐서 키워 보세요</div>' : '')
+    + '<div class="fbag"><img src="' + ((window.TREE_ART && window.TREE_ART.fert) || '') + '" alt=""><div class="fbt"><b>거름 한 포대</b><span>' + (selP ? '고른 작물 ' + bagMin + '분 · ' : '') + '감나무 +' + bagXP + '</span></div><div class="btn ' + (S.coin >= cost ? 'yellow' : 'cream off') + ' h" id="f-buy"><img src="' + I('c09_coin_pouch') + '" alt="">' + cost.toLocaleString() + '</div></div>'
+    + '<div class="btn cream h ovgo" id="f-ok">다 줬어요</div></div>';
+  ov.style.display = 'block';
+  const close = () => { ov.style.display = 'none'; renderAll(); };
+  ov.querySelector('#f-ok').onclick = close; ov.querySelector('.ovdim').onclick = close;
+  ov.querySelectorAll('.fz67k').forEach(c => c.onclick = () => { fz67Sel = +c.dataset.i; fertOpen(); });
+  ov.querySelectorAll('.fcell').forEach(c => c.onclick = () => {
+    const k = c.dataset.k, lv = +c.dataset.lv; let at = -1; for (let i = S.b.length - 1; i >= 0; i--) { const x = S.b[i]; if (x && x.k === k && x.lv === lv && !x.vine) { at = i; break; } }
+    if (at < 0 || lv < FZ67_LV) return; S.b[at] = null; if (typeof sel !== 'undefined' && sel === at) sel = -1;
+    try { treeTick(); S.tree.xp += fz67XP(lv); treeStageCheck(); } catch (e) {}
+    const got = fz67Sel >= 0 ? fz67Apply(fz67Sel, fz67Min(lv) * 60000) : 0; save();
+    try { sfx('tap', { rate: 1.2, vol: .5 }); } catch (e) {}
+    fz67Float(c, got > 0 ? fmtMin(got / 60000) + ' 당김' : '감나무 +' + fz67XP(lv));
+    c.classList.add('fed'); setTimeout(fertOpen, 200);
+  });
+  ov.querySelector('#f-buy').onclick = () => { if (S.coin < cost) { toast('동전 ' + (cost - S.coin).toLocaleString() + '개가 더 있어야 해요'); return; } S.coin -= cost; try { treeTick(); S.tree.xp += bagXP; treeStageCheck(); } catch (e) {} const got = fz67Sel >= 0 ? fz67Apply(fz67Sel, bagMin * 60000) : 0; save(); try { sfx('restore', { vol: .5 }); } catch (e) {} toast('거름 한 포대! ' + (got > 0 ? '작물 ' + fmtMin(got / 60000) + ' 당김 · ' : '') + '감나무 +' + bagXP); fertOpen(); };
+};
+
+/* ---------- 2) 윷: 몇 개 걸지 뜻이 보이게 ---------- */
+function yut67Labels() {
+  const Y = S.yut; if (!Y) return; const m = Y.mult || 1, free = Y.free > 0;
+  document.querySelectorAll('#y-mult > div').forEach(d => { const k = +d.dataset.m; const t = k + '개'; if (d.textContent !== t) d.textContent = t; });
+  const gb = document.getElementById('y-go'); if (!gb) return; gb.classList.add('y67');
+  const big = free ? '공짜로 던지기' : '던지기', sm = free ? (m > 1 ? '선물 ' + m + '배 그대로' : '윷이 안 들어요') : (m > 1 ? '윷 ' + m + '개 · 선물 ' + m + '배' : '윷 1개 · 선물 그대로');
+  const h = '<b>' + big + '</b><small>' + sm + '</small>'; if (gb.innerHTML !== h) gb.innerHTML = h;
+}
+renderYut = (o0 => function () { const r = o0.apply(this, arguments); try { yut67Labels(); } catch (e) {} return r; })(renderYut);
+(function () {
+  const sc = document.getElementById('sc-yut'); if (!sc) return;
+  sc.querySelectorAll('#y-mult > div').forEach(d => { const o = d.onclick; d.onclick = () => { if (typeof yutBusy !== 'undefined' && yutBusy) return; const was = (S.yut && S.yut.mult) || 1; if (o) o(); const m = (S.yut && S.yut.mult) || 1; if (m > 1 && was !== m && !S.y67tip) { S.y67tip = 1; save(); try { showPop({ title: '윷을 ' + m + '개 걸면', text: '이번에 던져서 받는 선물이 ' + m + '배가 돼요. 한 바퀴 선물도 ' + m + '배예요.<br>나오는 확률은 1개 걸 때와 똑같아요. 큰 선물 칸이 가까울 때 많이 걸어 보세요.', btns: [['알겠어요', 'yellow', null]] }); } catch (e) {} } }; });
+})();
+yutOdds = (o0 => function () { const r = o0.apply(this, arguments); try { const t = document.querySelector('#pop .ptext, #pop .ptx, #pop .txt'); if (t && !t.querySelector('.y67o')) t.insertAdjacentHTML('beforeend', '<div class="y67o">윷을 2개, 3개 걸면 받는 선물만 2배, 3배가 되고 확률은 그대로예요.</div>'); } catch (e) {} return r; })(yutOdds);
+
+/* ---------- 3) 돌림판: 열면 멈춰 있고, '돌리기'를 눌러야 돌아요. 받은 뒤에도 저절로 다시 돌지 않아요 ---------- */
+let wf67Again = false;
+function wf67Btn(mode) {
+  const st = $('#w-stop'); if (!st) return;
+  st.style.display = 'block'; st.classList.remove('off');
+  if (mode === 'rest') { st.classList.remove('pulse'); st.classList.add('wf67go'); st.innerHTML = '<b>' + (wf67Again ? '한 번 더 돌리기' : '돌리기') + '</b><small>열쇠 ' + W_COST + '개</small>'; }
+  else { st.classList.remove('wf67go'); st.classList.add('pulse'); st.textContent = '멈춰!'; }
+}
+function wf67Go() {
+  if (wPhase !== 'rest') return;
+  if (S.keys < W_COST) { wNeed(); return; }
+  const w = $('#wheel'); if (w) w.classList.add('spin');
+  document.querySelectorAll('#wheel .wseg.win').forEach(e => e.classList.remove('win'));
+  wf67Btn('run'); wPhase = 'run'; wVel = 0; wLastT = performance.now(); if (!wRaf) wRaf = requestAnimationFrame(wLoop);
+  try { sfx('chest_roll', { vol: .5 }); } catch (e) {}
+}
+wheelOpen = (o0 => function () {
+  const s0 = sfx; sfx = function (n) { if (n === 'chest_roll') return; return s0.apply(this, arguments); };
+  let r; try { r = o0.apply(this, arguments); } finally { sfx = s0; }
+  const w = $('#wheel');
+  if (w && w.style.display === 'block' && wPhase === 'run') {
+    wPhase = 'rest'; w.classList.remove('spin'); if (wRaf) { cancelAnimationFrame(wRaf); wRaf = 0; }
+    wf67Btn('rest');
+    const st = $('#w-stop'); if (st && !st.dataset.wf67) { st.dataset.wf67 = 1; st.onclick = e => { e.stopPropagation(); if (wPhase === 'rest') wf67Go(); else wheelStop(); }; }
+  }
+  wf67Again = false;
+  return r;
+})(wheelOpen);
+wClaim = (o0 => function () { wf67Again = true; const r = o0.apply(this, arguments); return r; })(wClaim);
+wheelClose = (o0 => function () { wf67Again = false; return o0.apply(this, arguments); })(wheelClose);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
