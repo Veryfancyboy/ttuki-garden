@@ -3519,8 +3519,37 @@ html,body{overscroll-behavior:none}
 @media (prefers-reduced-motion: reduce){#app .s67bulbs i, #app .s67big .s67rays, #app .s67cell.s67win i{animation-duration:2s !important}}
 /* v67: slot */
 
+/* v70: orders 2 */
+#app .b70{position:absolute;z-index:60;transform:translate(-50%,-100%);max-width:170px;padding:7px 11px 6px;border-radius:14px;background:#FFFDF6;box-shadow:0 0 0 2px rgba(74,42,30,.55),0 3px 0 rgba(74,42,30,.25);font-size:14px;line-height:18px;color:#4A2A1E;text-align:center;word-break:keep-all;pointer-events:none;animation:b70in .22s ease-out;transition:opacity .35s}
+#app .b70 b{font-family:'Jua';font-weight:400}
+#app .b70.out{opacity:0}
+@keyframes b70in{0%{opacity:0;transform:translate(-50%,-90%) scale(.8)}100%{opacity:1;transform:translate(-50%,-100%) scale(1)}}
+#app .order .want .w .u70h{position:absolute;right:-5px;top:-6px;width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 14.2S1.6 10.3 1.6 5.9C1.6 3.8 3.2 2.3 5 2.3c1.3 0 2.4.7 3 1.8.6-1.1 1.7-1.8 3-1.8 1.8 0 3.4 1.5 3.4 3.6 0 4.4-6.4 8.3-6.4 8.3z' fill='%23F0566A' stroke='white' stroke-width='1.4'/%3E%3C/svg%3E") center/16px no-repeat;pointer-events:none}
+#app .order .want .w.r70 img{filter:brightness(0) opacity(.42)}
+#app .order .want .w .r70q{display:none}
+#app .order .want .w.r70 .r70q{display:flex;position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:#7A52C8;color:#fff;font-family:'Jua';font-style:normal;font-size:16px;line-height:1;align-items:center;justify-content:center;padding-top:2px;box-sizing:border-box;box-shadow:0 0 0 2px #fff;pointer-events:none}
+#app .order .want .w.r70{cursor:pointer}
+#app .order .seat .g70b{position:absolute;right:0;top:2px;display:flex;align-items:center;z-index:3;pointer-events:none}
+#app .order .seat .g70b img{width:24px;height:24px;object-fit:cover;object-position:50% 20%;border-radius:50%;background:#FFF6E2;box-shadow:0 0 0 1.5px #fff}
+#app .order .seat .g70b img + img{margin-left:-7px}
+#app .order .seat .v70s{position:absolute;width:14px;height:14px;z-index:3;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 0l1.9 6.1L16 8l-6.1 1.9L8 16l-1.9-6.1L0 8l6.1-1.9z' fill='%23FFD447' stroke='%23C98A1A' stroke-width='.8'/%3E%3C/svg%3E") center/14px no-repeat;animation:v70tw 1.8s ease-in-out infinite}
+#app .order .seat .v70s.a{left:4%;top:8%}
+#app .order .seat .v70s.b{right:5%;top:18%;animation-delay:.6s;width:11px;height:11px;background-size:11px}
+#app .order .seat .v70s.c{left:12%;top:44%;animation-delay:1.2s;width:10px;height:10px;background-size:10px}
+@keyframes v70tw{0%,100%{opacity:.2;transform:scale(.6) rotate(0)}50%{opacity:1;transform:scale(1.1) rotate(25deg)}}
+#app .order .seat .v70t{position:absolute;right:0;top:2px;z-index:3;pointer-events:none;width:26px;height:26px;border-radius:50%;background:linear-gradient(#FFE27A,#F2B33B) ;box-shadow:0 0 0 2px #fff,0 2px 0 rgba(120,80,20,.35)}
+#app .order .seat .v70t::after{content:'';position:absolute;inset:4px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18l-1.6-9.5-4.6 4-2.8-7-2.8 7-4.6-4z' fill='%23fff' stroke='%23B26F12' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+#app .pz70b{position:absolute;right:6px;top:2px;width:22px;height:22px;object-fit:contain;filter:drop-shadow(0 1px 0 rgba(255,255,255,.9));animation:pz70b 1.8s ease-in-out infinite;pointer-events:none}
+@keyframes pz70b{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+#app .order .seat .pz70c{position:absolute;left:4px;bottom:6%;width:30px;height:30px;object-fit:contain;z-index:3;animation:pz70c 2.6s ease-out forwards;pointer-events:none}
+@keyframes pz70c{0%{opacity:0;transform:translateY(6px) scale(.7)}15%{opacity:1;transform:translateY(0) scale(1)}75%{opacity:1}100%{opacity:0;transform:translateY(-4px)}}
+
+#app .order .rew .tr66.g70i, #app .order .rew .tr66.v70i{background-color:#FFF1C4 !important;background-size:16px 16px !important;box-shadow:inset 0 0 0 1.5px #C98A1A !important}
+#app .order .rew .tr66.g70i{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='6.5' cy='9' r='3.2' fill='%23B0503A'/%3E%3Ccircle cx='17.5' cy='9' r='3.2' fill='%23B0503A'/%3E%3Ccircle cx='12' cy='7.5' r='3.8' fill='%237A3A2A'/%3E%3Cpath d='M1.5 20c.3-3.6 2.4-5.6 5-5.6s3.2 1 3.6 1.6M22.5 20c-.3-3.6-2.4-5.6-5-5.6s-3.2 1-3.6 1.6' fill='none' stroke='%23B0503A' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M5.8 21c.4-4.2 3-6.4 6.2-6.4s5.8 2.2 6.2 6.4z' fill='%237A3A2A'/%3E%3C/svg%3E") !important}
+#app .order .rew .tr66.v70i{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18l-1.6-9.5-4.6 4-2.8-7-2.8 7-4.6-4z' fill='%23F2B33B' stroke='%23955A0E' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") !important}
+
 </style>
-<script>window.BUILD64="v69-202611061504";</script>
+<script>window.BUILD64="v70-202611061528";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -12038,6 +12067,178 @@ async function s67BlurInit() {
 }
 s67Build();
 /* v67: slot */
+
+/* v70: 주문 다시 짜기 - 레벨과 가진 살림에 맞게, 같은 주문 반복 줄이기 · 주문 2차(단체 · 수수께끼 · 늘 먹던 거 · 귀한 손님) · 만들기 화면 밖에서는 손님 시계 멈춤(차 대접) */
+/* ---------- 1) 주문 만들기 ---------- */
+const EN70 = lv => Math.pow(2, lv - 1);
+function ord70Kinds() { return ['egg', 'sew'].concat(['teapot', 'steamer', 'pot'].filter(g => S.unl && S.unl[g]).map(g => GEN[g].k)); }
+function ord70MaxLv() { const L = S.lv || 1; return Math.max(3, Math.min(MAXLV, 2 + Math.floor(L / 4))); }
+function ord70Budget() { const L = S.lv || 1; return (4 + 0.6 * L) * (0.65 + Math.random() * 0.7); }
+function ord70St() { S.od70 = S.od70 || { deck: [], recent: [] }; return S.od70; }
+function ord70Deck() { const D = ord70St(), ks = ord70Kinds(); D.deck = D.deck.filter(k => ks.includes(k)); if (!D.deck.length) D.deck = ks.slice().sort(() => Math.random() - 0.5); return D.deck.shift(); }
+function ord70Merge(need) { return Object.values(need.reduce((m, [k, lv, c]) => { const q = k + lv; m[q] = m[q] ? [k, lv, m[q][2] + c] : [k, lv, c]; return m; }, {})); }
+function ord70Need(n, budget, maxLv) {
+  const need = [], used = new Set(); let left = budget;
+  for (let j = 0; j < n; j++) {
+    let k = ord70Deck(), g = 0; while (used.has(k) && g++ < 6) { ord70St().deck.push(k); k = ord70Deck(); } used.add(k);
+    const share = Math.max(1, left / (n - j)); let top = 1; for (let l = 1; l <= maxLv; l++) if (EN70(l) <= share * 1.2) top = l;
+    const lv = Math.max(1, top - [0, 0, 1, 1, 2][Math.floor(Math.random() * 5)]);
+    const c = Math.max(1, Math.min(lv <= 2 ? 3 : 2, Math.round(share / EN70(lv)))); need.push([k, lv, c]); left = Math.max(1, left - EN70(lv) * c);
+  }
+  return ord70Merge(need);
+}
+const ord70Sig = need => need.map(([k, lv, c]) => k + lv + 'x' + c).sort().join('+');
+const ord70Coin = (need, mul) => Math.round(need.reduce((a, [k, lv, c]) => a + c * IV(lv), 10) * (mul || 1));
+makeOrder = (o0 => function () {
+  const scripted = S.oi < SCRIPT.length;
+  const o = o0.apply(this, arguments);
+  if (scripted || !o) return o;
+  try {
+    const L = S.lv || 1, maxLv = ord70MaxLv(), D = ord70St(); let need, t = 0;
+    do {
+      if (o.big) need = [[ord70Deck(), Math.max(3, maxLv - (Math.random() < 0.5 ? 1 : 0)), 1]];
+      else { const r = Math.random(); const n = L >= 8 ? (r < 0.35 ? 1 : r < 0.8 ? 2 : 3) : (r < 0.55 ? 1 : 2); need = ord70Need(n, ord70Budget(), maxLv); }
+    } while (D.recent.includes(ord70Sig(need)) && ++t < 8);
+    D.recent.push(ord70Sig(need)); if (D.recent.length > 8) D.recent.shift();
+    o.need = need; o.coin = ord70Coin(need) + (o.big ? 15 : 0);
+    if (o.urg) { o.urg = Math.min(150, 45 + 15 * need.reduce((a, [k, lv, c]) => a + lv * c, 0)); o.coin = Math.round(o.coin * 1.5); }
+    ord70Type(o);
+    if (o.side && o.need.some(x => x[0] === o.side[0])) { const pool = ord70Kinds().filter(k => !o.need.some(x => x[0] === k)); if (pool.length) o.side = [pool[Math.floor(Math.random() * pool.length)], o.side[1]]; else delete o.side; }
+  } catch (e) { console.error(e); }
+  return o;
+})(makeOrder);
+/* ---------- 2) 주문 2차: 귀한 손님 · 늘 먹던 거 · 수수께끼 · 단체 ---------- */
+const RID70 = {
+  egg: ['작고 동그란 거', '무늬가 그려진 동그란 거', '반짝반짝 빛나는 동그란 거', '꽃이 그려진 동그란 거', '금빛으로 번쩍이는 동그란 거', '무지개 빛 동그란 거'],
+  sew: ['동글동글 감긴 거', '알록달록한 천', '예쁘게 묶는 거', '매듭으로 만든 장식', '천을 한가득 싼 꾸러미', '금으로 된 실'],
+  tea: ['차 끓일 잎', '따끈한 초록 차 한 잔', '노랗고 향긋한 차', '다과가 놓인 접시', '차 마실 상 한 벌', '잔칫날 차리는 상'],
+  rice: ['하얀 쌀 한 그릇', '말랑말랑한 반죽', '길쭉하고 하얀 떡', '꿀 바른 떡 꼬치', '떡으로 만든 케이크', '무지개 떡을 높이 쌓은 탑'],
+  flower: ['심으면 꽃이 피는 거', '이제 막 돋은 싹', '아직 안 핀 꽃', '활짝 핀 꽃 한 송이', '꽃을 한아름 묶은 거', '꽃이 가득 담긴 바구니']
+};
+function ord70Type(o) {
+  if (o.big || o.urg || o.gift) return;
+  const L = S.lv || 1, nbc = (S.dex && S.dex.nb) || {}, rp = typeof rep66 === 'function' ? rep66().lv : 1, r = Math.random();
+  if (rp >= 3 && r < 0.08) { const lv = ord70MaxLv(); o.need = [[ord70Deck(), lv, 1]]; o.coin = ord70Coin(o.need, 2); o.xkey = (o.xkey || 0) + 1; o.vip = 1; return; }
+  if (NB_ORDER.includes(o.who) && (nbc[o.who] || 0) >= 10 && r < 0.33) {
+    S.fav70 = S.fav70 || {}; let f = S.fav70[o.who];
+    if (!f || !ord70Kinds().includes(f[0])) { const x = o.need[0]; f = S.fav70[o.who] = [x[0], Math.max(2, Math.min(x[1], ord70MaxLv())), 1]; }
+    o.need = [f.slice()]; o.coin = ord70Coin(o.need, 1.15); o.usual = 1; return;
+  }
+  if (L >= 4 && r < 0.5) { if (Math.random() < 0.34) { o.riddle = 1; o.coin = Math.round(o.coin * 1.2); } return; }
+  if (L >= 5 && r < 0.66) {
+    const busy = new Set((S.orders || []).map(x => x && x.who).concat([o.who]));
+    const pool = SP_ORDER.filter(k => S.sp[k]).concat(NB_ORDER).filter(k => !busy.has(k)).sort(() => Math.random() - 0.5);
+    if (pool.length >= 2) { o.grp = pool.slice(0, 2); o.need = ord70Need(3, ord70Budget() * 1.6, ord70MaxLv()); o.coin = ord70Coin(o.need, 1.25); }
+  }
+}
+function ord70Bubble(card, html, ms) {
+  try {
+    const app = document.getElementById('app'); const r = card.getBoundingClientRect(), a = app.getBoundingClientRect(), s = a.width / app.offsetWidth;
+    const b = document.createElement('div'); b.className = 'b70'; b.innerHTML = html;
+    b.style.left = ((r.left - a.left) / s + r.width / s / 2) + 'px'; b.style.top = ((r.top - a.top) / s + r.height / s * 0.52) + 'px';
+    app.appendChild(b); setTimeout(() => b.classList.add('out'), ms || 2400); setTimeout(() => b.remove(), (ms || 2400) + 400);
+  } catch (e) {}
+}
+const ord70Said = new Set();
+renderOrders = (o0 => function () {
+  const r = o0.apply(this, arguments);
+  try {
+    document.querySelectorAll('#orders .order').forEach(card => {
+      const o = S.orders.find(x => String(x.id) === card.dataset.oid); if (!o) return;
+      card.classList.toggle('vip70', !!o.vip); card.classList.toggle('grp70', !!o.grp);
+      const ws = card.querySelectorAll('.want .w:not(.side66)');
+      if (o.usual && ws[0] && !ws[0].querySelector('.u70h')) ws[0].insertAdjacentHTML('beforeend', '<i class="u70h"></i>');
+      if (o.riddle && ws[0]) {
+        const [k, lv, c] = o.need[0], have = countOnBoard(k, lv) >= c;
+        ws[0].classList.toggle('r70', !have);
+        if (!ws[0].querySelector('.r70q')) ws[0].insertAdjacentHTML('beforeend', '<i class="r70q">?</i>');
+        if (!ws[0].dataset.r70) { ws[0].dataset.r70 = 1; ws[0].addEventListener('click', ev => { ev.stopPropagation(); const nm = (SP[o.who] && SP[o.who].n) || ''; toast(nm + ': "' + RID70[k][lv - 1] + ' 주세요"'); }); }
+      }
+      const ti = card.querySelector('.rew .tr66'); if (ti) { ti.classList.toggle('g70i', !!o.grp); ti.classList.toggle('v70i', !!o.vip); }
+      if (o.vip) { const seat = card.querySelector('.seat'); if (seat && !seat.querySelector('.v70s')) seat.insertAdjacentHTML('beforeend', '<i class="v70s b"></i><i class="v70s c"></i>'); }
+      if (!ord70Said.has(o.id) && (o.usual || o.riddle || o.grp || o.vip) && document.querySelector('#sc-main.on')) {
+        ord70Said.add(o.id);
+        const nm = (SP[o.who] && SP[o.who].n) || '';
+        S.tip70 = S.tip70 || {};
+        const kind = o.usual ? 'usual' : o.riddle ? 'riddle' : o.grp ? 'grp' : 'vip';
+        const line = o.riddle ? nm + ': "' + RID70[o.need[0][0]][o.need[0][1] - 1] + ' 주세요" (물음표를 누르면 다시 들어요)'
+          : !S.tip70[kind] ? ({ usual: nm + '가 늘 먹던 걸 시켰어요. 하트 붙은 물건이에요', grp: nm + '가 친구 둘과 같이 왔어요. 넉넉히 주면 동전 1.25배', vip: '소문 듣고 귀한 손님이 왔어요. 동전 2배에 열쇠까지 줘요' })[kind] : '';
+        if (kind !== 'riddle') S.tip70[kind] = 1;
+        if (line) setTimeout(() => { try { toast(line); } catch (e) {} }, 600);
+      }
+    });
+  } catch (e) { console.error(e); }
+  return r;
+})(renderOrders);
+/* ---------- 3) 만들기 화면 밖에서는 손님 시계 멈춤: 뚝이가 차를 내줘요 ---------- */
+let pz70Last = Date.now(), pz70Away = 0, pz70HidAt = 0, pz70Toast = 0;
+function pz70On() { const m = document.getElementById('sc-main'); return !document.hidden && !!m && m.classList.contains('on'); }
+function pz70Blocked() { try { if (typeof ovOpen === 'function' && ovOpen()) return true; } catch (e) {} const p = document.getElementById('pop'); if (p && p.style.display === 'block') return true; const w = document.getElementById('wheel'); if (w && w.style.display === 'block') return true; try { if (typeof th33CardOpen === 'function' && th33CardOpen()) return true; } catch (e) {} return false; }
+function pz70Shift(dt) {
+  if (!(dt > 0)) return;
+  (S.orders || []).forEach(o => { if (!o) return; if (o.urg && o.t0) o.t0 += dt; if (typeof custSeen !== 'undefined' && custSeen[o.id]) custSeen[o.id] += dt; });
+}
+function pz70Badge(on) {
+  const nav = document.querySelector('.nav > div[data-s="main"]') || document.querySelector('#nav > div[data-s="main"]'); if (!nav) return;
+  let b = nav.querySelector('.pz70b');
+  if (on && (S.orders || []).length) { if (!b) { b = document.createElement('img'); b.className = 'pz70b'; b.alt = ''; b.src = I(CH.tea[1]); nav.appendChild(b); } }
+  else if (b) b.remove();
+}
+function pz70Return(dt) {
+  if (dt < 8000) return;
+  setTimeout(() => {
+    document.querySelectorAll('#orders .order .seat').forEach(seat => { if (seat.querySelector('.pz70c')) return; const c = document.createElement('img'); c.className = 'pz70c'; c.alt = ''; c.src = I(CH.tea[1]); seat.appendChild(c); setTimeout(() => c.remove(), 2600); });
+    if (Date.now() - pz70Toast > 300000) { pz70Toast = Date.now(); try { toast('손님들이 차 마시며 기다렸어요'); } catch (e) {} }
+  }, 250);
+}
+setInterval(() => {
+  const now = Date.now(), dt = now - pz70Last; pz70Last = now;
+  const on = pz70On();
+  if (!on) { pz70Shift(dt); pz70Away += dt; pz70Badge(!document.hidden); }
+  else { if (pz70Blocked()) pz70Shift(dt); if (pz70Away) { const a = pz70Away; pz70Away = 0; pz70Badge(false); pz70Return(a); } }
+}, 500);
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) pz70HidAt = Date.now();
+  else if (pz70HidAt) { const dt = Date.now() - pz70HidAt; pz70HidAt = 0; const gap = Date.now() - pz70Last; if (gap > 1500) { pz70Shift(gap - 500); pz70Last = Date.now(); } if (pz70On()) pz70Return(dt); }
+});
+
+/* ---------- 4) 순위: 누적 대신 '가게 가치' = 가진 동전 + 그동안 가게 · 정원 · 살림 · 보관함 · 밭 · 낚시 · 돌림판에 쓴 동전 ---------- */
+function nw70() {
+  let v = S.coin || 0; const add = f => { try { v += f() || 0; } catch (e) {} };
+  add(() => Object.keys(S.shop || {}).reduce((a, id) => { const d = SHOP_BY[id], s = S.shop[id]; if (!d || !s) return a; let c = d.cost; for (let i = 0; i < (s.lv || 1) - 1; i++) c += d.up[i] || 0; return a + c; }, 0));
+  add(() => GARDEN.reduce((a, g) => { const n = gStep(g), ch = g.ch || []; let c = 0; for (let i = 0; i < Math.min(n, ch.length); i++) c += (ch[i] && ch[i].cost) || 0; return a + c; }, 0));
+  add(() => ['teapot', 'steamer', 'pot'].reduce((a, g) => a + (S.unl && S.unl[g] ? (GEN[g].cost || 0) : 0), 0));
+  add(() => Object.keys(S.glv || {}).reduce((a, g) => { let c = 0; for (let L = 2; L <= (S.glv[g] || 1); L++) c += GEN_COST[L] || 0; return a + c; }, 0));
+  add(() => Object.keys(S.splv || {}).reduce((a, k) => { let c = 0; for (let L = 2; L <= (S.splv[k] || 1); L++) c += SP_COST[L] || 0; return a + c; }, 0));
+  add(() => Object.keys(S.star || {}).reduce((a, id) => { let c = 0; for (let s = 2; s <= (S.star[id] || 1); s++) c += STAR_COIN[s] || 0; return a + c; }, 0));
+  add(() => { const n = (S.bag && S.bag.n) || 4; let c = 0; for (let i = 0; i < n - 4; i++) c += BAG51_COST[i] || 0; return c; });
+  add(() => { const o = (S.farm && S.farm.open) || 2; let c = 0; for (let i = 2; i < o; i++) c += PLOT_COST[i] || 0; return c; });
+  add(() => { const n = (S.fs && S.fs.slots) || 3; let c = 0; for (let i = 0; i < n - 3; i++) c += JAR_COST47[i] || 0; return c; });
+  add(() => { const G = (S.fs && S.fs.gear) || {}; return Object.keys(G).reduce((a, k) => { let c = 0; for (let i = 0; i < (G[k] || 0); i++) c += GCOST66[i] || 0; return a + c; }, 0); });
+  add(() => { const g = (S.wh67 && S.wh67.g) || 1; let c = 0; for (let i = 2; i <= g; i++) c += (WH67_G[i] && WH67_G[i].cost) || 0; return c; });
+  add(() => { const own = (S.p67 && S.p67.own) || {}; return P67_ITEMS.reduce((a, it) => a + (own[it.id] ? Math.round(it.base * (1 + 0.08 * ((S.lv || 1) - 1))) : 0), 0); });
+  return Math.max(0, Math.round(v));
+}
+rankCall = (o0 => function (q, keep) { q = String(q || ''); if (/^a=put3&/.test(q) && q.indexOf('&nv=') < 0) q += '&nv=' + nw70(); return o0.call(this, q, keep); })(rankCall);
+/* put/put2 → put3 바꾸기는 v69 감싸기에서 먼저 일어나요. 여기서는 put3에 가게 가치를 붙여요 */
+rankPush = function (force, keep) {
+  if (!RANK_URL || !S.nick) return null; const now = Date.now();
+  if (!force && now - rankPushAt < 8000) { if (!rankTimer) rankTimer = setTimeout(() => { rankTimer = 0; rankPush(true); }, 8000 - (now - rankPushAt) + 200); return null; }
+  rankPushAt = now; const R = rk68(), C = rk69c(); const ws = R.n ? Math.round(R.sum / R.n * 100) : 200, cs = C.n ? Math.round(C.sum / C.n * 100) : 0;
+  return rankCall('a=put3&n=10&id=' + encodeURIComponent(S.pid) + '&shop=' + encodeURIComponent(S.nick || '') + '&wm=' + R.money + '&ws=' + ws + '&wc=' + R.n + '&cm=' + C.money + '&cs=' + cs + '&cc=' + C.n + '&lv=' + (S.lv || 1), keep);
+};
+rk69Row = function (r, tab) {
+  const st = r.star ? (r.star / 100).toFixed(1) : '-';
+  const adm = S.rk69adm && r.h && !r.me ? '<i class="rk69fix" data-h="' + r.h + '" data-n="' + escH(r.shop || '') + '">이름 고치기</i>' : '';
+  const val = tab === 'c' ? (r.old ? '예전 기록 · 주문 ' + Number(r.ord || 0).toLocaleString() + '번' : '가게 가치 ' + fmtCoin(r.money || 0)) : '매출 ' + fmtCoin(r.money || 0);
+  return '<div class="rkr' + (r.me ? ' me' : '') + '">' + medal(r.r) + '<div class="rkm"><b>' + escH(r.shop || r.nick || '') + (r.me ? '<em>나</em>' : '') + '</b><span class="rkv"><i class="rk68s">★' + st + '</i> · ' + val + '</span></div>' + adm + '</div>';
+};
+rk69Mine = (o0 => function (tab) { if (tab === 'c') return { money: nw70() }; return o0.apply(this, arguments); })(rk69Mine);
+rk69Render = (o0 => function () {
+  const r = o0.apply(this, arguments);
+  try { const ov = document.getElementById('rank'); if (ov && ov.style.display === 'block') { const c = ov.querySelector('.rk69t > div[data-t="c"]'); if (c && c.textContent !== '가게 가치') c.textContent = '가게 가치'; if ((rk69Tab || 'c') === 'c') { const sub = ov.querySelector('.ovs'); if (sub) sub.textContent = '지금 가진 동전에 그동안 가게 · 정원 · 살림에 쓴 동전을 더한 값이에요. 써서 키워도 순위가 내려가지 않아요. 새 버전을 아직 안 연 가게는 예전 기록으로 보여요'; } } } catch (e) {}
+  return r;
+})(rk69Render);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
