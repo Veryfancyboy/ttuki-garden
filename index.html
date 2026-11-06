@@ -3082,7 +3082,13 @@ html,body{overscroll-behavior:none}
 #app .f63sp.k6{animation-name:f63foam}
 @keyframes f63foam{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}30%{opacity:.9}100%{opacity:0;transform:translate(-50%,-60%) scale(1)}}
 
+
+/* v64: update */
+#upd64o{position:fixed;inset:0;z-index:2147483600;display:flex;align-items:center;justify-content:center;background:rgba(255,244,223,.92)}
+#upd64o b{font-family:'Jua';font-weight:400;font-size:20px;line-height:1;padding:14px 22px 12px;border-radius:18px;background:#fff;color:#4A2A1E;box-shadow:0 4px 0 rgba(74,42,30,.15)}
+
 </style>
+<script>window.BUILD64="v64-202611061304";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -9844,6 +9850,36 @@ render47 = (o0 => function () { const r = o0.apply(this, arguments); try { if (F
 reset47 = (o0 => function (delay) { const r = o0.apply(this, arguments); FS47.tm.push(setTimeout(() => { try { F63.R = null; gauge63(null); rest63(false); busy63(false); hint63(); const sh = document.getElementById('f47-sh'); if (sh) sh.classList.remove('swim63'); F63.sh.forEach(s => { if (s.busy) { s.busy = false; s.e.style.opacity = ''; s.next = 0; } }); } catch (e) {} }, (delay || 0) + 20)); return r; })(reset47);
 go = (o0 => function (s) { try { if (s !== 'fish' && FS47 && FS47.st && FS47.st !== 'idle') { clear47(); cancelAnimationFrame(F63.raf); FS47.st = 'idle'; FS47.fish = null; F63.R = null; gauge63(null); busy63(false); const ids = ['f47-bob', 'f47-sh', 'f47-ex']; ids.forEach(id => { const e = document.getElementById(id); if (e) e.className = id === 'f47-bob' ? 'f47bob' : id === 'f47-sh' ? 'f47sh' : 'f47ex'; }); msg47(''); } } catch (e) {} return o0.apply(this, arguments); })(go);
 /* v63: fishing feel */
+
+
+/* ===== v64: 새 버전 바로 받기 - 홈 화면 앱을 다시 열거나 돌아올 때 새 버전이 있으면 저장 후 바로 바꿈 ===== */
+(function upd64() {
+  const BUILD = window.BUILD64 || ''; if (!BUILD || location.protocol !== 'https:') return;
+  try { if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(() => {}); } catch (e) {}
+  let hiddenAt = 0, offered = 0, busy = false;
+  const ss = (k, v) => { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } };
+  const safe = () => { try { if (typeof FS47 !== 'undefined' && FS47.st && FS47.st !== 'idle') return false; if (typeof BB !== 'undefined' && BB && BB.phase && BB.phase !== 'end') return false; if (S.thief) return false; const p = document.getElementById('pop'); if (p && p.style.display === 'block') return false; } catch (e) {} return true; };
+  const swap = (to) => { try { save(); } catch (e) {} ss('upd64', to); const o = document.createElement('div'); o.id = 'upd64o'; o.innerHTML = '<b>새 버전으로 바꾸는 중…</b>'; document.body.appendChild(o); setTimeout(() => { try { location.reload(); } catch (e) {} }, 400); };
+  const offer = (to) => { if (Date.now() - offered < 10 * 60e3) return; offered = Date.now(); try { showPop({ title: '새 버전이 나왔어요', text: '저장하고 바로 새로 고쳐요. 하던 건 그대로 남아요.', btns: [['지금 바꾸기', 'red', () => swap(to)], ['나중에', 'cream', null]] }); } catch (e) {} };
+  const check = async (why) => {
+    if (busy) return; busy = true;
+    try {
+      const r = await fetch('version.json?t=' + Date.now(), { cache: 'no-store' }); if (!r.ok) return;
+      const j = await r.json(); if (!j || !j.b || j.b === BUILD) return;
+      try { const reg = navigator.serviceWorker && await navigator.serviceWorker.getRegistration(); if (reg) reg.update(); } catch (e) {}
+      const tried = ss('upd64') === j.b;
+      if ((why === 'resume' || why === 'start') && !tried && safe()) { swap(j.b); return; }
+      if (safe()) offer(j.b);
+    } catch (e) {} finally { busy = false; }
+  };
+  window.upd64Check = check;
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { hiddenAt = Date.now(); return; } check(hiddenAt && Date.now() - hiddenAt > 10000 ? 'resume' : 'tick'); });
+  addEventListener('pageshow', e => { if (e.persisted) check('resume'); });
+  addEventListener('focus', () => check('tick'));
+  setInterval(() => { if (!document.hidden) check('tick'); }, 120000);
+  setTimeout(() => check('start'), 4000);
+})();
+/* v64: update */
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
