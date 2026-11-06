@@ -3592,8 +3592,45 @@ html,body{overscroll-behavior:none}
 @keyframes wz70blk{0%{transform:translateX(-7px) scale(1.06,.94)}100%{transform:none}}
 @keyframes wz70gh{0%,100%{transform:translateY(0);opacity:.42}50%{transform:translateY(-5px);opacity:.62}}
 
+/* v72: ui */
+/* 바꾸기 버튼 */
+#app .gtog.gt72{top:52px !important;left:50% !important;right:auto !important;transform:translateX(-50%) !important;width:min(92%,356px) !important;height:48px !important;padding:4px !important;border-radius:24px !important;display:flex !important;gap:4px;box-sizing:border-box;background:linear-gradient(#6E482A,#47290F) !important;box-shadow:0 0 0 2.5px #E7B446,0 4px 0 rgba(60,30,10,.5),0 10px 22px rgba(0,0,0,.28) !important;z-index:8}
+#app .gtog.gt72 > div{flex:1 1 0;min-width:0;height:40px !important;display:flex !important;align-items:center;justify-content:center;gap:5px;border-radius:22px !important;background:none !important;box-shadow:none !important;font-family:'Jua' !important;font-size:17px !important;line-height:1 !important;color:#FBE8C4 !important;padding:2px 6px 0 !important;box-sizing:border-box;position:relative;white-space:nowrap;cursor:pointer;transition:background .15s}
+#app .gtog.gt72 > div .gt72l{padding-top:.08em}
+#app .gtog.gt72 > div img.gt72i{width:26px;height:26px;object-fit:contain;flex:none;filter:drop-shadow(0 1px 0 rgba(0,0,0,.35));opacity:.9}
+#app .gtog.gt72 > div.on{background:linear-gradient(#FFEA96,#F4B532) !important;color:#4A2A1E !important;box-shadow:inset 0 -3px 0 rgba(170,100,10,.35),0 2px 0 rgba(0,0,0,.28) !important}
+#app .gtog.gt72 > div.on img.gt72i{opacity:1;transform:scale(1.08)}
+#app .gtog.gt72 > div:not(.on):active{background:rgba(255,255,255,.12) !important}
+#app .gtog.gt72 > div .gt72d{position:absolute;top:4px;right:8px;width:10px;height:10px;border-radius:50%;background:#FF5544;box-shadow:0 0 0 2px #47290F;animation:gt72d 1.4s ease-in-out infinite}
+@keyframes gt72d{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+/* 정원 양옆: 거울처럼 복사한 그림은 흐리고 어둡게, 가운데 그림과 경계는 그림자로 */
+#app #sc-garden .gdnx{filter:blur(7px) brightness(.68) saturate(.8) !important}
+#app #sc-garden .gdn:not(.gdnx){box-shadow:0 0 22px 6px rgba(35,20,8,.45)}
+#app #sc-garden .gdnl::after, #app #sc-garden .gdnr::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,24,10,.25),rgba(40,24,10,0) 60%);pointer-events:none}
+
+/* 가게 평판 팝업: 메달 */
+#app #popbox .rays.rep72{display:flex;align-items:center;justify-content:center}
+#app .rep72m{display:flex;flex-direction:column;align-items:center;gap:8px;animation:spin 12s linear infinite reverse}
+#app .rep72m > *{animation:rep72in .55s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes rep72in{0%{transform:scale(.4) rotate(-12deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+#app .rep72r{width:128px;height:128px;border-radius:50%;padding:9px;box-sizing:border-box;background:conic-gradient(from 0deg,#FFE27A,#E9A92C,#FFF0B0,#D89220,#FFE27A);box-shadow:0 6px 0 rgba(120,70,10,.45),0 0 26px 6px rgba(255,210,90,.6)}
+#app .rep72c{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 50% 35%,#FFFDF2,#FBE7BE);box-shadow:inset 0 0 0 3px #C98A1A;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#app .rep72c small{font-family:'Jua';font-size:15px;line-height:17px;color:#9A6420}
+#app .rep72c b{font-family:'Jua';font-weight:400;font-size:50px;line-height:50px;margin-top:6px;padding-top:.1em;color:#4A2A1E;text-shadow:0 2px 0 #F4C54A}
+#app .rep72s{display:flex;gap:3px}
+#app .rep72s i{width:22px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.6l2.9 6 6.5.8-4.8 4.5 1.2 6.5L12 17.2l-5.8 3.2 1.2-6.5L2.6 9.4l6.5-.8z' fill='%23D9CBB0' stroke='%23A8956E' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+#app .rep72s i.on{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.6l2.9 6 6.5.8-4.8 4.5 1.2 6.5L12 17.2l-5.8 3.2 1.2-6.5L2.6 9.4l6.5-.8z' fill='%23FFD447' stroke='%23B8780E' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E")}
+#app #popbox .rep72t{display:inline-flex;align-items:center;height:28px;padding:2px 12px 0;margin:3px;border-radius:14px;font-family:'Jua';font-size:15px;line-height:1;background:#F3E6CF;color:#6A4A30;box-sizing:border-box;white-space:nowrap}
+#app #popbox .rep72t.up{background:#DDF3D2;color:#2F7A2A}
+#app #popbox .rep72t.vip{background:linear-gradient(#FFEFA8,#F6C84E);color:#6A4410}
+
+#app #sc-tree #tr-panel{top:108px !important}
+#app #sc-tree #tr-stage{top:90px !important}
+#app #sc-shop .shlist{top:110px !important}
+
 </style>
-<script>window.BUILD64="v71-202611061832";</script>
+<script>window.BUILD64="v72-202611061840";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -12522,6 +12559,57 @@ stealFx = (o0 => function (xy) {
   setInterval(() => { try { wz70Sync(); wz70Decoy(); } catch (e) {} }, 70);
 })();
 /* v70: weasel poses */
+
+/* v72: 정원 · 저잣거리 · 텃밭 바꾸기 버튼을 크게 · 정원 양옆 공간 · 가게 평판 팝업 */
+/* 1) 바꾸기 버튼: 그림 + 글자, 진한 나무 바탕에 금테, 고른 칸은 노란 칸, 할 일 있는 칸에 빨간 점 */
+function gt72Icons() {
+  const nav = document.querySelector('.nav > div[data-s="garden"] img, #nav > div[data-s="garden"] img');
+  return { garden: nav ? nav.src : '', shop: (window.SHOP_ART && SHOP_ART.tea) || '', tree: (window.FARM_ART && FARM_ART.veg_radish) || '' };
+}
+function gt72Dots() {
+  let tree = false, shop = false;
+  try { tree = typeof farmReadyList === 'function' && farmReadyList().length > 0; } catch (e) {}
+  try { shop = (typeof p67Live === 'function' && !!p67Live()) || Object.keys(S.shop || {}).some(id => typeof shopStored === 'function' && shopStored(id) > 0 && typeof shopRate === 'function' && shopStored(id) >= shopRate(id) * 60); } catch (e) {}
+  return { tree, shop };
+}
+function gt72Render() {
+  const ic = gt72Icons(), dots = gt72Dots();
+  document.querySelectorAll('.gtog').forEach(t => {
+    t.classList.add('gt72');
+    t.querySelectorAll(':scope > div[data-g]').forEach(d => {
+      const g = d.dataset.g;
+      if (!d.querySelector('img.gt72i') && ic[g]) { const label = d.textContent; d.textContent = ''; d.insertAdjacentHTML('beforeend', '<img class="gt72i" src="' + ic[g] + '" alt=""><span class="gt72l">' + label + '</span>'); }
+      let dot = d.querySelector('.gt72d'); const want = !d.classList.contains('on') && !!dots[g];
+      if (want && !dot) d.insertAdjacentHTML('beforeend', '<i class="gt72d"></i>'); else if (!want && dot) dot.remove();
+    });
+  });
+}
+renderAll = (o0 => function () { const r = o0.apply(this, arguments); try { gt72Render(); } catch (e) {} return r; })(renderAll);
+setTimeout(() => { try { gt72Render(); } catch (e) {} }, 600);
+
+/* 3) 가게 평판 팝업: 메달 · 빛살 · 바뀐 점 칩 · 다음 단계 */
+function rep72Medal(lv) {
+  const stars = Math.min(5, Math.max(1, Math.ceil(lv / 2)));
+  let s = ''; for (let i = 0; i < 5; i++) s += '<i class="' + (i < stars ? 'on' : '') + '"></i>';
+  return '<div class="rep72m"><div class="rep72r"><div class="rep72c"><small>가게 평판</small><b>' + lv + '</b></div></div><div class="rep72s">' + s + '</div></div>';
+}
+showPop = (o0 => function (o) {
+  try {
+    const m = o && o.title && String(o.title).match(/^가게 평판 Lv(\d+)!$/);
+    if (m && !o.big) {
+      const lv = +m[1]; let next = null, tip = 3 * (lv - 1);
+      try { const R = rep66(); next = R.next ? Math.max(0, R.next - R.R.pts) : null; } catch (e) {}
+      o = Object.assign({}, o, {
+        big: rep72Medal(lv), raysCls: (o.raysCls || '') + ' rep72',
+        name: '손님들이 우리 가게를 좋아해요',
+        tags: '<span class="rep72t up">팁&nbsp;+' + tip + '%</span>' + (next != null ? '<span class="rep72t">다음 레벨까지&nbsp;별&nbsp;' + next + '개</span>' : '') + (lv >= 3 ? '<span class="rep72t vip">귀한 손님이 와요</span>' : ''),
+        text: '별을 많이 받을수록 평판이 올라가요.' + (lv === 3 ? '<br>이제 가끔 귀한 손님이 찾아와요!' : '')
+      });
+      setTimeout(() => { try { const b = document.querySelector('#popbox .rays'); if (b) { const r = b.getBoundingClientRect(), a = app.getBoundingClientRect(), sc = a.width / app.offsetWidth; burst((r.left - a.left + r.width / 2) / sc, (r.top - a.top + r.height / 2) / sc, 46, { sp: 7, life: 60 }); } sfx('levelup', { vol: .55 }); } catch (e) {} }, 120);
+    }
+  } catch (e) {}
+  return o0.call(this, o);
+})(showPop);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
