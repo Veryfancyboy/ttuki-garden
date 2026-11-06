@@ -3753,8 +3753,14 @@ html,body{overscroll-behavior:none}
 #app .order .tagh.tu b.ut{white-space:nowrap}
 #app #popbox .rays.rep72{font-size:15px !important;width:12.67em !important;height:12.67em !important}
 
+/* v74c: 운영자 등록은 숨김(버전 글자 7번 누르면 열림) */
+#app .rk69adm{display:none}
+#app .rk69adm.adm74on{display:block}
+#app .rk69adm.adm74me{display:block;text-decoration:none;color:#5E8A3A;cursor:default}
+#app .v74ver{margin:8px auto 0;font-family:'Gowun Dodum',sans-serif;font-size:12px;line-height:1.2;color:#A89580;text-align:center;width:fit-content;padding:4px 8px;user-select:none;-webkit-user-select:none}
+
 </style>
-<script>window.BUILD64="v74b-202611061937";</script>
+<script>window.BUILD64="v74c-202611062051";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -12885,6 +12891,28 @@ function rb74Fit(el) { if (!el) return; el.style.fontSize = ''; const base = par
 /* v74b: compact rating card inside the served customer's column */
 cu71Bye = (f => function (card, o, A) { const r = f.apply(this, arguments); try { if (r && CU71.last && card) { const app = document.getElementById('app'), a = app.getBoundingClientRect(), s = a.width / app.offsetWidth, cr = card.getBoundingClientRect(); CU71.last.cw = cr.width / s; CU71.last.cl = (cr.left - a.left) / s; } } catch (e) {} return r; })(cu71Bye);
 cu71Card = (f => function (stars, L) { const r = f.apply(this, arguments); try { const app = document.getElementById('app'), cs = app.querySelectorAll('.rc66.cu71rc'), c = cs[cs.length - 1]; if (c && L && L.el && L.cw > 0) { const w = Math.max(96, Math.round(L.cw - 6)); c.classList.add('cu74'); c.style.setProperty('--cu74w', w + 'px'); c.classList.remove('cu71tight'); const cx = L.cl + L.cw / 2; c.style.left = cx + 'px'; c.style.setProperty('--cu71tx', (w / 2) + 'px'); c.style.top = (L.top + L.h * 0.58) + 'px'; setTimeout(() => c.classList.add('out'), 1750); setTimeout(() => c.remove(), 2250); } } catch (e) {} return r; })(cu71Card);
+
+/* v74c: 운영자 등록 숨김 + 요청 번호 + 한 명씩 승인(서버 v5e) */
+let adm74Taps = [];
+function adm74Sync() {
+  const a = document.getElementById('rk69adm'); if (!a) return;
+  if (S.rk69adm) { a.classList.add('adm74me'); a.classList.remove('adm74on'); if (a.textContent !== '운영자 기기예요 · 순위 창에서 이름을 고칠 수 있어요') a.textContent = '운영자 기기예요 · 순위 창에서 이름을 고칠 수 있어요'; a.onclick = e => { e.stopPropagation(); }; }
+  else { a.classList.remove('adm74me'); if (a.textContent !== '운영자 등록') a.textContent = '운영자 등록'; a.onclick = e => { e.stopPropagation(); rk69AdminReq(); }; }
+  let v = document.getElementById('v74ver');
+  if (!v) { v = document.createElement('div'); v.id = 'v74ver'; v.className = 'v74ver'; a.parentElement.appendChild(v); v.onclick = e => { e.stopPropagation(); const now = Date.now(); adm74Taps = adm74Taps.filter(t => now - t < 4000); adm74Taps.push(now); if (adm74Taps.length >= 7) { adm74Taps = []; const b = document.getElementById('rk69adm'); if (b && !S.rk69adm) { b.classList.add('adm74on'); toast('운영자 등록이 열렸어요'); } } }; }
+  const id = String(window.BUILD64 || '').split('-')[0] || '';
+  if (id && v.textContent !== '버전 ' + id) v.textContent = '버전 ' + id;
+}
+(function adm74Boot() { let n = 0; const t = setInterval(() => { n++; if (n > 90) { clearInterval(t); return; } if (document.getElementById('rk69adm')) { clearInterval(t); adm74Sync(); } }, 1000); })();
+rk69Got = (o0 => function () { const r = o0.apply(this, arguments); try { adm74Sync(); } catch (e) {} return r; })(rk69Got);
+rk69AdminReq = async function () {
+  showPop({ title: '운영자 등록', text: '이 기기를 운영자로 등록해 달라고 요청할까요?<br>운영자가 요청 번호를 확인하고 한 명씩 승인해요.', btns: [['요청하기', 'red', async () => {
+    let j = null; try { j = await (await fetch(RANK_URL + '?a=adminreq&id=' + encodeURIComponent(S.pid) + '&shop=' + encodeURIComponent(S.nick || '') + '&t=' + Date.now())).json(); } catch (e) {}
+    if (!j || !j.ok) { toast('지금은 요청하지 못했어요. 조금 뒤에 다시 해 주세요'); return; }
+    if (j.admin) { S.rk69adm = 1; adm74Sync(); toast('이미 운영자예요'); return; }
+    setTimeout(() => showPop({ title: '요청했어요', text: '요청 번호 <b>' + (j.code || '----') + '</b><br>승인되면 순위 창에 \'이름 고치기\'가 보여요.', btns: [['알겠어요', 'yellow', null]] }), 250);
+  }], ['닫기', 'cream', null]] });
+};
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
