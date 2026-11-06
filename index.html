@@ -3087,8 +3087,42 @@ html,body{overscroll-behavior:none}
 #upd64o{position:fixed;inset:0;z-index:2147483600;display:flex;align-items:center;justify-content:center;background:rgba(255,244,223,.92)}
 #upd64o b{font-family:'Jua';font-weight:400;font-size:20px;line-height:1;padding:14px 22px 12px;border-radius:18px;background:#fff;color:#4A2A1E;box-shadow:0 4px 0 rgba(74,42,30,.15)}
 
+
+/* v66: orders */
+#app .order .rew .tr66, #app .order .gr66 .tr66{display:inline-block;width:20px;height:20px;margin-right:4px;border-radius:50%;background-color:#fff;background-position:center;background-size:15px 15px;background-repeat:no-repeat;box-shadow:inset 0 0 0 1.5px rgba(74,42,30,.55);vertical-align:-4px;flex:0 0 auto}
+#app .order .tr66.hurry{background-color:#FFE1DC;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='13' r='8' fill='none' stroke='%23C63E2E' stroke-width='2.6'/%3E%3Cpath d='M12 9v4l3 2' stroke='%23C63E2E' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M9 3h6' stroke='%23C63E2E' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E")}
+#app .order .tr66.picky{background-color:#EDE3FF;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.6 6.4L21 9l-5 4.4L17.5 20 12 16.6 6.5 20 8 13.4 3 9l6.4-.6z' fill='%237A4FD0'/%3E%3C/svg%3E")}
+#app .order .tr66.chatty{background-color:#FFF2C9;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 5h16v10H10l-5 4v-4H4z' fill='%23D69A12'/%3E%3C/svg%3E")}
+#app .order .tr66.calm{background-color:#DFF5DF;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 19c0-8 6-14 15-14-1 9-6 15-14 15z' fill='%233E9B4F'/%3E%3Cpath d='M6 18l8-8' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E")}
+#app .order .want .w.side66{position:relative;width:34px;height:34px;align-self:center;margin-left:8px !important;border-radius:50%;border:2px dashed rgba(255,255,255,.95);background:rgba(74,42,30,.22);display:flex;align-items:center;justify-content:center}
+#app .order .want .w.side66 img{width:26px !important;height:26px !important;object-fit:contain;opacity:.8}
+#app .order .want .w.side66 b{position:absolute;right:-6px;top:-7px;width:17px;height:17px;border-radius:50%;background:#fff;color:#4A2A1E;font-family:'Jua';font-weight:400;font-size:15px;line-height:17px;padding-top:1.5px;box-sizing:border-box;text-align:center;box-shadow:0 1px 0 rgba(0,0,0,.25)}
+#app .order .want .w.side66.ok{border-style:solid;border-color:#7ED957;background:rgba(126,217,87,.28)}
+#app .order .want .w.side66.ok img{opacity:1}
+#app .order .want .w.side66.ok b{background:#5BBF3A;color:#fff}
+#app .order .gr66{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);height:30px;display:flex;align-items:center;gap:2px;padding:2px 11px 0 6px;border-radius:15px;background:linear-gradient(#FFE27A,#F6C343);box-shadow:inset 0 0 0 2px #C98A1A,0 3px 0 rgba(120,80,40,.3);font-family:'Jua';font-size:14.5px;line-height:1;color:#4A2A1E;white-space:nowrap;z-index:6;cursor:pointer;animation:gr66p 1s ease-in-out infinite alternate}
+#app .order.g66 .rew, #app .order.g66 .done{visibility:hidden}
+@keyframes gr66p{from{transform:translateX(-50%) scale(1)}to{transform:translateX(-50%) scale(1.06)}}
+#app .gb66{position:absolute;transform:translate(-50%,-50%);padding:6px 12px 5px;border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(74,42,30,.2);font-family:'Jua';font-size:16px;line-height:1;color:#4A2A1E;white-space:nowrap;pointer-events:none;z-index:40;animation:gb66 1.5s ease-out forwards}
+@keyframes gb66{0%{opacity:0;transform:translate(-50%,-30%) scale(.7)}15%{opacity:1;transform:translate(-50%,-60%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-110%)}}
+#app .rc66{position:absolute;transform:translate(-50%,0) scale(.7);opacity:0;min-width:176px;max-width:220px;padding:10px 14px 10px;border-radius:18px;background:#FFFBF2;box-shadow:inset 0 0 0 2px #E8C98A,0 6px 14px rgba(60,30,10,.25);display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;z-index:41;animation:rc66in .35s cubic-bezier(.2,1.5,.4,1) forwards}
+#app .rc66.out{animation:rc66out .45s ease-in forwards}
+@keyframes rc66in{to{opacity:1;transform:translate(-50%,0) scale(1)}}
+@keyframes rc66out{from{opacity:1;transform:translate(-50%,0) scale(1)}to{opacity:0;transform:translate(-50%,-26px) scale(.96)}}
+#app .rc66 .st{display:flex;gap:4px}
+#app .rc66 .st i{width:28px;height:28px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.8l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.6l-6.2 3.3L7 14l-5-4.9 6.9-1z' fill='%23E2D6C0' stroke='%23B9A27A' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+#app .rc66 .st i.on{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.8l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.6l-6.2 3.3L7 14l-5-4.9 6.9-1z' fill='%23F8C537' stroke='%234A2A1E' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E")}
+#app .rc66 .tx{font-family:'Jua';font-weight:400;font-size:15.5px;line-height:1.25;color:#4A2A1E;text-align:center;word-break:keep-all}
+#app .rc66 .ch{display:flex;gap:4px}
+#app .rc66 .ch span{height:22px;display:flex;align-items:center;padding:2px 9px 0;border-radius:11px;background:#EFE6D6;color:#9A8670;font-family:'Jua';font-size:13px;line-height:1}
+#app .rc66 .ch span.on{background:#DDF3D2;color:#3E8A2A}
+#app .rc66 .ch span.mid{background:#FFF0C8;color:#A57712}
+#app .rc66 .tp{font-family:'Jua';font-size:16px;line-height:1;color:#4A2A1E}
+#app .rc66 .tp em{font-style:normal;color:#C98A1A}
+#app .rc66 .rp{font-family:'Gowun Dodum',sans-serif;font-size:12.5px;line-height:1;color:#8A7460}
+
 </style>
-<script>window.BUILD64="v65-202611061311";</script>
+<script>window.BUILD64="v66-202611061322";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -9880,6 +9914,98 @@ go = (o0 => function (s) { try { if (s !== 'fish' && FS47 && FS47.st && FS47.st 
   setTimeout(() => check('start'), 4000);
 })();
 /* v64: update */
+
+
+/* ===== v66: 주문 접대와 평가 - 손님 성격, 인사하기, 곁들임, 속도 · 정성 · 대접으로 별 1~3개, 팁, 가게 평판 ===== */
+const TR66 = {
+  hurry: { n: '급해요', w: [2, 1, 1], c: ['빨리 줘서 고마워요!', '좋아요, 다음엔 조금만 더 빨리요', '너무 오래 기다렸어요…'] },
+  picky: { n: '깐깐해요', w: [1, 2, 1], c: ['곁들임까지! 완벽해요', '괜찮네요. 곁들임이 있었으면…', '음… 정성이 아쉬워요'] },
+  chatty: { n: '수다쟁이', w: [1, 1, 2], c: ['반겨 줘서 기분 좋아요!', '맛있어요! 인사도 해 주면 좋겠어요', '말 한마디 없어서 서운해요'] },
+  calm: { n: '느긋해요', w: [0.6, 1, 1], c: ['천천히 즐겼어요, 고마워요', '좋아요, 또 올게요', '그럭저럭이었어요'] }
+};
+const WHO66 = { ttuki: 'chatty', haetae: 'hurry', rabbit: 'chatty', toad: 'calm', gumiho: 'hurry', bonghwang: 'picky', bulgasari: 'calm', imugi: 'calm', duck: 'chatty', cat: 'calm', squirrel: 'hurry', puppy: 'hurry', penguin: 'picky', hedgehog: 'picky', panda: 'picky', sheep: 'chatty' };
+const REP66 = [0, 20, 60, 120, 200, 320, 480, 700, 1000];
+const TIP66 = [0, 0.15, 0.4];
+function rep66() { const R = S.rep66 || (S.rep66 = { pts: 0, n: 0, sum: 0 }); let lv = 1; REP66.forEach((t, i) => { if (R.pts >= t) lv = i + 1; }); return { R, lv, avg: R.n ? R.sum / R.n : 0, next: REP66[lv] }; }
+function par66(o) { return 20 + 14 * o.need.reduce((a, [k, lv, c]) => a + lv * c, 0); }
+function sideOK66(o) { return !!o.side && countOnBoard(o.side[0], o.side[1]) >= 1 + o.need.filter(([k, lv]) => k === o.side[0] && lv === o.side[1]).reduce((a, x) => a + x[2], 0); }
+makeOrder = (o0 => function () {
+  const o = o0.apply(this, arguments);
+  try {
+    o.tr = WHO66[o.who] || 'calm'; o.act = 0; o.gr = 0; o.grUntil = 0;
+    if (S.oi > (typeof SCRIPT !== 'undefined' ? SCRIPT.length : 0) + 1 && !o.big) {
+      const p = { picky: 0.8, chatty: 0.45, hurry: 0.3, calm: 0.5 }[o.tr];
+      if (Math.random() < p) { const ks = ['egg', 'sew'].concat(['teapot', 'steamer', 'pot'].filter(g => S.unl[g]).map(g => GEN[g].k)); const own = o.need.map(x => x[0]); const pool = ks.filter(k => !own.includes(k)); const k = (pool.length ? pool : ks)[Math.floor(Math.random() * (pool.length ? pool.length : ks.length))]; o.side = [k, o.tr === 'picky' && Math.random() < .5 ? 2 : 1]; }
+    }
+  } catch (e) {}
+  return o;
+})(makeOrder);
+setInterval(() => { try { if (document.hidden || !document.querySelector('#sc-main.on')) return; if (typeof shutOn !== 'undefined' && shutOn) return; (S.orders || []).forEach(o => { if (o) o.act = (o.act || 0) + 1; }); } catch (e) {} }, 1000);
+function greet66(o, card) {
+  if (!o || o.gr) return; o.gr = 1; save();
+  try { sfx('ting', { vol: .5 }); } catch (e) { try { sfx('tap'); } catch (x) {} } buzz(12);
+  const b = document.createElement('div'); b.className = 'gb66'; b.innerHTML = '<b>어서 오세요!</b>'; const r = card.getBoundingClientRect(), a = document.getElementById('app').getBoundingClientRect(), s = a.width / document.getElementById('app').offsetWidth;
+  b.style.left = ((r.left - a.left) / s + r.width / s / 2) + 'px'; b.style.top = ((r.top - a.top) / s + r.height / s * 0.78) + 'px'; document.getElementById('app').appendChild(b); setTimeout(() => b.remove(), 1500);
+  renderOrders();
+}
+renderOrders = (o0 => function () {
+  const r = o0.apply(this, arguments);
+  try {
+    const now = Date.now();
+    document.querySelectorAll('#orders .order').forEach(d => {
+      const o = S.orders.find(x => String(x.id) === d.dataset.oid); if (!o) return;
+      if (!o.tr) o.tr = WHO66[o.who] || 'calm';
+      if (!o.grUntil && !o.gr) o.grUntil = now + 8000;
+      const rew = d.querySelector('.rew'); if (rew && !rew.querySelector('.tr66')) rew.insertAdjacentHTML('afterbegin', '<i class="tr66 ' + o.tr + '" title="' + TR66[o.tr].n + '"></i>');
+      if (o.side && !d.querySelector('.side66')) { const ok = sideOK66(o), wn = d.querySelector('.want'); if (wn) wn.insertAdjacentHTML('beforeend', '<div class="w side66' + (ok ? ' ok' : '') + '"><img src="' + I(CH[o.side[0]][o.side[1] - 1]) + '" alt=""><b>+</b></div>'); }
+      const pend = !o.gr && now < o.grUntil; d.classList.toggle('g66', pend); if (pend && !d.querySelector('.gr66')) { const g = document.createElement('div'); g.className = 'gr66'; g.innerHTML = '<i class="tr66 ' + o.tr + '"></i><b>인사하기</b>'; g.addEventListener('click', e => { e.stopPropagation(); greet66(o, d); }); g.addEventListener('pointerdown', e => e.stopPropagation()); d.appendChild(g); setTimeout(() => { if (!o.gr) { try { renderOrders(); } catch (x) {} } }, Math.max(0, o.grUntil - now) + 50); }
+      d.classList.toggle('t66', true);
+    });
+  } catch (e) {}
+  return r;
+})(renderOrders);
+completeOrder = (o0 => function (idx, el) {
+  const o = S.orders[idx]; if (!o || !ready(o)) return o0.apply(this, arguments);
+  const d0 = S.done, coin0 = o.coin, rect = el && el.getBoundingClientRect ? el.getBoundingClientRect() : null;
+  const tr = TR66[o.tr || WHO66[o.who] || 'calm'];
+  let sp; if (o.urg && o.t0) { const left = 1 - (Date.now() - o.t0) / (o.urg * 1000); sp = left >= 0.5 ? 1 : left >= 0.2 ? 0.5 : 0; } else { const pr = par66(o), a = o.act || 0; sp = a <= pr ? 1 : a <= pr * 1.8 ? 0.5 : 0; }
+  const sideHad = !!o.side, sideOk = sideHad && sideOK66(o);
+  const c0 = S.coin, k0 = S.keys; window.__nofl66 = 1; let r; try { r = o0.apply(this, arguments); } finally { window.__nofl66 = 0; }
+  if (S.done <= d0) return r;
+  const got = S.coin - c0, gotK = S.keys - k0;
+  try {
+    let q = 1; if (sideHad) { if (sideOk) { for (let i = S.b.length - 1; i >= 0; i--) { const x = S.b[i]; if (x && x.k === o.side[0] && x.lv === o.side[1] && !x.vine) { S.b[i] = null; break; } } q = 1; } else q = 0.45; }
+    let sv = o.gr ? 1 : 0.45; if (o.urg && o.t0 && (Date.now() - o.t0) / (o.urg * 1000) > 0.75) sv = Math.max(0, sv - 0.3);
+    const w = tr.w, sc = (sp * w[0] + q * w[1] + sv * w[2]) / (w[0] + w[1] + w[2]);
+    const stars = sc >= 0.85 ? 3 : sc >= 0.55 ? 2 : 1;
+    const RP = rep66(), lv0 = RP.lv; RP.R.pts += stars; RP.R.n++; RP.R.sum += stars;
+    const tip = Math.round(coin0 * TIP66[stars - 1] * (1 + 0.03 * (lv0 - 1)) + (sideOk ? coin0 * 0.1 : 0));
+    if (tip > 0) S.coin += tip;
+    S.st66 = (S.st66 || 0) + 1; save();
+    const RP2 = rep66();
+    const weak = stars === 3 ? -1 : [sp, q, sv].map((v, i) => v * w[i]).reduce((m, v, i, a) => v < a[m] ? i : m, 0);
+    const txt = stars === 3 ? tr.c[0] : stars === 2 ? tr.c[1] : tr.c[2];
+    card66(rect, stars, txt, { sp, q: sideHad ? sideOk : null, sv: !!o.gr }, tip, RP2, got, gotK);
+    try { showCoinPill(); } catch (e) {}
+    if (RP2.lv > lv0) setTimeout(() => { try { showPop({ title: '가게 평판 Lv' + RP2.lv + '!', text: '손님들이 좋아해요. 팁이 ' + (3 * (RP2.lv - 1)) + '% 더 늘어요.<br>별을 많이 받을수록 평판이 올라가요.', btns: [['좋아!', 'yellow', null]] }); } catch (e) {} }, 1900);
+    if (S.st66 === 1) setTimeout(() => { try { toast('손님이 별을 줬어요! 앉자마자 인사하고, 곁들임(+)까지 주면 별 3개예요'); } catch (e) {} }, 2300);
+  } catch (e) {}
+  return r;
+})(completeOrder);
+function card66(rect, stars, txt, ch, tip, RP, got, gotK) {
+  const app = document.getElementById('app'); if (!app) return; const a = app.getBoundingClientRect(), s = a.width / app.offsetWidth;
+  const c = document.createElement('div'); c.className = 'rc66 s' + stars;
+  const st = [1, 2, 3].map(i => '<i class="' + (i <= stars ? 'on' : '') + '"></i>').join('');
+  const chips = '<span class="' + (ch.sp >= 1 ? 'on' : ch.sp > 0 ? 'mid' : '') + '">빠르게</span>' + (ch.q === null ? '' : '<span class="' + (ch.q ? 'on' : '') + '">곁들임</span>') + '<span class="' + (ch.sv ? 'on' : '') + '">인사</span>';
+  c.innerHTML = '<div class="st">' + st + '</div><b class="tx">' + txt + '</b><div class="ch">' + chips + '</div>' + '<div class="tp">동전 +' + (got || 0) + (tip > 0 ? ' <em>팁 +' + tip + '</em>' : '') + (gotK > 0 ? ' · 열쇠 +' + gotK : '') + '</div>' + '<div class="rp">가게 평판 Lv' + RP.lv + ' · ★' + RP.avg.toFixed(1) + '</div>';
+  const cx = rect ? (rect.left - a.left + rect.width / 2) / s : 195, cy = rect ? (rect.top - a.top) / s : 60;
+  c.style.left = Math.max(110, Math.min(app.offsetWidth - 110, cx)) + 'px'; c.style.top = Math.max(56, cy + 2) + 'px';
+  app.appendChild(c); setTimeout(() => c.classList.add('out'), 2300); setTimeout(() => c.remove(), 2800);
+  try { sfx(stars === 3 ? 'reveal' : 'tap', { vol: .5 }); } catch (e) {}
+}
+/* v66: orders */
+
+floatAt = (o0 => function () { if (window.__nofl66) return; return o0.apply(this, arguments); })(floatAt);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
