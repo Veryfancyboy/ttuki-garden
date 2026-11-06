@@ -3629,8 +3629,12 @@ html,body{overscroll-behavior:none}
 #app #sc-tree #tr-stage{top:90px !important}
 #app #sc-shop .shlist{top:110px !important}
 
+/* v72b */
+#app #boss41 .bb img.wz72b{border-radius:0 !important;object-fit:contain !important;background:none !important;box-shadow:none !important;filter:drop-shadow(0 2px 0 rgba(0,0,0,.35))}
+#app #popbox img.sp.wz72k{object-fit:contain;border-radius:0;background:none}
+
 </style>
-<script>window.BUILD64="v72-202611061840";</script>
+<script>window.BUILD64="v72b-202611061844";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -12610,6 +12614,10 @@ showPop = (o0 => function (o) {
   } catch (e) {}
   return o0.call(this, o);
 })(showPop);
+
+/* v72b: 두목 등장 띠와 '물리쳤어요' 창도 새 두목 그림으로 */
+th41Entrance = (o0 => function () { const r = o0.apply(this, arguments); try { const B = window.WEASEL70 && WEASEL70.b; const P = th41Parts(); const im = P && P.b && P.b.querySelector('img'); const pick = B && (B.rage || B.idle); const u = pick && (pick.u || pick); if (im && typeof u === 'string') { im.src = u; im.classList.add('wz72b'); } } catch (e) {} return r; })(th41Entrance);
+showPop = (o0 => function (o) { try { const B = window.WEASEL70 && WEASEL70.b; const d = B && (B.down || B.ko); const du = d && (d.u || d); if (o && o.title === '두목을 물리쳤어요!' && typeof du === 'string') o = Object.assign({}, o, { big: '<img class="sp wz72k" src="' + du + '" alt="">' }); } catch (e) {} return o0.call(this, o); })(showPop);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
