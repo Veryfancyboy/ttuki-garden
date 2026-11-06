@@ -4090,8 +4090,129 @@ html,body{overscroll-behavior:none}
 #app #set .box.set39{top:196px !important}
 #app .nav > div.on.n::after{display:none !important}
 
+/* v79f: 확률 안내 접기 */
+#app #info2box .od79{border-bottom:1.5px solid rgba(201,138,26,.22)}
+#app #info2box .od79h{box-sizing:border-box;display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:9px 2px;font-family:'Jua';font-size:15px;line-height:1.3;color:#4A2A1E;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#app #info2box .od79h span{flex:1;text-align:left}
+#app #info2box .od79h i{flex:none;width:9px;height:9px;border-right:2.5px solid #B7791F;border-bottom:2.5px solid #B7791F;transform:rotate(45deg);margin:-5px 6px 0 0;transition:transform .2s}
+#app #info2box .od79.open .od79h i{transform:rotate(-135deg);margin-top:5px}
+#app #info2box .od79b{display:none;padding:0 0 12px}
+#app #info2box .od79.open .od79b{display:block}
+
+/* v79s: UI 정리 2차 - 저잣거리 · 텃밭 · 정원 아래 칸 · 놀이 목록 · 놀이 화면 위 막대 (규칙 UI_규칙_v79.md) */
+.ui79shide{display:none !important}
+/* ---- 저잣거리: 목록 카드 하나의 규격 (그림 56 · 글 x80 · 단추 96) ---- */
+#app#app .shlist.ui79sl{left:12px !important;right:12px !important;gap:8px !important;padding:4px 0 16px !important}
+#app#app #shlist .shc.ui79sc{display:grid !important;grid-template-columns:56px minmax(0,1fr) 96px;column-gap:12px;align-items:center;padding:12px !important;min-height:88px;box-sizing:border-box;margin:0 !important;flex:none}
+#app#app #shlist .shc.ui79sc > .shart{grid-column:1;width:56px !important;height:56px !important;min-width:0 !important;margin:0 !important;position:relative;align-self:center;justify-self:start;overflow:visible}
+#app#app #shlist .shc.ui79sc > .shart.round{border-radius:50%;overflow:hidden}
+#app#app #shlist .shc.ui79sc > .shart.round img{width:56px !important;height:56px !important;object-fit:cover}
+#app#app #shlist .shc.ui79sc > .shart:not(.round):not(.up76sh) img{width:56px !important;height:56px !important;object-fit:contain}
+#app#app #shlist .shc.ui79sc .shart.up76sh img.up76im{bottom:0 !important}
+#app#app #shlist .shc.ui79sc .shart.up76l1 img.up76im{width:46px !important;height:46px !important}
+#app#app #shlist .shc.ui79sc .shart.up76l2 img.up76im{width:48px !important;height:48px !important}
+#app#app #shlist .shc.ui79sc .shart.up76l3 img.up76im,#app#app #shlist .shc.ui79sc .shart.up76l4 img.up76im{width:56px !important;height:52px !important}
+#app#app #shlist .shc.ui79sc .shart.up76l5 img.up76im{width:56px !important;height:56px !important}
+#app#app #shlist .shc.ui79sc .shart.up76sh img.up76lan{width:12px !important;top:-6px !important}
+#app#app #shlist .shc.ui79sc .shart.up76sh img.up76lan.l{left:-2px !important}
+#app#app #shlist .shc.ui79sc .shart.up76sh img.up76lan.r{right:-2px !important}
+#app#app #shlist .shc.ui79sc > .shtx{grid-column:2;min-width:0;display:flex;flex-direction:column;gap:4px;margin:0 !important;padding:0 !important}
+#app#app #shlist .shc.ui79sc .sh1{display:flex;flex-wrap:wrap;align-items:center;column-gap:6px;row-gap:2px;min-width:0;margin:0 !important;line-height:22px}
+#app#app #shlist .shc.ui79sc .sh1 b{font-size:19px !important;line-height:22px !important;font-weight:400;white-space:nowrap}
+#app#app #shlist .shc.ui79sc .shlv{flex:none;font-size:13px !important;line-height:18px !important;padding:1px 6px 0 !important;height:18px;box-sizing:border-box;border-radius:9px}
+#app#app #shlist .shc.ui79sc .sh2{font-size:15px !important;line-height:19px !important;color:#4A2A1E !important;margin:0 !important;display:block;word-break:keep-all}
+#app#app #shlist .shc.ui79sc .sh2 *{font-size:inherit !important;line-height:inherit !important}
+#app#app #shlist .shc.ui79sc .sh3{font-size:13px !important;line-height:16px !important;color:#8A7460 !important;margin:0 !important;word-break:keep-all}
+#app#app #shlist .shc.ui79sc.ui79sx .sh2{font-size:13px !important;line-height:16px !important;color:#8A7460 !important;display:block}
+#app#app #shlist .shc.ui79sc.ui79sx .sh2 b.ui79sv{color:#4A2A1E;font-weight:400}
+#app#app #shlist .shc.ui79sc .sh2 .closed{color:#D2402F !important}
+#app#app #shlist .shc.ui79sc.ui79sx .ui79srow{display:flex;align-items:center;gap:8px;min-width:0;height:28px}
+#app#app #shlist .shc.ui79sc.ui79sx .shstaff{display:flex;gap:4px;margin:0 !important;flex:none}
+#app#app #shlist .shc.ui79sc.ui79sx .shst{width:28px !important;height:28px !important;min-height:0 !important;max-height:28px !important;font-size:15px !important;line-height:1 !important;box-sizing:border-box;position:relative;display:flex;align-items:center;justify-content:center;padding:0 !important;flex:none}
+#app#app #shlist .shc.ui79sc.ui79sx .shst::after{content:'';position:absolute;inset:-8px -2px}
+#app#app #shlist .shc.ui79sc.ui79sx .shst.empty{width:28px !important;height:28px !important}
+#app#app #shlist .shc.ui79sc.ui79sx .shbar{flex:1 1 auto;min-width:24px;height:8px !important;margin:0 !important;border-radius:4px}
+#app#app #shlist .shc.ui79sc.ui79sx .shbar span{display:none !important}
+#app#app #shlist .shc.ui79sc > .shbtns{grid-column:3;width:96px !important;min-width:0 !important;margin:0 !important;display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:0}
+#app#app #shlist .shc.ui79sc > .shbtns .btn{width:96px !important;min-width:0 !important;max-width:96px;height:44px !important;margin:0 !important;padding:0 6px !important;box-sizing:border-box;font-size:15px !important;line-height:1 !important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;white-space:nowrap}
+#app#app #shlist .shc.ui79sc > .shbtns .btn:has(small){height:52px !important}
+#app#app #shlist .shc.ui79sc > .shbtns .btn small{font-size:13px !important;line-height:1 !important;display:flex;align-items:center;gap:2px}
+#app#app #shlist .shc.ui79sc > .shbtns .btn small img{height:12px !important}
+#app#app #shlist .shc.ui79sc.ui79sx{cursor:pointer}
+/* ---- 정원 아래 칸 ---- */
+#app#app .gdtask{display:grid !important;grid-template-columns:56px minmax(0,1fr) 96px;column-gap:12px;align-items:center}
+#app#app .gdtask > .gdpic{width:56px !important;height:56px !important;margin:0 !important}
+#app#app .gdtask > .gdpic img{width:52px !important;height:52px !important}
+#app#app .gdtask > .gdtx{min-width:0;margin:0 !important;display:flex;flex-direction:column;gap:4px;justify-content:center}
+#app#app .gdtask > .gdtx > b,#app#app .gdtask > .gdtx > :first-child{font-size:19px !important;line-height:22px !important}
+#app#app .gdtask .gtag{font-size:13px !important;line-height:18px !important;height:20px;box-sizing:border-box}
+#app#app .gdtask > .gdgo,#app#app #gd-go{width:96px !important;min-width:0 !important;height:52px !important;margin:0 !important;font-size:15px !important;box-sizing:border-box;padding:0 6px !important}
+#app#app #gd-go .cost{font-size:13px !important}
+#app#app .gdnote{font-size:13px !important;line-height:18px !important}
+/* ---- 텃밭 · 감나무 ---- */
+#app#app #tr-panel{padding:12px !important;box-sizing:border-box}
+#app#app #tr-panel .tph b,#app#app #tr-panel .tph > :first-child{font-size:19px !important;line-height:22px !important}
+#app#app #tr-panel .tst,#app#app #tr-panel .tst *{font-size:13px !important;line-height:16px !important;color:#8A7460 !important}
+#app#app #tr-panel .tfline,#app#app #tr-panel .tfline *{font-size:15px !important;line-height:20px !important}
+#app#app #tr-panel .tbtns{gap:8px !important}
+#app#app #tr-panel .tbtns .btn{height:44px !important;font-size:15px !important;box-sizing:border-box}
+#app#app #f-panel{padding:12px !important;box-sizing:border-box}
+#app#app #f-panel .fph44 > b,#app#app #f-panel .fph44 > :first-child{font-size:19px !important;line-height:22px !important}
+#app#app #f-panel .fb44 .btn{height:36px !important;font-size:13px !important;box-sizing:border-box}
+#app#app #f-panel .fb44 .btn *{font-size:13px !important}
+#app#app #f-panel .o44h,#app#app #f-panel .o44h *{font-size:15px !important;line-height:20px !important;color:#4A2A1E !important}
+#app#app #f-panel .o44n,#app#app #f-panel .o44n *,#app#app #f-panel .o44r,#app#app #f-panel .o44r *{font-size:13px !important;line-height:18px !important}
+#app#app #f-panel .o44x{font-size:13px !important;color:#8A7460 !important}
+/* ---- 놀이 목록: 카드 하나의 규격 ---- */
+#app#app #evlist.ui79sel{left:12px !important;right:12px !important;gap:8px !important}
+#app#app #evlist > .ev.ui79se{display:grid !important;grid-template-columns:56px minmax(0,1fr) 96px;column-gap:12px;align-items:center;padding:12px !important;min-height:88px !important;height:auto !important;box-sizing:border-box;margin:0 !important;position:relative}
+#app#app #evlist > .ev.ui79se > .yic,#app#app #evlist > .ev.ui79se > .f47ic,#app#app #evlist > .ev.ui79se > .sl52ic,#app#app #evlist > .ev.ui79se > .bb53ic,#app#app #evlist > .ev.ui79se > .ui79sric{grid-column:1;grid-row:1;position:relative !important;left:auto !important;top:auto !important;width:56px !important;height:56px !important;margin:0 !important;object-fit:contain;z-index:1}
+#app#app #evlist > .ev.ui79se > .ytx,#app#app #evlist > .ev.ui79se > .f47tx,#app#app #evlist > .ev.ui79se > .sl52tx,#app#app #evlist > .ev.ui79se > .bb53tx{grid-column:2;grid-row:1;position:relative !important;left:auto !important;top:auto !important;width:auto !important;min-width:0;margin:0 !important;padding:0 !important;display:flex;flex-direction:column;gap:4px;z-index:1}
+#app#app #evlist > .ev.ui79se > div > b:first-child{font-size:19px !important;line-height:22px !important}
+#app#app #evlist > .ev.ui79se > div > b:first-child + *{font-size:15px !important;line-height:19px !important;color:#4A2A1E !important;margin:0 !important}
+#app#app #evlist > .ev.ui79se > div > b:first-child + * *{font-size:inherit !important;line-height:inherit !important}
+#app#app #evlist > .ev.ui79se > .btn{grid-column:3;grid-row:1;position:relative !important;left:auto !important;right:auto !important;top:auto !important;width:96px !important;min-width:0 !important;height:44px !important;margin:0 !important;padding:0 6px !important;font-size:15px !important;box-sizing:border-box;z-index:1;justify-self:end}
+#app#app #evlist > .ev.ui79se > .bb53cbg{position:absolute !important;inset:2px !important;width:auto !important;height:auto !important;z-index:0}
+/* 썰매 경주: 접어서 한 줄 */
+#app#app #evlist > .ev.ui79se.ui79srace{padding-left:14px !important;padding-right:14px !important}
+#app#app #evlist > .ev.ui79srace > .evh{grid-column:2;grid-row:1;display:flex !important;flex-wrap:wrap;align-items:center;column-gap:6px;row-gap:4px;margin:0 !important;padding:0 !important;min-width:0}
+#app#app #evlist > .ev.ui79srace > .evh > b,#app#app #evlist > .ev.ui79srace > .evh > :first-child{flex:0 0 100%;font-size:19px !important;line-height:22px !important}
+#app#app #evlist > .ev.ui79srace > .evh .ui79srs{font-size:15px;line-height:19px;color:#4A2A1E}
+#app#app #evlist > .ev.ui79srace > .evh #race-left{position:static !important;font-size:13px !important;line-height:19px !important;color:#8A7460 !important;margin:0 !important}
+#app#app #evlist > .ev.ui79srace > .evd,#app#app #evlist > .ev.ui79srace > #race{grid-column:1 / -1;display:none !important}
+#app#app #evlist > .ev.ui79srace.ui79sopen > .evd{display:flex !important;margin:4px 0 0 !important}
+#app#app #evlist > .ev.ui79srace.ui79sopen > #race{display:block !important;margin:0 !important}
+#app#app #evlist > .ev.ui79srace > .ui79srbtn{background:var(--cream)}
+/* 크리스마스 띠: 같은 여백·글자·단추 */
+#app#app #evlist > #ev-road.ui79sroad{min-height:112px !important;box-sizing:border-box}
+#app#app #ev-road.ui79sroad .evs{left:12px !important;top:12px !important;right:auto !important;max-width:calc(100% - 24px);font-size:13px !important;line-height:18px !important;height:auto !important;padding:3px 8px 2px !important;box-sizing:border-box;width:auto !important;white-space:nowrap}
+#app#app #ev-road.ui79sroad .evs *{font-size:inherit !important;line-height:inherit !important}
+#app#app #ev-road.ui79sroad .evt{left:12px !important;right:120px !important;bottom:12px !important;top:auto !important;width:auto !important;height:auto !important;font-size:19px !important;line-height:1.2 !important;text-align:left !important;white-space:normal !important;word-break:keep-all}
+#app#app #ev-road.ui79sroad .evb{position:absolute !important;right:12px !important;bottom:12px !important;left:auto !important;top:auto !important;width:96px !important;min-width:0 !important;height:44px !important;font-size:15px !important;margin:0 !important;padding:0 6px !important;box-sizing:border-box}
+/* ---- 놀이 화면 위 막대 (윷 · 낚시 · 슬롯 · 번개) ---- */
+#app#app .screen > .yhead{left:12px !important;right:12px !important;top:12px !important;height:44px !important}
+#app#app .yhead > .yback{position:absolute !important;left:0 !important;top:4px !important;height:36px !important;min-width:64px !important;width:auto !important;padding:0 10px !important;font-size:13px !important;line-height:1 !important;box-sizing:border-box;margin:0 !important}
+#app#app .yhead > .ytitle{position:absolute !important;left:50% !important;top:50% !important;transform:translate(-50%,-50%) !important;margin:0 !important;font-size:28px !important;line-height:1.1 !important;padding-top:.08em;white-space:nowrap;max-width:calc(100% - 176px);overflow:hidden;text-overflow:ellipsis;text-align:center}
+#app#app .yhead > .ypill{position:absolute !important;right:0 !important;left:auto !important;top:3px !important;height:38px !important;max-width:104px;box-sizing:border-box;margin:0 !important}
+#app#app #y-go,#app#app #sl52-go,#app#app #bb53-go,#app#app #f47-go{height:56px !important;min-height:0 !important;font-size:19px !important;box-sizing:border-box;padding-top:2px !important;padding-bottom:0 !important}
+#app#app #y-go small,#app#app #sl52-go small,#app#app #bb53-go small,#app#app #f47-go small{font-size:13px !important}
+#app#app #y-go,#app#app #sl52-go,#app#app #bb53-go,#app#app #f47-go{line-height:1 !important;gap:2px}
+#app#app #sl52-go *,#app#app #bb53-go *,#app#app #y-go *{line-height:1 !important}
+/* 번개놀이 작은 글자 */
+#app#app .bb53-hero2 .ht2{min-width:0;flex:1 1 auto}
+#app#app .bb53-hero2 .ht2 b{font-size:22px !important;line-height:1.1 !important}
+#app#app .bb53-hero2 .ht2 span{font-size:13px !important;line-height:16px !important;white-space:normal !important;word-break:keep-all}
+#app#app .bb53-hero2 .hb2 small{font-size:13px !important;line-height:16px !important}
+#app#app .bb53-hero2 .hb2 b{font-size:22px !important;line-height:1.1 !important}
+
+/* v79h: 2차 통합 손질 - 크리스마스 띠: 상태 칩 위, 제목·단추 아래 줄(글자 커져도 안 겹침) */
+#app#app#app .ev.road.ui79sroad{display:grid !important;grid-template-columns:minmax(0,1fr) 96px;grid-template-areas:"chip chip" "title btn";column-gap:12px;row-gap:8px;align-items:center;height:auto !important;min-height:112px;padding:12px 15px !important;box-sizing:border-box}
+#app#app#app .ev.road.ui79sroad > .evs{grid-area:chip;position:static !important;justify-self:start;align-self:start;width:auto !important;max-width:100%;left:auto !important;top:auto !important}
+#app#app#app .ev.road.ui79sroad > .evt{grid-area:title;position:static !important;width:auto !important;left:auto !important;top:auto !important;bottom:auto !important;align-self:center;margin:0 !important}
+#app#app#app .ev.road.ui79sroad > .evb.btn{grid-area:btn;position:static !important;transform:none !important;left:auto !important;right:auto !important;top:auto !important;bottom:auto !important;align-self:center;justify-self:end;margin:0 !important}
+
 </style>
-<script>window.BUILD64="v79-202611070254";</script>
+<script>window.BUILD64="v79s-202611070325";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -14047,6 +14168,87 @@ function rb79Sync() {
 (function () { let q = false; const run = () => { q = false; try { rb79Sync(); } catch (e) {} }; const mo = new MutationObserver(() => { if (!q) { q = true; requestAnimationFrame(run); } }); const app = document.getElementById('app'); if (app) mo.observe(app, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] }); })();
 
 /* v79e */
+/* v79f: 확률 안내 - 묶음별로 접어서 제목만 한눈에, 누르면 펼쳐요 */
+function od79Build() {
+  const box = document.querySelector('#info2box .oddsbox'); if (!box || box.dataset.od79) return; box.dataset.od79 = '1';
+  const groups = []; let cur = null;
+  [...box.children].forEach(el => {
+    if (el.tagName === 'H4') { cur = { h: el, body: [] }; groups.push(cur); }
+    else if (el.classList && el.classList.contains('r77sec')) { const h = el.querySelector('h4'); if (h) { cur = { h, body: [], wrap: el }; groups.push(cur); cur = null; } }
+    else if (el.classList && el.classList.contains('free')) { cur = null; }
+    else if (cur) cur.body.push(el);
+  });
+  groups.forEach(g => {
+    const sec = document.createElement('div'); sec.className = 'od79';
+    const hd = document.createElement('div'); hd.className = 'od79h'; hd.setAttribute('role', 'button'); hd.innerHTML = '<span></span><i></i>'; hd.firstChild.textContent = g.h.textContent;
+    const bd = document.createElement('div'); bd.className = 'od79b';
+    const anchor = g.wrap || g.h; box.insertBefore(sec, anchor);
+    if (g.wrap) { g.h.remove(); bd.appendChild(g.wrap); } else { g.h.remove(); g.body.forEach(b => bd.appendChild(b)); }
+    sec.appendChild(hd); sec.appendChild(bd);
+    hd.onclick = e => { e.stopPropagation(); sec.classList.toggle('open'); };
+  });
+}
+showOdds = (o0 => function () { const r = o0.apply(this, arguments); try { od79Build(); } catch (e) {} return r; })(showOdds);
+
+/* v79s: UI 정리 2차 (저잣거리 · 놀이 목록 · 텃밭 · 정원 아래 칸 · 놀이 화면 위 막대) */
+function ui79sShopPop(id) {
+  const d = SHOP_BY[id], s = S.shop[id]; if (!d || !s) return;
+  const v = shopStored(id), rate = shopRate(id), cap = shopCap(id), slots = shSlots(s.lv), n = (s.staff || []).slice(0, slots).filter(Boolean).length;
+  const btns = [];
+  if (v > 0) btns.push(['받기 +' + v.toLocaleString(), 'yellow', () => shopCollect(id, document.querySelector('#shlist .shc[data-id="' + id + '"] .shart') || document.getElementById('sh-coin'))]);
+  if (s.lv < 5) btns.push(['키우기 ' + d.up[s.lv - 1].toLocaleString(), v > 0 ? 'red' : 'red', () => shopUp(id)]);
+  if (btns.length < 2) btns.push(['닫기', 'cream', null]);
+  showPop({ title: d.n + ' Lv' + s.lv, big: '<img class="pit" src="' + shopImg(d) + '" alt="">', name: rate > 0 ? '1분에 동전 ' + (Math.round(rate * 10) / 10) : '직원이 없어 문을 닫았어요', text: '쌓인 동전 ' + v.toLocaleString() + ' / ' + cap.toLocaleString() + '<br>직원 ' + n + ' / ' + slots + (s.lv < 5 ? '' : ' · 최고 단계예요'), btns });
+}
+function ui79sShop() {
+  const list = document.getElementById('shlist'); if (!list) return;
+  list.classList.add('ui79sl');
+  list.querySelectorAll('.shc').forEach(c => c.classList.add('ui79sc'));
+  list.querySelectorAll('.shc[data-id]').forEach(c => {
+    const id = c.dataset.id, s = S.shop[id], d = SHOP_BY[id]; if (!s || !d || c.classList.contains('lockc')) return;
+    c.classList.add('ui79sx');
+    const v = shopStored(id), rate = shopRate(id), cap = shopCap(id);
+    const sh2 = c.querySelector('.sh2');
+    if (sh2) { const h = rate > 0 ? '1분에 동전 ' + (Math.round(rate * 10) / 10) + ' · <b class="ui79sv">' + v.toLocaleString() + '</b>/' + cap.toLocaleString() : '<span class="closed">직원이 없어 문을 닫았어요</span>' + (v > 0 ? ' · <b class="ui79sv">' + v.toLocaleString() + '</b>' : ''); if (sh2.innerHTML !== h) sh2.innerHTML = h; }
+    const tx = c.querySelector('.shtx'), bar = c.querySelector('.shbar'), staff = c.querySelector('.shstaff');
+    if (tx && staff) { let row = tx.querySelector('.ui79srow'); if (!row) { row = document.createElement('div'); row.className = 'ui79srow'; tx.appendChild(row); } if (staff.parentElement !== row) row.appendChild(staff); if (bar && bar.parentElement !== row) row.appendChild(bar); }
+    if (bar) bar.style.display = (rate <= 0 && v <= 0) ? 'none' : '';
+    const get = c.querySelector('.shget'), up = c.querySelector('.shup'), box = c.querySelector('.shbtns');
+    let pick = 'get';
+    if (v > 0) pick = 'get'; else if (rate <= 0) pick = 'staff'; else if (s.lv < 5) pick = 'up'; else pick = 'get';
+    if (get) get.style.display = pick !== 'get' ? 'none' : '';
+    if (up) up.style.display = pick !== 'up' ? 'none' : '';
+    let sb = box && box.querySelector('.ui79sst');
+    if (pick === 'staff' && box) { if (!sb) { sb = document.createElement('div'); sb.className = 'btn red h ui79sst'; sb.textContent = '직원 두기'; box.appendChild(sb); } sb.onclick = e => { e.stopPropagation(); const st = (s.staff || []); let k = st.findIndex(x => !x); if (k < 0) k = 0; staffPick({ shop: id, slot: k }); }; }
+    else if (sb) sb.remove();
+    c.onclick = e => { if (e.target.closest('.btn, .shst')) return; ui79sShopPop(id); };
+  });
+}
+renderShop = (o0 => function () { const r = o0.apply(this, arguments); try { ui79sShop(); } catch (e) {} return r; })(renderShop);
+function ui79sEvents() {
+  const list = document.getElementById('evlist'); if (!list) return;
+  list.classList.add('ui79sel');
+  list.querySelectorAll(':scope > .ev.yutc, :scope > .ev.f47c, :scope > .ev.sl52c, :scope > .ev.bb53c').forEach(c => c.classList.add('ui79se'));
+  const road = document.getElementById('ev-road'); if (road) road.classList.add('ui79sroad');
+  const rc = [...list.children].find(c => c.querySelector('#race'));
+  if (rc) {
+    rc.classList.add('ui79se', 'ui79srace');
+    if (!rc.querySelector(':scope > .ui79sric')) { const im = document.createElement('img'); im.className = 'ui79sric'; im.alt = ''; im.src = (window.IC42 && window.IC42.trophy) || I('ui_star_gold'); rc.insertBefore(im, rc.firstChild); }
+    const h = rc.querySelector(':scope > .evh');
+    let sum = h && h.querySelector('.ui79srs');
+    if (h && !sum) { sum = document.createElement('span'); sum.className = 'ui79srs'; const left = h.querySelector('#race-left'); h.insertBefore(sum, left || null); }
+    try { const v = raceView(); if (sum) { const t = v ? (v.end ? '끝났어요 · ' + v.rank + '위' : '지금 ' + v.rank + '위 · 나 ' + (S.race.me || 0) + '/' + RACE_GOAL) : ''; if (sum.textContent !== t) sum.textContent = t; } } catch (e) {}
+    let b = rc.querySelector(':scope > .ui79srbtn');
+    if (!b) { b = document.createElement('div'); b.className = 'btn cream h ui79srbtn'; rc.appendChild(b); b.onclick = e => { e.stopPropagation(); rc.classList.toggle('ui79sopen'); S.ui79sRace = rc.classList.contains('ui79sopen') ? 1 : 0; b.textContent = S.ui79sRace ? '접기' : '순위 보기'; }; }
+    rc.classList.toggle('ui79sopen', !!S.ui79sRace);
+    const lbl = S.ui79sRace ? '접기' : '순위 보기'; if (b.textContent !== lbl) b.textContent = lbl;
+  }
+}
+renderEvent = (o0 => function () { const r = o0.apply(this, arguments); try { ui79sEvents(); } catch (e) {} return r; })(renderEvent);
+setInterval(() => { try { const sc = document.getElementById('sc-event'); if (sc && sc.classList.contains('on')) ui79sEvents(); } catch (e) {} }, 1000);
+try { ui79sShop(); ui79sEvents(); } catch (e) {}
+
+/* v79h */
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
 window.__demo = { get S() { return S; }, set S(v) { S = v; }, go, buyGen, buyFog, flyItems, thanksFx, restoreSpot, renderGarden, playStory, nextLine, GARDEN, sfx, mergeFx, orderFx, revealFx, hitFx, koFx, stealFx, missFx, restoreFx, fevAdd, suspense, feverOn, audioInit, sbuf: () => Object.keys(sbuf), tickTension, thiefTick, thiefSteal, thiefHit, urgMiss, renderStk, placeThief, fillOrders, makeOrder, dropOn, tapTile, completeOrder, openBox, hatch, showOdds, renderAll, actOn, upSpirit, upGen, upStar, raceStart, raceClaim, raceView, attClaim, showAtt, fx, genOdds, canUpgrade };
