@@ -4304,9 +4304,11 @@ html,body{overscroll-behavior:none}
 #app#app .gr66{height:32px !important;padding:0 12px 0 5px !important;gap:3px !important;background:#FFF8EA !important;box-shadow:inset 0 0 0 1.5px #D6B48A,0 2px 0 rgba(110,70,30,.22) !important;border-radius:16px !important}
 #app#app .gr66 > b{font-size:13px !important;line-height:1 !important;color:#6A4A3A !important;padding-top:2px !important;text-shadow:none !important;letter-spacing:0 !important}
 #app#app .gr66 > .tr66{width:22px !important;height:22px !important;margin-right:2px !important;background-size:16px 16px !important;box-shadow:inset 0 0 0 1.5px rgba(74,42,30,.3) !important;vertical-align:middle !important}
+/* 순위 창: 내 줄은 목록이 길어도 아래에 붙어 보임 */
+#app#app #rk-list .rkr.me{position:sticky;bottom:0;z-index:2;box-shadow:0 -6px 10px -4px rgba(120,80,40,.18)}
 
 </style>
-<script>window.BUILD64="v79t-202611070340";</script>
+<script>window.BUILD64="v79u-202611070356";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -14444,6 +14446,13 @@ function ui79mDot() { const gN = document.querySelector('.nav [data-s=grow]'); i
 renderAll = (o0 => function () { const r = o0.apply(this, arguments); try { ui79mDot(); } catch (e) {} return r; })(renderAll);
 go = (o0 => function () { const r = o0.apply(this, arguments); try { ui79mDot(); } catch (e) {} return r; })(go);
 try { ui79mDot(); } catch (e) {}
+/* 꾸미기 코디 줄: 이름 칸이 좁아 '눈놀이 코디 0/…'처럼 잘리거나 칸마다 글자 크기가 달라지던 것 → '코디'를 빼고(줄 자체가 코디 줄), 넘치면 모든 칸을 같은 크기로 함께 줄임 */
+function ui79mOver(l) { const c = l.cloneNode(true); [['position', 'absolute'], ['visibility', 'hidden'], ['width', 'auto'], ['min-width', '0'], ['max-width', 'none'], ['overflow', 'visible'], ['left', '-9999px'], ['top', '0'], ['flex', 'none']].forEach(([k, v]) => c.style.setProperty(k, v, 'important')); l.parentElement.appendChild(c); const w = c.getBoundingClientRect().width; c.remove(); return w > l.getBoundingClientRect().width + 0.05; }
+function ui79mLook() { const box = document.getElementById('looks'); if (!box) return; const lns = [...box.querySelectorAll('.lc .ln')]; if (!lns.length) return; lns.forEach(l => { const tn = [...l.childNodes].find(n => n.nodeType === 3 && /코디/.test(n.nodeValue)); if (tn) { tn.nodeValue = tn.nodeValue.replace(/\s*코디\s*/, ' '); l.style.fontSize = ''; } }); if (!lns.some(ui79mOver)) return; let fs = Math.min(...lns.map(l => parseFloat(getComputedStyle(l).fontSize) || 15)); const put = () => lns.forEach(l => l.style.setProperty('font-size', fs + 'px', 'important')); put(); while (lns.some(ui79mOver) && fs > 11) { fs -= 0.5; put(); } }
+renderDress = (o0 => function () { const r = o0.apply(this, arguments); try { ui79mLook(); } catch (e) {} return r; })(renderDress);
+/* 순위 창: 예전 기록 줄의 '★-' 빼기, 가게 가치 설명 4줄 → 2줄, 내 줄은 목록 아래에 붙어서 늘 보이게(CSS) */
+function ui79mRank() { const ov = document.getElementById('rank'); if (!ov) return; ov.querySelectorAll('.rkv .rk68s').forEach(i => { if (/^★\s*-$/.test(i.textContent.trim())) { const nx = i.nextSibling; if (nx && nx.nodeType === 3) nx.nodeValue = nx.nodeValue.replace(/^\s*·\s*/, ''); i.remove(); } }); const sub = ov.querySelector('.ovs'); if (sub && /새 버전을 아직 안 연 가게는/.test(sub.textContent)) sub.textContent = '가진 동전에 키우는 데 쓴 동전을 더한 값이에요. 써서 키워도 순위가 내려가지 않아요'; }
+rk69Render = (o0 => function () { const r = o0.apply(this, arguments); try { ui79mRank(); } catch (e) {} return r; })(rk69Render);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
