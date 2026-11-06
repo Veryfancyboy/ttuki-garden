@@ -3850,8 +3850,9 @@ html,body{overscroll-behavior:none}
 #app #popbox .y75nt{font-size:13.5px;line-height:1.4;color:#8A6A54;word-break:keep-all}
 
 /* v75b */
+/* v76a */
 </style>
-<script>window.BUILD64="v75b-202611062149";</script>
+<script>window.BUILD64="v76a-202611062158";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -13411,6 +13412,18 @@ ovOpen = (o0 => function () { return o0() || (() => { const e = document.getElem
 /* v75b: 감나무 6단계 바탕은 감 없는 그림, 열린 감만 따로 보여요 */
 (function () { try { if (window.TREE76 && window.TREE76.t6e) TA.t6e = window.TREE76.t6e; } catch (e) {} })();
 renderTree = (o0 => function () { if (!TA.t6e) return o0.apply(this, arguments); const keep = TA.t6; TA.t6 = TA.t6e; try { return o0.apply(this, arguments); } finally { TA.t6 = keep; } })(renderTree);
+
+/* v76a: 키우기 비용을 지금 경제에 맞게 (친구 · 살림 · 옷 별) */
+(function () {
+  const set = (arr, vals) => { for (let i = 0; i < vals.length; i++) arr[i] = vals[i]; };
+  set(SP_COST, [0, 0, 500, 1200, 2500, 4500, 7500, 11000, 16000, 22000, 30000]);
+  set(SP_ORB, [0, 0, 0, 0, 0, 2, 1, 1, 2, 2, 5]);
+  set(GEN_COST, [0, 0, 1500, 4000, 9000, 18000]);
+  set(STAR_COIN, [0, 0, 600, 1500, 3500, 7000]);
+  set(STAR_SCRAP, [0, 0, 20, 40, 80, 160]);
+})();
+renderGrow = (o0 => function () { const r = o0.apply(this, arguments); try { document.querySelectorAll('#glist small.cost').forEach(el => { const t = el.lastChild; if (t && t.nodeType === 3) { const n = +String(t.nodeValue).replace(/[^0-9]/g, ''); if (n >= 1000) { const s = n.toLocaleString(); if (t.nodeValue !== s) t.nodeValue = s; } } }); } catch (e) {} return r; })(renderGrow);
+renderGrow = (o0 => function () { const r = o0.apply(this, arguments); try { document.querySelectorAll('#glist .gnote, #glist .gc, #glist div').forEach(el => { if (el.children.length === 0 && el.textContent.includes('Lv6부터 필요해요')) el.textContent = el.textContent.replace('Lv6부터 필요해요', 'Lv5 진화부터 필요해요'); }); } catch (e) {} return r; })(renderGrow);
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
