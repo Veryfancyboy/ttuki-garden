@@ -4308,12 +4308,13 @@ html,body{overscroll-behavior:none}
 #app#app #rk-list .rkr.me{position:sticky;bottom:0;z-index:2;box-shadow:0 -6px 10px -4px rgba(120,80,40,.18)}
 
 /* v80i: 물건 단계 차이 - 크기 */
-#app#app .board .t.il1 > img{width:37px !important;height:37px !important}
-#app#app .board .t.il2 > img{width:40px !important;height:40px !important}
+#app#app .board .t.il1 > img{width:39px !important;height:39px !important}
+#app#app .board .t.il2 > img{width:41px !important;height:41px !important}
 #app#app .board .t.il3 > img{width:43px !important;height:43px !important}
-#app#app .board .t.il4 > img{width:45px !important;height:45px !important}
-#app#app .board .t.il5 > img{width:47px !important;height:47px !important}
-#app#app .board .t.il6 > img,#app#app .board .t.il7 > img{width:49px !important;height:49px !important}
+#app#app .board .t.il4 > img{width:44px !important;height:44px !important}
+#app#app .board .t.il5 > img{width:45px !important;height:45px !important}
+#app#app .board .t.il6 > img{width:46px !important;height:46px !important}
+#app#app .board .t.il7 > img{width:47px !important;height:47px !important}
 #app#app .board .t[class*=" il"] > img{position:relative;z-index:1}
 #app#app .board .t[class*=" il"] > .lv,#app#app .board .t[class*=" il"] > .nd{z-index:2}
 /* 뒤 바탕 빛 (칸 안, 그림 뒤) */
@@ -4457,8 +4458,28 @@ html,body{overscroll-behavior:none}
 #app#app#app #info.goal .itx > b{line-height:1.15 !important;white-space:nowrap}
 #app#app#app #info.goal .itx > span{font-size:13px !important;line-height:1.2 !important;white-space:nowrap}
 
+/* v81b: 손님 아래 보상 줄 - 동전 그림 18px, 숫자 16px로 고정(칸마다 줄었다 늘었다 하지 않게), 에너지·옷 보너스는 작은 같은 높이 칩 */
+#app#app #orders .order .rew:not(.ro80rew){font-size:16px !important;gap:2px !important;height:24px !important;padding:0 !important;white-space:nowrap;line-height:1}
+#app#app #orders .order .rew:not(.ro80rew) > img{height:17px !important;width:auto !important;margin:0 1px 0 0 !important}
+#app#app #orders .order .rew:not(.ro80rew) .gf{height:16px !important;width:auto !important}
+#app#app #orders .order .rew .en38{font-size:12px !important;margin-left:0 !important;display:inline-flex;align-items:center;gap:1px}
+#app#app #orders .order .rew .en38 img{height:14px !important;width:auto !important;max-width:16px !important;object-fit:contain;margin:0 !important}
+#app#app #orders .order .rew .bx38{height:18px !important;padding:0 !important;margin-left:0 !important;background:none !important;box-shadow:none !important;display:inline-flex !important;align-items:center;gap:1px}
+#app#app #orders .order .rew .bx38 img{height:14px !important;width:auto !important;max-width:15px !important;object-fit:contain;filter:drop-shadow(0 0 1px #fff) drop-shadow(0 1px 0 rgba(90,52,16,.6))}
+#app#app #orders .order .rew .bx38 i{font-size:12px !important;line-height:16px !important;color:#FFE1EC !important;text-shadow:0 1.2px 0 #9B2C55,0 -1.2px 0 #9B2C55,1.2px 0 0 #9B2C55,-1.2px 0 0 #9B2C55,1px 1px 0 #9B2C55,-1px -1px 0 #9B2C55,1px -1px 0 #9B2C55,-1px 1px 0 #9B2C55 !important}
+/* 손님 성격 그림: 보상 줄에서 빼서 접시 왼쪽 빈자리에 */
+#app#app #orders .order > .tr81{position:absolute;left:8px;top:94px;display:block;width:20px !important;height:20px !important;margin:0 !important;border-radius:50% !important;background-color:#fff !important;background-position:center !important;background-size:15px 15px !important;background-repeat:no-repeat !important;box-shadow:inset 0 0 0 1.5px rgba(74,42,30,.55),0 1px 2px rgba(60,30,10,.25) !important;z-index:3;pointer-events:none}
+/* 판 칸: 단계 숫자는 왼쪽 아래 구석에 작게, 살림 Lv도 같은 자리 */
+#app#app .board .t > .lv{left:3px !important;right:auto !important;top:auto !important;bottom:1px !important;font-size:13px !important;line-height:13px !important;height:auto !important;z-index:2}
+#app#app.ui60 #board .t.gen > span.lv,#app#app #board .t.gen > span.lv{left:4px !important;top:auto !important;bottom:2px !important;font-size:12px !important;line-height:12px !important}
+#app#app .board .t.gen > .gen-en{width:16px !important;height:16px !important;right:2px !important;bottom:2px !important;left:auto !important;top:auto !important}
+#app#app .board .t.gen > .gen-en img{width:12px !important;height:12px !important}
+#app#app .board .t > .nd{width:14px !important;height:14px !important;right:2px !important;top:2px !important;bottom:auto !important;left:auto !important;background-size:9px 9px !important;border-width:1.5px !important;z-index:2}
+#app#app #orders .order .rew:not(.ro80rew) > *{flex:none}
+#app#app #orders .order .rew .en38,#app#app #orders .order .rew .bx38{margin-left:2px !important}
+
 </style>
-<script>window.BUILD64="v80b-202611071047";</script>
+<script>window.BUILD64="v81b-202611071116";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -14794,6 +14815,11 @@ goalHTML = (o0 => function () { try { if (typeof p67GoalOn === 'function' && p67
 (function g80Hook() { const h = document.querySelector('#sc-main .helper') || document.getElementById('sc-main'); if (!h) return; h.addEventListener('click', e => { const inf = document.getElementById('info'); if (!inf || !inf.contains(e.target) || !inf.classList.contains('goal') || e.target.closest('#b-act') || !inf.querySelector('.g80') || !g80Cur) return; e.stopPropagation(); e.preventDefault(); const g = g80Cur; try { sfx('tap'); } catch (x) {} if (g.go === 'gen') { S.gtab = 'gen'; go('grow'); } else if (g.go === 'sp') { S.gtab = 'sp'; go('grow'); } else if (g.go === 'wheel') { wheelOpen(); } else if (g.go === 'fish') { go('fish'); setTimeout(() => { try { gear66Open(); } catch (x) {} }, 400); } else if (g.go === 'royal') { toast('궁궐 주문 손님 앞의 물건을 판에 모아서 손님을 눌러요'); } }, true); })();
 /* 키우기: 우정 구슬 안내 문구를 지금 규칙으로 */
 renderGrow = (o0 => function () { const r = o0.apply(this, arguments); try { document.querySelectorAll('#glist .gnote').forEach(n => { if (/우정 구슬은/.test(n.textContent)) n.textContent = '우정 구슬은 친구가 또 놀러 오면 생겨요. 높은 초대장일수록 많이(꽃 1 · 금빛 2 · 무지개 4 · 궁궐 8), 궁궐 주문은 5개, 물고기 선물로도 생겨요.'; }); } catch (e) {} return r; })(renderGrow);
+
+/* v81b: 만들기 화면 크기 밸런스 - 손님 성격 그림은 접시 옆 빈자리로, 보상 줄은 한 규격 */
+function rb81Orders() { document.querySelectorAll('#orders .order').forEach(card => { const rew = card.querySelector('.rew'); if (!rew) return; const tr = rew.querySelector('.tr66'); if (tr) { tr.classList.add('tr81'); card.appendChild(tr); } rew.removeAttribute('style'); }); }
+renderOrders = (o0 => function () { const r = o0.apply(this, arguments); try { rb81Orders(); } catch (e) {} return r; })(renderOrders);
+try { rb81Orders(); } catch (e) {}
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
