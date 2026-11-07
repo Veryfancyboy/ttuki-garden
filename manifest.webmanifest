@@ -1,7 +1,7 @@
 {
- "name": "복작복작 뚝이네",
- "short_name": "뚝이네",
- "description": "도깨비 뚝이와 친구들의 마을 가게 게임",
+ "name": "뚝이네 마을 이야기",
+ "short_name": "뚝이네 마을",
+ "description": "도깨비 뚝이와 친구들이 사는 마을 이야기 게임",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
