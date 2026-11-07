@@ -4679,8 +4679,18 @@ html.l83en #app .psc .psl40,html.l83ja #app .psc .psl40{font-size:12px !importan
 #app #board .t.od83f{animation:od83f .65s ease-in-out 4}
 @keyframes od83f{0%,100%{box-shadow:0 0 0 0 rgba(255,206,74,0)}50%{box-shadow:0 0 0 4px rgba(255,206,74,.95),0 0 14px 4px rgba(255,206,74,.7)}}
 
+/* v83p: 도감 모아보기 빈칸·단추 잘림 */
+#app #sc-album.dx82on #cards.dx46g.dx82home{top:104px !important}
+#app #cards.dx82home .dx82f{display:flex;align-items:center;min-height:25px;overflow:visible !important;white-space:nowrap}
+#app #cards.dx82home .dx82f > span:not(.dx82gift){overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#app #cards.dx82home .dx82f .dx82gift{height:23px;margin-bottom:2px}
+
+/* v83q: 창 가운데 정렬 - 넓은 폰에서 오른쪽으로 밀리던 여백(16px) 없애기 */
+#app #set .box.set39, #app #info2box, #app .v23ov .ovbox.panel{margin-left:0 !important;margin-right:0 !important}
+#app#app#app #info2box{margin-left:0 !important;margin-right:0 !important}
+
 </style>
-<script>window.BUILD64="v83c-202611071356";</script>
+<script>window.BUILD64="v83e-202611071529";</script>
 </head>
 <body><div id="sp38"><style>
 #sp38{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(130% 70% at 50% 18%,#F4FAFF 0%,#D7E9F8 42%,#FFF1DA 100%);font-family:'Jua',sans-serif;transition:opacity .4s ease;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;cursor:pointer;overflow:hidden}
@@ -15381,6 +15391,10 @@ renderOrders = (o0 => function () { const r = o0.apply(this, arguments); try { o
 try { od83Mark(); } catch (e) {}
 setInterval(() => { try { const pp = document.getElementById('pop'); if (S.od83tip || !document.querySelector('#sc-main.on') || (pp && pp.style.display === 'block') || (typeof ovOpen === 'function' && ovOpen())) return; if (!document.querySelector('#orders .w.od83new')) return; const t = document.getElementById('toast'); if (t && t.style.display === 'block') return; S.od83tip = 1; save(); toast('처음 보는 재료는 ? 표시가 있어요. 주문 재료를 누르면 만드는 법이 나와요'); } catch (e) {} }, 5000);
 
+/* ===== v83p: 도감 모아보기 - 묶음을 보고 돌아올 때 남던 위쪽 빈칸 없애기 ===== */
+dx82Home = (o0 => function () { const r = o0.apply(this, arguments); try { const cc = document.getElementById('cards'); if (cc) { cc.style.top = ''; cc.style.height = ''; cc.style.marginTop = ''; } } catch (e) {} return r; })(dx82Home);
+
+/* v83q */
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
 if (S.done >= 1 && attCan() && navOpen('event') && !tgOn()) setTimeout(showAtt, 700);
 window.__demo = { get S() { return S; }, set S(v) { S = v; }, go, buyGen, buyFog, flyItems, thanksFx, restoreSpot, renderGarden, playStory, nextLine, GARDEN, sfx, mergeFx, orderFx, revealFx, hitFx, koFx, stealFx, missFx, restoreFx, fevAdd, suspense, feverOn, audioInit, sbuf: () => Object.keys(sbuf), tickTension, thiefTick, thiefSteal, thiefHit, urgMiss, renderStk, placeThief, fillOrders, makeOrder, dropOn, tapTile, completeOrder, openBox, hatch, showOdds, renderAll, actOn, upSpirit, upGen, upStar, raceStart, raceClaim, raceView, attClaim, showAtt, fx, genOdds, canUpgrade };
