@@ -5,7 +5,7 @@
    - 친구 그림(char/): 서버 먼저, 안 되면 받아 둔 것(오프라인)
    - 새 sw 는 기다리지 않고 바로 켜지고(skipWaiting + clients.claim), 옛 캐시는 우리 이름(ttk-)으로 시작하는 것만 지움
      (같은 veryfancyboy.github.io 주소를 쓰는 다른 앱의 캐시는 건드리지 않음) */
-const VER = 'sw4b-20261109', C = 'ttk-v2', CI = 'ttk-img-v1';
+const VER = 'sw4b-swtest2', C = 'ttk-v2', CI = 'ttk-img-v1';
 const ROOT = new URL('./', self.location).pathname;
 self.addEventListener('install', e => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil((async () => { const ks = await caches.keys(); await Promise.all(ks.filter(k => k.indexOf('ttk-') === 0 && k !== C && k !== CI).map(k => caches.delete(k))); await self.clients.claim(); })()));
