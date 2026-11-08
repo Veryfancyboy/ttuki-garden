@@ -3,11 +3,12 @@
    - 게임 페이지가 아닌 주소로 바로 들어오면(그림·json 등) 손대지 않음(오프라인용 페이지를 덮어쓰지 않게)
    - 전투 코디 그림(bt/): 받아 둔 것을 먼저 보여 주고 뒤에서 새로 받아 바꿔 둠. 주소에 ?b=번호 가 붙어 있어 그림을 바꾸면 새 주소가 됨
    - 친구 그림(char/): 서버 먼저, 안 되면 받아 둔 것(오프라인)
-   - 새 sw 는 기다리지 않고 바로 켜지고(skipWaiting + clients.claim), 이 두 이름이 아닌 옛 캐시는 지움 */
-const VER = 'sw4-20261109', C = 'ttk-v2', CI = 'ttk-img-v1';
+   - 새 sw 는 기다리지 않고 바로 켜지고(skipWaiting + clients.claim), 옛 캐시는 우리 이름(ttk-)으로 시작하는 것만 지움
+     (같은 veryfancyboy.github.io 주소를 쓰는 다른 앱의 캐시는 건드리지 않음) */
+const VER = 'sw4b-20261109', C = 'ttk-v2', CI = 'ttk-img-v1';
 const ROOT = new URL('./', self.location).pathname;
 self.addEventListener('install', e => self.skipWaiting());
-self.addEventListener('activate', e => e.waitUntil((async () => { const ks = await caches.keys(); await Promise.all(ks.filter(k => k !== C && k !== CI).map(k => caches.delete(k))); await self.clients.claim(); })()));
+self.addEventListener('activate', e => e.waitUntil((async () => { const ks = await caches.keys(); await Promise.all(ks.filter(k => k.indexOf('ttk-') === 0 && k !== C && k !== CI).map(k => caches.delete(k))); await self.clients.claim(); })()));
 self.addEventListener('message', e => { if (e.data === 'ver' && e.source) e.source.postMessage({ ver: VER }); });
 self.addEventListener('fetch', e => {
   const r = e.request; if (r.method !== 'GET') return;
