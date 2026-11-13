@@ -1,16 +1,15 @@
-/* 도깨비 마을 service worker v4
-   - 게임 페이지(index.html)·version.json·sw.js: 언제나 서버에서 새로 받음(브라우저 캐시도 건너뜀). 게임 페이지만 마지막 것을 오프라인용으로 보관
-   - 게임 페이지가 아닌 주소로 바로 들어오면(그림·json 등) 손대지 않음(오프라인용 페이지를 덮어쓰지 않게)
-   - 전투 코디 그림(bt/): 받아 둔 것을 먼저 보여 주고 뒤에서 서버에 다시 물어(브라우저 캐시 건너뜀) 바뀌었으면 바꿔 둠.
-     주소에 ?b=번호 가 붙어 있어 그림을 바꾸면 새 주소가 됨(바로 새 그림)
-   - 친구 그림(char/): 서버 먼저, 안 되면 받아 둔 것(오프라인)
-   - 새 sw 는 기다리지 않고 바로 켜지고(skipWaiting + clients.claim), 옛 캐시는 우리 이름(ttk-)으로 시작하는 것만 지움
-     (같은 veryfancyboy.github.io 주소를 쓰는 다른 앱의 캐시는 건드리지 않음) */
-const VER = 'sw4c-20261109', C = 'ttk-v2', CI = 'ttk-img-v1';
+/* 도깨비 마을 service worker v5 (안)
+   - v4c 그대로 + a/ (게임 그림, 이름 = 내용 해시): 받아 둔 것이 있으면 그것만 씀(이름이 바뀌지 않는 한 내용이 같음), 없으면 받아서 넣어 둠
+   - a/ 캐시(ttk-a-v1)는 버전이 바뀌어도 지우지 않음(새 판에서 안 쓰는 그림 정리는 page 가 보낸 목록으로) */
+const VER = 'sw5-20261114', C = 'ttk-v2', CI = 'ttk-img-v1', CA = 'ttk-a-v1';
 const ROOT = new URL('./', self.location).pathname;
 self.addEventListener('install', e => self.skipWaiting());
-self.addEventListener('activate', e => e.waitUntil((async () => { const ks = await caches.keys(); await Promise.all(ks.filter(k => k.indexOf('ttk-') === 0 && k !== C && k !== CI).map(k => caches.delete(k))); await self.clients.claim(); })()));
-self.addEventListener('message', e => { if (e.data === 'ver' && e.source) e.source.postMessage({ ver: VER }); });
+self.addEventListener('activate', e => e.waitUntil((async () => { const ks = await caches.keys(); await Promise.all(ks.filter(k => k.indexOf('ttk-') === 0 && k !== C && k !== CI && k !== CA).map(k => caches.delete(k))); await self.clients.claim(); })()));
+self.addEventListener('message', e => {
+  if (e.data === 'ver' && e.source) e.source.postMessage({ ver: VER });
+  /* 정리: { keep134: ['3f9c2e1a77.webp', ...] } 를 받으면 그 목록에 없는 a/ 항목을 지움(새 판이 켜진 뒤 한 번) */
+  if (e.data && e.data.keep134) e.waitUntil(caches.open(CA).then(async c => { const keep = new Set(e.data.keep134); for (const r of await c.keys()) { const n = new URL(r.url).pathname.split('/').pop(); if (!keep.has(n)) await c.delete(r); } }));
+});
 self.addEventListener('fetch', e => {
   const r = e.request; if (r.method !== 'GET') return;
   const u = new URL(r.url); if (u.origin !== location.origin) return;
@@ -20,6 +19,10 @@ self.addEventListener('fetch', e => {
     return;
   }
   if (u.pathname.endsWith('/version.json') || u.pathname.endsWith('/sw.js')) { e.respondWith(fetch(r.url, { cache: 'no-store' })); return; }
+  if (u.pathname.startsWith(ROOT + 'a/')) {
+    e.respondWith(caches.open(CA).then(c => c.match(r, { ignoreSearch: true }).then(hit => hit || fetch(r).then(res => { if (res && res.ok && res.status === 200) c.put(r, res.clone()).catch(() => {}); return res; }))).catch(() => fetch(r)));
+    return;
+  }
   if (u.pathname.startsWith(ROOT + 'bt/')) {
     const p = caches.open(CI).then(c => c.match(r).then(hit => { const net = fetch(r, { cache: 'no-cache' }).then(res => { if (res && res.ok) c.put(r, res.clone()).catch(() => {}); return res; }).catch(() => null); return { hit, net }; }));
     e.respondWith(p.then(o => o.hit || o.net.then(res => res || Response.error())));
