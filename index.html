@@ -10808,11 +10808,17 @@ html.l83en #app#app#app#app#app#app#app #gb86 .gb86bar .gb86n{word-break:normal}
 html.l83ja #app#app#app#app#app#app#app #gb86 .gb86bar .gb86n{word-break:normal;line-break:strict}
 
 
+/* ===== v131q (올리기 담당 3, 2026-11-14 06:4x): 창이 떠 있으면 판 효과 · 떠오르는 글자 · 족제비 표를 창 아래 층으로(--q131z = 가장 낮은 창 층 - 1) ===== */
+#app.q131pop #fxc,#app.q131pop > .boom,#app.q131pop #flash,#app.q131pop #th43b{z-index:var(--q131z)!important}
+/* 글자 상자 재기용(보이지 않음) */
+#app .boom.q131m{position:absolute!important;left:-9999px!important;top:-9999px!important;visibility:hidden!important;animation:none!important;transform:none!important;pointer-events:none!important}
+
+
 #app .rays img.sp.fit85{width:86% !important;height:86% !important;object-fit:contain !important}
 #app .pd54h img.pd85f{object-fit:cover !important;object-position:50% 18% !important}
 
 </style>
-<script>window.BUILD64="v134-202611140622";</script>
+<script>window.BUILD64="v131q-202611141347";</script>
 <script>window.SPLASH84="a/cb6b847063.webp";</script>
 </head>
 <body><div id="sp38"><style>
@@ -43124,6 +43130,89 @@ window.DK130G_ART = { cake: 'a/4fca5ec2c1.webp' };
   try { go = (o0 => function (s) { try { const L = A.scr && A.scr[s]; if (L && !window.PRE134_OFF) window.pre134.want(L); } catch (e) {} return o0.apply(this, arguments); })(go); } catch (e) {}
 })();
 /* ===== v134 end ===== */
+
+
+/* ==== v131q_fx.js ==== */
+/* ===== v131q (올리기 담당 3, 2026-11-14 06:4x): 떠오르는 글자 줄 세우기 · 창이 떠 있으면 판 효과는 창 뒤로 · 족제비 표가 창을 덮지 않게 =====
+   부모 06:2x 지시(13:00 판, 11:00 그림 빼기 판 다음).
+   ① 떠오르는 글자(boom: 깜짝 동전 +n · 콤보 n! · 콤보 보너스 · 주문 +동전 · 껑충 등)가 같은 때 뜨면 위아래로 비켜서 겹치지 않게.
+      - 글자 상자(가장 커질 때 1.35배 · 위로 떠오르는 거리까지)를 재서, 살아 있는 글자 · 얼굴(손님 자리 그림 · 계산대 위 인물 · 직원 칸)과 겹치지 않는 가장 가까운 높이로.
+      - 새 '콤보 n!'이 뜨면 앞 '콤보 m!'은 0.09초 안에 사라짐(같은 말이 쌓이지 않게, 다른 글자는 그대로 비킴).
+      - 화면 위 칸(엽전 · 기력)과 아래 메뉴는 피함. 어디에도 빈자리가 없으면 가장 덜 겹치는 곳.
+   ② 창(#pop · #shut · #susp · #info2 · #story · #coach)이 떠 있으면 판 효과(그림판 #fxc · 떠오르는 글자 .boom · 번쩍 #flash)를 그 창 바로 아래 층으로.
+      창 안 글 · 보상은 그대로 보이고, 효과는 창 뒤(어둡게 깐 곳)에서 마저 돎. 창이 닫히면 원래 층으로.
+   ③ 족제비: 창이 떠 있으면 새로 나오지 않고 4초 뒤 다시 봄. 이미 나와 있으면 '족제비 도둑! · n번 눌러 쫓아내요' 표(#th43b)를 창 아래 층으로.
+   시험: window.v131q.st() · 끄기: 불러오기 전 window.DK131Q_ON = false */
+(function v131q() {
+  if (window.DK131Q_ON === false || window.v131q) return;
+  const app = document.getElementById('app'); if (!app) return;
+  const ON = () => window.DK131Q_ON !== false;
+  const st = { moved: 0, fade: 0, face: 0, none: 0, popSync: 0, thiefWait: 0, z: 0 };
+  const POPSEL = ['#pop', '#shut', '#susp', '#info2', '#story', '#coach'];
+  const vis = e => !!(e && e.getClientRects().length && getComputedStyle(e).display !== 'none' && getComputedStyle(e).visibility !== 'hidden');
+  /* ---------- ② 창이 떠 있으면 효과를 창 아래 층으로 ---------- */
+  function popZ() { let z = 0; for (const s of POPSEL) { const e = document.querySelector(s); if (!vis(e)) continue; const zi = parseInt(getComputedStyle(e).zIndex) || 0; if (zi > 0 && zi < 77) z = z ? Math.min(z, zi) : zi; } return z; } /* 떠 있는 창 가운데 가장 낮은 층 아래로(여러 창이 겹쳐도 모두 덮지 않게) */
+  function syncPop() {
+    const z = ON() ? popZ() : 0;
+    if (z !== st.z) { st.z = z; st.popSync++; if (z) { app.style.setProperty('--q131z', String(Math.max(1, z - 1))); app.classList.add('q131pop'); } else app.classList.remove('q131pop'); }
+    return z;
+  }
+  const mo = new MutationObserver(() => syncPop());
+  function hook() { POPSEL.forEach(s => { const e = document.querySelector(s); if (e && !e.__q131) { e.__q131 = 1; try { mo.observe(e, { attributes: true, attributeFilter: ['style', 'class'] }); } catch (er) {} } }); }
+  hook(); syncPop();
+  try { new MutationObserver(ms => { if (ms.some(m => [...m.addedNodes].some(n => n.nodeType === 1 && !(n.classList && n.classList.contains('boom'))))) { hook(); syncPop(); } }).observe(app, { childList: true }); } catch (e) {}
+  try { const g0 = go; go = function () { const r = g0.apply(this, arguments); try { syncPop(); } catch (e) {} return r; }; } catch (e) {}
+  try { const r0 = runFx; runFx = function () { try { syncPop(); } catch (e) {} return r0.apply(this, arguments); }; } catch (e) {}
+  try { const f0 = flash; flash = function () { try { syncPop(); } catch (e) {} return f0.apply(this, arguments); }; } catch (e) {}
+  /* ---------- ③ 족제비: 창이 떠 있으면 기다림 ---------- */
+  try {
+    const t0 = thiefTick;
+    thiefTick = function (now) {
+      try { if (ON() && !S.thief && S.nextThief && now >= S.nextThief && syncPop()) { S.nextThief = now + 4000; st.thiefWait++; return; } } catch (e) {}
+      return t0.apply(this, arguments);
+    };
+  } catch (e) {}
+  /* ---------- ① 떠오르는 글자 줄 세우기 ---------- */
+  const sc = () => { try { return scale || 1; } catch (e) { return 1; } };
+  const toApp = r => { const a = app.getBoundingClientRect(), k = sc(); return { l: (r.left - a.left) / k, t: (r.top - a.top) / k, r: (r.right - a.left) / k, b: (r.bottom - a.top) / k }; };
+  const FACESEL = '#sc-main.on #orders .order .seat img, #sc-main.on .seat img, #app .screen.on .face img, #app .screen.on img.face';
+  function faces() { const out = []; try { document.querySelectorAll(FACESEL).forEach(e => { if (!vis(e)) return; const r = e.getBoundingClientRect(); if (r.width < 24 || r.height < 24) return; const q = toApp(r); out.push({ l: q.l + 2, t: q.t + 2, r: q.r - 2, b: q.b - 2 }); }); } catch (e) {} return out; }
+  const act = []; /* { el, l, t, r, b, until, combo } */
+  let meas = null;
+  const hit = (A, B) => Math.max(0, Math.min(A.r, B.r) - Math.max(A.l, B.l)) * Math.max(0, Math.min(A.b, B.b) - Math.max(A.t, B.t));
+  try {
+    const b0 = boom;
+    boom = function (x, y, text, color, size) {
+      if (!ON()) return b0.apply(this, arguments);
+      let y2 = y, isCombo = false, w = 0, h = 0;
+      try {
+        syncPop();
+        const now = performance.now(); size = size || 32;
+        for (let i = act.length - 1; i >= 0; i--) if (act[i].until < now || !act[i].el || !act[i].el.isConnected) act.splice(i, 1);
+        isCombo = /^콤보 \d+!$/.test(String(text));
+        if (isCombo) for (let i = act.length - 1; i >= 0; i--) if (act[i].combo) { const el = act[i].el; act.splice(i, 1); st.fade++; try { const o0 = +getComputedStyle(el).opacity || 1; el.animate([{ opacity: o0 }, { opacity: 0 }], { duration: 90, fill: 'forwards' }); setTimeout(() => el.remove(), 95); } catch (e) { el.remove(); } }
+        if (!meas) { meas = document.createElement('div'); meas.className = 'boom q131m'; }
+        meas.textContent = text; meas.style.fontSize = size + 'px'; app.appendChild(meas); w = meas.offsetWidth * 1.35; h = meas.offsetHeight; meas.remove();
+        const H0 = app.offsetHeight || 844, W0 = app.offsetWidth || 390;
+        const band = yy => ({ l: x - w / 2, r: x + w / 2, t: yy - 1.2 * h, b: yy + 0.68 * h });
+        const F = faces();
+        const score = yy => { const B = band(yy); if (B.t < 58 || B.b > H0 - 72) return Infinity; let s = 0; for (const a of act) s += hit(a, B) * 10; for (const f of F) s += hit(f, B) * 10; return s; };
+        if (score(y) > 0) {
+          const step = 1.9 * h; const cands = []; for (let k = 1; k <= 6; k++) { cands.push(y - k * step); cands.push(y + k * step); }
+          let best = null, bs = score(y);
+          for (const c of cands) { const s = score(c); if (s === 0) { best = c; bs = 0; break; } if (s < bs) { best = c; bs = s; } }
+          if (best != null) { y2 = best; st.moved++; if (bs > 0) st.none++; }
+          if (F.some(f => hit(f, band(y)) > 0)) st.face++;
+        }
+        void W0;
+      } catch (e) {}
+      const r = b0.call(this, x, y2, text, color, size);
+      try { const el = app.lastElementChild; if (el && el.classList.contains('boom')) { const B = { l: x - w / 2, r: x + w / 2, t: y2 - 1.2 * h, b: y2 + 0.68 * h }; act.push(Object.assign(B, { el, until: performance.now() + 1060, combo: isCombo })); } } catch (e) {}
+      return r;
+    };
+  } catch (e) {}
+  window.v131q = { on: true, st: () => Object.assign({}, st, { act: act.length }), syncPop, popZ, faces };
+})();
 
 
 dmCheck(); fillOrders(); fogRowOpen(); save(); renderAll();
