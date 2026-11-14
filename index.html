@@ -10819,11 +10819,19 @@ html.l83ja #app#app#app#app#app#app#app #gb86 .gb86bar .gb86n{word-break:normal;
 #app .lg129ov .lgnm b { text-wrap: balance; }
 
 
+/* v131s: 긴 가게 이름 — 가운데쯤에서 나눈 두 토막은 각각 한 줄로(토막 사이에서만 줄바꿈) */
+#app .q31sn { white-space: nowrap; }
+/* v131s: 떡산 확률 창 — 확률 목록만 창 안에서 넘기고 리본 · 표 · 닫기는 늘 보임(넘칠 때만 모습이 바뀜) */
+#app > .dk13w > .dk13bx { display: flex; flex-direction: column; overflow: hidden; }
+#app > .dk13w > .dk13bx > * { flex: none; }
+#app > .dk13w > .dk13bx > .dk13ls { flex: 1 1 auto; min-height: 72px; overflow-y: auto; overscroll-behavior: contain; }
+
+
 #app .rays img.sp.fit85{width:86% !important;height:86% !important;object-fit:contain !important}
 #app .pd54h img.pd85f{object-fit:cover !important;object-position:50% 18% !important}
 
 </style>
-<script>window.BUILD64="v131u-202611141626";</script>
+<script>window.BUILD64="v131s-202611141718";</script>
 <script>window.SPLASH84="a/cb6b847063.webp";</script>
 </head>
 <body><div id="sp38"><style>
@@ -43274,6 +43282,91 @@ window.DK130G_ART = { cake: 'a/4fca5ec2c1.webp' };
     window.w90cFitAll = w90cFitAll;
   } catch (e) {}
   window.v131u = { on: true, st: () => Object.assign({}, st), fadeAll };
+})();
+
+
+/* ==== v131s_name.js ==== */
+/* ===== v131s (올리기 담당 3, 2026-11-14 16:5x): 띄어쓰기 없는 긴 가게 이름을 두 줄로 고르게 · 떡산 확률 창 닫기 단추 늘 보이게 =====
+   부모 16:2x 지시(작가님 18:00).
+   ① 가게 이름(장터 목록 · 가게 카드 · 네컷 · 자랑 · 현수막 등, data-l83="no" 이름 칸)이 띄어쓰기 없이 두 줄이 되면
+      글자 수로 가운데쯤에 줄바꿈 자리(<wbr>)만 넣음. 이름 글자는 그대로, 글자 크기 그대로.
+      - 문장 부호(! ? ~ . , … 등)는 앞 글자와 붙임(줄 머리에 안 옴). 여는 괄호는 줄 끝에 안 둠.
+      - 일본어 작은 가나(ぁ っ ゃ ァ ッ 등) · 장음(ー) · 문장 부호는 줄 머리에 안 옴.
+      - 영어 긴 낱말은 하이픈 없이 가운데에서.
+      - 띄어쓰기가 있는 이름은 손대지 않음(지금처럼 낱말 사이에서).
+      - 한 줄에 들어가면 손대지 않음.
+   ② 떡산 확률 창(.dk13w): 상자 전체가 넘어가서 '닫기'가 화면 아래(412x800 에서도 928px)에 숨던 것
+      → v131u 규칙: 확률 목록(.dk13ls)만 창 안에서 넘기고 리본 · 표 · 닫기는 늘 보임, 넘길 게 남으면 목록 아래 흐림.
+   시험: window.v131s.st() · 끄기: 불러오기 전 window.DK131S_ON = false */
+(function v131s() {
+  if (window.DK131S_ON === false || window.v131s) return;
+  const app = document.getElementById('app'); if (!app) return;
+  const st = { split: 0, skip1: 0, runs: 0, fade: 0 };
+  const SEL = '#app [data-l83="no"], #app .lgnm > b, #app .lgcdn > b, #app .lgs-foot > b, #app .lg4f > b, #app .lgepn > b, #app .bg92name, #app .bn92who, #app .ld82nm, #app .nx39n';
+  const NO_START = /[!?！？~～.,。、，…‥:;：；)\]}」』）〉》】〕｝・ー〜ぁぃぅぇぉっゃゅょゎゕゖァィゥェォッャュョヮヵヶ%％’”'"]/;
+  const NO_END = /[(\[{「『（〈《【〔｛‘“]/;
+  /* 낱말 경계(Intl.Segmenter): 가운데에서 1.5글자 안에 있으면 그곳을 먼저(예: ゆめみる / だんごやさん). 없으면 글자 수 가운데 */
+  let SEG = null; try { SEG = new Intl.Segmenter(undefined, { granularity: 'word' }); } catch (e) {}
+  function wordB(ch) { const B = new Set(); if (!SEG) return B; try { let i = 0; for (const p of SEG.segment(ch.join(''))) { i += Array.from(p.segment).length; B.add(i); } } catch (e) {} return B; }
+  function splitAt(ch) {
+    const n = ch.length; let best = -1, bs = 1e9; const B = wordB(ch);
+    for (let k = 1; k < n; k++) {
+      if (NO_START.test(ch[k]) || NO_END.test(ch[k - 1])) continue;
+      const d = Math.abs(k - n / 2); const c = d - (B.has(k) && d <= 1.5 ? 1.01 : 0);
+      if (c < bs - 1e-9) { bs = c; best = k; }
+    }
+    return best;
+  }
+  function lines(tn) { try { const r = document.createRange(); r.selectNodeContents(tn); const tops = new Set(); for (const q of r.getClientRects()) if (q.width > 0.5) tops.add(Math.round(q.top)); return tops.size; } catch (e) { return 1; } }
+  /* 줄이 바뀌는 글자 자리(코드 포인트 번호) */
+  function breaksAt(tn) { const out = []; try { const s = tn.nodeValue; let i = 0, idx = 0, last = null; for (const c of Array.from(s)) { const r = document.createRange(); r.setStart(tn, i); r.setEnd(tn, i + c.length); const q = r.getClientRects()[0]; if (q && q.width > 0) { const top = Math.round(q.top); if (last !== null && Math.abs(top - last) > 4) out.push(idx); last = top; } i += c.length; idx++; } } catch (e) {} return out; }
+  const mk = (txt, cls) => { const s = document.createElement('span'); s.className = cls || 'q31sn'; s.textContent = txt; return s; };
+  /* 낱말 하나를 가운데에서 나눈 두 토막(각각 한 줄) + 줄바꿈 자리 */
+  function halves(word) { const ch = Array.from(word); const k = splitAt(ch); if (k <= 0) return [mk(word)]; return [mk(ch.slice(0, k).join('')), document.createElement('wbr'), mk(ch.slice(k).join(''))]; }
+  function one(el) {
+    if (!el || el.__q31s === el.textContent) return;
+    const cn = el.childNodes; if (cn.length !== 1 || cn[0].nodeType !== 3) return; /* 글자 하나만 든 칸만 */
+    const tn = cn[0], t = tn.nodeValue || '';
+    const ch = Array.from(t); if (!t.trim() || ch.length < 4 || ch.length > 40) { el.__q31s = el.textContent; return; }
+    if (!el.getClientRects().length) return; /* 안 보이면 나중에 */
+    const wk = t + '|' + Math.round(availW(el)); if (el.__q31w === wk) return; /* 한 줄이던 칸: 글자 · 너비가 같으면 다시 안 잼 */
+    const br = breaksAt(tn); if (!br.length) { st.skip1++; el.__q31w = wk; return; } /* 한 줄이면 그대로(글꼴이 늦게 와서 두 줄이 되면 다시 봄) */
+    const hasSp = /\s/.test(t);
+    if (hasSp && br.every(b => /\s/.test(ch[b - 1] || ''))) { el.__q31s = el.textContent; return; } /* 띄어쓰기 자리에서만 나뉘면 그대로 */
+    const w = availW(el);
+    el.textContent = '';
+    if (!hasSp) { halves(t).forEach(n => el.appendChild(n)); }
+    else { /* 띄어쓰기 있는 글: 낱말은 통째로(띄어쓰기에서만 나눔), 칸보다 긴 낱말만 가운데에서 */
+      t.split(/(\s+)/).forEach(p => { if (!p) return; if (/^\s+$/.test(p)) { el.appendChild(document.createTextNode(p)); return; } const s = mk(p); el.appendChild(s); if (s.getBoundingClientRect().width > w + 0.5) { const hs = halves(p); s.replaceWith(...hs); } });
+    }
+    fit(el); el.__q31s = el.textContent; st.split++;
+  }
+  /* 칸 안쪽 너비(화면 px): 앱이 transform 으로 줄어 있으니 글자 토막 너비(getBoundingClientRect)와 같은 단위로 */
+  function availW(el) { const k = el.offsetWidth ? el.getBoundingClientRect().width / el.offsetWidth : 1; return (el.clientWidth || el.offsetWidth) * k; }
+  function fit(el) { try { const w = availW(el); el.querySelectorAll(':scope > .q31sn').forEach(s => { if (s.getBoundingClientRect().width > w + 0.5) { s.classList.remove('q31sn'); s.classList.add('q31sw'); st.wide = (st.wide || 0) + 1; } }); } catch (e) {} }
+  function fade(el) { const more = el.scrollHeight > el.clientHeight + 2 && el.scrollTop + el.clientHeight < el.scrollHeight - 2; if (el.classList.contains('q31ufade') !== more) { el.classList.toggle('q31ufade', more); st.fade++; } }
+  function dk13() { document.querySelectorAll('#app > .dk13w .dk13ls').forEach(el => { if (!el.__q31sf) { el.__q31sf = 1; el.addEventListener('scroll', () => fade(el), { passive: true }); } fade(el); }); }
+  function scan(root) { st.runs++; try { const r = root && root.querySelectorAll ? root : app; if (r.matches && r.matches(SEL)) one(r); r.querySelectorAll(SEL).forEach(one); } catch (e) {} try { dk13(); } catch (e) {} }
+  let q = [], tm = 0;
+  function flush() { tm = 0; const L = q; q = []; if (L.indexOf(app) >= 0) { scan(app); return; } for (const n of L) if (n.isConnected) scan(n); }
+  const mo = new MutationObserver(ms => {
+    if (!ms.length) return;
+    for (const m of ms) for (const n of m.addedNodes) {
+      if (n.nodeType === 3) { const p = n.parentElement; if (p && p.matches && p.matches(SEL)) q.push(p); continue; } /* 이름 글자만 나중에 채우는 칸(네컷 등) */
+      if (n.nodeType !== 1) continue;
+      const c = n.classList; if (c && (c.contains('boom') || c.contains('q131m'))) continue;
+      if ((n.matches && n.matches(SEL)) || (n.querySelector && n.querySelector(SEL + ', .dk13ls'))) q.push(n);
+    }
+    if (q.length && !tm) tm = setTimeout(flush, 30);
+  });
+  try { mo.observe(app, { childList: true, subtree: true }); } catch (e) {}
+  let rz = 0; const again = () => { clearTimeout(rz); rz = setTimeout(() => { try { document.querySelectorAll('#app .q31sn, #app .q31sw').forEach(s => { s.className = 'q31sn'; }); const els = new Set(); document.querySelectorAll('#app .q31sn').forEach(s => els.add(s.parentElement)); els.forEach(fit); } catch (e) {} q.push(app); if (!tm) tm = setTimeout(flush, 30); }, 200); };
+  addEventListener('resize', again);
+  try { if (document.fonts) { document.fonts.addEventListener('loadingdone', again); document.fonts.ready.then(again); } } catch (e) {}
+  setTimeout(() => scan(app), 1500);
+  /* 창이 열리거나 보이는 화면이 바뀔 때(v90c 가운데 맞춤이 돎) 한 번 더: 숨어 있다 보이는 칸(가게 카드 네컷 등) */
+  try { const f0 = w90cFitAll; w90cFitAll = function () { const r = f0.apply(this, arguments); if (!tm) tm = setTimeout(() => { tm = 0; scan(app); }, 120); return r; }; window.w90cFitAll = w90cFitAll; } catch (e) {}
+  window.v131s = { on: true, st: () => Object.assign({}, st), scan: () => scan(app), splitAt: s => { const ch = Array.from(s); const k = splitAt(ch); return k > 0 ? ch.slice(0, k).join('') + ' / ' + ch.slice(k).join('') : s; } };
 })();
 
 
