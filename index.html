@@ -10827,11 +10827,24 @@ html.l83ja #app#app#app#app#app#app#app #gb86 .gb86bar .gb86n{word-break:normal;
 #app > .dk13w > .dk13bx > .dk13ls { flex: 1 1 auto; min-height: 72px; overflow-y: auto; overscroll-behavior: contain; }
 
 
+/* ===== v131e (올리기 담당 4, 2026-11-14 19:0x): 글자 130% 정리 — 글자 크기는 그대로, 칸을 늘리거나 줄을 옮김 ===== */
+/* 이름 칸: 세 줄 이상이면 그 칸만 줄 수 제한을 늘림(값은 v131e_name.js 가 칸마다 넣음) */
+#app .q31e3 { max-height: none !important; }
+/* 사랑방 꿀잠 바구니 줄: 설명이 좁은 칸에서 넘치면(130% 영 · 일) 설명을 아래 줄 전체 폭으로 */
+#app .hb92bar.q31e-w { flex-wrap: wrap !important; height: auto !important; row-gap: 2px; padding-bottom: 6px; }
+#app .hb92bar.q31e-w > .hb92dcgo { margin-left: auto !important; }
+#app .hb92bar.q31e-w > .hb92s { order: 9; flex: 1 0 100% !important; max-width: none !important; padding-left: var(--q31e-pl, 51px); box-sizing: border-box; }
+/* 사랑방 손님 칸: 글이 칸 높이를 넘으면(130%) 칸을 글만큼 늘림 */
+#app #gb86 .gb86grid.q31e-hg > .gb86c { height: var(--q31e-h, 84px) !important; }
+/* 일본어: 가타카나 낱말 · 묶은 낱말은 가운데에서 안 끊김(ダ/メージ) */
+#app .q31ek { white-space: nowrap; }
+
+
 #app .rays img.sp.fit85{width:86% !important;height:86% !important;object-fit:contain !important}
 #app .pd54h img.pd85f{object-fit:cover !important;object-position:50% 18% !important}
 
 </style>
-<script>window.BUILD64="v131h-202611141738";</script>
+<script>window.BUILD64="v131e-202611141856";</script>
 <script>window.SPLASH84="a/cb6b847063.webp";</script>
 </head>
 <body><div id="sp38"><style>
@@ -43478,6 +43491,280 @@ window.DK130G_ART = { cake: 'a/4fca5ec2c1.webp' };
   }
   window.__q31hSplit = split;
   window.v131h = { on: true, st: () => Object.assign({}, st), dictN: DICT.size, split: s => { const ch = Array.from(s); const k = split(ch, null); return k > 0 ? ch.slice(0, k).join('') + ' / ' + ch.slice(k).join('') : s + ' (가운데)'; } };
+})();
+
+
+/* ==== v131e_fix.js ==== */
+/* ===== v131e 고침 (올리기 담당 4, 2026-11-14 19:0x): 글자 130% 에서 넘치는 곳 — 글자 크기는 그대로, 칸을 늘리거나 줄을 옮김 =====
+   ① 사랑방 꿀잠 바구니 줄: 설명('Fills while energy is full' · 'エネルギーが満タンの間たまります')이 좁은 칸에서 3줄 넘게 꺾이면 설명을 아래 줄로(.q31e-w)
+   ② 사랑방 손님 칸: 글이 칸 높이를 넘으면 칸을 글만큼 늘림(.q31e-h)
+   (대결 결과 보상 이름 'Frien/dship' 은 칸을 넓히면 두 줄이 되어 아래 상자와 겹쳐서 이번에 안 고침)
+   ③ 일본어 창 설명(.ovbox > .ovs): 가타카나 낱말은 가운데에서 안 끊기게(ダ/メージ → ダメージ)
+   한 번 넣은 표시는 그 칸이 있는 동안 그대로(다시 꺾이지 않게). 끄기: 불러오기 전 window.DK131EF_ON = false · 시험: window.v131ef.st() */
+(function v131ef() {
+  if (window.DK131EF_ON === false || window.v131ef) return;
+  const app = document.getElementById('app'); if (!app) return;
+  const st = { runs: 0, hb: 0, gc: 0, ja: 0 };
+  const vis = e => !!(e && e.isConnected && e.getClientRects().length);
+  const lines = el => { const cs = getComputedStyle(el); let lh = parseFloat(cs.lineHeight); if (!(lh > 0)) lh = (parseFloat(cs.fontSize) || 16) * 1.2; return Math.round(el.scrollHeight / lh); };
+  const L = /[A-Za-z\u00C0-\u024F\u3041-\u3096\u30A1-\u30FA\u30FC\u4E00-\u9FAF\uAC00-\uD7A3]/;
+  /* 글 조각 안에서 글자와 글자 사이(띄어쓰기 아님)에서 줄이 꺾였는지 */
+  function midBreak(el) {
+    try {
+      const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let tn;
+      while ((tn = tw.nextNode())) { const s = tn.nodeValue || ''; let last = null, prev = ''; let i = 0; for (const c of Array.from(s)) { const r = document.createRange(); r.setStart(tn, i); r.setEnd(tn, i + c.length); i += c.length; const q = r.getClientRects()[0]; if (!q || q.width < 0.5) { prev = c; continue; } if (last !== null && Math.abs(q.top - last) > 4 && L.test(prev) && L.test(c)) return true; last = q.top; prev = c; } }
+    } catch (e) {}
+    return false;
+  }
+  function hb() {
+    document.querySelectorAll('#app .hb92bar').forEach(bar => {
+      if (bar.classList.contains('q31e-w') || !vis(bar)) return;
+      const s = bar.querySelector(':scope > .hb92s'); if (!s || !vis(s)) return;
+      if (lines(s) < 3 && s.scrollHeight <= s.clientHeight + 1) return;
+      const im = bar.querySelector(':scope > .hb92b'); const gap = parseFloat(getComputedStyle(bar).columnGap) || 8;
+      bar.style.setProperty('--q31e-pl', ((im ? im.offsetWidth : 43) + gap) + 'px');
+      bar.classList.add('q31e-w'); st.hb++;
+    });
+  }
+  /* 칸 높이는 그 판의 모든 칸을 같이(가장 긴 칸에 맞춤) → 줄이 고르게 */
+  function gc() {
+    document.querySelectorAll('#app .gb86grid').forEach(g => {
+      if (!vis(g)) return; const cs = [...g.querySelectorAll(':scope > .gb86c')].filter(vis); if (!cs.length) return;
+      const cur = g.classList.contains('q31e-hg') ? parseFloat(g.style.getPropertyValue('--q31e-h')) || 0 : 0;
+      let need = 0; cs.forEach(c => { if (c.scrollHeight > c.clientHeight + 1) need = Math.max(need, c.scrollHeight + 2); });
+      if (!need || need <= cur) return;
+      g.style.setProperty('--q31e-h', Math.ceil(need) + 'px'); g.classList.add('q31e-hg'); st.gc++;
+    });
+  }
+  const isJa = () => { try { return document.documentElement.classList.contains('l83ja') || (window.L83 && window.L83.lang === 'ja'); } catch (e) { return false; } };
+  const KATA = /[\u30A1-\u30FA\u30FC\u30FB]{2,}/g;
+  function ja() {
+    if (!isJa()) return;
+    document.querySelectorAll('#app .ovbox > .ovs').forEach(el => {
+      if (!vis(el) || el.__q31ek === el.textContent) return;
+      let n = 0;
+      [...el.childNodes].forEach(tn => {
+        if (tn.nodeType !== 3) return; const s = tn.nodeValue || ''; KATA.lastIndex = 0; if (!KATA.test(s)) return; KATA.lastIndex = 0;
+        const frag = document.createDocumentFragment(); let at = 0, m;
+        while ((m = KATA.exec(s))) { if (m.index > at) frag.appendChild(document.createTextNode(s.slice(at, m.index))); const sp = document.createElement('span'); sp.className = 'q31ek'; sp.textContent = m[0]; frag.appendChild(sp); at = m.index + m[0].length; n++; }
+        if (at < s.length) frag.appendChild(document.createTextNode(s.slice(at)));
+        tn.replaceWith(frag);
+      });
+      el.__q31ek = el.textContent; if (n) st.ja++;
+    });
+  }
+  function run() { st.runs++; try { hb(); } catch (e) {} try { gc(); } catch (e) {} try { ja(); } catch (e) {} }
+  let tm = 0; const soon = (ms) => { clearTimeout(tm); tm = setTimeout(run, ms || 260); };
+  const SELF = '.hb92bar, .hb92s, .gb86c, .gb86grid, .ovs, .ovbox';
+  try { new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) { if (n.nodeType !== 1) continue; const c = n.classList; if (c && (c.contains('boom') || c.contains('q131m') || c.contains('q31ek'))) continue; if ((n.matches && n.matches(SELF)) || (n.querySelector && n.querySelector(SELF))) { soon(); return; } } }).observe(app, { childList: true, subtree: true }); } catch (e) {}
+  addEventListener('resize', () => soon(400));
+  try { if (document.fonts) document.fonts.addEventListener('loadingdone', () => soon(400)); } catch (e) {}
+  setTimeout(run, 1800);
+  window.v131ef = { on: true, st: () => Object.assign({}, st), run };
+})();
+
+
+/* ==== v131e_name.js ==== */
+/* ===== v131e (올리기 담당 4, 2026-11-14 18:0x): 긴 가게 이름 세 줄까지 낱말 경계 · 이름 글자가 숨지 않게 =====
+   부모 17:4x 지시(작가님 20:30). v131h 의 나누기 함수(window.__q31hSplit)를 이 층의 것으로 바꿈(v131s 가 부를 때마다 이 함수를 씀).
+   ① 두 줄 낱말 경계(v131h 와 같음: 두 줄 모두 3글자 이상 · 칸에 들어감 · 덜 치우친 것)
+   ② 두 줄이 칸에 안 들어가면(글자 130% 등) 세 줄 낱말 경계(줄마다 2글자 이상 · 칸에 들어감 · 가장 긴 줄이 가장 짧은 것)
+   ③ 세 줄 낱말 경계도 안 되면 그때 가운데 나누기(글자 기준, 줄 수는 칸에 다 들어가는 가장 적은 수, 줄 머리 금지 지킴)
+   세 줄 이상이면 그 이름 칸만 줄 수 제한(line-clamp)을 그 줄 수로 늘림 → 이름 글자가 숨지 않음. 글자 크기는 그대로.
+   끄기: 불러오기 전 window.DK131E_ON = false (→ v131h 그대로) · 시험: window.v131e.st() */
+(function v131e() {
+  if (window.DK131E_ON === false || window.v131e) return;
+  const st = { calls: 0, two: 0, three: 0, mid: 0, none: 0, clamp: 0, hid: 0 };
+  const DICT_TXT = '장학금 장학 전액 가즈아 화이팅 파이팅 대박 부자 최고 짱 성공 행운 행복 사랑 기쁨 희망 소원 꿈 별빛 달빛 햇살 햇빛 무지개 구름 바람 하늘 바다 노을 새벽 아침 저녁 한밤 오늘 내일 어제 매일 항상 대표 원조 전통 명가 명품 진짜 정말 완전 '
+    + '떡볶이 떡집 떡방 떡가게 떡방앗간 떡꼬치 떡국 떡 찻집 꽃집 빵집 국밥 맛집 분식 분식집 방앗간 가게 상점 식당 카페 다방 주막 포차 공방 상회 마트 시장 장터 골목 마을 동네 거리 정원 텃밭 농장 '
+    + '할머니 할아버지 엄마 아빠 언니 오빠 누나 동생 이모 삼촌 고모 아들 딸 아가 아기 친구 우리 우리집 너희 사장 사장님 주인 손님 이웃 '
+    + '손맛 맛 달콤 말랑 쫀득 폭신 바삭 따끈 따뜻 고소 새콤 귀여운 예쁜 꼬마 도깨비 뚝이 해태 토끼 고양이 강아지 호랑이 여우 다람쥐 펭귄 오리 판다 '
+    + '학교 공부 시험 졸업 월급 퇴근 출근 회사 꽃 나무 열매 씨앗 봄 여름 가을 겨울 설날 추석 크리스마스 생일 축하 감사 고마워 안녕 반가워 어서와 환영 놀러와 구경 자랑 비밀 보물 마법 요정 공주 왕자 여왕 대장 반장 천사 영웅 일등 '
+    + '백설기 쑥떡 꿀떡 송편 꽃송편 인절미 가래떡 무지개떡 수수팥떡 찹쌀떡 경단 절편 시루떡 바람떡 개떡 약과 식혜 수정과 꽃차 유자차 화전 곶감 호떡 붕어빵 만두 김밥 순대 어묵 국수 팥죽 호박죽 단팥 팥빙수 빙수 약식 강정 한과 다식 조청 꿀 '
+    + '김치 비빔밥 불고기 치킨 피자 커피 라떼 케이크 쿠키 마카롱 도넛 와플 젤리 사탕 초코 딸기 바나나 우유 녹차 홍차 밀크티 버블티 아이스크림 토스트 샌드위치 햄버거 '
+    + '동글 몽글 포근 소복 반짝 두근 콩닥 쑥쑥 무럭무럭 냠냠 알콩달콩 오순도순 옹기종기 하하 호호 방긋 싱글벙글 뭉게 보들 말캉';
+  const DICT = new Set(DICT_TXT.split(/\s+/).filter(Boolean)); let MAXL = 0; DICT.forEach(w => { MAXL = Math.max(MAXL, Array.from(w).length); });
+  const PART = ['이랑', '이야', '이네', '이지', '이다', '에서', '까지', '부터', '처럼', '이', '가', '은', '는', '을', '를', '의', '에', '도', '야', '아', '네', '요', '지', '랑', '와', '과', '로', '만'].sort((a, b) => b.length - a.length);
+  const NO_START = /[!?！？~～.,。、，…‥:;：；)\]}」』）〉》】〕｝・ー〜ぁぃぅぇぉっゃゅょゎゕゖァィゥェォッャュョヮヵヶ%％’”'"]/;
+  const NO_END = /[(\[{「『（〈《【〔｛‘“]/;
+  const PUN = /[!?！？~～.,。、，…‥:;：；・%％)\]}」』）]/;
+  const kind = c => /[가-힣]/.test(c) ? 'H' : /[ぁ-ゖー]/.test(c) ? 'K' : /[ァ-ヺー]/.test(c) ? 'T' : /[一-龯々]/.test(c) ? 'C' : /[A-Za-z]/.test(c) ? 'L' : /[0-9０-９]/.test(c) ? 'D' : 'P';
+  const dictAt = (ch, i) => { for (let L = Math.min(MAXL, ch.length - i); L >= 1; L--) { const w = ch.slice(i, i + L).join(''); if (DICT.has(w)) return L; } return 0; };
+  function koBounds(ch) {
+    const B = new Set(); const n = ch.length; let i = 0, unk = false;
+    while (i < n) {
+      if (kind(ch[i]) !== 'H') { if (PUN.test(ch[i])) { i++; continue; } if (i > 0) B.add(i); while (i < n && kind(ch[i]) !== 'H' && !PUN.test(ch[i])) i++; B.add(i); unk = false; continue; }
+      const L = dictAt(ch, i);
+      if (!L) { if (!unk && i > 0) B.add(i); unk = true; i++; continue; }
+      if (unk) B.add(i); unk = false; i += L;
+      if (i < n && !dictAt(ch, i)) { for (const p of PART) { const pl = Array.from(p).length; if (ch.slice(i, i + pl).join('') !== p) continue; const j = i + pl; if (j >= n || dictAt(ch, j) || PUN.test(ch[j]) || kind(ch[j]) !== 'H') { i = j; break; } } }
+      while (i < n && PUN.test(ch[i])) i++;
+      B.add(i);
+    }
+    B.delete(0); B.delete(n); return B;
+  }
+  let SEGJA = null; try { SEGJA = new Intl.Segmenter('ja', { granularity: 'word' }); } catch (e) {}
+  const JDICT = new Set(('おばあちゃん おじいちゃん ばあちゃん じいちゃん おかあさん おとうさん ちゃん やさん やさん だんご おだんご おもち もち もちもち おみせ みせ おかし わがし せんべい まんじゅう たいやき どらやき おにぎり ごはん あんこ きなこ みたらし さくら ゆめ みる ちょっと まって うさぎ ねこ いぬ たぬき きつね くま ぱんだ とっけび おいしい たのしい しあわせ だいすき やさしい おうち ふわふわ きらきら にこにこ ほかほか もりもり お店 おもち屋 だんご屋 屋さん').split(/\s+/).filter(Boolean)); let JMAX = 0; JDICT.forEach(w => { JMAX = Math.max(JMAX, Array.from(w).length); });
+  function jaBounds(ch) {
+    const B = new Set(); if (!SEGJA) return B;
+    try {
+      const segs = [...SEGJA.segment(ch.join(''))].map(p => Array.from(p.segment)); let i = 0, prevSingle = false; const st0 = [];
+      segs.forEach((s, x) => { st0.push(i); const single = s.length === 1 && !PUN.test(s[0]); if (x > 0 && !(single && prevSingle) && !(s.length && PUN.test(s[0]))) B.add(i); i += s.length; prevSingle = single; });
+      /* 높임 머리 'お · ご'(おもち · ごはん)는 뒤 낱말과 붙여 두고, 그 앞에서 나눔 */
+      segs.forEach((s, x) => { if (s.length === 1 && (s[0] === 'お' || s[0] === 'ご') && x + 1 < segs.length && /[ぁ-ゖァ-ヺ一-龯]/.test(segs[x + 1][0] || '')) { B.delete(st0[x + 1]); if (x > 0) B.add(st0[x]); } });
+    } catch (e) {}
+    /* 가게 이름에 자주 나오는 히라가나 낱말(사전 나누기가 틀리는 것: だん/ご 등)은 통째로 */
+    try { const n = ch.length; let i = 0; while (i < n) { let L = 0; for (let l = Math.min(JMAX, n - i); l >= 2; l--) { if (JDICT.has(ch.slice(i, i + l).join(''))) { L = l; break; } } if (!L) { i++; continue; } for (let k = i + 1; k < i + L; k++) B.delete(k); if (i > 0) B.add(i); if (i + L < n) B.add(i + L); i += L; } } catch (e) {}
+    B.delete(0); B.delete(ch.length); return B;
+  }
+  function caseBounds(ch) { const B = new Set(); for (let k = 1; k < ch.length; k++) { const a = ch[k - 1], b = ch[k]; if (/[a-z]/.test(a) && /[A-Z]/.test(b)) B.add(k); else { const ka = kind(a), kb = kind(b); if (ka !== kb && ka !== 'P' && kb !== 'P' && !((ka === 'K' || ka === 'T') && (kb === 'K' || kb === 'T'))) B.add(k); } } return B; }
+  function measurer(el, full) {
+    if (!el || !el.isConnected) return null;
+    try {
+      const p = el.parentElement, pd = p ? getComputedStyle(p).display : '';
+      const box = (p && /flex|grid/.test(pd)) ? p : el;
+      /* v131s 는 칸을 비운 뒤 나눠달라고 부름 → 글자 양에 따라 너비가 바뀌는 칸은 빈 채로 재면 좁게 잡힘. 재는 동안만 이름 글을 잠깐 넣음 */
+      let probe = null; if (full) { probe = document.createTextNode(full); el.appendChild(probe); }
+      const r = box.getBoundingClientRect(); const ow = box.offsetWidth; const csB = getComputedStyle(box); const padB = (parseFloat(csB.paddingLeft) || 0) + (parseFloat(csB.paddingRight) || 0) + (parseFloat(csB.borderLeftWidth) || 0) + (parseFloat(csB.borderRightWidth) || 0);
+      if (probe) probe.remove();
+      if (!r.width || !ow) return null;
+      const k = r.width / ow;
+      const w = r.width - padB * k;
+      const tmp = document.createElement('span'); tmp.style.cssText = 'white-space:nowrap;position:absolute;visibility:hidden;left:0;top:0'; el.appendChild(tmp);
+      const memo = new Map();
+      return { w, wc: k ? w / k : w, f: s => { if (memo.has(s)) return memo.get(s); tmp.textContent = s; const x = tmp.getBoundingClientRect().width; memo.set(s, x); return x; }, done: () => { try { tmp.remove(); } catch (e) {} } };
+    } catch (e) { return null; }
+  }
+  const okAt = (ch, k) => k > 0 && k < ch.length && !NO_START.test(ch[k]) && !NO_END.test(ch[k - 1]);
+  const J = (ch, a, b) => ch.slice(a, b).join('');
+  /* ① 두 줄 낱말 경계(v131h 와 같은 규칙) */
+  function pick2(ch, B, M) {
+    const n = ch.length; let best = -1, bs = 1e9;
+    B.forEach(k => {
+      if (k < 3 || n - k < 3) return; if (!okAt(ch, k)) return;
+      if (M && (M.f(J(ch, 0, k)) > M.w + 0.5 || M.f(J(ch, k)) > M.w + 0.5)) return;
+      const d = Math.abs(k - n / 2); if (d < bs - 1e-9 || (Math.abs(d - bs) < 1e-9 && k > best)) { bs = d; best = k; }
+    });
+    return best;
+  }
+  /* 여러 줄: 줄마다 칸에 들어가는지 · 붙은 두 줄이 한 줄로 합쳐질 수 있는지(합쳐지면 보이는 줄 수가 달라짐) */
+  const fitsAll = (ch, cuts, M) => { const P = [0, ...cuts, ch.length]; for (let i = 0; i + 1 < P.length; i++) if (M.f(J(ch, P[i], P[i + 1])) > M.w + 0.5) return false; return true; };
+  const merges = (ch, cuts, M) => { const P = [0, ...cuts, ch.length]; for (let i = 0; i + 2 < P.length; i++) if (M.f(J(ch, P[i], P[i + 2])) <= M.w + 0.5) return true; return false; };
+  const maxW = (ch, cuts, M) => { const P = [0, ...cuts, ch.length]; let m = 0; for (let i = 0; i + 1 < P.length; i++) m = Math.max(m, M.f(J(ch, P[i], P[i + 1]))); return m; };
+  /* ② 세 줄 낱말 경계 */
+  function pick3(ch, B, M) {
+    const n = ch.length; const ks = [...B].filter(k => k >= 2 && n - k >= 2 && okAt(ch, k)).sort((a, b) => a - b);
+    let best = null, bc = 1e18;
+    for (let i = 0; i < ks.length; i++) for (let j = i + 1; j < ks.length; j++) {
+      const a = ks[i], b = ks[j]; if (b - a < 2) continue; const cuts = [a, b];
+      if (!fitsAll(ch, cuts, M)) continue;
+      const c = (merges(ch, cuts, M) ? 1e6 : 0) + maxW(ch, cuts, M) * 10 + Math.abs(a - n / 3) + Math.abs(b - 2 * n / 3);
+      if (c < bc) { bc = c; best = cuts; }
+    }
+    return best;
+  }
+  /* ③ 가운데 나누기(글자 기준): 칸에 다 들어가는 가장 적은 줄 수, 가장 긴 줄이 가장 짧게(같으면 낱말 경계 · 고르게) */
+  function midN(ch, B, M) {
+    const n = ch.length; const pos = [0]; for (let k = 1; k < n; k++) if (okAt(ch, k)) pos.push(k); pos.push(n);
+    const P = pos.length;
+    for (let L = 2; L <= 8 && L <= n; L++) {
+      /* dp[m][j] = 앞에서 pos[j] 까지 m 줄로 나눌 때 (가장 긴 줄, 벌점) 가장 좋은 값 */
+      const dp = Array.from({ length: L + 1 }, () => new Array(P).fill(null)); dp[0][0] = { mw: 0, pen: 0, prev: -1 };
+      for (let m = 1; m <= L; m++) for (let j = 1; j < P; j++) {
+        if (m < L && j === P - 1) continue;
+        let best = null;
+        for (let i = 0; i < j; i++) {
+          const d = dp[m - 1][i]; if (!d) continue; if ((i === 0) !== (m === 1)) continue;
+          const w = M.f(J(ch, pos[i], pos[j])); if (w > M.w + 0.5) continue;
+          const mw = Math.max(d.mw, w); const pen = d.pen + (j < P - 1 && !B.has(pos[j]) ? 1 : 0) + Math.abs(pos[j] - (n * m) / L) * 0.01;
+          if (!best || mw < best.mw - 0.5 || (Math.abs(mw - best.mw) <= 0.5 && pen < best.pen)) best = { mw, pen, prev: i };
+        }
+        dp[m][j] = best;
+      }
+      const end = dp[L][P - 1]; if (!end) continue;
+      const cuts = []; let j = P - 1, m = L; while (m > 1) { const i = dp[m][j].prev; cuts.unshift(pos[i]); j = i; m--; }
+      return cuts;
+    }
+    return null;
+  }
+  function mark(el, lines) {
+    if (!el || !el.style) return;
+    if (el.classList.contains('q31e3')) { el.classList.remove('q31e3'); el.style.removeProperty('-webkit-line-clamp'); el.style.removeProperty('line-clamp'); el.style.removeProperty('max-height'); }
+    let cur = NaN; try { cur = parseInt(getComputedStyle(el).webkitLineClamp, 10); } catch (e) {}
+    if (!isNaN(cur) && cur < lines) {
+      el.classList.add('q31e3'); el.style.setProperty('-webkit-line-clamp', String(lines), 'important'); el.style.setProperty('line-clamp', String(lines), 'important'); el.style.setProperty('max-height', 'none', 'important'); st.clamp++;
+    }
+    /* 다 붙인 뒤(이름 뒤에 '가게' 같은 낱말이 더 붙는 칸 포함) 실제 줄 수가 줄 수 제한보다 많으면 그 줄 수로 늘림 */
+    setTimeout(() => { try { after(el); } catch (e) {} }, 0);
+  }
+  /* 줄 수 = 내용 높이 ÷ 줄 높이(기울어진 칸도 같은 값) */
+  function lineCount(el) { const cs = getComputedStyle(el); let lh = parseFloat(cs.lineHeight); if (!(lh > 0)) lh = (parseFloat(cs.fontSize) || 16) * 1.2; const pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0); return Math.max(1, Math.round((el.scrollHeight - pad) / lh)); }
+  function after(el) {
+    if (!el.isConnected || !el.getClientRects().length) return;
+    if (el.scrollHeight <= el.clientHeight + 1) return;
+    let cur = NaN; try { cur = parseInt(getComputedStyle(el).webkitLineClamp, 10); } catch (e) {}
+    const n = lineCount(el);
+    if (!isNaN(cur) && n > cur) { el.classList.add('q31e3'); el.style.setProperty('-webkit-line-clamp', String(n), 'important'); el.style.setProperty('line-clamp', String(n), 'important'); el.style.setProperty('max-height', 'none', 'important'); st.clamp++; }
+    if (el.scrollHeight > el.clientHeight + 1) { st.hid++; el.dataset.q31eHid = '1'; }
+  }
+  /* 칸 너비(CSS px, 나눌 때와 같은 재는 칸) */
+  function cssW(el) { try { const p = el.parentElement, box = (p && /flex|grid/.test(getComputedStyle(p).display)) ? p : el; const cs = getComputedStyle(box); return box.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0); } catch (e) { return 0; } }
+  function split(ch, el) {
+    st.calls++; const s = ch.join(''); const M = measurer(el, s);
+    try { if (M && el) el.__q31eW = M.wc; } catch (e) {}
+    try {
+      const hasH = /[가-힣]/.test(s), hasJ = /[ぁ-ゖァ-ヺ一-龯]/.test(s);
+      const B = new Set(caseBounds(ch));
+      if (hasH) koBounds(ch).forEach(k => B.add(k));
+      if (hasJ) jaBounds(ch).forEach(k => B.add(k));
+      const k = pick2(ch, B, M);
+      if (k > 0) { st.two++; mark(el, 2); return k; }
+      if (!M) { st.none++; return -1; }
+      const c3 = pick3(ch, B, M);
+      if (c3) { st.three++; mark(el, 3); return c3; }
+      const cm = midN(ch, B, M);
+      if (cm && cm.length) { st.mid++; mark(el, cm.length + 1); return cm.length === 1 ? cm[0] : cm; }
+      st.none++; return -1;
+    } finally { if (M) M.done(); }
+  }
+  window.__q31hSplit = split;
+  /* 다시 보기: v131s 가 '띄어쓰기에서만 나뉠' 또는 '한 줄' 로 보고 지나간 이름 칸이 나중에(카드가 다 열린 뒤 · 글자 130%) 낱말 가운데에서 꺾이면 표시를 지우고 v131s 를 다시 돌림 */
+  const SELN = '#app [data-l83="no"], #app .lgnm > b, #app .lgcdn > b, #app .lgs-foot > b, #app .lg4f > b, #app .lgepn > b, #app .bg92name, #app .bn92who, #app .ld82nm';
+  function brks(tn) { const out = []; try { const s = tn.nodeValue; let i = 0, idx = 0, last = null; for (const c of Array.from(s)) { const r = document.createRange(); r.setStart(tn, i); r.setEnd(tn, i + c.length); const q = r.getClientRects()[0]; if (q && q.width > 0) { const top = Math.round(q.top); if (last !== null && Math.abs(top - last) > 4) out.push(idx); last = top; } i += c.length; idx++; } } catch (e) {} return out; }
+  function recheck() {
+    st.re = (st.re || 0) + 1; let need = false;
+    try {
+      document.querySelectorAll(SELN).forEach(el => {
+        /* 나눌 때와 칸 너비가 달라졌으면(카드가 열리는 중에 나눔 등) 한 글로 되돌려 다시 나눔(칸마다 4번까지) */
+        if (el.__q31eW != null) {
+          if (!el.isConnected || !el.getClientRects().length) return;
+          const cw = cssW(el); if (!(cw > 0) || Math.abs(cw - el.__q31eW) <= 1.5 || (el.__q31eN || 0) >= 4) return;
+          const t = el.textContent; el.textContent = t; el.__q31s = null; el.__q31w = null; el.__q31eW = null; el.__q31eN = (el.__q31eN || 0) + 1;
+          if (el.classList.contains('q31e3')) { el.classList.remove('q31e3'); el.style.removeProperty('-webkit-line-clamp'); el.style.removeProperty('line-clamp'); el.style.removeProperty('max-height'); }
+          need = true; st.reset = (st.reset || 0) + 1; return;
+        }
+        if (el.__q31s == null && el.__q31w == null) return;
+        const cn = el.childNodes; if (cn.length !== 1 || cn[0].nodeType !== 3) return;
+        if (!el.getClientRects().length) return;
+        const t = cn[0].nodeValue || ''; const ch = Array.from(t); if (ch.length < 4 || ch.length > 40) return;
+        const r0 = document.createRange(); r0.selectNodeContents(cn[0]); const rs = [...r0.getClientRects()].filter(q => q.width > 0.5); if (rs.length < 2 || rs.every(q => Math.abs(q.top - rs[0].top) < 4)) return;
+        const br = brks(cn[0]); if (!br.length) return;
+        if (br.every(b => /\s/.test(ch[b - 1] || ''))) return;
+        el.__q31s = null; el.__q31w = null; need = true; st.reset = (st.reset || 0) + 1;
+      });
+    } catch (e) {}
+    if (need) { try { window.v131s && window.v131s.scan(); } catch (e) {} }
+  }
+  let rt = 0; const soon = () => { clearTimeout(rt); rt = setTimeout(recheck, 260); };
+  try { const f0 = w90cFitAll; w90cFitAll = function () { const r = f0.apply(this, arguments); soon(); return r; }; window.w90cFitAll = w90cFitAll; } catch (e) {}
+  addEventListener('resize', soon);
+  try { if (document.fonts) document.fonts.addEventListener('loadingdone', soon); } catch (e) {}
+  /* 이름 칸이 새로 생기면(카드 · 창 열림) 자리가 잡힌 뒤 한 번 더 */
+  let mt = 0; const later = () => { clearTimeout(mt); mt = setTimeout(recheck, 480); };
+  try { const app0 = document.getElementById('app'); if (app0) new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) { if (n.nodeType !== 1) continue; const c = n.classList; if (c && (c.contains('boom') || c.contains('q131m') || c.contains('q31sn') || c.contains('q31sw'))) continue; if ((n.matches && n.matches(SELN)) || (n.querySelector && n.querySelector(SELN))) { later(); return; } } }).observe(app0, { childList: true, subtree: true }); } catch (e) {}
+  ['animationend', 'transitionend'].forEach(ev => { try { document.addEventListener(ev, e => { const t = e.target; if (t && t.querySelector && t.querySelector(SELN)) soon(); }, true); } catch (er) {} });
+  setTimeout(recheck, 2500);
+  window.v131e = { on: true, st: () => Object.assign({}, st), split: (s) => { const ch = Array.from(s); const r = split(ch, null); return r > 0 ? J(ch, 0, r) + ' / ' + J(ch, r) : s; } };
 })();
 
 
